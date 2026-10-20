@@ -13,7 +13,7 @@ rating:
   novelty: 2
   evidence: tested
   reviewed: 2026-10-20
-  notes: Clear and proportional, and triggered 29/30 in the sandbox suite. Current models already debug this way on most bugs, and a same-named superpowers skill covers similar ground, so the main value is on hard reproductions.
+  notes: Clear and proportional. It triggered 29/30 in the Opus sandbox suite. On Sonnet 5.5 it fired for prompts framed as regressions or diagnosis, but not for plain find-and-fix requests on small bugs, which Sonnet solved directly. Current models already debug this way on most bugs, and a same-named superpowers skill covers similar ground, so the main value is on hard reproductions.
 source:
   kind: original
   license: MIT
@@ -25,3 +25,4 @@ evaluationCases:
   - evals/cases/checkout-discount.yaml
 evidence:
   - evals/results/triggers-2026-10-20.md
+  - evals/results/triggers-sonnet-2026-10-20.md

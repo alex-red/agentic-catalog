@@ -24,4 +24,5 @@ evaluationCases:
   - evals/cases/retrospective-outcome.yaml
 evidence:
   - evals/results/triggers-2026-10-20.md
+  - evals/results/triggers-sonnet-2026-10-20.md
   - evals/results/pilot-cha-floor-planner-2026-10.md

@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import type { TestContext } from 'node:test';
 import type { Executor, OutcomeCase, RunOptions } from '../scripts/evals.ts';
-import { buildSkillsEval, loadCases, writeTriggerSuite, parseAgentOutput, previewEvaluation, renderTriggerSuite, runEvaluation, runOnce, schedule, summarize } from '../scripts/evals.ts';
+import { buildSkillsEval, loadCases, renderScaffold, writeTriggerSuite, parseAgentOutput, previewEvaluation, renderTriggerSuite, runEvaluation, runOnce, schedule, summarize } from '../scripts/evals.ts';
 import { stringify } from 'yaml';
 import { frontmatter, readYaml, repositoryRoot } from '../scripts/library.ts';
 
@@ -358,4 +358,29 @@ test('criteria are rejected on prompts that are not judged by a model', (context
     '    prompt: Write a new skill that formats our changelog entries.\n',
     '    prompt: Write a new skill that formats our changelog entries.\n    criteria: PASS always.\n'));
   assert.throws(() => loadCases(root), /boolean schema is false/u);
+});
+
+test('trigger cases with a fixture recreate it byte for byte; clarify cases stay empty', (context) => {
+  const root = sandbox(context);
+  const plugin = join(root, writeTriggerSuite(root));
+  const activate = join(plugin, 'cases/systematic-debugging-activate-2');
+  assert.deepEqual(readYaml(readFileSync(join(activate, 'case.yaml'), 'utf8'), 'case.yaml'),
+    { schema_version: '1.1', name: 'systematic-debugging-activate-2', context: { scaffold_script: 'scaffold.sh' } });
+  assert.equal(existsSync(join(plugin, 'cases/systematic-debugging-clarify-5/scaffold.sh')), false);
+  assert.equal(existsSync(join(plugin, 'cases/agentic-catalog-activate-1/scaffold.sh')), false, 'cases without a fixture get no scaffold');
+
+  const workspace = mkdtempSync(join(tmpdir(), 'agentic-rules-scaffold-'));
+  context.after(() => rmSync(workspace, { recursive: true, force: true }));
+  const result = spawnSync('bash', [join(activate, 'scaffold.sh')], { cwd: workspace, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const fixture = join(root, 'evals/fixtures/python-pagination');
+  for (const name of ['pagination.py', 'test_pagination.py', 'README.md']) {
+    assert.deepEqual(readFileSync(join(workspace, name)), readFileSync(join(fixture, name)));
+  }
+  assert.equal(existsSync(join(workspace, 'test_hidden_checkout.py')), false, 'hidden graders never reach the workspace');
+});
+
+test('scaffolds refuse fixture paths that could escape the workspace or break quoting', () => {
+  assert.throws(() => renderScaffold([{ path: "../outside.txt", content: Buffer.from('x') }]), /Unsupported fixture path/u);
+  assert.throws(() => renderScaffold([{ path: "it's.txt", content: Buffer.from('x') }]), /Unsupported fixture path/u);
 });
