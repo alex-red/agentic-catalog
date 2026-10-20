@@ -1,0 +1,9 @@
+schemaVersion: 1
+id: debugging
+description: Pilot the first debugging skill with the three short core rule modules.
+rules:
+  - scope-and-authority
+  - focused-changes
+  - verification-evidence
+skills:
+  - ar-systematic-debugging

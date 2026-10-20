@@ -1,0 +1,12 @@
+schemaVersion: 1
+category: debugging
+tags:
+  - diagnosis
+  - regression
+maturity: experimental
+maintainer: Agentic Rules contributors
+provenance:
+  kind: original
+evaluationCases:
+  - evals/cases/systematic-debugging.yaml
+evidence: []

@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)">
+    <meta name="description" content="A curated, portable library of engineering guidance, focused skills, and composable profiles for coding agents.">
+    <title>Agentic Rules — Engineering Field Guide for Coding Agents</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#catalog">Skip to catalog</a>
+
+    <!-- Universal Symbol Definitions -->
+    <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-mark" viewBox="0 0 32 32"><path d="M5 6h8l3 3 3-3h8v21h-8l-3 2-3-2H5zM16 9v20M9 12h3m-3 5h3m8-5h3m-3 5h3"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8.5 6h11M8.5 12h11M8.5 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" stroke-width="2"/></symbol>
+      <symbol id="i-skill" viewBox="0 0 24 24"><path d="M12 2 3 7l9 5 9-5-9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/></symbol>
+      <symbol id="i-rule" viewBox="0 0 24 24"><path d="M12 3c-4.5 0-7.5 2-7.5 7 0 6 6 10 7.5 11 1.5-1 7.5-5 7.5-11 0-5-3-7-7.5-7Z"/><path d="m9 11.5 2 2 4.5-4.5"/></symbol>
+      <symbol id="i-profile" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="7" rx="2"/><rect x="13" y="4" width="8" height="7" rx="2"/><rect x="3" y="13" width="8" height="7" rx="2"/><rect x="13" y="13" width="8" height="7" rx="2"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+      <symbol id="i-system" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-command" viewBox="0 0 24 24"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></symbol>
+      <symbol id="i-sidebar" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18"/></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="m20.59 13.41-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></symbol>
+    </svg>
+
+    <!-- App Container / macOS-style Window Frame -->
+    <div class="app-layout">
+      <!-- Backdrop overlay for mobile drawer -->
+      <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+      <!-- macOS Frosted Vibrancy Sidebar -->
+      <aside class="sidebar" id="sidebar" aria-label="Library navigation">
+        <div class="sidebar-header">
+          <a class="brand" href="./" aria-label="Agentic Rules home">
+            <span class="brand-mark">
+              <svg class="icon"><use href="#i-mark"/></svg>
+            </span>
+            <div class="brand-text">
+              <span class="brand-title">Agentic Rules</span>
+              <span class="brand-subtitle">FIELD GUIDE · 2026</span>
+            </div>
+          </a>
+          <button id="close-sidebar" class="mobile-close-btn" type="button" aria-label="Close sidebar">
+            <svg class="icon"><use href="#i-close"/></svg>
+          </button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <div class="sidebar-section">
+            <p class="nav-label">CATALOG</p>
+            <nav class="type-navigation" aria-label="Component types">
+              <button type="button" data-type="all" aria-pressed="true">
+                <span class="nav-icon"><svg class="icon"><use href="#i-grid"/></svg></span>
+                <span class="nav-name">All Components</span>
+                <span class="nav-count" data-count="all">—</span>
+              </button>
+              <button type="button" data-type="skill" aria-pressed="false">
+                <span class="nav-icon nav-icon-skill"><svg class="icon"><use href="#i-skill"/></svg></span>
+                <span class="nav-name">Skills</span>
+                <span class="nav-count" data-count="skill">—</span>
+              </button>
+              <button type="button" data-type="rule" aria-pressed="false">
+                <span class="nav-icon nav-icon-rule"><svg class="icon"><use href="#i-rule"/></svg></span>
+                <span class="nav-name">Rules</span>
+                <span class="nav-count" data-count="rule">—</span>
+              </button>
+              <button type="button" data-type="profile" aria-pressed="false">
+                <span class="nav-icon nav-icon-profile"><svg class="icon"><use href="#i-profile"/></svg></span>
+                <span class="nav-name">Profiles</span>
+                <span class="nav-count" data-count="profile">—</span>
+              </button>
+            </nav>
+          </div>
+
+          <div class="sidebar-section reference-navigation">
+            <p class="nav-label">ESSENTIAL GUIDES</p>
+            <nav aria-label="Reference guides">
+              <a href="#item=document%2Fdocs%2Finstallation.md" data-open="document/docs/installation.md" class="guide-item">
+                <span class="guide-icon"><svg class="icon"><use href="#i-book"/></svg></span>
+                <span class="guide-text">Quick Start</span>
+                <svg class="icon link-icon"><use href="#i-up-right"/></svg>
+              </a>
+              <a href="#item=document%2Fdocs%2Fcompatibility.md" data-open="document/docs/compatibility.md" class="guide-item">
+                <span class="guide-icon"><svg class="icon"><use href="#i-sparkle"/></svg></span>
+                <span class="guide-text">Compatibility</span>
+                <svg class="icon link-icon"><use href="#i-up-right"/></svg>
+              </a>
+              <a href="#item=document%2Fdocs%2Fevaluation.md" data-open="document/docs/evaluation.md" class="guide-item">
+                <span class="guide-icon"><svg class="icon"><use href="#i-tag"/></svg></span>
+                <span class="guide-text">Evaluation</span>
+                <svg class="icon link-icon"><use href="#i-up-right"/></svg>
+              </a>
+              <a href="#item=document%2FREADME.md" data-open="document/README.md" class="guide-item">
+                <span class="guide-icon"><svg class="icon"><use href="#i-mark"/></svg></span>
+                <span class="guide-text">Architecture</span>
+                <svg class="icon link-icon"><use href="#i-up-right"/></svg>
+              </a>
+            </nav>
+          </div>
+
+          <div class="sidebar-section popular-tags">
+            <p class="nav-label">EXPLORE TAGS</p>
+            <div class="tag-chips">
+              <button type="button" class="tag-chip" data-search="debugging">#debugging</button>
+              <button type="button" class="tag-chip" data-search="regression">#regression</button>
+              <button type="button" class="tag-chip" data-search="scope">#scope</button>
+              <button type="button" class="tag-chip" data-search="verification">#verification</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="status-indicator">
+            <span class="status-pulse"></span>
+            <span class="status-label">Claude Code & Codex ready</span>
+          </div>
+          <div class="sidebar-meta">
+            <span>MIT License</span>
+            <span>·</span>
+            <button type="button" id="open-shortcuts" class="shortcuts-hint" title="Keyboard shortcuts">
+              <kbd>?</kbd>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main App Canvas -->
+      <main class="main-canvas">
+        <!-- Apple macOS Translucent Topbar -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button id="toggle-sidebar" class="sidebar-toggle-btn" type="button" aria-label="Toggle navigation sidebar">
+              <svg class="icon"><use href="#i-sidebar"/></svg>
+            </button>
+            <div class="breadcrumb" aria-label="Breadcrumb">
+              <span class="breadcrumb-root">AGENTIC RULES</span>
+              <span class="breadcrumb-separator">/</span>
+              <span id="breadcrumb-type" class="breadcrumb-current">CATALOG</span>
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <!-- Search Quick Trigger for Desktop Topbar -->
+            <button id="topbar-search-trigger" type="button" class="topbar-search-btn" aria-label="Quick search (Cmd+K)">
+              <svg class="icon"><use href="#i-search"/></svg>
+              <span class="search-placeholder-text">Search library…</span>
+              <kbd class="shortcut-key"><span class="cmd-symbol">⌘</span>K</kbd>
+            </button>
+
+            <!-- Theme Toggle with Apple Fluid Pill -->
+            <div class="theme-control" role="group" aria-label="Theme mode">
+              <button id="theme-toggle" type="button" class="action-btn theme-btn" aria-label="Change color theme" title="Toggle theme (Light / Dark / Auto)">
+                <svg class="icon theme-icon-sun"><use href="#i-sun"/></svg>
+                <svg class="icon theme-icon-moon"><use href="#i-moon"/></svg>
+              </button>
+            </div>
+
+            <!-- About Link -->
+            <a class="action-btn text-action" href="#item=document%2FREADME.md" data-open="document/README.md">
+              <span>Overview</span>
+              <svg class="icon link-icon"><use href="#i-up-right"/></svg>
+            </a>
+          </div>
+        </header>
+
+        <div class="content-wrapper">
+          <!-- 2026 Apple-Style Hero Stage -->
+          <section class="hero-stage" aria-labelledby="page-title">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-content">
+              <div class="hero-eyebrow">
+                <span class="eyebrow-pill">
+                  <span class="eyebrow-sparkle">✨</span>
+                  2026 Engineering Standard
+                </span>
+                <span class="eyebrow-rule">PORTABLE AGENT COGNITION</span>
+              </div>
+              <h1 id="page-title" class="hero-title">
+                Curated guidance for <br><span class="gradient-text">autonomous coding agents.</span>
+              </h1>
+              <p class="hero-lead">
+                Laser-focused skills, boundary-enforcing rules, and composable profiles.
+                Engineered for immediate portability with Claude Code, Codex, and modern coding agents.
+              </p>
+              <div class="hero-metrics">
+                <div class="metric-card">
+                  <span class="metric-number" data-count="skill">1</span>
+                  <span class="metric-name">Skill</span>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-number" data-count="rule">3</span>
+                  <span class="metric-name">Rules</span>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-number" data-count="profile">1</span>
+                  <span class="metric-name">Profile</span>
+                </div>
+                <div class="metric-card highlight">
+                  <span class="metric-number">0</span>
+                  <span class="metric-name">Runtime Overhead</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Interactive Catalog Deck -->
+          <section id="catalog" class="catalog-section" aria-labelledby="catalog-title" tabindex="-1">
+            <!-- Header bar with Live count -->
+            <div class="collection-heading">
+              <div class="heading-meta">
+                <h2 id="catalog-title">Explore the collection <span id="total-count" class="badge-count">—</span></h2>
+                <p id="collection-description">Small, strictly tested components. Pick what you need, leave the rest.</p>
+              </div>
+              <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>Production-ready specs</span>
+              </div>
+            </div>
+
+            <!-- Spotlight Filter Toolbar (Apple Glass Segmented Controls) -->
+            <div class="catalog-toolbar">
+              <!-- Spotlight Input Bar -->
+              <div class="spotlight-bar">
+                <svg class="icon search-icon"><use href="#i-search"/></svg>
+                <label class="sr-only" for="search">Search the catalog</label>
+                <input id="search" type="search" placeholder="Filter by rule, skill, topic, or keyword…" autocomplete="off" spellcheck="false">
+                <button id="clear-search" class="clear-btn" type="button" aria-label="Clear search" hidden>
+                  <svg class="icon"><use href="#i-close"/></svg>
+                </button>
+                <kbd class="search-kbd" aria-hidden="true"><span class="cmd-symbol">⌘</span>K</kbd>
+              </div>
+
+              <!-- Segmented View & Sort Controls -->
+              <div class="toolbar-controls">
+                <!-- Sort Dropdown styled like Apple native picker -->
+                <div class="sort-control">
+                  <label class="sr-only" for="sort">Sort components</label>
+                  <select id="sort" title="Sort order">
+                    <option value="kind">Sort: By Kind</option>
+                    <option value="name">Sort: Name (A–Z)</option>
+                  </select>
+                  <svg class="icon select-chevron"><use href="#i-chevron"/></svg>
+                </div>
+
+                <!-- Segmented View Toggle (Grid / List) -->
+                <div class="segmented-control" role="group" aria-label="Catalog layout">
+                  <button type="button" data-view="grid" aria-label="Grid view" aria-pressed="true" title="Grid layout (G)">
+                    <svg class="icon"><use href="#i-grid"/></svg>
+                  </button>
+                  <button type="button" data-view="list" aria-label="List view" aria-pressed="false" title="List layout (L)">
+                    <svg class="icon"><use href="#i-list"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Results & Filter Info Line -->
+            <div class="results-line">
+              <p id="result-count" role="status" aria-live="polite">Loading catalog components…</p>
+              <button id="reset-filters" class="reset-link" type="button" hidden>
+                <span>Reset filters</span>
+                <span class="reset-x" aria-hidden="true">✕</span>
+              </button>
+            </div>
+
+            <!-- Component Cards Container -->
+            <div id="catalog-items" class="catalog-grid" aria-label="Catalog items" aria-busy="true"></div>
+
+            <!-- Empty State Display -->
+            <div id="empty-state" class="empty-state" hidden>
+              <div class="empty-icon-wrap">
+                <svg class="icon"><use href="#i-search"/></svg>
+              </div>
+              <h3 id="empty-title">No matching components</h3>
+              <p>Try searching for a different keyword, tag, or reset all active filters.</p>
+              <button id="empty-reset" type="button" class="apple-button">
+                <span>View All Components</span>
+                <svg class="icon"><use href="#i-arrow"/></svg>
+              </button>
+            </div>
+
+            <!-- Error State Display -->
+            <div id="error-state" class="empty-state error" hidden>
+              <div class="empty-icon-wrap error-icon">
+                <svg class="icon"><use href="#i-close"/></svg>
+              </div>
+              <h3>Unable to load catalog</h3>
+              <p>The local catalog snapshot could not be retrieved. Check server connection.</p>
+              <button id="reload" type="button" class="apple-button">
+                <span>Reload Collection</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Apple Callout Banner -->
+          <section class="getting-started" aria-labelledby="start-title">
+            <div class="getting-started-card">
+              <div class="getting-started-icon">
+                <svg class="icon"><use href="#i-book"/></svg>
+              </div>
+              <div class="getting-started-copy">
+                <h2 id="start-title">Ready to equip your agents?</h2>
+                <p>Try our three core rules and the systematic debugging skill in your local project workspace today.</p>
+              </div>
+              <a href="#item=document%2Fdocs%2Finstallation.md" data-open="document/docs/installation.md" class="apple-button secondary">
+                <span>Read Setup Guide</span>
+                <svg class="icon"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+          </section>
+
+          <!-- Apple Design Footer -->
+          <footer class="page-footer">
+            <div class="footer-left">
+              <p class="footer-copy"><strong>Agentic Rules</strong> · Portable guidance for coding agents.</p>
+              <p class="footer-sub">Engineered to human interface standards. Zero telemetry, pure static distribution.</p>
+            </div>
+            <div class="footer-links">
+              <a href="#item=document%2Fdocs%2Fcompatibility.md" data-open="document/docs/compatibility.md">Agent Compatibility</a>
+              <a href="#item=document%2Fdocs%2Fevaluation.md" data-open="document/docs/evaluation.md">Evaluation Benchmarks</a>
+              <a href="./catalog-index.json" target="_blank" rel="noopener">
+                <span>catalog.json</span>
+                <svg class="icon"><use href="#i-up-right"/></svg>
+              </a>
+            </div>
+          </footer>
+        </div>
+        <noscript>
+          <div class="noscript-banner">
+            <p>JavaScript is required to browse the interactive catalog. You can still inspect the <a href="./catalog-index.json">raw catalog JSON</a> directly.</p>
+          </div>
+        </noscript>
+      </main>
+    </div>
+
+    <!-- macOS Sheet Reader Dialog (#reader) -->
+    <dialog id="reader" aria-labelledby="reader-title">
+      <!-- Apple Window Header Bar -->
+      <div class="reader-toolbar">
+        <div class="reader-window-controls" aria-hidden="true">
+          <span class="traffic-dot red" title="Close window"></span>
+          <span class="traffic-dot yellow" title="Minimize"></span>
+          <span class="traffic-dot green" title="Expand"></span>
+        </div>
+        <div class="reader-toolbar-center">
+          <span id="reader-kind" class="sheet-kind-pill">COMPONENT</span>
+        </div>
+        <div class="reader-toolbar-actions">
+          <button id="reader-copy-content" type="button" class="reader-action-btn" title="Copy raw Markdown / instructions">
+            <svg class="icon"><use href="#i-copy"/></svg>
+            <span class="copy-label">Copy Guidance</span>
+          </button>
+          <button id="close-reader" class="reader-close-btn" type="button" aria-label="Close reader">
+            <kbd>esc</kbd>
+            <svg class="icon"><use href="#i-close"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Reading Progress Bar -->
+      <div id="reader-progress" class="reader-progress-bar" style="width: 0%;"></div>
+
+      <!-- Reader Scrollable Body -->
+      <div class="reader-scroll">
+        <header class="reader-header">
+          <h2 id="reader-title" tabindex="-1"></h2>
+          <p id="reader-description"></p>
+          <div id="reader-metadata" class="reader-metadata"></div>
+        </header>
+
+        <!-- Profile Members View -->
+        <div id="reader-members"></div>
+
+        <!-- Markdown Article Body -->
+        <article id="reader-content" class="prose"></article>
+
+        <!-- Source File Card -->
+        <div class="reader-source-card">
+          <div class="source-info">
+            <span class="source-label">Source file</span>
+            <code id="reader-path" class="source-path"></code>
+          </div>
+          <a id="reader-source" class="apple-button outline" target="_blank" rel="noopener">
+            <span>Inspect Raw Source</span>
+            <svg class="icon"><use href="#i-up-right"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Reader Footer Bar -->
+      <footer class="reader-footer">
+        <span class="reader-hint">Portable guidance · No vendor lock-in</span>
+        <div class="reader-footer-btns">
+          <button id="copy-link" type="button" class="apple-button secondary small">
+            <svg class="icon"><use href="#i-link"/></svg>
+            <span>Share Link</span>
+          </button>
+        </div>
+      </footer>
+    </dialog>
+
+    <!-- Keyboard Shortcuts Cheat Sheet Dialog -->
+    <dialog id="shortcuts-modal" class="shortcuts-dialog" aria-labelledby="shortcuts-title">
+      <div class="shortcuts-header">
+        <h3 id="shortcuts-title">Keyboard Shortcuts</h3>
+        <button id="close-shortcuts" class="reader-close-btn" type="button" aria-label="Close shortcuts dialog">
+          <svg class="icon"><use href="#i-close"/></svg>
+        </button>
+      </div>
+      <div class="shortcuts-body">
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Focus Search</span>
+          <div class="shortcut-keys"><kbd>⌘</kbd> <kbd>K</kbd> <span class="shortcut-or">or</span> <kbd>/</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Close Reader / Overlay</span>
+          <div class="shortcut-keys"><kbd>Esc</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Filter: All Components</span>
+          <div class="shortcut-keys"><kbd>1</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Filter: Skills</span>
+          <div class="shortcut-keys"><kbd>2</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Filter: Rules</span>
+          <div class="shortcut-keys"><kbd>3</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Filter: Profiles</span>
+          <div class="shortcut-keys"><kbd>4</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Toggle Grid / List View</span>
+          <div class="shortcut-keys"><kbd>G</kbd> / <kbd>L</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-desc">Toggle Dark / Light Theme</span>
+          <div class="shortcut-keys"><kbd>T</kbd></div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Apple Dynamic Island Floating Toast Notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

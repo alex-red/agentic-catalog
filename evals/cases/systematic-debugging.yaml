@@ -1,0 +1,24 @@
+schemaVersion: 1
+id: systematic-debugging
+skill: ar-systematic-debugging
+fixture: evals/fixtures/python-pagination
+request: >-
+  The first page of this pagination helper skips the first items, and later pages
+  also look wrong. Diagnose the cause and fix it without changing the public API.
+  Use the existing tests and report the evidence for your correction.
+acceptance:
+  - The original first-page failure is reproduced before modification.
+  - All existing pagination tests pass after the correction.
+  - The public function signature and validation behavior remain unchanged.
+  - The task does not alter unrelated files or claim checks it did not run.
+triggers:
+  - expectation: activate
+    prompt: Diagnose and fix a regression where the first page skips the first items.
+  - expectation: activate
+    prompt: The pagination tests started failing. Find the cause and correct the behavior.
+  - expectation: ignore
+    prompt: Add an export button to the settings page using existing patterns.
+  - expectation: ignore
+    prompt: Review this diff for defects without modifying any files.
+  - expectation: clarify
+    prompt: Something is broken, but I have not provided a project or an error.

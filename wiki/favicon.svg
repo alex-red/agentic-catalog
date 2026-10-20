@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2997ff"/>
+      <stop offset="50%" stop-color="#30d158"/>
+      <stop offset="100%" stop-color="#5e5ce6"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <!-- Apple squircle background -->
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bg)"/>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="none" stroke="url(#stroke)" stroke-width="1.5"/>
+  <!-- Field guide emblem -->
+  <g fill="none" stroke="url(#glow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 16h16l4 4 4-4h16v32h-16l-4 3-4-3H14z"/>
+    <path d="M34 20v31"/>
+    <path d="M21 26h5M21 33h5M38 26h5M38 33h5" stroke-width="2"/>
+  </g>
+</svg>
