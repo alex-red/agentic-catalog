@@ -1,0 +1,12 @@
+{
+  "name": "agentic-rules",
+  "description": "Experimental engineering skills for coding agents.",
+  "owner": { "name": "Agentic Rules contributors" },
+  "plugins": [
+    {
+      "name": "agentic-rules",
+      "source": "./",
+      "description": "Experimental engineering skills for coding agents, kept only where evaluations show a benefit."
+    }
+  ]
+}

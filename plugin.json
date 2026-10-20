@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agentic-rules",
+  "version": "0.0.1",
+  "description": "Experimental engineering skills for coding agents, kept only where evaluations show a benefit.",
+  "author": { "name": "Agentic Rules contributors" },
+  "license": "MIT",
+  "keywords": ["skills", "debugging"]
+}

@@ -1,64 +1,81 @@
-# Manual installation
+# Installation
 
-The scaffold provides one skill and a `debugging` pilot profile. Installation is project-local. It does not change global agent settings, activate tools, or install a runtime.
+Installation is project-local or per user, as you choose. Nothing here changes global agent settings, enables hooks, or installs a runtime. Skills arrive through a plugin or a directory copy; rules are always a deliberate manual step.
 
-## Select and copy
+This repository has no published Git remote yet. Replace `OWNER/REPO` below with its location, or use a local path to the checkout.
 
-Choose an exact source revision once this repository has version control or a release tag. Until then, record a local snapshot as unreleased. Inspect the [profile](../profiles/debugging.yaml) and selected content before copying.
+## Skills through the plugin marketplace (recommended)
 
-For Codex, use a project `.agents/skills/` directory. For Claude Code, use `.claude/skills/`. These are documented discovery locations; actual discovery is still untested for this scaffold. [Codex skills](https://learn.chatgpt.com/docs/build-skills), [Claude Code skills](https://code.claude.com/docs/en/skills)
+Claude Code (2.1.275 or later):
 
-Adapt the source, project, and host directory below. Run once for each host you deliberately select:
+```sh
+claude plugin marketplace add OWNER/REPO
+claude plugin install agentic-rules@agentic-rules
+```
+
+Inside a session, `/plugin install agentic-rules --marketplace OWNER/REPO` does both. Skills are then available as `/agentic-rules:systematic-debugging` and can also be selected automatically.
+
+Codex:
+
+```sh
+codex plugin marketplace add OWNER/REPO
+codex plugin add agentic-rules@agentic-rules
+```
+
+Start a new Codex session afterwards. To enable the plugin for one repository only, add this to its `.codex/config.toml`:
+
+```toml
+[plugins."agentic-rules@agentic-rules"]
+enabled = true
+```
+
+Update with `claude plugin marketplace update` followed by `claude plugin update agentic-rules`, or with `codex plugin marketplace upgrade`. Remove with `claude plugin uninstall agentic-rules` or `codex plugin remove agentic-rules@agentic-rules`.
+
+The Claude Code manifests pass `claude plugin validate --strict`. The Codex manifests follow the documented format but have not yet been installed in Codex. See [compatibility](compatibility.md).
+
+## Skills by directory copy (fallback)
+
+Use this when the project should carry the skill in its own checkout. Project skill directories are `.claude/skills/` for Claude Code and `.agents/skills/` for Codex.
 
 ```sh
 ar_source=/absolute/path/to/agentic-rules
-ar_project=/absolute/path/to/your-project
-ar_host_directory=.agents
-ar_destination="$ar_project/$ar_host_directory/skills/ar-systematic-debugging"
+ar_destination=/absolute/path/to/your-project/.agents/skills/systematic-debugging
 
 if [ -e "$ar_destination" ] || [ -L "$ar_destination" ]; then
   printf 'Already exists; inspect before updating: %s\n' "$ar_destination" >&2
 else
-  mkdir -p "$ar_project/$ar_host_directory/skills"
-  cp -R "$ar_source/skills/ar-systematic-debugging" "$ar_destination"
+  mkdir -p "$(dirname "$ar_destination")"
+  cp -R "$ar_source/skills/systematic-debugging" "$ar_destination"
 fi
 ```
 
-For Claude Code, change `ar_host_directory` to `.claude`. Copy the whole skill, including its references and license. `component.yaml` describes library provenance and evaluation paths; those repository-side paths are not runtime dependencies.
+Copy the whole directory, including references and `LICENSE.txt`. Check first for another skill with the same name. Some popular libraries also ship a `systematic-debugging` skill, and two same-named skills can both appear in the selector. To update, compare with `diff -ru` against the new source and keep local edits. To remove, delete the copied directory.
 
-## Merge the rules
+## Rules
 
-The three rule modules are plain Markdown source. Copy their bodies, omitting YAML frontmatter, into the project's existing `AGENTS.md`. An optional read-only preview prints the selected bodies as one marked block:
+Rules are plain Markdown. Copying the `rules/` folder of this repository does nothing on its own.
+
+**Claude Code:** copy the selected rule files into the project's `.claude/rules/`. Claude Code loads them at session start, and their `id` and `description` frontmatter is ignored. Add a `paths` list to a rule's frontmatter to scope it to matching files.
 
 ```sh
-bun run rules:preview -- debugging YOUR_SOURCE_REVISION
+mkdir -p your-project/.claude/rules
+cp agentic-rules/rules/verification-evidence.md your-project/.claude/rules/
 ```
 
-Review and paste that block into the existing instructions. The preview does not write to your project. Replace `YOUR_SOURCE_REVISION` with the actual source revision; before version control exists, use `local-unreleased` and retain the source snapshot. Use [the bootstrap template](../templates/AGENTS.md.tmpl) only when there is no existing instruction file, and replace its project-specific prompts with real facts.
+**Codex, or any host that reads `AGENTS.md`:** print a marked block and paste it into the project's existing `AGENTS.md`:
 
-Resolve contradictions with project-owned guidance explicitly. Keep always-needed instructions in the file itself rather than depending on a link to load them.
+```sh
+bun run rules:preview -- debugging "$(git -C /path/to/agentic-rules rev-parse --short HEAD)"
+```
 
-Claude Code's direct `AGENTS.md` loading depends on version, settings, and existing instruction files. When necessary, add an `@AGENTS.md` import to the project's existing `CLAUDE.md`, preserving its content. Confirm the loaded instructions in a fresh session. [Claude Code project instructions](https://code.claude.com/docs/en/memory)
+Use [the bootstrap template](../templates/AGENTS.md.tmpl) only when the project has no instruction file. Resolve contradictions with project-owned guidance explicitly. To remove the rules, delete the marked block or the copied rule files.
 
-Record the source revision, installed paths, selected profile, and local modifications in the project's normal development records.
+Claude Code reads `AGENTS.md` directly (2.1.277 or later), but only when there is no `CLAUDE.md` in the project or a parent directory. If the project has a `CLAUDE.md`, either add `@AGENTS.md` to it or use `.claude/rules/` as described above.
 
 ## Check the installation
 
-1. Start a fresh host session in the project.
-2. Confirm the intended project instructions are loaded.
-3. Confirm `ar-systematic-debugging` is available in the skill selector.
-4. Explicitly invoke it on a disposable reproduction using the host's skill picker.
-5. Try a plain-language debugging request and check whether it is selected appropriately.
-6. Record host version, model, operating system, session surface, and observed result. A directory copy alone is not a host discovery test.
-
-Use the [compatibility matrix](compatibility.md) to record clean-repository, existing-instructions, nested-directory, and worktree cases.
-
-## Update or remove
-
-Compare the installed directory against the selected new source before an update:
-
-```sh
-diff -ru "$ar_destination" "$ar_source/skills/ar-systematic-debugging"
-```
-
-Review changes and retain local edits. Do not run the initial copy over an existing installation. To remove the selection, remove only the copied skill directory and its marked rule block after checking for local changes. Preserve all project-owned instructions and other installed skills.
+1. Start a fresh session in the project.
+2. Confirm the rules loaded. In Claude Code, `/memory` lists the loaded instruction files.
+3. Confirm the skill is listed, and invoke it explicitly on a disposable reproduction.
+4. Ask a plain-language debugging question and check whether the skill is selected.
+5. Record host version, model, operating system, and the result in the [compatibility matrix](compatibility.md).
