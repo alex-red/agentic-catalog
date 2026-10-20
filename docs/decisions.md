@@ -87,7 +87,7 @@ The seed set came from two research passes that checked licenses from the actual
 - Generic subagent personas from large collections were passed over in favor of Anthropic's confidence-filtered reviewer and an adapted silent-failure reviewer.
 - A 2026 study found that context files can lower task success and raise cost. Guidance on writing AGENTS.md therefore ships as an on-demand skill (`agents-md-authoring`), not an always-loaded rule.
 
-Host-specific details taken from documentation but not yet tried here (Codex hook files and trust, the Codex plugin manifest location) are marked as unverified in [compatibility](compatibility.md).
+Host-specific details (Codex hook files and trust, the Codex plugin manifest location) were later checked against Codex documentation and source; see [compatibility](compatibility.md).
 
 ## 17. Vendored files stay byte-identical (2026-10-20)
 

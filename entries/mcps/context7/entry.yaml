@@ -23,6 +23,6 @@ source:
 install:
   any: npx ctx7 setup, then choose CLI with skills, or MCP.
   claude-code: 'claude mcp add --transport http context7 https://mcp.context7.com/mcp --header "Authorization: Bearer $CONTEXT7_API_KEY"'
-  codex: Add an [mcp_servers.context7] entry with url https://mcp.context7.com/mcp to the Codex config.
+  codex: 'Project scope: add [mcp_servers.context7] with url = "https://mcp.context7.com/mcp" to .codex/config.toml. User scope: codex mcp add context7 --url https://mcp.context7.com/mcp'
   notes: Keep the API key in the environment, never in checked-in configuration.
 overlap: Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.

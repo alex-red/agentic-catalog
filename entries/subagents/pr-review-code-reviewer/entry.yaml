@@ -24,6 +24,6 @@ source:
   notes: LICENSE is the pr-review-toolkit plugin license. The whole toolkit installs with /plugin install pr-review-toolkit@claude-plugins-official.
 install:
   claude-code: Copy AGENT.md to .claude/agents/code-reviewer.md and keep the license notice nearby.
-  codex: Use the body as a custom agent prompt or a review prompt; the frontmatter is Claude Code specific.
+  codex: Create .codex/agents/code-reviewer.toml with name, description, and developer_instructions set to the AGENT.md body; the Markdown frontmatter is Claude Code specific.
 overlap: Claude Code /code-review and /security-review cover bug review; Codex has /review. The added value is checking compliance with your written rules.
 related: [silent-failure-hunter, explore-plan-implement-review]

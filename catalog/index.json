@@ -1218,7 +1218,7 @@
       },
       "install": {
         "claude-code": "Copy AGENT.md to .claude/agents/code-reviewer.md and keep the license notice nearby.",
-        "codex": "Use the body as a custom agent prompt or a review prompt; the frontmatter is Claude Code specific."
+        "codex": "Create .codex/agents/code-reviewer.toml with name, description, and developer_instructions set to the AGENT.md body; the Markdown frontmatter is Claude Code specific."
       },
       "overlap": "Claude Code /code-review and /security-review cover bug review; Codex has /review. The added value is checking compliance with your written rules.",
       "related": [
@@ -1270,7 +1270,7 @@
       ],
       "install": {
         "claude-code": "Copy AGENT.md to .claude/agents/silent-failure-hunter.md.",
-        "codex": "Use the body as a custom agent or review prompt."
+        "codex": "Create .codex/agents/silent-failure-hunter.toml with name, description, and developer_instructions set to the AGENT.md body. Codex agents inherit the parent session's sandbox, so read-only behavior relies on the instructions."
       },
       "overlap": "General review commands catch some cases but do not specialize in them.",
       "related": [
@@ -1316,7 +1316,7 @@
       },
       "install": {
         "claude-code": "claude mcp add chrome-devtools --scope project -- npx chrome-devtools-mcp@latest --isolated",
-        "codex": "codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated",
+        "codex": "User scope: codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated. Project scope: add [mcp_servers.chrome-devtools] with command = \"npx\" and args = [\"chrome-devtools-mcp@latest\", \"--isolated\"] to .codex/config.toml.",
         "notes": "Pin a version instead of @latest for repeatable setups. --slim reduces the tool list."
       },
       "overlap": "Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them.",
@@ -1362,7 +1362,7 @@
       "install": {
         "any": "npx ctx7 setup, then choose CLI with skills, or MCP.",
         "claude-code": "claude mcp add --transport http context7 https://mcp.context7.com/mcp --header \"Authorization: Bearer $CONTEXT7_API_KEY\"",
-        "codex": "Add an [mcp_servers.context7] entry with url https://mcp.context7.com/mcp to the Codex config.",
+        "codex": "Project scope: add [mcp_servers.context7] with url = \"https://mcp.context7.com/mcp\" to .codex/config.toml. User scope: codex mcp add context7 --url https://mcp.context7.com/mcp",
         "notes": "Keep the API key in the environment, never in checked-in configuration."
       },
       "overlap": "Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.",

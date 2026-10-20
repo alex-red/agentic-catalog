@@ -22,7 +22,7 @@ source:
   author: Google Chrome DevTools team
 install:
   claude-code: claude mcp add chrome-devtools --scope project -- npx chrome-devtools-mcp@latest --isolated
-  codex: codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated
+  codex: 'User scope: codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated. Project scope: add [mcp_servers.chrome-devtools] with command = "npx" and args = ["chrome-devtools-mcp@latest", "--isolated"] to .codex/config.toml.'
   notes: Pin a version instead of @latest for repeatable setups. --slim reduces the tool list.
 overlap: Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them.
 related: [verification-evidence, webapp-testing]

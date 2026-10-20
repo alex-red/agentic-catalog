@@ -23,6 +23,6 @@ inspiredBy:
     url: https://github.com/anthropics/claude-plugins-official/blob/4ca561fb8532594e7a5faef945e85096fcec0616/plugins/pr-review-toolkit/agents/silent-failure-hunter.md
 install:
   claude-code: Copy AGENT.md to .claude/agents/silent-failure-hunter.md.
-  codex: Use the body as a custom agent or review prompt.
+  codex: Create .codex/agents/silent-failure-hunter.toml with name, description, and developer_instructions set to the AGENT.md body. Codex agents inherit the parent session's sandbox, so read-only behavior relies on the instructions.
 overlap: General review commands catch some cases but do not specialize in them.
 related: [pr-review-code-reviewer]

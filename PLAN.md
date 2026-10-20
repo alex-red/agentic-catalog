@@ -56,7 +56,7 @@ Candidates that were considered and left out, with reasons, are in the research 
 
 1. **Publish.** Create the GitHub repository at the location in `package.json` (`ban-red/agentic-rules`), or change that one field and rebuild. Then fill in the README install line and tag `v0.1.0`.
 2. **Use it end to end.** In a real project, ask an agent in each host to "grab useful skills from the catalog" and to "find a self-improvement loop". Record trigger behavior, recommendation quality, and install friction in `evals/results/`.
-3. **Check the host-specific claims.** Codex hook files and trust, the Codex plugin manifest location (`.codex-plugin/plugin.json` versus the root `plugin.json` used here), and the install commands of linked plugins. Fix entries that are wrong.
+3. ~~**Check the host-specific claims.**~~ Done against Codex docs and source on 2026-10-20; see [compatibility](docs/compatibility.md). Install commands of third-party linked plugins remain upstream claims.
 4. **Raise evidence where it matters.** Run trigger checks for the discovery skill and the vendored skills, and run the prepared matched comparisons for the original entries when authorized. The harness is in `evals/`; it is optional for a catalog entry, not a release gate.
 5. **Grow carefully.** Add entries from observed needs and from the considered-but-deferred list, such as improve-codebase-architecture and handoff from mattpocock/skills and Playwright MCP. Each new entry starts at `reviewed`.
 6. ~~**Automate freshness.**~~ Done: `bun run catalog:freshness` reports pinned upstreams that have moved and reviews older than six months (`--strict` exits non-zero). On 2026-10-20 all vendored entries were current, and four linked repositories had moved by 1 to 9 commits.
