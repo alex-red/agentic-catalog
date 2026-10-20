@@ -39,6 +39,24 @@ interface Profile {
   path: string;
 }
 
+export interface EvaluationCase {
+  schemaVersion: number;
+  id: string;
+  skill?: string;
+  rule?: string;
+  fixture?: string;
+  request?: string;
+  grader?: { files?: string; command: string[] };
+  runtime?: { command: string[] };
+  acceptance?: string[];
+  triggers?: EvaluationTrigger[];
+}
+
+export interface EvaluationTrigger {
+  expectation: 'activate' | 'ignore' | 'clarify';
+  prompt: string;
+}
+
 interface Skill extends Frontmatter, Component {
   id: string;
   path: string;
@@ -53,13 +71,13 @@ export interface Catalog {
 
 const ajv = new Ajv({ allErrors: true, strict: true });
 const validators = new Map(
-  ['skill', 'component', 'rule', 'profile', 'evaluation-case'].map((name) => [
+  ['skill', 'component', 'rule', 'profile', 'evaluation-case', 'trigger-suite'].map((name) => [
     name,
     ajv.compile(JSON.parse(readFileSync(join(repositoryRoot, 'catalog/schema', `${name}.schema.json`), 'utf8'))),
   ]),
 );
 
-function validate<T>(schema: string, data: unknown, label: string): T {
+export function validate<T>(schema: string, data: unknown, label: string): T {
   const validator = validators.get(schema)!;
   if (!validator(data)) {
     throw new Error(`${label}: ${ajv.errorsText(validator.errors, { separator: '; ' })}`);
@@ -174,6 +192,49 @@ function assertUnique(values: string[], label: string): void {
   }
 }
 
+interface LoadedEvaluationCase {
+  path: string;
+  evaluation: EvaluationCase;
+}
+
+function loadEvaluationCaseFiles(root: string): LoadedEvaluationCase[] {
+  const skillNames = directoryEntries(root, 'skills')
+    .filter((directory) => lstatSync(directory).isDirectory())
+    .map((directory) => directory.slice(directory.lastIndexOf(sep) + 1));
+  const ruleIds = directoryEntries(root, 'rules')
+    .filter((file) => lstatSync(file).isFile() && file.endsWith('.md'))
+    .map((file) => file.slice(file.lastIndexOf(sep) + 1, -3));
+  const cases = directoryEntries(root, 'evals/cases').map((file) => {
+    if (!file.endsWith('.yaml') || !lstatSync(file).isFile()) {
+      throw new Error(`Evaluation cases must be YAML files: ${file}`);
+    }
+    const path = localName(root, file);
+    const evaluation = validate<EvaluationCase>(
+      'evaluation-case', readYaml(readFileSync(file, 'utf8'), path), path,
+    );
+    if (evaluation.skill && !skillNames.includes(evaluation.skill)) {
+      throw new Error(`${path}: unknown skill ${evaluation.skill}`);
+    }
+    if (evaluation.rule && !ruleIds.includes(evaluation.rule)) {
+      throw new Error(`${path}: unknown rule ${evaluation.rule}`);
+    }
+    for (const [label, directory] of [['fixture', evaluation.fixture], ['grader', evaluation.grader?.files]] as const) {
+      if (directory === undefined) continue;
+      if (isAbsolute(directory) || directory.includes('\\')) throw new Error(`${path}: ${label} path must be relative`);
+      const resolved = safePath(root, resolve(root, directory));
+      if (!lstatSync(resolved).isDirectory()) throw new Error(`${path}: expected a ${label} directory`);
+      filesWithin(resolved);
+    }
+    return { path, evaluation };
+  });
+  assertUnique(cases.map(({ evaluation }) => evaluation.id), 'evaluation case ID');
+  return cases;
+}
+
+export function loadEvaluationCases(root = repositoryRoot): EvaluationCase[] {
+  return loadEvaluationCaseFiles(root).map(({ evaluation }) => evaluation);
+}
+
 export function loadCatalog(root = repositoryRoot): Catalog {
   const rules = directoryEntries(root, 'rules').map((file) => {
     if (!file.endsWith('.md') || !lstatSync(file).isFile()) {
@@ -185,12 +246,12 @@ export function loadCatalog(root = repositoryRoot): Catalog {
     return { ...rule, path: localName(root, file) };
   });
 
+  const evaluations = loadEvaluationCaseFiles(root);
   const skills = directoryEntries(root, 'skills').map((directory) => {
     if (!lstatSync(directory).isDirectory()) throw new Error(`Expected a skill directory: ${directory}`);
     validateSkillBundle(directory);
     const file = join(directory, 'SKILL.md');
     const definition = validate<Frontmatter>('skill', frontmatter(readFileSync(file, 'utf8'), file).data, file);
-    if (!definition.name.startsWith('ar-')) throw new Error(`${file}: library skill names must start with ar-`);
     const companion = repoFile(root, localName(root, join(directory, 'component.yaml')));
     const metadata = validate<Component>('component', readYaml(readFileSync(companion, 'utf8'), companion), companion);
     for (const path of [...metadata.evaluationCases, ...metadata.evidence]) repoFile(root, path);
@@ -199,16 +260,10 @@ export function loadCatalog(root = repositoryRoot): Catalog {
       safePath(directory, resolve(directory, notice));
     }
     for (const path of metadata.evaluationCases) {
-      const evaluation = validate<{ skill: string; fixture: string }>(
-        'evaluation-case', readYaml(readFileSync(join(root, path), 'utf8'), path), path,
-      );
+      repoFile(root, path);
+      const evaluation = evaluations.find((entry) => entry.path === path)?.evaluation;
+      if (!evaluation) throw new Error(`${path}: evaluation case is not in evals/cases`);
       if (evaluation.skill !== definition.name) throw new Error(`${path}: evaluation targets the wrong skill`);
-      if (isAbsolute(evaluation.fixture) || evaluation.fixture.includes('\\')) {
-        throw new Error(`${path}: fixture path must be relative`);
-      }
-      const fixture = safePath(root, resolve(root, evaluation.fixture));
-      if (!lstatSync(fixture).isDirectory()) throw new Error(`${path}: expected a fixture directory`);
-      filesWithin(fixture);
     }
     return { ...definition, ...metadata, id: `skill/${definition.name}`, path: localName(root, file) };
   });

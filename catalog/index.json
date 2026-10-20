@@ -13,14 +13,40 @@
     },
     {
       "id": "verification-evidence",
-      "description": "Connect completion claims to observed behavior and disclose gaps.",
+      "description": "Check changes where they actually show up, including an app that is already running.",
       "path": "rules/verification-evidence.md"
     }
   ],
   "skills": [
     {
-      "name": "ar-systematic-debugging",
-      "description": "Diagnose and fix reproducible failures, crashes, or regressions. Use when behavior differs from expectations; ordinary feature implementation and diff-only review have separate scopes.",
+      "name": "retrospective",
+      "description": "Turn the stumbling blocks of a finished piece of work into lasting project improvements: instructions, skills, scripts, or checks, each placed where a future session will actually load or run it. Use when asked to reflect on the work done, what slowed you down, lessons learned, or how to make future sessions faster. Not for reviewing code changes or planning new features.",
+      "license": "MIT",
+      "schemaVersion": 1,
+      "category": "process",
+      "tags": [
+        "retrospective",
+        "project-instructions",
+        "skill-triggering"
+      ],
+      "maturity": "experimental",
+      "maintainer": "Agentic Rules contributors",
+      "provenance": {
+        "kind": "original"
+      },
+      "evaluationCases": [
+        "evals/cases/retrospective.yaml",
+        "evals/cases/retrospective-outcome.yaml"
+      ],
+      "evidence": [
+        "evals/results/triggers-2026-10-20.md"
+      ],
+      "id": "skill/retrospective",
+      "path": "skills/retrospective/SKILL.md"
+    },
+    {
+      "name": "systematic-debugging",
+      "description": "Diagnose and fix bugs, failing tests, crashes, and regressions by reproducing the failure, testing a hypothesis about its cause, and verifying the correction. Use when something behaves differently than expected. Not for new features or review-only requests.",
       "license": "MIT",
       "schemaVersion": 1,
       "category": "debugging",
@@ -34,11 +60,12 @@
         "kind": "original"
       },
       "evaluationCases": [
-        "evals/cases/systematic-debugging.yaml"
+        "evals/cases/systematic-debugging.yaml",
+        "evals/cases/checkout-discount.yaml"
       ],
       "evidence": [],
-      "id": "skill/ar-systematic-debugging",
-      "path": "skills/ar-systematic-debugging/SKILL.md"
+      "id": "skill/systematic-debugging",
+      "path": "skills/systematic-debugging/SKILL.md"
     }
   ],
   "profiles": [
@@ -52,9 +79,21 @@
         "verification-evidence"
       ],
       "skills": [
-        "ar-systematic-debugging"
+        "systematic-debugging"
       ],
       "path": "profiles/debugging.yaml"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "project-upkeep",
+      "description": "Turn session retrospectives into project guidance that loads when needed, with the verification rule.",
+      "rules": [
+        "verification-evidence"
+      ],
+      "skills": [
+        "retrospective"
+      ],
+      "path": "profiles/project-upkeep.yaml"
     }
   ]
 }
