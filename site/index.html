@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agentic Rules catalog</title>
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Agentic Rules</h1>
+      <input id="q" type="search" placeholder="Filter (press / to focus)" aria-label="Filter" />
+      <div id="kinds" class="chips" role="group" aria-label="Kind"></div>
+      <div id="facets" class="chips" role="group" aria-label="Facets"></div>
+    </header>
+    <details id="intro" class="intro" open>
+      <summary>About this library</summary>
+      <p>
+        Agent guidance for Claude Code and Codex that is kept only when it measurably helps. Each component targets a
+        failure observed in real projects and is compared against the host's default behavior before it ships.
+        <strong>Status: experimental</strong>: <span id="counts"></span>, piloted on one project.
+      </p>
+      <ul>
+        <li><strong>Skills</strong> load on demand when a request matches their description (for example, debugging a failing test). They can include reference files, shown as tabs in the viewer.</li>
+        <li><strong>Rules</strong> are short, always-on instructions. They are not part of the plugin: copy them into <code>.claude/rules/</code> (Claude Code) or merge them into <code>AGENTS.md</code> (Codex).</li>
+        <li><strong>Profiles</strong> are bundles of rules and skills that go together for one purpose.</li>
+      </ul>
+      <p>
+        <strong>How to browse:</strong> start with a profile to see a coherent set, then open its skills and rules.
+        Filter by kind or tag, search descriptions, and click an item to read its source as plain text. Press
+        <kbd>/</kbd> to search, <kbd>↑</kbd>/<kbd>↓</kbd> to step through items, <kbd>Esc</kbd> to close. Every view has
+        a shareable link. Install steps are in <code>docs/installation.md</code>.
+      </p>
+    </details>
+    <div class="layout">
+      <nav id="list" aria-label="Catalog"></nav>
+      <section id="viewer" aria-live="polite"></section>
+    </div>
+  </body>
+</html>

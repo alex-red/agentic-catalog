@@ -1,0 +1,25 @@
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; --line: color-mix(in srgb, currentColor 20%, transparent); --accent: #2f6fed; }
+body { margin: 0; }
+header { padding: 1rem; border-bottom: 1px solid var(--line); display: grid; gap: 0.5rem; }
+h1 { margin: 0; font-size: 1.2rem; }
+input { box-sizing: border-box; padding: 0.5rem 0.7rem; font: inherit; max-width: 28rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip { font: inherit; font-size: 0.8rem; padding: 0.15rem 0.6rem; border: 1px solid var(--line); border-radius: 999px; background: none; color: inherit; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.layout { display: grid; grid-template-columns: minmax(16rem, 24rem) 1fr; height: 70vh; }
+nav { overflow: auto; border-right: 1px solid var(--line); }
+nav h2 { margin: 0; padding: 0.6rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; position: sticky; top: 0; background: Canvas; }
+nav a { display: block; padding: 0.55rem 1rem; color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+nav a[aria-current="true"] { background: color-mix(in srgb, var(--accent) 15%, transparent); }
+nav a strong { display: block; font-size: 0.95rem; }
+nav a span { font-size: 0.8rem; opacity: 0.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#viewer { overflow: auto; padding: 1rem 1.5rem; }
+#viewer .bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem; }
+#viewer .bar h2 { margin: 0 auto 0 0; font-size: 1.1rem; }
+pre { white-space: pre-wrap; word-break: break-word; font: 0.85rem/1.5 ui-monospace, monospace; background: color-mix(in srgb, currentColor 6%, transparent); padding: 1rem; border-radius: 6px; }
+.empty { opacity: 0.6; }
+@media (max-width: 760px) { .layout { grid-template-columns: 1fr; height: auto; } nav { max-height: 40vh; border-right: 0; } }
+.intro { padding: 0.75rem 1rem; border-bottom: 1px solid var(--line); max-width: 60rem; font-size: 0.9rem; line-height: 1.5; }
+.intro summary { cursor: pointer; font-weight: 600; }
+.intro p, .intro ul { margin: 0.5rem 0; }
+kbd { font: 0.8em ui-monospace, monospace; border: 1px solid var(--line); border-radius: 3px; padding: 0 0.3em; }

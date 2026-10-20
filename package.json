@@ -1,6 +1,6 @@
 {
   "name": "agentic-rules",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "A curated, portable library of engineering guidance for coding agents.",
   "type": "module",
@@ -14,21 +14,24 @@
     "catalog:build": "bun scripts/catalog.ts --write",
     "catalog:check": "bun scripts/catalog.ts --check",
     "rules:preview": "bun scripts/rules-preview.ts",
-    "wiki:build": "bun scripts/wiki-build.ts",
-    "wiki:dev": "bun scripts/wiki-serve.ts",
+    "dev": "vite",
+    "site:build": "vite build",
     "lint": "markdownlint-cli2",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p site",
     "test": "bun test",
-    "check": "bun run typecheck && bun run lint && bun run validate && bun run catalog:check && bun test && bun run wiki:build"
+    "eval:triggers": "bun scripts/eval-triggers.ts",
+    "eval:run": "bun scripts/eval-run.ts",
+    "plugin:validate": "claude plugin validate . --strict",
+    "eval:skills": "bun scripts/eval-skills.ts",
+    "check": "bun run typecheck && bun run lint && bun run validate && bun run catalog:check && bun test"
   },
   "devDependencies": {
     "@types/node": "24.19.2",
     "ajv": "8.20.0",
     "markdownlint-cli2": "0.23.3",
     "mdast-util-from-markdown": "2.1.0",
-    "mdast-util-gfm": "3.1.0",
-    "micromark-extension-gfm": "3.0.0",
     "typescript": "7.0.2",
+    "vite": "8.3.4",
     "yaml": "2.9.1"
   }
 }

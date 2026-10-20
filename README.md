@@ -1,47 +1,47 @@
 # Agentic Rules
 
-A small library of engineering rules, skills, and workflows for coding agents. Choose the guidance your project needs and keep the rest out of its context.
+Agent guidance for Claude Code and Codex that is kept only when it measurably helps. Each component targets a failure observed in real projects and is compared against the host's default behavior before it ships.
 
-**Status: experimental scaffold.** The first published component is [systematic debugging](skills/ar-systematic-debugging/SKILL.md). Host discovery and behavioral effectiveness have not yet been evaluated. Codex and Claude Code are the first compatibility targets.
+**Status: experimental.** Two skills and three short rules, piloted on one project. See [the plan](PLAN.md) and the [pilot findings](evals/results/pilot-cha-floor-planner-2026-10.md).
 
-## Use the first skill
+## Install
 
-Follow the [manual installation guide](docs/installation.md) to copy the complete skill into a project and merge selected rules. The [debugging profile](profiles/debugging.yaml) lists the currently available pilot selection.
+This repository is a plugin marketplace for both hosts. Replace `OWNER/REPO` with its Git location once it is published.
 
-- [Scope and authority](rules/scope-and-authority.md)
-- [Focused changes](rules/focused-changes.md)
-- [Verification evidence](rules/verification-evidence.md)
-- [Bug-fix workflow](workflows/README.md)
+```sh
+# Claude Code
+claude plugin marketplace add OWNER/REPO
+claude plugin install agentic-rules@agentic-rules
+
+# Codex
+codex plugin marketplace add OWNER/REPO
+codex plugin add agentic-rules@agentic-rules
+```
+
+In a Claude Code session: `/plugin install agentic-rules --marketplace OWNER/REPO`.
+
+Rules are not part of the plugin. Copy them into `.claude/rules/` (Claude Code) or merge them into `AGENTS.md` (Codex). The [installation guide](docs/installation.md) covers rules, directory-copy installs, updates, and removal.
+
+## Contents
+
+- Skills: [retrospective](skills/retrospective/SKILL.md) (turn stumbling blocks into project guidance that actually loads), [systematic debugging](skills/systematic-debugging/SKILL.md)
+- Rules: [scope and authority](rules/scope-and-authority.md), [focused changes](rules/focused-changes.md), [verification evidence](rules/verification-evidence.md)
+- Profiles: [project upkeep](profiles/project-upkeep.yaml), [debugging](profiles/debugging.yaml)
 - [Generated catalog](catalog/index.json)
 
-Skills are self-contained directories in the [Agent Skills format](https://agentskills.io/specification). Rules are source material to merge into project instructions; merely copying `rules/` does not activate them.
-
-## Develop this library
-
-Use Bun:
+## Develop
 
 ```sh
 bun install
-bun run check
+bun run check            # typecheck, lint, schema and resource validation, catalog freshness, tests
+bun run plugin:validate  # needs the Claude Code CLI
+bun run dev               # catalog browser with hot reload (Vite, 127.0.0.1)
 ```
 
-After adding or updating catalog content:
+After changing content, run `bun run catalog:build` and then `bun run check`. These commands do not run an agent.
 
-```sh
-bun run catalog:build
-bun run check
-```
+To measure behavior, see [evaluation](docs/evaluation.md): `bun run eval:triggers` for this library's skill triggering, `bun run eval:skills` to test any project's own skills, and `bun run eval:run` for baseline-versus-treatment outcome runs. Both use model credits.
 
-These commands validate content and tooling. They do not launch an agent or establish that a skill improves outcomes.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring contracts, [compatibility](docs/compatibility.md) for the host test matrix, and [evaluation](docs/evaluation.md) for behavioral checks.
-
-## Roadmap
-
-The [implementation plan](PLAN.md) describes the six-skill target and later profiles. This scaffold begins with a working debugging component. The `minimal` and `developer` profiles will be added when their selected skills exist. A custom installer and autonomous runner remain later decisions.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding a component, and [decisions](docs/decisions.md) for why the library is shaped this way.
 
 Original content is MIT licensed. Each skill includes its own license notice so it can travel independently.
-
-## Browse the wiki
-
-Run `bun run wiki:dev` to open a searchable, responsive catalog with component readers and reference guides. Run `bun run wiki:build` to generate a standalone static export in `dist/wiki/`. See the [wiki guide](wiki/README.md).
