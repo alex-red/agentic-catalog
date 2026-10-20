@@ -18,6 +18,12 @@
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
       "maxLength": 64
     },
+    "rule": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
     "fixture": {
       "type": "string",
       "minLength": 1,
@@ -40,7 +46,6 @@
     },
     "triggers": {
       "type": "array",
-      "minItems": 3,
       "items": {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "type": "object",
@@ -64,15 +69,100 @@
           "prompt"
         ]
       }
+    },
+    "grader": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "files": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "command"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "command"
+      ]
     }
   },
   "required": [
     "schemaVersion",
-    "id",
-    "skill",
-    "fixture",
-    "request",
-    "acceptance",
-    "triggers"
-  ]
+    "id"
+  ],
+  "oneOf": [
+    {
+      "required": ["skill", "triggers"],
+      "properties": {
+        "skill": {"$ref": "#/properties/skill"},
+        "rule": {"$ref": "#/properties/rule"},
+        "triggers": {
+          "allOf": [
+            {"$ref": "#/properties/triggers"},
+            {"type": "array", "minItems": 3}
+          ]
+        }
+      },
+      "not": {"properties": {"rule": {}}, "required": ["rule"]}
+    },
+    {
+      "required": ["rule", "fixture", "request", "grader", "acceptance"],
+      "properties": {
+        "rule": {"$ref": "#/properties/rule"},
+        "skill": {"$ref": "#/properties/skill"},
+        "fixture": {"$ref": "#/properties/fixture"},
+        "request": {"$ref": "#/properties/request"},
+        "grader": {"$ref": "#/properties/grader"},
+        "runtime": {"$ref": "#/properties/runtime"},
+        "acceptance": {"$ref": "#/properties/acceptance"},
+        "triggers": {
+          "allOf": [
+            {"$ref": "#/properties/triggers"},
+            {"type": "array", "maxItems": 0}
+          ]
+        }
+      },
+      "not": {"properties": {"skill": {}}, "required": ["skill"]}
+    }
+  ],
+  "dependencies": {
+    "fixture": [
+      "request",
+      "acceptance",
+      "grader"
+    ],
+    "grader": [
+      "fixture"
+    ],
+    "runtime": [
+      "fixture"
+    ],
+    "request": [
+      "fixture"
+    ]
+  }
 }

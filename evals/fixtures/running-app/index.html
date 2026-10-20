@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Running task board</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="board">
+      <header>
+        <p class="eyebrow">WORKSPACE</p>
+        <h1>Task board</h1>
+        <p class="intro">A small task list for the team.</p>
+      </header>
+      <form id="task-form">
+        <label for="task-input">New task</label>
+        <div class="form-row">
+          <input id="task-input" name="task" autocomplete="off" required>
+          <button type="submit">Add task</button>
+        </div>
+      </form>
+      <p id="task-count" class="task-count" aria-live="polite">0 tasks</p>
+      <ul id="task-list" aria-label="Tasks"></ul>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+schemaVersion: 1
+id: retrospective-outcome
+skill: retrospective
+fixture: evals/fixtures/retrospective
+request: >-
+  Turn the evidence in this finished-session project into a small improvement
+  for future sessions. The server was already running, but the visible change
+  was not checked in the Browser pane. The test command was also repeated once.
+  Update the project guidance so the next session handles this better. Preserve
+  existing project conventions and authorization. Do not start anything; this
+  fixture has no running app. Briefly report what you changed and why.
+acceptance:
+  - A concise always-loaded instruction points to the existing browser verification procedure for user-visible changes when the app is already running.
+  - The existing authorization rule for starting the dev server or a build is preserved.
+  - The existing browser skill procedure remains available and safe to follow.
+  - The repeated command is treated as evidence only if a concrete, bounded improvement follows from it.
+  - The report distinguishes instruction placement from verified browser behavior.
+grader:
+  files: evals/graders/retrospective
+  command: [python3, -B, -m, unittest]
+triggers:
+  - expectation: activate
+    prompt: >-
+      Consider the work done, identify what slowed down the session, and make
+      small project improvements so the next session goes better.
+  - expectation: activate
+    prompt: Turn these session findings into lasting project guidance for future work.
+  - expectation: ignore
+    prompt: Review this branch for bugs and tell me whether it is ready to merge.

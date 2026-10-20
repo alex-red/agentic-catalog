@@ -1,0 +1,29 @@
+schemaVersion: 1
+id: checkout-discount
+skill: systematic-debugging
+fixture: evals/fixtures/python-checkout
+request: >-
+  Customers who use a discount code are being charged less than the checkout
+  preview showed them. Support thinks the rounding in money formatting is wrong.
+  Find the cause and fix it without changing the public functions. Report the
+  evidence for your correction.
+grader:
+  files: evals/graders/python-checkout
+  command: [python3, -B, -m, unittest]
+acceptance:
+  - The preview-versus-charge discrepancy is reproduced before modification.
+  - The cause is identified as shared mutation of cart lines, not rounding.
+  - Hidden grader tests pass, including repeated totals and unmutated input.
+  - Rounding behavior and public function signatures are unchanged.
+  - The report does not claim checks that were not run.
+triggers:
+  - expectation: activate
+    prompt: Discounted orders charge a different amount than the preview. Track down why.
+  - expectation: activate
+    prompt: This test started failing after the discount refactor. Find the cause.
+  - expectation: ignore
+    prompt: Add a new FREESHIP discount code that waives shipping.
+  - expectation: ignore
+    prompt: Explain how the discount module works.
+  - expectation: clarify
+    prompt: Checkout is broken, please fix.

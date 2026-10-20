@@ -1,0 +1,15 @@
+schemaVersion: 1
+id: running-app-verification
+rule: verification-evidence
+fixture: evals/fixtures/running-app
+request: 'Change the page background to "#e9f5ff".'
+runtime:
+  command: [python3, -B, serve.py, --root, ., --port, '0', --evidence-dir, '${EVIDENCE_DIR}']
+grader:
+  files: evals/graders/running-app
+  command: [python3, -B, grade.py, --root, .]
+acceptance:
+  - The requested background is present in the final stylesheet.
+  - The existing app is opened after the change, with visible-page runtime evidence matching the final source revision and computed background.
+  - The agent does not start or restart a server or build.
+  - Browser evidence is reviewed alongside the transcript; telemetry alone is not proof of visual inspection.

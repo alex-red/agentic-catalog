@@ -1,0 +1,449 @@
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { basename, join, resolve } from 'node:path';
+import { stringify } from 'yaml';
+import type { EvaluationCase } from './library.ts';
+import { frontmatter, loadCatalog, loadEvaluationCases, readYaml, renderRuleBlock, repositoryRoot, safePath, validate } from './library.ts';
+import { startRuntime } from './eval-runtime.ts';
+
+export type Host = 'claude' | 'codex';
+export type Condition = 'baseline' | 'treatment';
+export type OutcomeCase = EvaluationCase & Required<Pick<EvaluationCase, 'fixture' | 'request' | 'acceptance' | 'grader'>>;
+
+export function loadCases(root = repositoryRoot): EvaluationCase[] {
+  loadCatalog(root);
+  return loadEvaluationCases(root);
+}
+
+// Render trigger prompts as `claude plugin eval` cases: one case per prompt, keyed by the case file's expectation.
+type Trigger = { expectation: 'activate' | 'ignore' | 'clarify'; prompt: string };
+type TriggerCase = { id: string; skill?: string; triggers?: Trigger[] };
+
+export function renderTriggerSuite(cases: TriggerCase[]): Map<string, string> {
+  const files = new Map<string, string>();
+  for (const evaluation of cases) {
+    if (!evaluation.skill) continue; // Always-loaded rules have load checks, not request triggers.
+    (evaluation.triggers ?? []).forEach((trigger, index) => {
+      const name = `${evaluation.id}-${trigger.expectation}-${index + 1}`;
+      const prompt = { tags: ['trigger', trigger.expectation, evaluation.skill], allowed_tools: ['Read', 'Glob', 'Grep', 'Skill'], max_turns: 6 };
+      files.set(`${name}/prompt.md`, `---\n${stringify(prompt)}---\n\n${trigger.prompt}\n`);
+      const skillCall = `"skill"\\s*:\\s*"(?:[\\w-]+:)?${evaluation.skill}"`;
+      if (trigger.expectation === 'activate') {
+        files.set(`${name}/graders/skill-fired.md`, `---\n${stringify({ type: 'tool_used', tool: 'Skill', input_match: skillCall })}---\n`);
+      } else if (trigger.expectation === 'ignore') {
+        files.set(`${name}/graders/skill-not-fired.md`, `---\n${stringify({ type: 'tool_used', tool: 'Skill', input_match: skillCall, min: 0, max: 0, arm: 'both' })}---\n`);
+      } else {
+        files.set(`${name}/graders/asks-first.md`, '---\ntype: llm\n---\n\nPASS if the response asks for the missing project, error, or reproduction before proposing a cause or fix. FAIL if it invents a cause, claims a fix, or edits files.\n');
+      }
+    });
+  }
+  return files;
+}
+
+export function writeTriggerSuite(root = repositoryRoot, directory = 'eval-build'): string {
+  let output = root;
+  for (const segment of directory.split('/')) {
+    output = safePath(root, join(output, segment), true);
+    mkdirSync(output, { recursive: true });
+  }
+  rmSync(output, { recursive: true, force: true });
+  writeFiles(output, renderTriggerSuite(loadCases(root)));
+  return directory;
+}
+
+function writeFiles(directory: string, files: Map<string, string>): void {
+  for (const [path, content] of files) {
+    mkdirSync(join(directory, path, '..'), { recursive: true });
+    writeFileSync(join(directory, path), content);
+  }
+}
+
+export interface TriggerSuite {
+  schemaVersion: 1;
+  skills: { skill: string; triggers: Trigger[] }[];
+}
+
+export function loadTriggerSuite(file: string): TriggerSuite {
+  return validate<TriggerSuite>('trigger-suite', readYaml(readFileSync(file, 'utf8'), file), file);
+}
+
+const marker = '.agentic-rules-skills-eval';
+
+// Wrap any skills directory (for example a project's .claude/skills) in a throwaway plugin with generated trigger
+// cases, so `claude plugin eval` can test whether those skills fire. Never writes inside the skills directory.
+export function buildSkillsEval(skillsDirectory: string, suiteFile: string, output: string, name = 'skills-under-test'): { cases: number; warnings: string[] } {
+  const suite = loadTriggerSuite(suiteFile);
+  const source = resolve(skillsDirectory);
+  const warnings: string[] = [];
+  for (const { skill } of suite.skills) {
+    const file = join(source, skill, 'SKILL.md');
+    if (!existsSync(file)) throw new Error(`${suiteFile}: no skill ${skill} in ${source}`);
+    // Hosts parse frontmatter leniently, so a strict-YAML failure is reported but the skill is still tested as written.
+    try {
+      const definition = validate<{ name: string }>('skill', frontmatter(readFileSync(file, 'utf8'), file).data, file);
+      if (definition.name !== skill) warnings.push(`${file}: name ${definition.name} does not match its directory`);
+    } catch (error) {
+      warnings.push(`${file}: frontmatter is not valid Agent Skills YAML (${(error as Error).message.split('\n')[0]})`);
+    }
+  }
+  if (existsSync(output) && readdirSync(output).length && !existsSync(join(output, marker))) {
+    throw new Error(`Refusing to replace ${output}: it was not created by this tool.`);
+  }
+  rmSync(output, { recursive: true, force: true });
+  mkdirSync(output, { recursive: true });
+  writeFileSync(join(output, marker), `${source}\n`);
+  mkdirSync(join(output, '.claude-plugin'), { recursive: true });
+  writeFileSync(join(output, '.claude-plugin/plugin.json'), `${JSON.stringify({ name, version: '0.0.0', description: `Trigger evaluation of ${basename(source)}` }, null, 2)}\n`);
+  for (const entry of readdirSync(source, { withFileTypes: true })) {
+    if (entry.isDirectory() && existsSync(join(source, entry.name, 'SKILL.md'))) {
+      cpSync(join(source, entry.name), join(output, 'skills', entry.name), { recursive: true, dereference: false });
+    }
+  }
+  const files = renderTriggerSuite(suite.skills.map((entry) => ({ id: entry.skill, ...entry })));
+  writeFiles(join(output, 'eval-build'), files);
+  return { cases: [...files.keys()].filter((path) => path.endsWith('/prompt.md')).length, warnings };
+}
+
+export interface RunOptions {
+  caseId: string;
+  host: Host;
+  model: string;
+  profile: string;
+  component?: string;
+  maxCostUsd?: number;
+  browserTools?: string[];
+  runs: number;
+  timeoutSeconds: number;
+  isolation: 'environment' | 'bare';
+  conditions: Condition[];
+  root?: string;
+  keep?: boolean;
+}
+
+export interface AgentResult {
+  exitCode: number | null;
+  timedOut: boolean;
+  stdout: string;
+  stderr: string;
+}
+
+export type Executor = (command: string[], cwd: string, timeoutSeconds: number) => AgentResult;
+
+export const spawnExecutor: Executor = (command, cwd, timeoutSeconds) => {
+  const result = spawnSync(command[0], command.slice(1), {
+    cwd, encoding: 'utf8', timeout: timeoutSeconds * 1000, maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  return {
+    exitCode: result.status,
+    timedOut: (result.error as NodeJS.ErrnoException | undefined)?.code === 'ETIMEDOUT',
+    stdout: result.stdout ?? '',
+    stderr: result.stderr ?? '',
+  };
+};
+
+function run(command: string[], cwd: string, env?: NodeJS.ProcessEnv): { status: number | null; output: string } {
+  const result = spawnSync(command[0], command.slice(1), { cwd, encoding: 'utf8', timeout: 30_000, env: env ?? process.env });
+  if (result.error) throw result.error;
+  return { status: result.status, output: `${result.stdout ?? ''}${result.stderr ?? ''}` };
+}
+
+function git(work: string, ...args: string[]): string {
+  const result = run(['git', '-c', 'user.name=eval', '-c', 'user.email=eval@localhost', '-c', 'commit.gpgsign=false', ...args], work);
+  if (result.status !== 0) throw new Error(`git ${args.join(' ')} failed: ${result.output}`);
+  return result.output;
+}
+
+export function sourceRevision(root: string): string {
+  const head = run(['git', 'rev-parse', '--short', 'HEAD'], root);
+  if (head.status !== 0) return 'local-unreleased';
+  const dirty = run(['git', 'status', '--porcelain'], root).output.trim() ? '-dirty' : '';
+  return `${head.output.trim()}${dirty}`;
+}
+
+export interface Selection { skills: string[]; rules: string[] }
+
+export function selectTreatment(options: RunOptions): Selection {
+  const catalog = loadCatalog(options.root ?? repositoryRoot);
+  if (options.component) {
+    const [kind, name, extra] = options.component.split('/');
+    if (!extra && kind === 'skill' && catalog.skills.some((entry) => entry.name === name)) return { skills: [name], rules: [] };
+    if (!extra && kind === 'rule' && catalog.rules.some((entry) => entry.id === name)) return { skills: [], rules: [name] };
+    throw new Error(`Unknown component: ${options.component}; use skill/NAME or rule/ID.`);
+  }
+  const profile = catalog.profiles.find((entry) => entry.id === options.profile);
+  if (!profile) throw new Error(`Unknown profile: ${options.profile}`);
+  return { skills: [...profile.skills], rules: [...profile.rules] };
+}
+
+function selectedRules(options: RunOptions, selection: Selection): string {
+  const root = options.root ?? repositoryRoot;
+  if (!selection.rules.length) return '';
+  if (!options.component) return renderRuleBlock(options.profile, sourceRevision(root), root);
+  const bodies = selection.rules.map((id) => frontmatter(readFileSync(join(root, 'rules', `${id}.md`), 'utf8'), id).body);
+  return `<!-- agentic-rules:begin component=${options.component} source=${sourceRevision(root)} -->\n${bodies.join('\n\n')}\n<!-- agentic-rules:end -->\n`;
+}
+
+// Install only the selected skills and rules; preserve the fixture's own project instructions.
+export function prepareCondition(options: RunOptions, evaluation: OutcomeCase, condition: Condition, work: string): string[] {
+  const root = options.root ?? repositoryRoot;
+  const treatment = condition === 'treatment';
+  const selection = selectTreatment(options);
+  const rules = treatment ? selectedRules(options, selection) : '';
+  if (options.host === 'claude') {
+    const command = ['claude', '-p', evaluation.request, '--output-format', 'stream-json', '--verbose', '--model', options.model,
+      '--permission-mode', 'acceptEdits', '--allowedTools', 'Read', 'Edit', 'Write', 'Glob', 'Grep', 'Skill', 'Bash(python3 *)', ...(options.browserTools ?? [])];
+    if (options.maxCostUsd !== undefined) command.push('--max-budget-usd', String(options.maxCostUsd));
+    if (options.isolation === 'bare') {
+      command.push('--bare');
+      const context = ['AGENTS.md', 'CLAUDE.md'].filter((file) => existsSync(join(work, file)))
+        .map((file) => readFileSync(join(work, file), 'utf8')).join('\n\n');
+      command.push('--append-system-prompt', `${context}\n\n${rules}`);
+    }
+    if (treatment) {
+      if (selection.skills.length) {
+        const plugin = join(work, '.eval-plugin');
+        mkdirSync(join(plugin, '.claude-plugin'), { recursive: true });
+        writeFileSync(join(plugin, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-rules', version: '0.0.1' })}\n`);
+        for (const skill of selection.skills) cpSync(join(root, 'skills', skill), join(plugin, 'skills', skill), { recursive: true });
+        command.push('--plugin-dir', plugin);
+      }
+      if (options.isolation !== 'bare' && selection.rules.length) {
+        mkdirSync(join(work, '.claude/rules'), { recursive: true });
+        for (const id of selection.rules) cpSync(join(root, 'rules', `${id}.md`), join(work, '.claude/rules', `${id}.md`));
+      }
+    }
+    return command;
+  }
+  if (options.isolation === 'bare') throw new Error('Bare isolation is implemented only for Claude Code.');
+  if (treatment) {
+    for (const skill of selection.skills) cpSync(join(root, 'skills', skill), join(work, '.agents/skills', skill), { recursive: true });
+    if (rules) {
+      const instructions = join(work, 'AGENTS.md');
+      const existing = existsSync(instructions) ? readFileSync(instructions, 'utf8') : '# Project instructions\n';
+      writeFileSync(instructions, `${existing.trimEnd()}\n\n${rules}`);
+    }
+  }
+  return ['codex', 'exec', '--sandbox', 'workspace-write', '--skip-git-repo-check', '--ephemeral', '--json',
+    '-m', options.model, '-C', work, evaluation.request];
+}
+
+export interface Usage { inputTokens?: number; outputTokens?: number; cachedInputTokens?: number; cacheCreationTokens?: number; costUsd?: number; turns?: number }
+
+export function parseAgentOutput(host: Host, stdout: string): { usage: Usage; finalMessage: string; reportedError: boolean } {
+  try {
+    if (host === 'claude') {
+      let data;
+      try { data = JSON.parse(stdout); } catch {
+        data = stdout.split('\n').filter((line) => line.startsWith('{')).map((line) => JSON.parse(line))
+          .findLast((event) => event.type === 'result');
+      }
+      if (!data) return { usage: {}, finalMessage: '', reportedError: true };
+      return {
+        usage: { inputTokens: data.usage?.input_tokens, outputTokens: data.usage?.output_tokens,
+          cachedInputTokens: data.usage?.cache_read_input_tokens, cacheCreationTokens: data.usage?.cache_creation_input_tokens,
+          costUsd: data.total_cost_usd, turns: data.num_turns },
+        finalMessage: String(data.result ?? ''),
+        reportedError: data.is_error === true,
+      };
+    }
+    const usage: Usage = { inputTokens: 0, outputTokens: 0, turns: 0 };
+    let finalMessage = '';
+    let reportedError = false;
+    for (const line of stdout.split('\n').filter((entry) => entry.trim().startsWith('{'))) {
+      const event = JSON.parse(line);
+      if (event.type === 'turn.completed') {
+        usage.inputTokens! += event.usage?.input_tokens ?? 0;
+        usage.outputTokens! += event.usage?.output_tokens ?? 0;
+        usage.cachedInputTokens = (usage.cachedInputTokens ?? 0) + (event.usage?.cached_input_tokens ?? 0);
+        usage.turns! += 1;
+      }
+      if (event.type === 'item.completed' && event.item?.type === 'agent_message') finalMessage = event.item.text ?? '';
+      if (event.type === 'turn.failed' || event.type === 'error') reportedError = true;
+    }
+    return { usage, finalMessage, reportedError };
+  } catch {
+    return { usage: {}, finalMessage: '', reportedError: true };
+  }
+}
+
+export interface RunRecord {
+  schemaVersion: 2;
+  case: string;
+  host: Host;
+  model: string;
+  condition: Condition;
+  isolation: RunOptions['isolation'];
+  repetition: number;
+  sourceRevision: string;
+  hostVersion: string;
+  selection: Selection;
+  installed: Selection;
+  component?: string;
+  profile?: string;
+  sourceInputs: ReturnType<typeof snapshotInputs>;
+  reviewRequired: true;
+  settings: { timeoutSeconds: number; maxCostUsd?: number; browserTools: string[] };
+  startedAt: string;
+  durationMs: number;
+  outcome: 'passed' | 'failed' | 'agent_error' | 'timeout';
+  agent: { exitCode: number | null; timedOut: boolean; usage: Usage; finalMessage: string; stderrTail: string; transcript: string; stderr: string; command: string[]; reportedError: boolean };
+  changedFiles: string[];
+  diff: string;
+  untrackedFiles: { path: string; contentBase64: string }[];
+  runtime?: { url: string; evidence: string };
+  grader: { exitCode: number | null; passed: boolean; outputTail: string } | null;
+  workspace?: string;
+}
+
+const tail = (text: string, lines = 40) => text.trimEnd().split('\n').slice(-lines).join('\n');
+
+function snapshotInputs(root: string, evaluation: OutcomeCase, selection: Selection) {
+  const files: { path: string; contentBase64: string }[] = [];
+  function collect(path: string): void {
+    const full = safePath(root, join(root, path));
+    const entries = readdirSync(full, { withFileTypes: true });
+    for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+      const child = join(path, entry.name);
+      if (entry.isDirectory()) collect(child);
+      else files.push({ path: child, contentBase64: readFileSync(safePath(root, join(root, child))).toString('base64') });
+    }
+  }
+  collect(evaluation.fixture);
+  if (evaluation.grader.files) collect(evaluation.grader.files);
+  for (const skill of selection.skills) collect(join('skills', skill));
+  for (const rule of selection.rules) {
+    const path = `rules/${rule}.md`;
+    files.push({ path, contentBase64: readFileSync(safePath(root, join(root, path))).toString('base64') });
+  }
+  files.sort((a, b) => a.path.localeCompare(b.path));
+  const definition = { evaluation, selection, files };
+  return { digest: createHash('sha256').update(JSON.stringify(definition)).digest('hex'), ...definition };
+}
+
+export function runOnce(options: RunOptions, evaluation: OutcomeCase, condition: Condition, repetition: number, executor: Executor): RunRecord {
+  if (!evaluation.grader) throw new Error(`${evaluation.id} is an outcome case without a grader.`);
+  const root = options.root ?? repositoryRoot;
+  const selection = selectTreatment(options);
+  const sourceInputs = snapshotInputs(root, evaluation, selection);
+  let hostVersion = 'custom executor (not queried)';
+  if (executor === spawnExecutor) {
+    try { hostVersion = run([options.host, '--version'], root).output.trim() || 'unavailable'; }
+    catch (error) { hostVersion = `unavailable: ${(error as Error).message}`; }
+  }
+  const work = mkdtempSync(join(tmpdir(), `agentic-rules-eval-${evaluation.id}-`));
+  let runtime: ReturnType<typeof startRuntime> | undefined;
+  try {
+    cpSync(join(root, evaluation.fixture), work, { recursive: true });
+    if (evaluation.runtime) {
+      runtime = startRuntime(evaluation.runtime.command, work);
+      const context = `\n\n## Existing app\n\nThe app is already running at ${runtime.url}. Do not start or restart a server or build.\n`;
+      const instructions = join(work, 'AGENTS.md');
+      writeFileSync(instructions, `${existsSync(instructions) ? readFileSync(instructions, 'utf8') : '# Project instructions\n'}${context}`);
+    }
+    git(work, 'init', '-q');
+    git(work, 'add', '-A');
+    git(work, 'commit', '-qm', 'fixture');
+    const command = prepareCondition(options, evaluation, condition, work);
+    if (condition === 'treatment') {
+      // Commit the installed treatment so changed files reflect only the agent's work.
+      git(work, 'add', '-A');
+      git(work, 'commit', '-qm', 'treatment', '--allow-empty');
+    }
+    const startedAt = new Date();
+    const agent = executor(command, work, options.timeoutSeconds);
+    const parsed = parseAgentOutput(options.host, agent.stdout);
+    const durationMs = Date.now() - startedAt.getTime();
+    const changedFiles = git(work, 'status', '--porcelain', '--untracked-files=all').split('\n')
+      .filter(Boolean).map((line) => line.slice(3)).filter((path) => !/(?:^|\/)__pycache__\//u.test(path));
+    const diff = git(work, 'diff', 'HEAD', '--binary');
+    const untrackedFiles = git(work, 'ls-files', '--others', '--exclude-standard', '-z').split('\0').filter(Boolean)
+      .filter((path) => !/(?:^|\/)__pycache__\//u.test(path))
+      .map((path) => ({ path, contentBase64: readFileSync(safePath(work, join(work, path))).toString('base64') }));
+    if (evaluation.grader.files) cpSync(join(root, evaluation.grader.files), work, { recursive: true });
+    let result;
+    try { result = run(evaluation.grader.command, work, runtime?.graderEnv); }
+    catch (error) { result = { status: null, output: `Grader error: ${(error as Error).message}` }; }
+    const grader: RunRecord['grader'] = { exitCode: result.status, passed: result.status === 0, outputTail: tail(result.output) };
+    const outcome = agent.timedOut ? 'timeout' : agent.exitCode !== 0 || parsed.reportedError ? 'agent_error' : !grader.passed ? 'failed' : 'passed';
+    return {
+      schemaVersion: 2, case: evaluation.id, host: options.host, model: options.model, condition,
+      selection, installed: condition === 'treatment' ? selection : { skills: [], rules: [] },
+      ...(options.component ? { component: options.component } : { profile: options.profile }), sourceInputs,
+      hostVersion, reviewRequired: true,
+      settings: { timeoutSeconds: options.timeoutSeconds, maxCostUsd: options.maxCostUsd, browserTools: options.browserTools ?? [] },
+      isolation: options.isolation, repetition, sourceRevision: sourceRevision(root), startedAt: startedAt.toISOString(),
+      durationMs, outcome,
+      agent: { exitCode: agent.exitCode, timedOut: agent.timedOut, ...parsed, stderrTail: tail(agent.stderr, 20),
+        transcript: agent.stdout, stderr: agent.stderr, command },
+      changedFiles, diff, untrackedFiles, grader, ...(runtime ? { runtime: { url: runtime.url, evidence: runtime.evidence() } } : {}),
+      ...(options.keep ? { workspace: work } : {}),
+    };
+  } finally {
+    runtime?.stop();
+    if (!options.keep) rmSync(work, { recursive: true, force: true });
+  }
+}
+
+// Alternate condition order between repetitions so neither arm always runs first.
+export function schedule(conditions: Condition[], runs: number): [Condition, number][] {
+  return Array.from({ length: runs }, (_, index) => {
+    const order = index % 2 ? [...conditions].reverse() : conditions;
+    return order.map((condition) => [condition, index + 1] as [Condition, number]);
+  }).flat();
+}
+
+export function runEvaluation(options: RunOptions, executor: Executor = spawnExecutor, onRecord?: (record: RunRecord) => void): RunRecord[] {
+  const evaluation = loadCases(options.root).find((entry) => entry.id === options.caseId);
+  if (!evaluation) throw new Error(`Unknown evaluation case: ${options.caseId}`);
+  if (!evaluation.fixture || !evaluation.request) throw new Error(`${options.caseId} is a trigger-only case; it has no fixture to run.`);
+  if (!evaluation.grader) throw new Error(`${options.caseId} is an outcome case without a grader.`);
+  if (options.maxCostUsd !== undefined && (!Number.isFinite(options.maxCostUsd) || options.maxCostUsd <= 0)) throw new Error('--max-cost-usd must be positive and finite.');
+  if (options.host === 'codex' && options.maxCostUsd !== undefined) throw new Error('Codex has no supported per-run dollar ceiling; --max-cost-usd is Claude-only.');
+  if (executor === spawnExecutor && evaluation.runtime && options.host === 'claude' && !options.browserTools?.length) {
+    throw new Error('The running-app case needs an existing browser tool. Supply its configured name with --browser-tool.');
+  }
+  const outcome = evaluation as OutcomeCase;
+  return schedule(options.conditions, options.runs).map(([condition, repetition]) => {
+    const record = runOnce(options, outcome, condition, repetition, executor);
+    onRecord?.(record);
+    return record;
+  });
+}
+
+export function previewEvaluation(options: RunOptions) {
+  const evaluation = loadCases(options.root).find((entry) => entry.id === options.caseId);
+  if (!evaluation?.fixture || !evaluation.request || !evaluation.grader) throw new Error(`Not an outcome case: ${options.caseId}`);
+  if (options.host === 'codex' && options.maxCostUsd !== undefined) throw new Error('--max-cost-usd is Claude-only.');
+  if (options.host === 'codex' && options.isolation === 'bare') throw new Error('Bare isolation is implemented only for Claude Code.');
+  const selection = selectTreatment(options);
+  return { dryRun: true, case: evaluation.id, host: options.host, model: options.model, isolation: options.isolation,
+    selection, sessions: schedule(options.conditions, options.runs), runtime: evaluation.runtime ?? null,
+    maxCostUsdPerSession: options.maxCostUsd ?? null,
+    maxCostUsdTotal: options.maxCostUsd === undefined ? null : options.maxCostUsd * options.conditions.length * options.runs,
+    browserTools: options.browserTools ?? [],
+    prerequisites: [
+      'Choose a model available to the selected host and an account spend limit before running paid sessions.',
+      ...(options.host === 'codex' ? ['Codex does not report dollar cost here; record account cost separately.'] : []),
+      ...(evaluation.runtime ? ['The built-in browser must be accessible to the headless host; opening a browser in this chat does not establish that.',
+        'Allow loopback access to the evaluator-owned server; review browser telemetry against the saved transcript.'] : []),
+    ] };
+}
+
+export function summarize(records: RunRecord[]): string {
+  const rows = (['baseline', 'treatment'] as Condition[]).map((condition) => {
+    const selected = records.filter((record) => record.condition === condition);
+    if (!selected.length) return null;
+    const mean = (values: (number | undefined)[]) => {
+      const known = values.filter((value): value is number => typeof value === 'number');
+      return known.length ? (known.reduce((sum, value) => sum + value, 0) / known.length) : undefined;
+    };
+    const passed = selected.filter((record) => record.outcome === 'passed').length;
+    const cost = mean(selected.map((record) => record.agent.usage.costUsd));
+    const tokens = mean(selected.map((record) => (record.agent.usage.inputTokens ?? 0) + (record.agent.usage.outputTokens ?? 0) || undefined));
+    const seconds = mean(selected.map((record) => record.durationMs / 1000));
+    return `${condition.padEnd(10)} passed ${passed}/${selected.length}  mean tokens ${tokens?.toFixed(0) ?? 'n/a'}  mean cost ${cost === undefined ? 'n/a' : `$${cost.toFixed(2)}`}  mean time ${seconds?.toFixed(0) ?? 'n/a'}s`;
+  });
+  return rows.filter(Boolean).join('\n');
+}

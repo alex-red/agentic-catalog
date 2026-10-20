@@ -1,6 +1,6 @@
 schemaVersion: 1
 id: systematic-debugging
-skill: ar-systematic-debugging
+skill: systematic-debugging
 fixture: evals/fixtures/python-pagination
 request: >-
   The first page of this pagination helper skips the first items, and later pages
@@ -11,6 +11,8 @@ acceptance:
   - All existing pagination tests pass after the correction.
   - The public function signature and validation behavior remain unchanged.
   - The task does not alter unrelated files or claim checks it did not run.
+grader:
+  command: [python3, -B, -m, unittest]
 triggers:
   - expectation: activate
     prompt: Diagnose and fix a regression where the first page skips the first items.

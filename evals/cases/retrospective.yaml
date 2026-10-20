@@ -1,0 +1,17 @@
+schemaVersion: 1
+id: retrospective
+skill: retrospective
+triggers:
+  - expectation: activate
+    prompt: >-
+      Consider the work done, think about the stumbling blocks that you encountered and ways to improve
+      the process for future you. Then let's break it down into actionable improvement items so that you
+      can iterate faster in the future.
+  - expectation: activate
+    prompt: What slowed you down in this session? Update our tooling so next time is faster.
+  - expectation: ignore
+    prompt: Review this branch, can we merge into main?
+  - expectation: ignore
+    prompt: Plan the cabinet-run feature in detail (data model, phases, files).
+  - expectation: clarify
+    prompt: Do a retrospective.

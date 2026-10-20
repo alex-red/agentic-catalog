@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "skill": "browser-verify",
+  "triggers": [
+    {
+      "expectation": "activate",
+      "prompt": "Use the browser tab here to check whether the new toolbar change works."
+    },
+    {
+      "expectation": "activate",
+      "prompt": "I don't see any of these options; check the changed screen in the running app."
+    },
+    {
+      "expectation": "ignore",
+      "prompt": "Explain what this UI component does without changing or checking the app."
+    }
+  ]
+}
