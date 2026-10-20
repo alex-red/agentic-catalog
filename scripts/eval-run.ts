@@ -11,8 +11,8 @@ Runs real agent sessions on fresh fixture copies. Each run costs model usage.
 
   --runs N              Repetitions per condition (default 1)
   --condition C         baseline, treatment, or both (default both)
-  --profile ID          Profile installed for the treatment (default debugging)
-  --component ID        Isolate skill/NAME or rule/ID instead of a profile
+  --collection ID       Collection installed for the treatment (default debugging)
+  --component ID        Isolate skill/NAME or rule/ID instead of a collection
   --dry-run             Print the comparison and prerequisites; start nothing
   --max-cost-usd USD    Native per-session dollar ceiling (Claude only)
   --browser-tool TOOL   Existing browser tool name (repeatable); adds Claude allowance
@@ -28,7 +28,7 @@ try {
     options: {
       case: { type: 'string' }, host: { type: 'string' }, model: { type: 'string' },
       runs: { type: 'string', default: '1' }, condition: { type: 'string', default: 'both' },
-      profile: { type: 'string', default: 'debugging' }, isolation: { type: 'string', default: 'environment' },
+      collection: { type: 'string', default: 'debugging' }, isolation: { type: 'string', default: 'environment' },
       component: { type: 'string' }, 'dry-run': { type: 'boolean', default: false },
       'max-cost-usd': { type: 'string' }, 'browser-tool': { type: 'string', multiple: true },
       timeout: { type: 'string', default: '900' }, keep: { type: 'boolean', default: false },
@@ -49,7 +49,7 @@ try {
   if (maxCostUsd !== undefined && (!Number.isFinite(maxCostUsd) || maxCostUsd <= 0)) throw new Error('--max-cost-usd must be finite and positive');
 
   const options: RunOptions = {
-    caseId: values.case, host: values.host as Host, model: values.model, profile: values.profile!, runs, timeoutSeconds,
+    caseId: values.case, host: values.host as Host, model: values.model, collection: values.collection!, runs, timeoutSeconds,
     isolation: values.isolation as RunOptions['isolation'], keep: values.keep,
     component: values.component, maxCostUsd, browserTools: values['browser-tool'],
     conditions: values.condition === 'both' ? ['baseline', 'treatment'] : [values.condition as Condition],

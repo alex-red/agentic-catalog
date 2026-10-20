@@ -1,0 +1,25 @@
+schemaVersion: 2
+id: webapp-testing
+type: skill
+title: Web app testing with Playwright
+summary: Drive a local web app with Python Playwright, following a reconnaissance-then-action pattern. Includes a helper that starts and stops dev servers around a test script, and examples for element discovery and console logs.
+useWhen: Verifying or debugging frontend behavior headlessly, especially on hosts without a built-in browser.
+tags: [testing, playwright, frontend, browser, verification]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path.
+source:
+  kind: vendored
+  url: https://github.com/anthropics/skills
+  path: skills/webapp-testing
+  revision: b9e19e6f44773509fbdd7001d77ff41a49a486c1
+  license: Apache-2.0
+  author: Anthropic
+overlap: Claude Code's Chrome integration and built-in browser, and browser MCP servers, cover interactive checks. This is the headless, scriptable option.
+related: [verification-evidence]

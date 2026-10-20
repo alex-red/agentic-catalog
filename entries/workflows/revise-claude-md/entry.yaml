@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: revise-claude-md
+type: workflow
+title: Revise CLAUDE.md with session learnings
+summary: An official end-of-session command. It reflects on the context the agent lacked (commands, patterns, gotchas), picks the right CLAUDE.md, drafts one-line additions as diffs with a reason for each, and applies only the ones you approve.
+useWhen: A session showed context the agent was missing, and you want a lightweight, approval-gated write-back to project instructions.
+tags: [self-improvement, project-instructions, memory, retrospective]
+hosts: [claude-code]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Short, with an approval gate and a brevity rule. It is simpler than the retrospective skill. It writes only to CLAUDE.md, and does not choose between instructions, skills, and hooks or check triggers. Claude Code's auto memory already captures some of this.
+source:
+  kind: linked
+  url: https://github.com/anthropics/claude-plugins-official
+  path: plugins/claude-md-management/commands/revise-claude-md.md
+  revision: a86e34672c44fa1fb1ae2b2c4143abcf26612ace
+  license: Apache-2.0
+  author: Anthropic
+install:
+  claude-code: /plugin install claude-md-management@claude-plugins-official, then run /revise-claude-md at the end of a session.
+overlap: Claude Code auto memory and /memory. The retrospective skill is the broader version.
+related: [retrospective, self-improvement-loop]

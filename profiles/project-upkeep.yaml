@@ -1,7 +1,0 @@
-schemaVersion: 1
-id: project-upkeep
-description: Turn session retrospectives into project guidance that loads when needed, with the verification rule.
-rules:
-  - verification-evidence
-skills:
-  - retrospective

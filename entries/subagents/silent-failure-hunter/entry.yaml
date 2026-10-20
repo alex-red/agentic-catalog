@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: silent-failure-hunter
+type: subagent
+title: Silent-failure hunter
+summary: A read-only review subagent that looks only at swallowed errors, broad catches, silent fallbacks, and unhelpful error messages in a diff. Each finding comes with a severity, the failure it hides, and a concrete fix.
+useWhen: A change adds try/catch, fallbacks, retries, or optional chaining, and you want errors surfaced rather than hidden.
+tags: [code-review, error-handling, reliability]
+hosts: [claude-code, codex]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Targets a failure agents often produce, defensive code that hides errors, which general reviewers underweight. Adapted rather than vendored because the upstream text names one project's logging and Sentry setup. It is limited to read-only tools.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: Anthropic pr-review-toolkit silent-failure-hunter (Apache-2.0)
+    url: https://github.com/anthropics/claude-plugins-official/blob/4ca561fb8532594e7a5faef945e85096fcec0616/plugins/pr-review-toolkit/agents/silent-failure-hunter.md
+install:
+  claude-code: Copy AGENT.md to .claude/agents/silent-failure-hunter.md.
+  codex: Use the body as a custom agent or review prompt.
+overlap: General review commands catch some cases but do not specialize in them.
+related: [pr-review-code-reviewer]

@@ -1,0 +1,25 @@
+schemaVersion: 2
+id: react-best-practices
+type: skill
+title: React and Next.js performance practices (Vercel)
+summary: A prioritized set of about 70 React and Next.js performance rules covering request waterfalls, bundle size, server and client boundaries, re-renders, and JavaScript micro-optimizations. SKILL.md is the index, and each rule loads on demand.
+useWhen: Writing, reviewing, or refactoring React or Next.js code where performance matters.
+tags: [react, nextjs, performance, frontend, code-review]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Good progressive disclosure and widely installed, but framework-specific. Linked rather than vendored because the repository has no LICENSE file, despite declaring MIT, and the skill's name (vercel-react-best-practices) differs from its folder.
+source:
+  kind: linked
+  url: https://github.com/vercel-labs/agent-skills
+  path: skills/react-best-practices
+  revision: dc8367e6f91c022d83361f03c3313fa05e848ee5
+  license: MIT (declared; no license file)
+  author: Vercel
+install:
+  any: npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices

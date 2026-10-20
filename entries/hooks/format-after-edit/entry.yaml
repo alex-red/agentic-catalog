@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: format-after-edit
+type: hook
+title: Format after agent edits
+summary: A PostToolUse hook that runs the project's formatter on files the agent edits, turning a prose style rule into a deterministic step. Includes a Claude Code version keyed on the edited path and a Codex version keyed on changed files.
+useWhen: The project has a formatter, and agents leave style drift or spend turns fixing formatting.
+tags: [formatting, automation, post-tool-use]
+hosts: [claude-code, codex]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: This is the canonical example in Anthropic's hooks guide, and it follows the best-practice advice to move rules that must always hold out of prose. The Codex hook file location and trust step come from Codex's documentation and have not been tried here.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: Claude Code hooks guide, auto-format after edits
+    url: https://code.claude.com/docs/en/hooks-guide
+  - title: Codex hooks
+    url: https://developers.openai.com/codex/hooks
+overlap: None built in. A formatter on save or in a pre-commit hook covers the human side.
+related: [protect-files-and-commands, stop-gate-checks]

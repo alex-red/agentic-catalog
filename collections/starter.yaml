@@ -1,0 +1,10 @@
+schemaVersion: 2
+id: starter
+title: Starter set
+description: A small, portable baseline for most software projects. It covers verification before claiming success, hard-bug diagnosis, stress-testing a plan, and lean project instructions.
+entries:
+  - verification-before-completion
+  - diagnosing-bugs
+  - grilling
+  - agents-md-authoring
+  - verification-evidence

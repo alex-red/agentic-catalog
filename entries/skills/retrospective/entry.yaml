@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: retrospective
+type: skill
+title: Retrospective to durable project guidance
+summary: After finished work, turn what slowed the session down into instructions, skills, scripts, or checks, each placed where a future session will actually load or run it, and verify that new skills trigger.
+useWhen: You want a self-improvement loop where an agent learns from a session and writes the lessons back into the project.
+tags: [self-improvement, retrospective, project-instructions, skill-triggering, memory]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: tested
+  reviewed: 2026-10-20
+  notes: Built from a pilot where the user kept pasting a retrospective prompt by hand. It triggered 15/15 in the sandbox. It separates always-loaded facts from on-demand skills, which most reflection prompts do not. Its outcome benefit is not yet measured.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Rules contributors
+related: [verification-evidence]
+evaluationCases:
+  - evals/cases/retrospective.yaml
+  - evals/cases/retrospective-outcome.yaml
+evidence:
+  - evals/results/triggers-2026-10-20.md
+  - evals/results/pilot-cha-floor-planner-2026-10.md

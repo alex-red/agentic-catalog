@@ -1,10 +1,14 @@
 {
   "name": "agentic-rules",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
-  "description": "A curated, portable library of engineering guidance for coding agents.",
+  "description": "A curated, rated catalog of rules, skills, workflows, hooks, subagents, and MCP servers for coding agents.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ban-red/agentic-rules"
+  },
   "engines": {
     "bun": ">=1.0.0"
   },

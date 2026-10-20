@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: claude-reflect
+type: plugin
+title: claude-reflect
+summary: Hooks detect when you correct the agent and queue the correction. /reflect reviews the queue and writes the approved items into CLAUDE.md and AGENTS.md, and /reflect-skills mines session history for repeated tasks to turn into commands.
+useWhen: You keep correcting the agent on the same preferences and want those corrections captured with a review step.
+tags: [self-improvement, memory, corrections, project-instructions]
+hosts: [claude-code]
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 2
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: MIT, active, and tested. Claude Code's auto memory now captures corrections natively, so its distinct value is the review queue and the skill mining. It installs always-on hooks and needs Python.
+source:
+  kind: linked
+  url: https://github.com/BayramAnnakov/claude-reflect
+  revision: 77c3340592aefc6ca964909198effc70fca3d01e
+  license: MIT
+  author: Bayram Annakov
+install:
+  claude-code: claude plugin marketplace add bayramannakov/claude-reflect, then claude plugin install claude-reflect@claude-reflect-marketplace, and restart.
+overlap: Claude Code auto memory, the retrospective skill, and revise-claude-md.
+related: [retrospective, revise-claude-md, self-improvement-loop]

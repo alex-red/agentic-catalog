@@ -1,99 +1,1568 @@
 {
-  "schemaVersion": 1,
-  "rules": [
+  "schemaVersion": 2,
+  "repository": "https://github.com/ban-red/agentic-rules",
+  "rawBase": "https://raw.githubusercontent.com/ban-red/agentic-rules/main/",
+  "entries": [
     {
-      "id": "focused-changes",
-      "description": "Keep changes proportional and preserve established project conventions.",
-      "path": "rules/focused-changes.md"
-    },
-    {
-      "id": "scope-and-authority",
-      "description": "Preserve task scope, user authorization, and project-owned work.",
-      "path": "rules/scope-and-authority.md"
-    },
-    {
-      "id": "verification-evidence",
-      "description": "Check changes where they actually show up, including an app that is already running.",
-      "path": "rules/verification-evidence.md"
-    }
-  ],
-  "skills": [
-    {
-      "name": "retrospective",
-      "description": "Turn the stumbling blocks of a finished piece of work into lasting project improvements: instructions, skills, scripts, or checks, each placed where a future session will actually load or run it. Use when asked to reflect on the work done, what slowed you down, lessons learned, or how to make future sessions faster. Not for reviewing code changes or planning new features.",
-      "license": "MIT",
-      "schemaVersion": 1,
-      "category": "process",
+      "schemaVersion": 2,
+      "id": "agents-md-authoring",
+      "type": "skill",
+      "title": "Write and prune AGENTS.md",
+      "summary": "An on-demand guide for creating or auditing AGENTS.md and CLAUDE.md. It says what to include and exclude, how to structure nested and path-scoped files, and gives an approval-gated audit procedure that removes lines which do not change behavior.",
+      "useWhen": "Creating project instructions, or when they have grown long or the agent ignores them.",
       "tags": [
+        "project-instructions",
+        "agents-md",
+        "context-hygiene",
+        "monorepo"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Distills three vendor guides and two 2026 evaluations. It ships as a skill rather than a rule so that the advice about short instructions does not itself cost context in every session. Both hosts' /init commands scaffold files but do not prune them."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "AGENTS.md open format",
+          "url": "https://agents.md/"
+        },
+        {
+          "title": "Claude Code best practices, writing an effective CLAUDE.md",
+          "url": "https://code.claude.com/docs/en/best-practices"
+        },
+        {
+          "title": "Codex custom instructions with AGENTS.md",
+          "url": "https://developers.openai.com/codex/guides/agents-md"
+        },
+        {
+          "title": "Gloaguen et al., Evaluating AGENTS.md (arXiv 2602.11988)",
+          "url": "https://arxiv.org/abs/2602.11988"
+        }
+      ],
+      "overlap": "/init in both hosts scaffolds a starter file.",
+      "related": [
+        "self-improvement-loop",
+        "retrospective"
+      ],
+      "score": 4.4,
+      "path": "entries/skills/agents-md-authoring",
+      "files": [
+        "entries/skills/agents-md-authoring/LICENSE.txt",
+        "entries/skills/agents-md-authoring/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "diagnosing-bugs",
+      "type": "skill",
+      "title": "Diagnosing bugs with a tight feedback loop",
+      "summary": "A six-phase loop for hard bugs. Build a fast, deterministic command that goes red on this exact bug, minimise the repro, rank falsifiable hypotheses, instrument with tagged logs, fix behind a regression test at a real seam, and clean up. Includes secret redaction and a performance branch.",
+      "useWhen": "Hard, flaky, or performance bugs where the cause is not obvious and guessing has already failed.",
+      "tags": [
+        "debugging",
+        "feedback-loop",
+        "reproduction",
+        "performance",
+        "regression"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 5,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The most actionable debugging skill reviewed. It sets concrete completion criteria for each phase, ranks ten ways to build a repro loop, and explains how to raise the reproduction rate for flaky bugs. It uses no host-specific tools. Widely installed through skills.sh."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/mattpocock/skills",
+        "path": "skills/engineering/diagnosing-bugs",
+        "revision": "f3fc5632f401156837ee3872f14fe33ccf1024ea",
+        "license": "MIT",
+        "author": "Matt Pocock",
+        "notes": "LICENSE.txt is the repository root license. agents/openai.yaml is Codex display metadata."
+      },
+      "overlap": "Same job as systematic-debugging; install one of them. This one is stronger on building the reproduction.",
+      "related": [
+        "systematic-debugging",
+        "test-driven-development"
+      ],
+      "score": 4.8,
+      "path": "entries/skills/diagnosing-bugs",
+      "files": [
+        "entries/skills/diagnosing-bugs/LICENSE.txt",
+        "entries/skills/diagnosing-bugs/SKILL.md",
+        "entries/skills/diagnosing-bugs/agents/openai.yaml",
+        "entries/skills/diagnosing-bugs/scripts/hitl-loop.template.sh"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "find-skills",
+      "type": "skill",
+      "title": "Find skills on skills.sh",
+      "summary": "Search the skills.sh registry with npx skills find, vet candidates by source, install count, and stars, and offer install commands.",
+      "useWhen": "You want to search the wider public skills registry, beyond this curated catalog.",
+      "tags": [
+        "discovery",
+        "skills-registry",
+        "tooling"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 4,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The most-installed skill on skills.sh. It treats popularity as trust, and it suggests global installs that skip confirmation (-g -y), which conflicts with explicit approval. skills.sh's own audit marks it medium risk. If you install it, drop -y."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/vercel-labs/skills",
+        "path": "skills/find-skills",
+        "revision": "773fb2c7bbf16781670a3520affc4abd0c6151ae",
+        "license": "MIT",
+        "author": "Vercel"
+      },
+      "install": {
+        "any": "npx skills add vercel-labs/skills --skill find-skills"
+      },
+      "overlap": "The agentic-catalog skill in this repository covers curated discovery. Claude Code's plugin browser and Codex's skill installer cover installation.",
+      "score": 3,
+      "path": "entries/skills/find-skills",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "gh-fix-ci",
+      "type": "skill",
+      "title": "Fix failing GitHub Actions checks",
+      "summary": "Use gh to find failing PR checks, pull the Actions logs, and summarize the failure. Draft a fix plan, implement it only after explicit approval, and recheck. A bundled script handles changes in gh output fields and fallbacks for job logs.",
+      "useWhen": "A pull request's GitHub Actions checks are failing and you want them diagnosed, with a plan before any edits.",
+      "tags": [
+        "ci",
+        "github-actions",
+        "gh-cli",
+        "debugging"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Concrete, with a good approval gate before edits. It needs an authenticated gh CLI and refers to a create-plan skill that may not exist; it falls back to an inline plan. Upstream is deprecated, so this copy is pinned."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/openai/skills",
+        "path": "skills/.curated/gh-fix-ci",
+        "revision": "77963424cd7687fd52e5fcfdd3f08d826ab9b1ab",
+        "license": "Apache-2.0",
+        "author": "OpenAI"
+      },
+      "overlap": "GitHub integrations in both hosts give partial access to CI logs.",
+      "related": [
+        "diagnosing-bugs"
+      ],
+      "score": 3.8,
+      "path": "entries/skills/gh-fix-ci",
+      "files": [
+        "entries/skills/gh-fix-ci/LICENSE.txt",
+        "entries/skills/gh-fix-ci/SKILL.md",
+        "entries/skills/gh-fix-ci/agents/openai.yaml",
+        "entries/skills/gh-fix-ci/assets/github-small.svg",
+        "entries/skills/gh-fix-ci/assets/github.png",
+        "entries/skills/gh-fix-ci/scripts/inspect_pr_checks.py"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "grilling",
+      "type": "skill",
+      "title": "Grilling (design-tree interview)",
+      "summary": "Stress-test a plan by interviewing the user in rounds over a design tree. Each round asks every question that can be answered now, each with a recommended answer. The agent looks up facts itself, and nothing is acted on until shared understanding is confirmed.",
+      "useWhen": "Before building something ambiguous, when you want the agent to surface every open decision instead of silently assuming.",
+      "tags": [
+        "requirements",
+        "planning",
+        "interviewing",
+        "design-review"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 5,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Tight and precise. \"Word each question so yes accepts your recommendation\" and \"facts are the agent's job, decisions are the user's\" are distinctive. It assumes subagents for fact-finding, but works without them."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/mattpocock/skills",
+        "path": "skills/productivity/grilling",
+        "revision": "95249b0b49782349740fd9b8c6ce32b4e59e497a",
+        "license": "MIT",
+        "author": "Matt Pocock",
+        "notes": "Upstream's popular grill-me is a Claude-only stub that invokes this skill. Vendor this one instead."
+      },
+      "overlap": "Plan mode in both hosts asks clarifying questions, but less systematically.",
+      "score": 4.2,
+      "path": "entries/skills/grilling",
+      "files": [
+        "entries/skills/grilling/LICENSE.txt",
+        "entries/skills/grilling/SKILL.md",
+        "entries/skills/grilling/agents/openai.yaml"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "mcp-builder",
+      "type": "skill",
+      "title": "MCP server builder",
+      "summary": "A four-phase guide for designing, implementing, reviewing, and evaluating MCP servers in Python (FastMCP) or TypeScript, with tool-design best practices and an evaluation harness.",
+      "useWhen": "Building or reviewing an MCP server that wraps an external API or service.",
+      "tags": [
+        "mcp",
+        "tool-design",
+        "api-integration",
+        "evaluation"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The best tool-design guidance found for MCP servers. It is linked because SDK details drift and upstream has not been updated since April 2026. Check its claims against the current MCP SDK documentation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/anthropics/skills",
+        "path": "skills/mcp-builder",
+        "revision": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "license": "Apache-2.0",
+        "author": "Anthropic"
+      },
+      "install": {
+        "any": "npx skills add anthropics/skills --skill mcp-builder"
+      },
+      "score": 3.6,
+      "path": "entries/skills/mcp-builder",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "react-best-practices",
+      "type": "skill",
+      "title": "React and Next.js performance practices (Vercel)",
+      "summary": "A prioritized set of about 70 React and Next.js performance rules covering request waterfalls, bundle size, server and client boundaries, re-renders, and JavaScript micro-optimizations. SKILL.md is the index, and each rule loads on demand.",
+      "useWhen": "Writing, reviewing, or refactoring React or Next.js code where performance matters.",
+      "tags": [
+        "react",
+        "nextjs",
+        "performance",
+        "frontend",
+        "code-review"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Good progressive disclosure and widely installed, but framework-specific. Linked rather than vendored because the repository has no LICENSE file, despite declaring MIT, and the skill's name (vercel-react-best-practices) differs from its folder."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/vercel-labs/agent-skills",
+        "path": "skills/react-best-practices",
+        "revision": "dc8367e6f91c022d83361f03c3313fa05e848ee5",
+        "license": "MIT (declared; no license file)",
+        "author": "Vercel"
+      },
+      "install": {
+        "any": "npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices"
+      },
+      "score": 4.2,
+      "path": "entries/skills/react-best-practices",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "retrospective",
+      "type": "skill",
+      "title": "Retrospective to durable project guidance",
+      "summary": "After finished work, turn what slowed the session down into instructions, skills, scripts, or checks, each placed where a future session will actually load or run it, and verify that new skills trigger.",
+      "useWhen": "You want a self-improvement loop where an agent learns from a session and writes the lessons back into the project.",
+      "tags": [
+        "self-improvement",
         "retrospective",
         "project-instructions",
-        "skill-triggering"
+        "skill-triggering",
+        "memory"
       ],
-      "maturity": "experimental",
-      "maintainer": "Agentic Rules contributors",
-      "provenance": {
-        "kind": "original"
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "tested",
+        "reviewed": "2026-10-20",
+        "notes": "Built from a pilot where the user kept pasting a retrospective prompt by hand. It triggered 15/15 in the sandbox. It separates always-loaded facts from on-demand skills, which most reflection prompts do not. Its outcome benefit is not yet measured."
       },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "related": [
+        "verification-evidence"
+      ],
       "evaluationCases": [
         "evals/cases/retrospective.yaml",
         "evals/cases/retrospective-outcome.yaml"
       ],
       "evidence": [
-        "evals/results/triggers-2026-10-20.md"
+        "evals/results/triggers-2026-10-20.md",
+        "evals/results/pilot-cha-floor-planner-2026-10.md"
       ],
-      "id": "skill/retrospective",
-      "path": "skills/retrospective/SKILL.md"
+      "score": 4,
+      "path": "entries/skills/retrospective",
+      "files": [
+        "entries/skills/retrospective/LICENSE.txt",
+        "entries/skills/retrospective/SKILL.md",
+        "entries/skills/retrospective/references/trigger-checks.md"
+      ]
     },
     {
-      "name": "systematic-debugging",
-      "description": "Diagnose and fix bugs, failing tests, crashes, and regressions by reproducing the failure, testing a hypothesis about its cause, and verifying the correction. Use when something behaves differently than expected. Not for new features or review-only requests.",
-      "license": "MIT",
-      "schemaVersion": 1,
-      "category": "debugging",
+      "schemaVersion": 2,
+      "id": "security-threat-model",
+      "type": "skill",
+      "title": "Repository threat model",
+      "summary": "Write a repository-grounded threat model covering trust boundaries, assets, attacker capabilities, abuse paths, and prioritized mitigations. It checks key assumptions with the user before writing the report, and fires only when asked explicitly.",
+      "useWhen": "Someone explicitly asks for a threat model or abuse-path analysis of a codebase or service.",
       "tags": [
-        "diagnosis",
-        "regression"
+        "security",
+        "threat-modeling",
+        "appsec"
       ],
-      "maturity": "experimental",
-      "maintainer": "Agentic Rules contributors",
-      "provenance": {
-        "kind": "original"
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Well scoped, with explicit negative triggers, and it insists on evidence for every claim. Upstream is deprecated and frozen since February 2026, so this pinned copy is effectively owned here."
       },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/openai/skills",
+        "path": "skills/.curated/security-threat-model",
+        "revision": "5c8f1e26803bcfaffeceef1e7accbcf7e388417a",
+        "license": "Apache-2.0",
+        "author": "OpenAI"
+      },
+      "overlap": "Claude Code /security-review and Codex /review inspect diffs. Neither builds a whole-system threat model.",
+      "score": 3.8,
+      "path": "entries/skills/security-threat-model",
+      "files": [
+        "entries/skills/security-threat-model/LICENSE.txt",
+        "entries/skills/security-threat-model/SKILL.md",
+        "entries/skills/security-threat-model/agents/openai.yaml",
+        "entries/skills/security-threat-model/references/prompt-template.md",
+        "entries/skills/security-threat-model/references/security-controls-and-assets.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "skill-creator",
+      "type": "skill",
+      "title": "Skill creator with evaluations",
+      "summary": "A complete skill-authoring workflow with test cases, blind comparison, benchmark aggregation, and optimization of a description for trigger accuracy.",
+      "useWhen": "Authoring or tuning a skill and measuring whether it triggers and helps; use it as a methodology reference.",
+      "tags": [
+        "skill-authoring",
+        "evaluation",
+        "meta"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 2,
+        "novelty": 1,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "A reference-grade evaluation method, but a 33 KB body with sections specific to Claude. Both hosts already ship a skill creator, so install it only when the built-in one is missing."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/anthropics/skills",
+        "path": "skills/skill-creator",
+        "revision": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "license": "Apache-2.0",
+        "author": "Anthropic"
+      },
+      "overlap": "Built into Claude Code through the skill-creator plugin; Codex ships a system skill-creator.",
+      "related": [
+        "retrospective"
+      ],
+      "score": 3,
+      "path": "entries/skills/skill-creator",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "systematic-debugging",
+      "type": "skill",
+      "title": "Systematic debugging",
+      "summary": "Reproduce a failure, test a falsifiable hypothesis about its cause, apply a focused correction, and verify it, with a reference for intermittent and environment-specific failures.",
+      "useWhen": "A bug, failing test, crash, or regression needs a diagnosed fix rather than a symptom patch.",
+      "tags": [
+        "debugging",
+        "diagnosis",
+        "regression",
+        "testing"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 2,
+        "evidence": "tested",
+        "reviewed": "2026-10-20",
+        "notes": "Clear and proportional, and triggered 29/30 in the sandbox suite. Current models already debug this way on most bugs, and a same-named superpowers skill covers similar ground, so the main value is on hard reproductions."
+      },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "overlap": "Default model behavior covers most ordinary bugs. A same-named skill ships in obra/superpowers; install only one.",
+      "related": [
+        "verification-evidence"
+      ],
       "evaluationCases": [
         "evals/cases/systematic-debugging.yaml",
         "evals/cases/checkout-discount.yaml"
       ],
-      "evidence": [],
-      "id": "skill/systematic-debugging",
-      "path": "skills/systematic-debugging/SKILL.md"
-    }
-  ],
-  "profiles": [
-    {
-      "schemaVersion": 1,
-      "id": "debugging",
-      "description": "Pilot the first debugging skill with the three short core rule modules.",
-      "rules": [
-        "scope-and-authority",
-        "focused-changes",
-        "verification-evidence"
+      "evidence": [
+        "evals/results/triggers-2026-10-20.md"
       ],
-      "skills": [
-        "systematic-debugging"
-      ],
-      "path": "profiles/debugging.yaml"
+      "score": 3.8,
+      "path": "entries/skills/systematic-debugging",
+      "files": [
+        "entries/skills/systematic-debugging/LICENSE.txt",
+        "entries/skills/systematic-debugging/SKILL.md",
+        "entries/skills/systematic-debugging/references/difficult-reproductions.md"
+      ]
     },
     {
-      "schemaVersion": 1,
-      "id": "project-upkeep",
-      "description": "Turn session retrospectives into project guidance that loads when needed, with the verification rule.",
-      "rules": [
+      "schemaVersion": 2,
+      "id": "test-driven-development",
+      "type": "skill",
+      "title": "Test-driven development (red-green-refactor)",
+      "summary": "Strict red-green-refactor. Write one failing test, watch it fail for the right reason, write the minimum code to pass, and run the whole suite. A companion reference covers tests that name the break they catch and avoid testing mocks.",
+      "useWhen": "Projects with a runnable test suite where agents write tests after the fact, write tautological tests, or test mocks instead of behavior.",
+      "tags": [
+        "tdd",
+        "testing",
+        "discipline",
+        "test-quality"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The writing-good-tests reference is excellent. The main skill is dogmatic (\"write code before the test? Delete it.\"), and its trigger fires on any feature or bugfix, which can clash with exploratory work or project conventions. Consider narrowing the description after installing."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/obra/superpowers",
+        "path": "skills/test-driven-development",
+        "revision": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+        "license": "MIT",
+        "author": "Jesse Vincent (obra)",
+        "notes": "LICENSE.txt is the repository root license."
+      },
+      "overlap": "No host built-in. Part of the superpowers plugin.",
+      "related": [
+        "verification-before-completion",
+        "diagnosing-bugs",
+        "superpowers"
+      ],
+      "score": 3.8,
+      "path": "entries/skills/test-driven-development",
+      "files": [
+        "entries/skills/test-driven-development/LICENSE.txt",
+        "entries/skills/test-driven-development/SKILL.md",
+        "entries/skills/test-driven-development/writing-good-tests.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "verification-before-completion",
+      "type": "skill",
+      "title": "Verification before completion",
+      "summary": "A gate before any claim that work is done, fixed, or passing. Name the command that proves the claim, run it fresh, read the output, and only then report, with a table of claims and the evidence each one needs.",
+      "useWhen": "Agents claim success, commit, or open PRs without running the checks that prove it, or trust subagent reports without checking the diff.",
+      "tags": [
+        "verification",
+        "evidence",
+        "completion-claims",
+        "testing",
+        "subagents"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "One self-contained file aimed at the most common agent failure. The table pairing each claim with the evidence it needs, including \"agent reported success → check the diff\", is concrete. The absolutist tone (\"skip any step = lying\") costs some quality. Current hosts already push honest reporting, which caps novelty."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/obra/superpowers",
+        "path": "skills/verification-before-completion",
+        "revision": "3be5aad3dd2400ef23b15680969f4bcd3b6d7b8b",
+        "license": "MIT",
+        "author": "Jesse Vincent (obra)",
+        "notes": "LICENSE.txt is the repository root license; the skill has no license file of its own."
+      },
+      "overlap": "Complements verification-evidence, which covers checking visible changes in a running app. It is also part of the superpowers plugin; skip it if that plugin is installed.",
+      "related": [
+        "verification-evidence",
+        "superpowers",
+        "test-driven-development"
+      ],
+      "score": 4.4,
+      "path": "entries/skills/verification-before-completion",
+      "files": [
+        "entries/skills/verification-before-completion/LICENSE.txt",
+        "entries/skills/verification-before-completion/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "webapp-testing",
+      "type": "skill",
+      "title": "Web app testing with Playwright",
+      "summary": "Drive a local web app with Python Playwright, following a reconnaissance-then-action pattern. Includes a helper that starts and stops dev servers around a test script, and examples for element discovery and console logs.",
+      "useWhen": "Verifying or debugging frontend behavior headlessly, especially on hosts without a built-in browser.",
+      "tags": [
+        "testing",
+        "playwright",
+        "frontend",
+        "browser",
+        "verification"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/anthropics/skills",
+        "path": "skills/webapp-testing",
+        "revision": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "license": "Apache-2.0",
+        "author": "Anthropic"
+      },
+      "overlap": "Claude Code's Chrome integration and built-in browser, and browser MCP servers, cover interactive checks. This is the headless, scriptable option.",
+      "related": [
         "verification-evidence"
       ],
-      "skills": [
+      "score": 3.8,
+      "path": "entries/skills/webapp-testing",
+      "files": [
+        "entries/skills/webapp-testing/LICENSE.txt",
+        "entries/skills/webapp-testing/SKILL.md",
+        "entries/skills/webapp-testing/examples/console_logging.py",
+        "entries/skills/webapp-testing/examples/element_discovery.py",
+        "entries/skills/webapp-testing/examples/static_html_automation.py",
+        "entries/skills/webapp-testing/scripts/with_server.py"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "focused-changes",
+      "type": "rule",
+      "title": "Focused changes",
+      "summary": "Make the smallest coherent change that satisfies the request, follow existing project patterns, and avoid unrelated cleanup or new dependencies without a concrete need.",
+      "useWhen": "Agents in your project tend to over-reach with refactors, new dependencies, or drive-by cleanup.",
+      "tags": [
+        "scope",
+        "conventions",
+        "diff-size"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 1,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Short and sound, but host system prompts already restate most of it. Add it only if you have seen over-reaching diffs."
+      },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "overlap": "Largely restated by Claude Code and Codex system prompts.",
+      "related": [
+        "scope-and-authority"
+      ],
+      "score": 3.2,
+      "path": "entries/rules/focused-changes",
+      "files": [
+        "entries/rules/focused-changes/RULE.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "karpathy-coding-guidelines",
+      "type": "rule",
+      "title": "Karpathy-style coding guidelines",
+      "summary": "A widely shared CLAUDE.md with four principles drawn from Andrej Karpathy's observations of LLM coding failures. Surface assumptions, write minimal code, make surgical diffs, and execute toward a goal with verification steps.",
+      "useWhen": "You want a recognized, drop-in baseline against over-engineering and drive-by edits.",
+      "tags": [
+        "scope",
+        "simplicity",
+        "diff-size",
+        "assumptions"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Very popular, short (about 65 lines), and concrete (\"every changed line should trace to the request\"). Host system prompts already push most of it, and it overlaps focused-changes. Linked, not vendored, because the repository declares MIT but ships no license file."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+        "path": "CLAUDE.md",
+        "revision": "8462496b34419f20b32778610571ac723e91f94c",
+        "license": "MIT (declared; no license file)",
+        "author": "forrestchang / multica-ai"
+      },
+      "install": {
+        "any": "Merge the upstream CLAUDE.md text into the project's AGENTS.md or CLAUDE.md as a marked block. The repository also ships a Claude Code plugin."
+      },
+      "overlap": "Largely restated by host system prompts and by focused-changes.",
+      "related": [
+        "focused-changes"
+      ],
+      "score": 3.8,
+      "path": "entries/rules/karpathy-coding-guidelines",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "scope-and-authority",
+      "type": "rule",
+      "title": "Scope and authority",
+      "summary": "Work toward the requested outcome within the authorization already given, preserve unrelated work, and ask only when the answer changes the result or more authorization is needed.",
+      "useWhen": "You want an explicit, host-neutral statement of authorization boundaries in AGENTS.md.",
+      "tags": [
+        "scope",
+        "safety",
+        "authorization"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 1,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Accurate but mostly duplicates host system prompts. It is most useful for hosts with thinner built-in guidance."
+      },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "overlap": "Largely restated by Claude Code and Codex system prompts.",
+      "related": [
+        "focused-changes"
+      ],
+      "score": 3.2,
+      "path": "entries/rules/scope-and-authority",
+      "files": [
+        "entries/rules/scope-and-authority/RULE.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "verification-evidence",
+      "type": "rule",
+      "title": "Verify in the running app",
+      "summary": "Check a change where its effect appears, including in an app the user already has running, even when the agent may not start a server; otherwise name what remains unchecked.",
+      "useWhen": "Agents in your project hand back visible UI changes without looking at them.",
+      "tags": [
+        "verification",
+        "ui",
+        "browser",
+        "honesty"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "used",
+        "reviewed": "2026-10-20",
+        "notes": "Targets an observed gap. In 3 of about 9 pilot sessions with visible changes, the agent never opened the already-running app. A matched outcome fixture exists but has not been run."
+      },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "evaluationCases": [
+        "evals/cases/running-app-verification.yaml"
+      ],
+      "evidence": [
+        "evals/results/pilot-cha-floor-planner-2026-10.md"
+      ],
+      "score": 4,
+      "path": "entries/rules/verification-evidence",
+      "files": [
+        "entries/rules/verification-evidence/RULE.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "explore-plan-implement-review",
+      "type": "workflow",
+      "title": "Explore, plan, implement, review",
+      "summary": "Explore read-only and write a plan with a check for each step before editing. Implement against the plan, then have a fresh-context reviewer compare the diff with the plan and report only gaps in correctness or requirements.",
+      "useWhen": "A change spans several files, the approach is uncertain, or the agent will run long enough unattended that it should not grade its own work.",
+      "tags": [
+        "planning",
+        "code-review",
+        "subagents",
+        "verification"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The core workflow Anthropic recommends. Both hosts have plan modes and review commands, so most of it is built in. The value is in the skip rule, the per-step checks, and the instruction not to chase every reviewer comment."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code best practices, explore then plan then code, and adversarial review",
+          "url": "https://code.claude.com/docs/en/best-practices"
+        }
+      ],
+      "overlap": "Plan mode, /code-review, and subagents in Claude Code; plan mode and /review in Codex. compound-engineering is the heavyweight version.",
+      "related": [
+        "pr-review-code-reviewer",
+        "compound-engineering",
+        "grilling"
+      ],
+      "score": 4,
+      "path": "entries/workflows/explore-plan-implement-review",
+      "files": [
+        "entries/workflows/explore-plan-implement-review/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ralph-loop",
+      "type": "workflow",
+      "title": "Ralph loop",
+      "summary": "Fresh-context iteration against a plan. A shell loop reruns one fixed prompt; each pass picks one task from IMPLEMENTATION_PLAN.md, implements it behind tests, commits, and updates the plan, until a completion token or an iteration cap.",
+      "useWhen": "You have clear specs and a strong test suite and want long, unattended greenfield or backlog work in a sandbox.",
+      "tags": [
+        "autonomous-loop",
+        "long-running",
+        "planning",
+        "backpressure"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "An influential, simple, host-neutral technique. It works only with strong tests and a cap, and it is risky on existing codebases. The built-in /goal and /loop commands now cover the in-session variant, so the value here is the fresh-context outer loop and the plan-file discipline."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Geoffrey Huntley, Ralph Wiggum as a software engineer",
+          "url": "https://ghuntley.com/ralph/"
+        },
+        {
+          "title": "Clayton Farr, The Ralph Playbook (MIT)",
+          "url": "https://github.com/ClaytonFarr/ralph-playbook/blob/8f58cace8a8e4f4fbbf74b09653b500a2b7f4d6e/README.md"
+        },
+        {
+          "title": "Anthropic ralph-loop plugin, Stop-hook variant (Apache-2.0)",
+          "url": "https://github.com/anthropics/claude-plugins-official/tree/986deab6a1659ebb998b66962df6f02b20bb884d/plugins/ralph-loop"
+        }
+      ],
+      "overlap": "Claude Code /goal and /loop, Codex /goal, and the ralph-loop plugin for Claude Code.",
+      "related": [
+        "stop-gate-checks",
+        "explore-plan-implement-review"
+      ],
+      "score": 3.4,
+      "path": "entries/workflows/ralph-loop",
+      "files": [
+        "entries/workflows/ralph-loop/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "revise-claude-md",
+      "type": "workflow",
+      "title": "Revise CLAUDE.md with session learnings",
+      "summary": "An official end-of-session command. It reflects on the context the agent lacked (commands, patterns, gotchas), picks the right CLAUDE.md, drafts one-line additions as diffs with a reason for each, and applies only the ones you approve.",
+      "useWhen": "A session showed context the agent was missing, and you want a lightweight, approval-gated write-back to project instructions.",
+      "tags": [
+        "self-improvement",
+        "project-instructions",
+        "memory",
         "retrospective"
       ],
-      "path": "profiles/project-upkeep.yaml"
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Short, with an approval gate and a brevity rule. It is simpler than the retrospective skill. It writes only to CLAUDE.md, and does not choose between instructions, skills, and hooks or check triggers. Claude Code's auto memory already captures some of this."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/anthropics/claude-plugins-official",
+        "path": "plugins/claude-md-management/commands/revise-claude-md.md",
+        "revision": "a86e34672c44fa1fb1ae2b2c4143abcf26612ace",
+        "license": "Apache-2.0",
+        "author": "Anthropic"
+      },
+      "install": {
+        "claude-code": "/plugin install claude-md-management@claude-plugins-official, then run /revise-claude-md at the end of a session."
+      },
+      "overlap": "Claude Code auto memory and /memory. The retrospective skill is the broader version.",
+      "related": [
+        "retrospective",
+        "self-improvement-loop"
+      ],
+      "score": 3.4,
+      "path": "entries/workflows/revise-claude-md",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "self-improvement-loop",
+      "type": "workflow",
+      "title": "Self-improvement loop",
+      "summary": "Capture what slowed a session down, place each lesson where it will take effect (hook, always-loaded line, skill, or script), check that it loads, and prune always-loaded instructions regularly. It composes the retrospective, hook, and AGENTS.md entries in this catalog.",
+      "useWhen": "You want the agent to learn from each session and write the lessons back into the project without bloating its instructions.",
+      "tags": [
+        "self-improvement",
+        "retrospective",
+        "project-instructions",
+        "memory",
+        "context-hygiene"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The placement table comes from a pilot finding here (decision 8). Skills fired reliably, but a fact needed after a change belongs in always-loaded text. The pruning step answers 2026 evidence that long context files reduce success. The loop as a whole has not been evaluated."
+      },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Gloaguen et al., Evaluating AGENTS.md (arXiv 2602.11988)",
+          "url": "https://arxiv.org/abs/2602.11988"
+        },
+        {
+          "title": "Every, Compound Engineering",
+          "url": "https://github.com/EveryInc/compound-engineering-plugin"
+        }
+      ],
+      "overlap": "Claude Code auto memory captures corrections, but it does not decide where a lesson belongs or prune.",
+      "related": [
+        "retrospective",
+        "revise-claude-md",
+        "agents-md-authoring",
+        "compound-engineering",
+        "format-after-edit",
+        "stop-gate-checks"
+      ],
+      "score": 4.2,
+      "path": "entries/workflows/self-improvement-loop",
+      "files": [
+        "entries/workflows/self-improvement-loop/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "format-after-edit",
+      "type": "hook",
+      "title": "Format after agent edits",
+      "summary": "A PostToolUse hook that runs the project's formatter on files the agent edits, turning a prose style rule into a deterministic step. Includes a Claude Code version keyed on the edited path and a Codex version keyed on changed files.",
+      "useWhen": "The project has a formatter, and agents leave style drift or spend turns fixing formatting.",
+      "tags": [
+        "formatting",
+        "automation",
+        "post-tool-use"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "This is the canonical example in Anthropic's hooks guide, and it follows the best-practice advice to move rules that must always hold out of prose. The Codex hook file location and trust step come from Codex's documentation and have not been tried here."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code hooks guide, auto-format after edits",
+          "url": "https://code.claude.com/docs/en/hooks-guide"
+        },
+        {
+          "title": "Codex hooks",
+          "url": "https://developers.openai.com/codex/hooks"
+        }
+      ],
+      "overlap": "None built in. A formatter on save or in a pre-commit hook covers the human side.",
+      "related": [
+        "protect-files-and-commands",
+        "stop-gate-checks"
+      ],
+      "score": 3.8,
+      "path": "entries/hooks/format-after-edit",
+      "files": [
+        "entries/hooks/format-after-edit/HOOK.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "protect-files-and-commands",
+      "type": "hook",
+      "title": "Protect files and block destructive commands",
+      "summary": "A PreToolUse hook that blocks edits to protected paths (.env, lockfiles, .git/) and recursive force deletes, with a reason the agent can act on.",
+      "useWhen": "Agents run with broad edit or auto-approve permissions and you want a cheap extra guardrail against a few known-bad actions.",
+      "tags": [
+        "safety",
+        "guardrails",
+        "secrets",
+        "pre-tool-use"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "It combines the official protected-files example with the widely copied rm -rf check. Pattern matching is easy to bypass, and both vendors say hooks are guardrails, not security boundaries. Use permission deny rules and sandboxing first."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code hooks guide, block edits to protected files",
+          "url": "https://code.claude.com/docs/en/hooks-guide"
+        },
+        {
+          "title": "disler/claude-code-hooks-mastery pre_tool_use.py (unlicensed; pattern reference only)",
+          "url": "https://github.com/disler/claude-code-hooks-mastery/blob/1a574d7cbddc8f4fbbe1c2cfbd30f64534de8e53/.claude/hooks/pre_tool_use.py"
+        },
+        {
+          "title": "Codex hooks",
+          "url": "https://developers.openai.com/codex/hooks"
+        }
+      ],
+      "overlap": "Claude Code permissions.deny rules and sandboxing; the Codex sandbox and approval policy. Those are the primary controls.",
+      "related": [
+        "format-after-edit"
+      ],
+      "score": 3.4,
+      "path": "entries/hooks/protect-files-and-commands",
+      "files": [
+        "entries/hooks/protect-files-and-commands/HOOK.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "stop-gate-checks",
+      "type": "hook",
+      "title": "Block \"done\" until checks pass",
+      "summary": "A Stop hook that runs the project's fast typecheck, lint, or tests when the agent tries to finish, and blocks with the failure output until they pass. It has guards against looping and against pure question turns.",
+      "useWhen": "Agents end turns with failing checks, or unattended sessions must not finish red.",
+      "tags": [
+        "verification",
+        "quality-gate",
+        "stop-hook",
+        "autonomous-loop"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The deterministic way to gate stopping, and the mechanism behind in-session Ralph loops. It runs on every stop that changed files, so it only suits projects with a fast gate. The /goal command in both hosts is the softer built-in."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code best practices, gating the stop with a Stop hook",
+          "url": "https://code.claude.com/docs/en/best-practices"
+        },
+        {
+          "title": "Claude Code hooks guide",
+          "url": "https://code.claude.com/docs/en/hooks-guide"
+        },
+        {
+          "title": "Codex hooks",
+          "url": "https://developers.openai.com/codex/hooks"
+        }
+      ],
+      "overlap": "The /goal command in Claude Code and Codex; CI.",
+      "related": [
+        "ralph-loop",
+        "verification-before-completion",
+        "format-after-edit"
+      ],
+      "score": 3.4,
+      "path": "entries/hooks/stop-gate-checks",
+      "files": [
+        "entries/hooks/stop-gate-checks/HOOK.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "pr-review-code-reviewer",
+      "type": "subagent",
+      "title": "Code reviewer with confidence filtering",
+      "summary": "A review subagent that checks the current diff against the project's written rules and for real bugs. It scores each issue from 0 to 100 and reports only those at 80 or above, with the file, line, and a fix.",
+      "useWhen": "You want a fresh-context review before commit or PR that enforces your CLAUDE.md or AGENTS.md rules while keeping false positives low.",
+      "tags": [
+        "code-review",
+        "false-positives",
+        "project-instructions",
+        "quality"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The confidence threshold is the useful idea. It beats the popular generic reviewer personas in VoltAgent and wshobson, which use broad checklists and can edit files. It pins model opus and declares no tools list, so it inherits every tool, including edits. Consider setting model to inherit and tools to Read, Grep, Glob, Bash."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/anthropics/claude-plugins-official",
+        "path": "plugins/pr-review-toolkit/agents/code-reviewer.md",
+        "revision": "ce721c1f1d5da2c281588818e072ae01a05d2e73",
+        "license": "Apache-2.0",
+        "author": "Anthropic",
+        "notes": "LICENSE is the pr-review-toolkit plugin license. The whole toolkit installs with /plugin install pr-review-toolkit@claude-plugins-official."
+      },
+      "install": {
+        "claude-code": "Copy AGENT.md to .claude/agents/code-reviewer.md and keep the license notice nearby.",
+        "codex": "Use the body as a custom agent prompt or a review prompt; the frontmatter is Claude Code specific."
+      },
+      "overlap": "Claude Code /code-review and /security-review cover bug review; Codex has /review. The added value is checking compliance with your written rules.",
+      "related": [
+        "silent-failure-hunter",
+        "explore-plan-implement-review"
+      ],
+      "score": 3.4,
+      "path": "entries/subagents/pr-review-code-reviewer",
+      "files": [
+        "entries/subagents/pr-review-code-reviewer/AGENT.md",
+        "entries/subagents/pr-review-code-reviewer/LICENSE"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "silent-failure-hunter",
+      "type": "subagent",
+      "title": "Silent-failure hunter",
+      "summary": "A read-only review subagent that looks only at swallowed errors, broad catches, silent fallbacks, and unhelpful error messages in a diff. Each finding comes with a severity, the failure it hides, and a concrete fix.",
+      "useWhen": "A change adds try/catch, fallbacks, retries, or optional chaining, and you want errors surfaced rather than hidden.",
+      "tags": [
+        "code-review",
+        "error-handling",
+        "reliability"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Targets a failure agents often produce, defensive code that hides errors, which general reviewers underweight. Adapted rather than vendored because the upstream text names one project's logging and Sentry setup. It is limited to read-only tools."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Rules contributors"
+      },
+      "inspiredBy": [
+        {
+          "title": "Anthropic pr-review-toolkit silent-failure-hunter (Apache-2.0)",
+          "url": "https://github.com/anthropics/claude-plugins-official/blob/4ca561fb8532594e7a5faef945e85096fcec0616/plugins/pr-review-toolkit/agents/silent-failure-hunter.md"
+        }
+      ],
+      "install": {
+        "claude-code": "Copy AGENT.md to .claude/agents/silent-failure-hunter.md.",
+        "codex": "Use the body as a custom agent or review prompt."
+      },
+      "overlap": "General review commands catch some cases but do not specialize in them.",
+      "related": [
+        "pr-review-code-reviewer"
+      ],
+      "score": 4,
+      "path": "entries/subagents/silent-failure-hunter",
+      "files": [
+        "entries/subagents/silent-failure-hunter/AGENT.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "chrome-devtools-mcp",
+      "type": "mcp",
+      "title": "Chrome DevTools MCP",
+      "summary": "The Chrome team's MCP server, which drives Chrome through DevTools to navigate, click, take screenshots, read the console and network activity, and record performance traces, so agents can verify and debug web changes.",
+      "useWhen": "Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups.",
+      "tags": [
+        "browser",
+        "verification",
+        "debugging",
+        "performance"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Official, Apache-2.0, and actively released. Claude Code already has a Chrome integration and a browser pane, so there the gain is performance traces, network inspection, and isolated headless runs. For Codex it fills a real gap. Use --isolated so the agent does not get a profile with personal sign-ins."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+        "revision": "5463101120f94fc7c79d43c44c01a4ab57835279",
+        "license": "Apache-2.0",
+        "author": "Google Chrome DevTools team"
+      },
+      "install": {
+        "claude-code": "claude mcp add chrome-devtools --scope project -- npx chrome-devtools-mcp@latest --isolated",
+        "codex": "codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated",
+        "notes": "Pin a version instead of @latest for repeatable setups. --slim reduces the tool list."
+      },
+      "overlap": "Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them.",
+      "related": [
+        "verification-evidence",
+        "webapp-testing"
+      ],
+      "score": 4,
+      "path": "entries/mcps/chrome-devtools-mcp",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "context7",
+      "type": "mcp",
+      "title": "Context7 library docs",
+      "summary": "Fetches version-specific documentation and code examples for libraries by name, through a remote MCP server or a ctx7 CLI with a skill, so agents stop using outdated APIs.",
+      "useWhen": "Agents write code against fast-moving libraries and keep using deprecated or invented APIs.",
+      "tags": [
+        "documentation",
+        "libraries",
+        "api-accuracy"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The most adopted documentation server for coding agents, MIT licensed and very active. It is a third-party service, so queries leave your machine, and an API key avoids rate limits. The CLI plus skill mode avoids the context cost of an MCP tool list."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/upstash/context7",
+        "revision": "74eda1819f17f8b177e0bdad10de14bdc6bb26af",
+        "license": "MIT",
+        "author": "Upstash"
+      },
+      "install": {
+        "any": "npx ctx7 setup, then choose CLI with skills, or MCP.",
+        "claude-code": "claude mcp add --transport http context7 https://mcp.context7.com/mcp --header \"Authorization: Bearer $CONTEXT7_API_KEY\"",
+        "codex": "Add an [mcp_servers.context7] entry with url https://mcp.context7.com/mcp to the Codex config.",
+        "notes": "Keep the API key in the environment, never in checked-in configuration."
+      },
+      "overlap": "Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.",
+      "score": 4,
+      "path": "entries/mcps/context7",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "claude-reflect",
+      "type": "plugin",
+      "title": "claude-reflect",
+      "summary": "Hooks detect when you correct the agent and queue the correction. /reflect reviews the queue and writes the approved items into CLAUDE.md and AGENTS.md, and /reflect-skills mines session history for repeated tasks to turn into commands.",
+      "useWhen": "You keep correcting the agent on the same preferences and want those corrections captured with a review step.",
+      "tags": [
+        "self-improvement",
+        "memory",
+        "corrections",
+        "project-instructions"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 2,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "MIT, active, and tested. Claude Code's auto memory now captures corrections natively, so its distinct value is the review queue and the skill mining. It installs always-on hooks and needs Python."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/BayramAnnakov/claude-reflect",
+        "revision": "77c3340592aefc6ca964909198effc70fca3d01e",
+        "license": "MIT",
+        "author": "Bayram Annakov"
+      },
+      "install": {
+        "claude-code": "claude plugin marketplace add bayramannakov/claude-reflect, then claude plugin install claude-reflect@claude-reflect-marketplace, and restart."
+      },
+      "overlap": "Claude Code auto memory, the retrospective skill, and revise-claude-md.",
+      "related": [
+        "retrospective",
+        "revise-claude-md",
+        "self-improvement-loop"
+      ],
+      "score": 2.6,
+      "path": "entries/plugins/claude-reflect",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "compound-engineering",
+      "type": "plugin",
+      "title": "Compound Engineering",
+      "summary": "A cross-host plugin of about 36 skills built around brainstorm, plan, work, simplify, review, and compound. Its compound step writes each verified, non-obvious lesson to docs/solutions/, where later planning runs read it.",
+      "useWhen": "You want a complete, opinionated plan, review, and learn loop where every change leaves searchable lessons for the next task.",
+      "tags": [
+        "self-improvement",
+        "planning",
+        "code-review",
+        "knowledge-capture",
+        "methodology"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The most mature self-improvement loop found. It is MIT licensed and very active. Its compound step sets a strong bar of writing down only what a future reader could not recover from the code. It is heavy, with many skills and its own artifact folders, so install it only if you adopt the whole method."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/EveryInc/compound-engineering-plugin",
+        "revision": "bdc53d034ccfa5baf01b6139cd46082145ff95cc",
+        "license": "MIT",
+        "author": "Every (Kieran Klaassen, Trevin Chow)"
+      },
+      "install": {
+        "claude-code": "/plugin marketplace add EveryInc/compound-engineering-plugin, then /plugin install compound-engineering",
+        "codex": "codex plugin marketplace add EveryInc/compound-engineering-plugin, then codex plugin add compound-engineering@compound-engineering-plugin",
+        "notes": "List the hooks and commands the plugin enables before installing it."
+      },
+      "overlap": "Lesson capture overlaps the retrospective skill. Planning and review overlap host plan mode and review commands.",
+      "related": [
+        "self-improvement-loop",
+        "retrospective",
+        "explore-plan-implement-review"
+      ],
+      "score": 4,
+      "path": "entries/plugins/compound-engineering",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "superpowers",
+      "type": "plugin",
+      "title": "Superpowers",
+      "summary": "An opinionated end-to-end development method packaged as interlocking skills for brainstorming, planning, subagent execution with review, TDD, debugging, verification, git worktrees, and finishing a branch. It ships manifests for Claude Code, Codex, Cursor, and other hosts.",
+      "useWhen": "A team wants a complete, enforced spec-to-merge workflow rather than individual techniques.",
+      "tags": [
+        "workflow",
+        "planning",
+        "tdd",
+        "subagents",
+        "code-review",
+        "methodology"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The most adopted skills library, and actively released (v7.0.0 on 2026-10-10). Its always-on bootstrap skill forces a skill check before every reply, which is heavy for small tasks and competes with host plan mode. Its skills reference each other, so install it whole or vendor single skills."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/obra/superpowers",
+        "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+        "license": "MIT",
+        "author": "Jesse Vincent (obra)"
+      },
+      "install": {
+        "claude-code": "/plugin install superpowers@claude-plugins-official",
+        "codex": "codex plugin marketplace add obra/superpowers, then codex plugin add superpowers@superpowers",
+        "notes": "Check the upstream README for the current marketplace names before installing."
+      },
+      "overlap": "Plan mode and the review commands in both hosts cover part of it. It also contains verification-before-completion, test-driven-development, and a systematic-debugging skill.",
+      "related": [
+        "verification-before-completion",
+        "test-driven-development"
+      ],
+      "score": 4.4,
+      "path": "entries/plugins/superpowers",
+      "files": []
+    }
+  ],
+  "collections": [
+    {
+      "schemaVersion": 2,
+      "id": "debugging",
+      "title": "Debugging",
+      "description": "Diagnose and fix defects with a reproduction-first skill and a rule to verify where the change shows up.",
+      "entries": [
+        "systematic-debugging",
+        "verification-evidence"
+      ],
+      "path": "collections/debugging.yaml"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "project-upkeep",
+      "title": "Project upkeep",
+      "description": "Turn session retrospectives into project guidance that loads when needed, together with the verification rule.",
+      "entries": [
+        "retrospective",
+        "verification-evidence"
+      ],
+      "path": "collections/project-upkeep.yaml"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "self-improvement",
+      "title": "Self-improvement",
+      "description": "Learn from each session and write the lessons back where they take effect, while keeping always-loaded instructions short.",
+      "entries": [
+        "self-improvement-loop",
+        "retrospective",
+        "agents-md-authoring",
+        "format-after-edit"
+      ],
+      "path": "collections/self-improvement.yaml"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "starter",
+      "title": "Starter set",
+      "description": "A small, portable baseline for most software projects. It covers verification before claiming success, hard-bug diagnosis, stress-testing a plan, and lean project instructions.",
+      "entries": [
+        "verification-before-completion",
+        "diagnosing-bugs",
+        "grilling",
+        "agents-md-authoring",
+        "verification-evidence"
+      ],
+      "path": "collections/starter.yaml"
     }
   ]
 }

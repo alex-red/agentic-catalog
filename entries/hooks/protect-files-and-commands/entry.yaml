@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: protect-files-and-commands
+type: hook
+title: Protect files and block destructive commands
+summary: A PreToolUse hook that blocks edits to protected paths (.env, lockfiles, .git/) and recursive force deletes, with a reason the agent can act on.
+useWhen: Agents run with broad edit or auto-approve permissions and you want a cheap extra guardrail against a few known-bad actions.
+tags: [safety, guardrails, secrets, pre-tool-use]
+hosts: [claude-code, codex]
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 3
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: It combines the official protected-files example with the widely copied rm -rf check. Pattern matching is easy to bypass, and both vendors say hooks are guardrails, not security boundaries. Use permission deny rules and sandboxing first.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: Claude Code hooks guide, block edits to protected files
+    url: https://code.claude.com/docs/en/hooks-guide
+  - title: disler/claude-code-hooks-mastery pre_tool_use.py (unlicensed; pattern reference only)
+    url: https://github.com/disler/claude-code-hooks-mastery/blob/1a574d7cbddc8f4fbbe1c2cfbd30f64534de8e53/.claude/hooks/pre_tool_use.py
+  - title: Codex hooks
+    url: https://developers.openai.com/codex/hooks
+overlap: Claude Code permissions.deny rules and sandboxing; the Codex sandbox and approval policy. Those are the primary controls.
+related: [format-after-edit]

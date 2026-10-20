@@ -1,0 +1,24 @@
+schemaVersion: 2
+id: verification-evidence
+type: rule
+title: Verify in the running app
+summary: Check a change where its effect appears, including in an app the user already has running, even when the agent may not start a server; otherwise name what remains unchecked.
+useWhen: Agents in your project hand back visible UI changes without looking at them.
+tags: [verification, ui, browser, honesty]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: used
+  reviewed: 2026-10-20
+  notes: Targets an observed gap. In 3 of about 9 pilot sessions with visible changes, the agent never opened the already-running app. A matched outcome fixture exists but has not been run.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Rules contributors
+evaluationCases:
+  - evals/cases/running-app-verification.yaml
+evidence:
+  - evals/results/pilot-cha-floor-planner-2026-10.md

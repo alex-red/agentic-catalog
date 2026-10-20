@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: ralph-loop
+type: workflow
+title: Ralph loop
+summary: Fresh-context iteration against a plan. A shell loop reruns one fixed prompt; each pass picks one task from IMPLEMENTATION_PLAN.md, implements it behind tests, commits, and updates the plan, until a completion token or an iteration cap.
+useWhen: You have clear specs and a strong test suite and want long, unattended greenfield or backlog work in a sandbox.
+tags: [autonomous-loop, long-running, planning, backpressure]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: An influential, simple, host-neutral technique. It works only with strong tests and a cap, and it is risky on existing codebases. The built-in /goal and /loop commands now cover the in-session variant, so the value here is the fresh-context outer loop and the plan-file discipline.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: Geoffrey Huntley, Ralph Wiggum as a software engineer
+    url: https://ghuntley.com/ralph/
+  - title: Clayton Farr, The Ralph Playbook (MIT)
+    url: https://github.com/ClaytonFarr/ralph-playbook/blob/8f58cace8a8e4f4fbbf74b09653b500a2b7f4d6e/README.md
+  - title: Anthropic ralph-loop plugin, Stop-hook variant (Apache-2.0)
+    url: https://github.com/anthropics/claude-plugins-official/tree/986deab6a1659ebb998b66962df6f02b20bb884d/plugins/ralph-loop
+overlap: Claude Code /goal and /loop, Codex /goal, and the ralph-loop plugin for Claude Code.
+related: [stop-gate-checks, explore-plan-implement-review]

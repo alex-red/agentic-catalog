@@ -1,0 +1,22 @@
+schemaVersion: 2
+id: focused-changes
+type: rule
+title: Focused changes
+summary: Make the smallest coherent change that satisfies the request, follow existing project patterns, and avoid unrelated cleanup or new dependencies without a concrete need.
+useWhen: Agents in your project tend to over-reach with refactors, new dependencies, or drive-by cleanup.
+tags: [scope, conventions, diff-size]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 5
+  novelty: 1
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Short and sound, but host system prompts already restate most of it. Add it only if you have seen over-reaching diffs.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Rules contributors
+overlap: Largely restated by Claude Code and Codex system prompts.
+related: [scope-and-authority]

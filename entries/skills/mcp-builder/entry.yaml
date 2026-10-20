@@ -1,0 +1,25 @@
+schemaVersion: 2
+id: mcp-builder
+type: skill
+title: MCP server builder
+summary: A four-phase guide for designing, implementing, reviewing, and evaluating MCP servers in Python (FastMCP) or TypeScript, with tool-design best practices and an evaluation harness.
+useWhen: Building or reviewing an MCP server that wraps an external API or service.
+tags: [mcp, tool-design, api-integration, evaluation]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The best tool-design guidance found for MCP servers. It is linked because SDK details drift and upstream has not been updated since April 2026. Check its claims against the current MCP SDK documentation.
+source:
+  kind: linked
+  url: https://github.com/anthropics/skills
+  path: skills/mcp-builder
+  revision: b9e19e6f44773509fbdd7001d77ff41a49a486c1
+  license: Apache-2.0
+  author: Anthropic
+install:
+  any: npx skills add anthropics/skills --skill mcp-builder

@@ -23,3 +23,8 @@ pre { white-space: pre-wrap; word-break: break-word; font: 0.85rem/1.5 ui-monosp
 .intro summary { cursor: pointer; font-weight: 600; }
 .intro p, .intro ul { margin: 0.5rem 0; }
 kbd { font: 0.8em ui-monospace, monospace; border: 1px solid var(--line); border-radius: 3px; padding: 0 0.3em; }
+nav a strong .score { float: right; font-style: normal; font-size: 0.8rem; font-variant-numeric: tabular-nums; opacity: 0.75; }
+.details { max-width: 60rem; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem; }
+.details p { margin: 0.35rem 0; }
+.details .meta { font-size: 0.82rem; opacity: 0.8; overflow-wrap: anywhere; }
+.details a { color: var(--accent); }

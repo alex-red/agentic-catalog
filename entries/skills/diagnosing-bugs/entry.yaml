@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: diagnosing-bugs
+type: skill
+title: Diagnosing bugs with a tight feedback loop
+summary: A six-phase loop for hard bugs. Build a fast, deterministic command that goes red on this exact bug, minimise the repro, rank falsifiable hypotheses, instrument with tagged logs, fix behind a regression test at a real seam, and clean up. Includes secret redaction and a performance branch.
+useWhen: Hard, flaky, or performance bugs where the cause is not obvious and guessing has already failed.
+tags: [debugging, feedback-loop, reproduction, performance, regression]
+hosts: [any]
+rating:
+  usefulness: 5
+  quality: 5
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The most actionable debugging skill reviewed. It sets concrete completion criteria for each phase, ranks ten ways to build a repro loop, and explains how to raise the reproduction rate for flaky bugs. It uses no host-specific tools. Widely installed through skills.sh.
+source:
+  kind: vendored
+  url: https://github.com/mattpocock/skills
+  path: skills/engineering/diagnosing-bugs
+  revision: f3fc5632f401156837ee3872f14fe33ccf1024ea
+  license: MIT
+  author: Matt Pocock
+  notes: LICENSE.txt is the repository root license. agents/openai.yaml is Codex display metadata.
+overlap: Same job as systematic-debugging; install one of them. This one is stronger on building the reproduction.
+related: [systematic-debugging, test-driven-development]

@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: superpowers
+type: plugin
+title: Superpowers
+summary: An opinionated end-to-end development method packaged as interlocking skills for brainstorming, planning, subagent execution with review, TDD, debugging, verification, git worktrees, and finishing a branch. It ships manifests for Claude Code, Codex, Cursor, and other hosts.
+useWhen: A team wants a complete, enforced spec-to-merge workflow rather than individual techniques.
+tags: [workflow, planning, tdd, subagents, code-review, methodology]
+hosts: [claude-code, codex]
+rating:
+  usefulness: 5
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The most adopted skills library, and actively released (v7.0.0 on 2026-10-10). Its always-on bootstrap skill forces a skill check before every reply, which is heavy for small tasks and competes with host plan mode. Its skills reference each other, so install it whole or vendor single skills.
+source:
+  kind: linked
+  url: https://github.com/obra/superpowers
+  revision: bb92a77741419a4ab5f06e711a283343f1ada0c3
+  license: MIT
+  author: Jesse Vincent (obra)
+install:
+  claude-code: /plugin install superpowers@claude-plugins-official
+  codex: codex plugin marketplace add obra/superpowers, then codex plugin add superpowers@superpowers
+  notes: Check the upstream README for the current marketplace names before installing.
+overlap: Plan mode and the review commands in both hosts cover part of it. It also contains verification-before-completion, test-driven-development, and a systematic-debugging skill.
+related: [verification-before-completion, test-driven-development]

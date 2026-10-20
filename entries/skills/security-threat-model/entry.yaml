@@ -1,0 +1,24 @@
+schemaVersion: 2
+id: security-threat-model
+type: skill
+title: Repository threat model
+summary: Write a repository-grounded threat model covering trust boundaries, assets, attacker capabilities, abuse paths, and prioritized mitigations. It checks key assumptions with the user before writing the report, and fires only when asked explicitly.
+useWhen: Someone explicitly asks for a threat model or abuse-path analysis of a codebase or service.
+tags: [security, threat-modeling, appsec]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Well scoped, with explicit negative triggers, and it insists on evidence for every claim. Upstream is deprecated and frozen since February 2026, so this pinned copy is effectively owned here.
+source:
+  kind: vendored
+  url: https://github.com/openai/skills
+  path: skills/.curated/security-threat-model
+  revision: 5c8f1e26803bcfaffeceef1e7accbcf7e388417a
+  license: Apache-2.0
+  author: OpenAI
+overlap: Claude Code /security-review and Codex /review inspect diffs. Neither builds a whole-system threat model.

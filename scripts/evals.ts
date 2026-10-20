@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { basename, join, resolve } from 'node:path';
 import { stringify } from 'yaml';
 import type { EvaluationCase } from './library.ts';
-import { frontmatter, loadCatalog, loadEvaluationCases, readYaml, renderRuleBlock, repositoryRoot, safePath, validate } from './library.ts';
+import { frontmatter, loadCatalog, loadEvaluationCases, readYaml, renderRuleBlock, repositoryRoot, ruleBody, safePath, validate } from './library.ts';
 import { startRuntime } from './eval-runtime.ts';
 
 export type Host = 'claude' | 'codex';
@@ -13,9 +13,14 @@ export type Condition = 'baseline' | 'treatment';
 export type OutcomeCase = EvaluationCase & Required<Pick<EvaluationCase, 'fixture' | 'request' | 'acceptance' | 'grader'>>;
 
 export function loadCases(root = repositoryRoot): EvaluationCase[] {
-  loadCatalog(root);
   return loadEvaluationCases(root);
 }
+
+const skillDirectory = (name: string) => join('entries/skills', name);
+const rulePath = (id: string) => `entries/rules/${id}/RULE.md`;
+// Installed skills match a consumer copy: the bundle without catalog metadata.
+const copySkill = (root: string, name: string, destination: string) =>
+  cpSync(join(root, skillDirectory(name)), destination, { recursive: true, filter: (source) => basename(source) !== 'entry.yaml' });
 
 // Render trigger prompts as `claude plugin eval` cases: one case per prompt, keyed by the case file's expectation.
 type Trigger = { expectation: 'activate' | 'ignore' | 'clarify'; prompt: string };
@@ -49,7 +54,14 @@ export function writeTriggerSuite(root = repositoryRoot, directory = 'eval-build
     mkdirSync(output, { recursive: true });
   }
   rmSync(output, { recursive: true, force: true });
-  writeFiles(output, renderTriggerSuite(loadCases(root)));
+  // The repository plugin ships only the discovery skill, so wrap the catalog's own skill entries in a throwaway plugin.
+  const cases = loadCases(root);
+  mkdirSync(join(output, '.claude-plugin'), { recursive: true });
+  writeFileSync(join(output, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-rules', version: '0.0.0', description: 'Trigger evaluation of catalog skill entries' }, null, 2)}\n`);
+  for (const skill of new Set(cases.flatMap((evaluation) => (evaluation.skill ? [evaluation.skill] : [])))) {
+    copySkill(root, skill, join(output, 'skills', skill));
+  }
+  writeFiles(join(output, 'cases'), renderTriggerSuite(cases));
   return directory;
 }
 
@@ -110,7 +122,7 @@ export interface RunOptions {
   caseId: string;
   host: Host;
   model: string;
-  profile: string;
+  collection: string;
   component?: string;
   maxCostUsd?: number;
   browserTools?: string[];
@@ -168,20 +180,26 @@ export function selectTreatment(options: RunOptions): Selection {
   const catalog = loadCatalog(options.root ?? repositoryRoot);
   if (options.component) {
     const [kind, name, extra] = options.component.split('/');
-    if (!extra && kind === 'skill' && catalog.skills.some((entry) => entry.name === name)) return { skills: [name], rules: [] };
-    if (!extra && kind === 'rule' && catalog.rules.some((entry) => entry.id === name)) return { skills: [], rules: [name] };
+    const local = catalog.entries.find((entry) => entry.id === name && entry.type === kind && entry.source.kind !== 'linked');
+    if (!extra && local && kind === 'skill') return { skills: [name], rules: [] };
+    if (!extra && local && kind === 'rule') return { skills: [], rules: [name] };
     throw new Error(`Unknown component: ${options.component}; use skill/NAME or rule/ID.`);
   }
-  const profile = catalog.profiles.find((entry) => entry.id === options.profile);
-  if (!profile) throw new Error(`Unknown profile: ${options.profile}`);
-  return { skills: [...profile.skills], rules: [...profile.rules] };
+  const collection = catalog.collections.find((entry) => entry.id === options.collection);
+  if (!collection) throw new Error(`Unknown collection: ${options.collection}`);
+  const members = collection.entries.map((id) => catalog.entries.find((entry) => entry.id === id)!)
+    .filter((entry) => entry.source.kind !== 'linked');
+  return {
+    skills: members.filter((entry) => entry.type === 'skill').map((entry) => entry.id),
+    rules: members.filter((entry) => entry.type === 'rule').map((entry) => entry.id),
+  };
 }
 
 function selectedRules(options: RunOptions, selection: Selection): string {
   const root = options.root ?? repositoryRoot;
   if (!selection.rules.length) return '';
-  if (!options.component) return renderRuleBlock(options.profile, sourceRevision(root), root);
-  const bodies = selection.rules.map((id) => frontmatter(readFileSync(join(root, 'rules', `${id}.md`), 'utf8'), id).body);
+  if (!options.component) return renderRuleBlock(options.collection, sourceRevision(root), root);
+  const bodies = selection.rules.map((id) => ruleBody(root, id));
   return `<!-- agentic-rules:begin component=${options.component} source=${sourceRevision(root)} -->\n${bodies.join('\n\n')}\n<!-- agentic-rules:end -->\n`;
 }
 
@@ -206,19 +224,19 @@ export function prepareCondition(options: RunOptions, evaluation: OutcomeCase, c
         const plugin = join(work, '.eval-plugin');
         mkdirSync(join(plugin, '.claude-plugin'), { recursive: true });
         writeFileSync(join(plugin, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-rules', version: '0.0.1' })}\n`);
-        for (const skill of selection.skills) cpSync(join(root, 'skills', skill), join(plugin, 'skills', skill), { recursive: true });
+        for (const skill of selection.skills) copySkill(root, skill, join(plugin, 'skills', skill));
         command.push('--plugin-dir', plugin);
       }
       if (options.isolation !== 'bare' && selection.rules.length) {
         mkdirSync(join(work, '.claude/rules'), { recursive: true });
-        for (const id of selection.rules) cpSync(join(root, 'rules', `${id}.md`), join(work, '.claude/rules', `${id}.md`));
+        for (const id of selection.rules) writeFileSync(join(work, '.claude/rules', `${id}.md`), `${ruleBody(root, id)}\n`);
       }
     }
     return command;
   }
   if (options.isolation === 'bare') throw new Error('Bare isolation is implemented only for Claude Code.');
   if (treatment) {
-    for (const skill of selection.skills) cpSync(join(root, 'skills', skill), join(work, '.agents/skills', skill), { recursive: true });
+    for (const skill of selection.skills) copySkill(root, skill, join(work, '.agents/skills', skill));
     if (rules) {
       const instructions = join(work, 'AGENTS.md');
       const existing = existsSync(instructions) ? readFileSync(instructions, 'utf8') : '# Project instructions\n';
@@ -281,7 +299,7 @@ export interface RunRecord {
   selection: Selection;
   installed: Selection;
   component?: string;
-  profile?: string;
+  collection?: string;
   sourceInputs: ReturnType<typeof snapshotInputs>;
   reviewRequired: true;
   settings: { timeoutSeconds: number; maxCostUsd?: number; browserTools: string[] };
@@ -312,9 +330,9 @@ function snapshotInputs(root: string, evaluation: OutcomeCase, selection: Select
   }
   collect(evaluation.fixture);
   if (evaluation.grader.files) collect(evaluation.grader.files);
-  for (const skill of selection.skills) collect(join('skills', skill));
+  for (const skill of selection.skills) collect(skillDirectory(skill));
   for (const rule of selection.rules) {
-    const path = `rules/${rule}.md`;
+    const path = rulePath(rule);
     files.push({ path, contentBase64: readFileSync(safePath(root, join(root, path))).toString('base64') });
   }
   files.sort((a, b) => a.path.localeCompare(b.path));
@@ -370,7 +388,7 @@ export function runOnce(options: RunOptions, evaluation: OutcomeCase, condition:
     return {
       schemaVersion: 2, case: evaluation.id, host: options.host, model: options.model, condition,
       selection, installed: condition === 'treatment' ? selection : { skills: [], rules: [] },
-      ...(options.component ? { component: options.component } : { profile: options.profile }), sourceInputs,
+      ...(options.component ? { component: options.component } : { collection: options.collection }), sourceInputs,
       hostVersion, reviewRequired: true,
       settings: { timeoutSeconds: options.timeoutSeconds, maxCostUsd: options.maxCostUsd, browserTools: options.browserTools ?? [] },
       isolation: options.isolation, repetition, sourceRevision: sourceRevision(root), startedAt: startedAt.toISOString(),

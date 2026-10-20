@@ -6,21 +6,21 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import type { TestContext } from 'node:test';
 import type { Executor, OutcomeCase, RunOptions } from '../scripts/evals.ts';
-import { buildSkillsEval, loadCases, parseAgentOutput, previewEvaluation, renderTriggerSuite, runEvaluation, runOnce, schedule, summarize } from '../scripts/evals.ts';
+import { buildSkillsEval, loadCases, writeTriggerSuite, parseAgentOutput, previewEvaluation, renderTriggerSuite, runEvaluation, runOnce, schedule, summarize } from '../scripts/evals.ts';
 import { stringify } from 'yaml';
 import { frontmatter, readYaml, repositoryRoot } from '../scripts/library.ts';
 
 function sandbox(context: TestContext): string {
   const root = mkdtempSync(join(tmpdir(), 'agentic-rules-evals-'));
   context.after(() => rmSync(root, { recursive: true, force: true }));
-  for (const name of ['rules', 'skills', 'profiles', 'evals', 'catalog']) {
+  for (const name of ['entries', 'skills', 'collections', 'evals', 'catalog', 'package.json', 'llms.txt']) {
     cpSync(join(repositoryRoot, name), join(root, name), { recursive: true });
   }
   return root;
 }
 
 const options = (root: string, overrides: Partial<RunOptions> = {}): RunOptions => ({
-  caseId: 'checkout-discount', host: 'claude', model: 'test-model', profile: 'debugging', runs: 1,
+  caseId: 'checkout-discount', host: 'claude', model: 'test-model', collection: 'debugging', runs: 1,
   timeoutSeconds: 60, isolation: 'environment', conditions: ['baseline', 'treatment'], root, ...overrides,
 });
 
@@ -146,7 +146,7 @@ test('the Codex treatment installs project skills and a marked rule block', (con
     agentsFiles.push(readFileSync(join(cwd, 'AGENTS.md'), 'utf8'));
     return { exitCode: 0, timedOut: false, stdout: '{"type":"turn.completed","usage":{"input_tokens":7,"output_tokens":3}}\n', stderr: '' };
   });
-  assert.match(agentsFiles[0], /<!-- agentic-rules:begin profile=debugging source=local-unreleased -->/u);
+  assert.match(agentsFiles[0], /<!-- agentic-rules:begin collection=debugging source=local-unreleased -->/u);
 });
 
 test('timeouts and agent failures are not reported as passes', (context) => {
@@ -327,4 +327,16 @@ test('rule installation preserves the fixture instructions in Codex and bare Cla
       return { exitCode: 0, timedOut: false, stdout: host === 'claude' ? claudeOutput : '', stderr: '' };
     });
   }
+});
+
+test('library trigger suites test the catalog skill entries, not the discovery-only plugin', (context) => {
+  const root = sandbox(context);
+  const directory = writeTriggerSuite(root);
+  const plugin = join(root, directory);
+  assert.ok(existsSync(join(plugin, '.claude-plugin/plugin.json')));
+  assert.ok(existsSync(join(plugin, 'skills/systematic-debugging/SKILL.md')));
+  assert.ok(existsSync(join(plugin, 'skills/retrospective/SKILL.md')));
+  assert.equal(existsSync(join(plugin, 'skills/systematic-debugging/entry.yaml')), false);
+  assert.equal(existsSync(join(plugin, 'skills/agentic-catalog')), false);
+  assert.ok(existsSync(join(plugin, 'cases/systematic-debugging-activate-1/graders/skill-fired.md')));
 });

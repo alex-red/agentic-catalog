@@ -7,10 +7,10 @@ try {
   }
   if (args[0] === '--write') {
     writeCatalog();
-    console.log('Generated catalog/index.json.');
+    console.log('Generated catalog/index.json and llms.txt.');
   } else {
     checkCatalog();
-    console.log('Catalog matches its source content.');
+    console.log('catalog/index.json and llms.txt match their sources.');
   }
 } catch (error) {
   console.error((error as Error).message);

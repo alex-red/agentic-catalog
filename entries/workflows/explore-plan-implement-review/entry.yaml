@@ -1,0 +1,25 @@
+schemaVersion: 2
+id: explore-plan-implement-review
+type: workflow
+title: Explore, plan, implement, review
+summary: Explore read-only and write a plan with a check for each step before editing. Implement against the plan, then have a fresh-context reviewer compare the diff with the plan and report only gaps in correctness or requirements.
+useWhen: A change spans several files, the approach is uncertain, or the agent will run long enough unattended that it should not grade its own work.
+tags: [planning, code-review, subagents, verification]
+hosts: [any]
+rating:
+  usefulness: 5
+  quality: 4
+  portability: 4
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The core workflow Anthropic recommends. Both hosts have plan modes and review commands, so most of it is built in. The value is in the skip rule, the per-step checks, and the instruction not to chase every reviewer comment.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: Claude Code best practices, explore then plan then code, and adversarial review
+    url: https://code.claude.com/docs/en/best-practices
+overlap: Plan mode, /code-review, and subagents in Claude Code; plan mode and /review in Codex. compound-engineering is the heavyweight version.
+related: [pr-review-code-reviewer, compound-engineering, grilling]

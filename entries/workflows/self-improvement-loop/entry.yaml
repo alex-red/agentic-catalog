@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: self-improvement-loop
+type: workflow
+title: Self-improvement loop
+summary: Capture what slowed a session down, place each lesson where it will take effect (hook, always-loaded line, skill, or script), check that it loads, and prune always-loaded instructions regularly. It composes the retrospective, hook, and AGENTS.md entries in this catalog.
+useWhen: You want the agent to learn from each session and write the lessons back into the project without bloating its instructions.
+tags: [self-improvement, retrospective, project-instructions, memory, context-hygiene]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The placement table comes from a pilot finding here (decision 8). Skills fired reliably, but a fact needed after a change belongs in always-loaded text. The pruning step answers 2026 evidence that long context files reduce success. The loop as a whole has not been evaluated.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: Gloaguen et al., Evaluating AGENTS.md (arXiv 2602.11988)
+    url: https://arxiv.org/abs/2602.11988
+  - title: Every, Compound Engineering
+    url: https://github.com/EveryInc/compound-engineering-plugin
+overlap: Claude Code auto memory captures corrections, but it does not decide where a lesson belongs or prune.
+related: [retrospective, revise-claude-md, agents-md-authoring, compound-engineering, format-after-edit, stop-gate-checks]

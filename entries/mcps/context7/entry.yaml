@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: context7
+type: mcp
+title: Context7 library docs
+summary: Fetches version-specific documentation and code examples for libraries by name, through a remote MCP server or a ctx7 CLI with a skill, so agents stop using outdated APIs.
+useWhen: Agents write code against fast-moving libraries and keep using deprecated or invented APIs.
+tags: [documentation, libraries, api-accuracy]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The most adopted documentation server for coding agents, MIT licensed and very active. It is a third-party service, so queries leave your machine, and an API key avoids rate limits. The CLI plus skill mode avoids the context cost of an MCP tool list.
+source:
+  kind: linked
+  url: https://github.com/upstash/context7
+  revision: 74eda1819f17f8b177e0bdad10de14bdc6bb26af
+  license: MIT
+  author: Upstash
+install:
+  any: npx ctx7 setup, then choose CLI with skills, or MCP.
+  claude-code: 'claude mcp add --transport http context7 https://mcp.context7.com/mcp --header "Authorization: Bearer $CONTEXT7_API_KEY"'
+  codex: Add an [mcp_servers.context7] entry with url https://mcp.context7.com/mcp to the Codex config.
+  notes: Keep the API key in the environment, never in checked-in configuration.
+overlap: Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.

@@ -1,0 +1,22 @@
+schemaVersion: 2
+id: scope-and-authority
+type: rule
+title: Scope and authority
+summary: Work toward the requested outcome within the authorization already given, preserve unrelated work, and ask only when the answer changes the result or more authorization is needed.
+useWhen: You want an explicit, host-neutral statement of authorization boundaries in AGENTS.md.
+tags: [scope, safety, authorization]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 5
+  novelty: 1
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Accurate but mostly duplicates host system prompts. It is most useful for hosts with thinner built-in guidance.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Rules contributors
+overlap: Largely restated by Claude Code and Codex system prompts.
+related: [focused-changes]

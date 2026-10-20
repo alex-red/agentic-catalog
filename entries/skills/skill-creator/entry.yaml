@@ -1,0 +1,25 @@
+schemaVersion: 2
+id: skill-creator
+type: skill
+title: Skill creator with evaluations
+summary: A complete skill-authoring workflow with test cases, blind comparison, benchmark aggregation, and optimization of a description for trigger accuracy.
+useWhen: Authoring or tuning a skill and measuring whether it triggers and helps; use it as a methodology reference.
+tags: [skill-authoring, evaluation, meta]
+hosts: [claude-code]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 2
+  novelty: 1
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: A reference-grade evaluation method, but a 33 KB body with sections specific to Claude. Both hosts already ship a skill creator, so install it only when the built-in one is missing.
+source:
+  kind: linked
+  url: https://github.com/anthropics/skills
+  path: skills/skill-creator
+  revision: b9e19e6f44773509fbdd7001d77ff41a49a486c1
+  license: Apache-2.0
+  author: Anthropic
+overlap: Built into Claude Code through the skill-creator plugin; Codex ships a system skill-creator.
+related: [retrospective]

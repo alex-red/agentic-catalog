@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: find-skills
+type: skill
+title: Find skills on skills.sh
+summary: Search the skills.sh registry with npx skills find, vet candidates by source, install count, and stars, and offer install commands.
+useWhen: You want to search the wider public skills registry, beyond this curated catalog.
+tags: [discovery, skills-registry, tooling]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 4
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The most-installed skill on skills.sh. It treats popularity as trust, and it suggests global installs that skip confirmation (-g -y), which conflicts with explicit approval. skills.sh's own audit marks it medium risk. If you install it, drop -y.
+source:
+  kind: linked
+  url: https://github.com/vercel-labs/skills
+  path: skills/find-skills
+  revision: 773fb2c7bbf16781670a3520affc4abd0c6151ae
+  license: MIT
+  author: Vercel
+install:
+  any: npx skills add vercel-labs/skills --skill find-skills
+overlap: The agentic-catalog skill in this repository covers curated discovery. Claude Code's plugin browser and Codex's skill installer cover installation.

@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: test-driven-development
+type: skill
+title: Test-driven development (red-green-refactor)
+summary: Strict red-green-refactor. Write one failing test, watch it fail for the right reason, write the minimum code to pass, and run the whole suite. A companion reference covers tests that name the break they catch and avoid testing mocks.
+useWhen: Projects with a runnable test suite where agents write tests after the fact, write tautological tests, or test mocks instead of behavior.
+tags: [tdd, testing, discipline, test-quality]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The writing-good-tests reference is excellent. The main skill is dogmatic ("write code before the test? Delete it."), and its trigger fires on any feature or bugfix, which can clash with exploratory work or project conventions. Consider narrowing the description after installing.
+source:
+  kind: vendored
+  url: https://github.com/obra/superpowers
+  path: skills/test-driven-development
+  revision: 5bf4e78011075bcfc0dc295f0724994cd123ee71
+  license: MIT
+  author: Jesse Vincent (obra)
+  notes: LICENSE.txt is the repository root license.
+overlap: No host built-in. Part of the superpowers plugin.
+related: [verification-before-completion, diagnosing-bugs, superpowers]

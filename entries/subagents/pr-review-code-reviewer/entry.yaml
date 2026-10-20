@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: pr-review-code-reviewer
+type: subagent
+title: Code reviewer with confidence filtering
+summary: A review subagent that checks the current diff against the project's written rules and for real bugs. It scores each issue from 0 to 100 and reports only those at 80 or above, with the file, line, and a fix.
+useWhen: You want a fresh-context review before commit or PR that enforces your CLAUDE.md or AGENTS.md rules while keeping false positives low.
+tags: [code-review, false-positives, project-instructions, quality]
+hosts: [claude-code]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The confidence threshold is the useful idea. It beats the popular generic reviewer personas in VoltAgent and wshobson, which use broad checklists and can edit files. It pins model opus and declares no tools list, so it inherits every tool, including edits. Consider setting model to inherit and tools to Read, Grep, Glob, Bash.
+source:
+  kind: vendored
+  url: https://github.com/anthropics/claude-plugins-official
+  path: plugins/pr-review-toolkit/agents/code-reviewer.md
+  revision: ce721c1f1d5da2c281588818e072ae01a05d2e73
+  license: Apache-2.0
+  author: Anthropic
+  notes: LICENSE is the pr-review-toolkit plugin license. The whole toolkit installs with /plugin install pr-review-toolkit@claude-plugins-official.
+install:
+  claude-code: Copy AGENT.md to .claude/agents/code-reviewer.md and keep the license notice nearby.
+  codex: Use the body as a custom agent prompt or a review prompt; the frontmatter is Claude Code specific.
+overlap: Claude Code /code-review and /security-review cover bug review; Codex has /review. The added value is checking compliance with your written rules.
+related: [silent-failure-hunter, explore-plan-implement-review]

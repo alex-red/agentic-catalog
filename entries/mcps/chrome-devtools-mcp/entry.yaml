@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: chrome-devtools-mcp
+type: mcp
+title: Chrome DevTools MCP
+summary: The Chrome team's MCP server, which drives Chrome through DevTools to navigate, click, take screenshots, read the console and network activity, and record performance traces, so agents can verify and debug web changes.
+useWhen: Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups.
+tags: [browser, verification, debugging, performance]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Official, Apache-2.0, and actively released. Claude Code already has a Chrome integration and a browser pane, so there the gain is performance traces, network inspection, and isolated headless runs. For Codex it fills a real gap. Use --isolated so the agent does not get a profile with personal sign-ins.
+source:
+  kind: linked
+  url: https://github.com/ChromeDevTools/chrome-devtools-mcp
+  revision: 5463101120f94fc7c79d43c44c01a4ab57835279
+  license: Apache-2.0
+  author: Google Chrome DevTools team
+install:
+  claude-code: claude mcp add chrome-devtools --scope project -- npx chrome-devtools-mcp@latest --isolated
+  codex: codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated
+  notes: Pin a version instead of @latest for repeatable setups. --slim reduces the tool list.
+overlap: Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them.
+related: [verification-evidence, webapp-testing]

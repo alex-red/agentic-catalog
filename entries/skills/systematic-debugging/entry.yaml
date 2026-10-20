@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: systematic-debugging
+type: skill
+title: Systematic debugging
+summary: Reproduce a failure, test a falsifiable hypothesis about its cause, apply a focused correction, and verify it, with a reference for intermittent and environment-specific failures.
+useWhen: A bug, failing test, crash, or regression needs a diagnosed fix rather than a symptom patch.
+tags: [debugging, diagnosis, regression, testing]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 2
+  evidence: tested
+  reviewed: 2026-10-20
+  notes: Clear and proportional, and triggered 29/30 in the sandbox suite. Current models already debug this way on most bugs, and a same-named superpowers skill covers similar ground, so the main value is on hard reproductions.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Rules contributors
+overlap: Default model behavior covers most ordinary bugs. A same-named skill ships in obra/superpowers; install only one.
+related: [verification-evidence]
+evaluationCases:
+  - evals/cases/systematic-debugging.yaml
+  - evals/cases/checkout-discount.yaml
+evidence:
+  - evals/results/triggers-2026-10-20.md

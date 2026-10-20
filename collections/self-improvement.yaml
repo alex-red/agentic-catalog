@@ -1,0 +1,9 @@
+schemaVersion: 2
+id: self-improvement
+title: Self-improvement
+description: Learn from each session and write the lessons back where they take effect, while keeping always-loaded instructions short.
+entries:
+  - self-improvement-loop
+  - retrospective
+  - agents-md-authoring
+  - format-after-edit

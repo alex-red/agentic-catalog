@@ -1,0 +1,31 @@
+schemaVersion: 2
+id: agents-md-authoring
+type: skill
+title: Write and prune AGENTS.md
+summary: An on-demand guide for creating or auditing AGENTS.md and CLAUDE.md. It says what to include and exclude, how to structure nested and path-scoped files, and gives an approval-gated audit procedure that removes lines which do not change behavior.
+useWhen: Creating project instructions, or when they have grown long or the agent ignores them.
+tags: [project-instructions, agents-md, context-hygiene, monorepo]
+hosts: [any]
+rating:
+  usefulness: 5
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Distills three vendor guides and two 2026 evaluations. It ships as a skill rather than a rule so that the advice about short instructions does not itself cost context in every session. Both hosts' /init commands scaffold files but do not prune them.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Rules contributors
+inspiredBy:
+  - title: AGENTS.md open format
+    url: https://agents.md/
+  - title: Claude Code best practices, writing an effective CLAUDE.md
+    url: https://code.claude.com/docs/en/best-practices
+  - title: Codex custom instructions with AGENTS.md
+    url: https://developers.openai.com/codex/guides/agents-md
+  - title: Gloaguen et al., Evaluating AGENTS.md (arXiv 2602.11988)
+    url: https://arxiv.org/abs/2602.11988
+overlap: /init in both hosts scaffolds a starter file.
+related: [self-improvement-loop, retrospective]

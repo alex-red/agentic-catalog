@@ -1,6 +1,21 @@
 {
-  "globs": ["**/*.md", "**/*.md.tmpl"],
-  "ignores": ["node_modules/**", "eval-build/**"],
+  "globs": [
+    "**/*.md",
+    "**/*.md.tmpl"
+  ],
+  // Vendored entries stay byte-identical to their pinned upstream; tests keep this list in sync.
+  "ignores": [
+    "node_modules/**",
+    "eval-build/**",
+    "entries/skills/diagnosing-bugs/**",
+    "entries/skills/gh-fix-ci/**",
+    "entries/skills/grilling/**",
+    "entries/skills/security-threat-model/**",
+    "entries/skills/test-driven-development/**",
+    "entries/skills/verification-before-completion/**",
+    "entries/skills/webapp-testing/**",
+    "entries/subagents/pr-review-code-reviewer/**"
+  ],
   "config": {
     "MD013": false,
     "MD060": false

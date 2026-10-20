@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: verification-before-completion
+type: skill
+title: Verification before completion
+summary: A gate before any claim that work is done, fixed, or passing. Name the command that proves the claim, run it fresh, read the output, and only then report, with a table of claims and the evidence each one needs.
+useWhen: Agents claim success, commit, or open PRs without running the checks that prove it, or trust subagent reports without checking the diff.
+tags: [verification, evidence, completion-claims, testing, subagents]
+hosts: [any]
+rating:
+  usefulness: 5
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: One self-contained file aimed at the most common agent failure. The table pairing each claim with the evidence it needs, including "agent reported success → check the diff", is concrete. The absolutist tone ("skip any step = lying") costs some quality. Current hosts already push honest reporting, which caps novelty.
+source:
+  kind: vendored
+  url: https://github.com/obra/superpowers
+  path: skills/verification-before-completion
+  revision: 3be5aad3dd2400ef23b15680969f4bcd3b6d7b8b
+  license: MIT
+  author: Jesse Vincent (obra)
+  notes: LICENSE.txt is the repository root license; the skill has no license file of its own.
+overlap: Complements verification-evidence, which covers checking visible changes in a running app. It is also part of the superpowers plugin; skip it if that plugin is installed.
+related: [verification-evidence, superpowers, test-driven-development]

@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: karpathy-coding-guidelines
+type: rule
+title: Karpathy-style coding guidelines
+summary: A widely shared CLAUDE.md with four principles drawn from Andrej Karpathy's observations of LLM coding failures. Surface assumptions, write minimal code, make surgical diffs, and execute toward a goal with verification steps.
+useWhen: You want a recognized, drop-in baseline against over-engineering and drive-by edits.
+tags: [scope, simplicity, diff-size, assumptions]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Very popular, short (about 65 lines), and concrete ("every changed line should trace to the request"). Host system prompts already push most of it, and it overlaps focused-changes. Linked, not vendored, because the repository declares MIT but ships no license file.
+source:
+  kind: linked
+  url: https://github.com/multica-ai/andrej-karpathy-skills
+  path: CLAUDE.md
+  revision: 8462496b34419f20b32778610571ac723e91f94c
+  license: MIT (declared; no license file)
+  author: forrestchang / multica-ai
+install:
+  any: Merge the upstream CLAUDE.md text into the project's AGENTS.md or CLAUDE.md as a marked block. The repository also ships a Claude Code plugin.
+overlap: Largely restated by host system prompts and by focused-changes.
+related: [focused-changes]
