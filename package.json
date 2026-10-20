@@ -17,6 +17,7 @@
     "validate": "bun scripts/validate.ts",
     "catalog:build": "bun scripts/catalog.ts --write",
     "catalog:check": "bun scripts/catalog.ts --check",
+    "catalog:freshness": "bun scripts/catalog-freshness.ts",
     "rules:preview": "bun scripts/rules-preview.ts",
     "dev": "vite",
     "site:build": "vite build",

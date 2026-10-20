@@ -59,7 +59,7 @@ Candidates that were considered and left out, with reasons, are in the research 
 3. **Check the host-specific claims.** Codex hook files and trust, the Codex plugin manifest location (`.codex-plugin/plugin.json` versus the root `plugin.json` used here), and the install commands of linked plugins. Fix entries that are wrong.
 4. **Raise evidence where it matters.** Run trigger checks for the discovery skill and the vendored skills, and run the prepared matched comparisons for the original entries when authorized. The harness is in `evals/`; it is optional for a catalog entry, not a release gate.
 5. **Grow carefully.** Add entries from observed needs and from the considered-but-deferred list, such as improve-codebase-architecture and handoff from mattpocock/skills and Playwright MCP. Each new entry starts at `reviewed`.
-6. **Automate freshness.** Add a script that reports upstream commits newer than each pinned revision, so re-reviews are scheduled rather than remembered.
+6. ~~**Automate freshness.**~~ Done: `bun run catalog:freshness` reports pinned upstreams that have moved and reviews older than six months (`--strict` exits non-zero). On 2026-10-20 all vendored entries were current, and four linked repositories had moved by 1 to 9 commits.
 
 ## Release gate for v0.1
 

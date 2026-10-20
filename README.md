@@ -56,6 +56,7 @@ bun install
 bun run check            # typecheck, lint, schema and resource validation, generated-file freshness, tests
 bun run catalog:build    # regenerate catalog/index.json and llms.txt after changing entries
 bun run plugin:validate  # needs the Claude Code CLI
+bun run catalog:freshness  # network: report upstreams that moved past their pinned revision, and stale reviews
 ```
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding an entry, and [decisions](docs/decisions.md) for why the catalog is shaped this way. The optional [evaluation harness](docs/evaluation.md) measures trigger and outcome behavior, which raises an entry's evidence level.
