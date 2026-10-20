@@ -8,7 +8,7 @@ Skill cases in `evals/cases/*.yaml` list trigger prompts with an expectation: `a
 
 ```sh
 bun run eval:triggers
-claude plugin eval . --eval-dir eval-build --ablation none --no-publish --json eval-build/result.json
+claude plugin eval eval-build --eval-dir eval-build/cases --ablation none --no-publish --json eval-build/result.json
 ```
 
 `activate` cases pass when the skill is invoked, and `ignore` cases pass when it is not. `clarify` cases are judged by a model on whether the agent asks for the missing information first. Runs are sandboxed with a temporary home: user settings, project instructions, and other plugins are not loaded. The recorded library result is 44/45 checks across the original 15 prompts: `retrospective` passed 15/15 and `systematic-debugging` passed 29/30. One `systematic-debugging` clarify check missed. Three prompts added with the retrospective outcome fixture have not been run. These results measure description-trigger behavior in the sandbox; they do not establish outcome quality or install behavior. Add `--runs 1` for a quick pass and `--max-cost-usd` for a hard ceiling. Generated cases are build output and live in the ignored `eval-build/` directory.
@@ -58,12 +58,12 @@ bun run eval:run -- --case running-app-verification --host codex --model MODEL_I
 
 The corresponding paid Claude command is prepared by removing `--dry-run` and adding `--max-cost-usd USD_LIMIT`. Codex records the requested tool name but does not configure it; previewing that command does not establish headless browser access. No model sessions have been run from these examples.
 
-Select one component per comparison with `--component skill/NAME` or `--component rule/ID`; this overrides the profile selection. Evaluate `systematic-debugging`, `retrospective`, and `verification-evidence` independently with their corresponding cases. A bundled profile score cannot show which component caused a result. Other rules remain outcome-evaluation backlog.
+Select one component per comparison with `--component skill/NAME` or `--component rule/ID`; this overrides the collection selection (`--collection`, default `debugging`). Evaluate `systematic-debugging`, `retrospective`, and `verification-evidence` independently with their corresponding cases. A bundled collection score cannot show which component caused a result. Other rules remain outcome-evaluation backlog.
 
 For each paid run, the harness:
 
 1. Copies the fixture into a fresh temporary Git repository.
-2. Installs only the selected component in the treatment. For Claude Code, it adds the selected skill and rule files to the fixture; for Codex, it adds the skill under `.agents/skills/` and rules to `AGENTS.md`. The baseline gets no library component.
+2. Installs only the selected component in the treatment. For Claude Code, it adds the selected skill and rule files to the fixture; for Codex, it adds the skill under `.agents/skills/` and rules to `AGENTS.md`. The baseline gets no catalog entry. Skills are copied without `entry.yaml`, and rules are installed from `RULE.md`.
 3. Starts any fixture runtime and adds its URL and no-restart instruction to the fixture's project guidance. Then it runs `claude -p` or `codex exec` headless with edit permission limited to the workspace. Each run has a wall-clock timeout.
 4. Records changed files, then copies in the hidden grader tests and runs them.
 5. Writes a JSON record to `evals/results/runs/` (ignored by Git) with host version, component selection, source-input digest and files, outcome, usage, transcript, diff and untracked files, and runtime evidence when applicable.
@@ -87,4 +87,4 @@ The [local harness checks](../evals/results/harness-checks-2026-10-20.md) record
 
 ## Recording results
 
-Promote a run summary into a reviewed record in `evals/results/` when it supports a claim. Include case, fixture and source revision, host and model versions, settings, number of runs per arm, outcomes, cost when available, and limitations. Keep sandbox trigger results, real-environment trigger probes, matched outcome results, and installation observations clearly distinct. A local fixture check or schema validation is not a host outcome evaluation. Link a record from the component's `component.yaml` `evidence` list only when it supports that component's claim. A component moves past `experimental` only with linked evidence.
+Promote a run summary into a reviewed record in `evals/results/` when it supports a claim. Include case, fixture and source revision, host and model versions, settings, number of runs per arm, outcomes, cost when available, and limitations. Keep sandbox trigger results, real-environment trigger probes, matched outcome results, and installation observations clearly distinct. A local fixture check or schema validation is not a host outcome evaluation. Link a record from the entry's `entry.yaml` `evidence` list only when it supports that entry's claim, and raise `rating.evidence` to `tested` or `evaluated` only to the level the record supports. The harness covers skill and rule entries with local content; vendored entries can be measured the same way.

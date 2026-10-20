@@ -2,7 +2,7 @@
 
 Short records of choices that shape the library. Add a new entry rather than rewriting an old one; mark superseded entries.
 
-## 1. Content must target observed failures (2026-10-20)
+## 1. Content must target observed failures (2026-10-20; superseded by 15)
 
 Current Claude and GPT-class coding agents already reproduce bugs, keep diffs focused, and report verification without being told, and host system prompts restate most generic guidance. Shipping more of the same costs context without a measurable gain. Components therefore start from a recorded failure in a real project and must beat the host baseline, including host built-in skills, in a matched comparison.
 
@@ -58,6 +58,37 @@ The UI fixture's evaluator starts a loopback server before the agent, supplies i
 
 The user chose commands only for the next evaluation batch. `eval:run --dry-run` validates and prints the comparison without starting an agent, starting a runtime, or writing result files. Claude's optional dollar ceiling is per session, so a matched three-repetition comparison has six such ceilings. Codex has no supported dollar ceiling in this runner and its account cost must be recorded separately. The remaining comparison and installation work stays pending until actually run and reviewed.
 
-## 10. A small Vite frontend for browsing the catalog (2026-10-20)
+## 14. A small Vite frontend for browsing the catalog (2026-10-20)
 
 This supersedes the removal in §6, with a different shape: a vanilla TypeScript page in `site/` that imports the generated `catalog/index.json`, with no framework, custom fonts, or build-time Markdown rendering. Vite is used only for `bun run dev` (hot reload on localhost) and `bun run site:build`. It is a local tool, not a hosted catalog, so the `PLAN.md` exclusion still holds.
+
+## 15. Pivot to a curated, rated catalog (2026-10-20)
+
+Supersedes the product definition in §1 and the release gate built on it. The repository becomes a catalog of the best available agent guidance, wherever it was written, so that a user can ask an agent to "grab useful skills from the catalog" or "find a self-improvement loop". Measured benefit is no longer a condition for listing an entry. Instead, every entry carries an honest rating and an evidence level, and the evaluation harness becomes an optional way to raise that level. §1's lesson still shapes the ratings: novelty is scored against host built-ins and default model behavior, and the overlap is recorded.
+
+Choices made with the user:
+
+- **Storage is hybrid.** Permissively licensed content is vendored unmodified at a pinned commit with its license file. Restrictive, missing, or bundle licenses are linked. Material written here from cited sources is `adapted`.
+- **Rating is a rubric.** Four 1–5 axes, with a score of (2 × usefulness + quality + portability + novelty) / 5 computed at build time so it cannot drift, plus an evidence level from `reviewed` to `evaluated` that requires linked files above `reviewed`.
+- **All types.** Skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins, each in `entries/<type>s/<id>/` with a fixed primary file.
+- **Hosts are tagged by format.** `any` means portable through an open format; `claude-code` and `codex` mark host-specific entries. Those two remain the documented focus.
+- **Access is through a discovery skill plus llms.txt.** The plugin ships only the `agentic-catalog` skill, and `llms.txt` and `catalog/index.json` serve agents without an install. A CLI and an MCP server were considered and deferred.
+
+Profiles became collections that list entry IDs of any type. The published location comes from `package.json` `repository.url`. The validator requires the discovery skill to reference the same raw URL, so the index, `llms.txt`, and the skill cannot disagree.
+
+## 16. Seed entries from verified research, not memory (2026-10-20)
+
+The seed set came from two research passes that checked licenses from the actual files, pinned commits through the GitHub API, and recorded stars and last-commit dates as maintenance signals. Notable findings that shaped the entries:
+
+- Several repositories declare MIT without a license file (vercel-labs/agent-skills, the Karpathy guidelines), so those entries are linked.
+- Anthropic's document skills are source-available rather than open, so they were left out.
+- openai/skills is deprecated, so its vendored entries are effectively frozen copies.
+- Skills that fetch unpinned instructions at runtime (Vercel's web-design-guidelines) were excluded as an instruction-injection and drift risk.
+- Generic subagent personas from large collections were passed over in favor of Anthropic's confidence-filtered reviewer and an adapted silent-failure reviewer.
+- A 2026 study found that context files can lower task success and raise cost. Guidance on writing AGENTS.md therefore ships as an on-demand skill (`agents-md-authoring`), not an always-loaded rule.
+
+Host-specific details taken from documentation but not yet tried here (Codex hook files and trust, the Codex plugin manifest location) are marked as unverified in [compatibility](compatibility.md).
+
+## 17. Vendored files stay byte-identical (2026-10-20)
+
+Vendored content is never reformatted or edited, so the pinned revision remains an exact provenance claim. Markdown lint skips exactly the vendored directories, and a test fails if that list and the catalog's vendored entries diverge. Required changes, such as a narrower skill description, belong in the consumer's installed copy or in a new `adapted` entry.

@@ -1,47 +1,63 @@
-# Agentic Rules
+# Agentic Rules Catalog
 
-Agent guidance for Claude Code and Codex that is kept only when it measurably helps. Each component targets a failure observed in real projects and is compared against the host's default behavior before it ships.
+A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
-**Status: experimental.** Two skills and three short rules, piloted on one project. See [the plan](PLAN.md) and the [pilot findings](evals/results/pilot-cha-floor-planner-2026-10.md).
+**Status: experimental.** 32 entries. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
 
-## Install
+## Use it from an agent
 
-This repository is a plugin marketplace for both hosts. Replace `OWNER/REPO` with its Git location once it is published.
+Point an agent at the catalog and say what you want:
+
+> Grab some useful skills from the Agentic Rules catalog for this project.
+>
+> Look in the catalog for a self-improvement loop we can use.
+
+Any agent can read the ranked index directly:
+
+```text
+https://raw.githubusercontent.com/ban-red/agentic-rules/main/llms.txt
+```
+
+For a guided flow, install the `agentic-catalog` skill. It inspects the project, recommends a few entries with their scores and sources, and installs only what you approve. It is the only skill the plugin ships.
 
 ```sh
 # Claude Code
-claude plugin marketplace add OWNER/REPO
+claude plugin marketplace add ban-red/agentic-rules
 claude plugin install agentic-rules@agentic-rules
 
 # Codex
-codex plugin marketplace add OWNER/REPO
+codex plugin marketplace add ban-red/agentic-rules
 codex plugin add agentic-rules@agentic-rules
 ```
 
-In a Claude Code session: `/plugin install agentic-rules --marketplace OWNER/REPO`.
+Or copy `skills/agentic-catalog/` into `.claude/skills/` or `.agents/skills/`. The repository is not published yet; see the plan's next steps.
 
-Rules are not part of the plugin. Copy them into `.claude/rules/` (Claude Code) or merge them into `AGENTS.md` (Codex). The [installation guide](docs/installation.md) covers rules, directory-copy installs, updates, and removal.
+## What an entry contains
 
-## Contents
+Each entry lives in `entries/<type>s/<id>/` with an `entry.yaml` and, unless it is linked, the files to install:
 
-- Skills: [retrospective](skills/retrospective/SKILL.md) (turn stumbling blocks into project guidance that actually loads), [systematic debugging](skills/systematic-debugging/SKILL.md)
-- Rules: [scope and authority](rules/scope-and-authority.md), [focused changes](rules/focused-changes.md), [verification evidence](rules/verification-evidence.md)
-- Profiles: [project upkeep](profiles/project-upkeep.yaml), [debugging](profiles/debugging.yaml)
-- [Generated catalog](catalog/index.json)
+- **Rating:** usefulness, quality, portability, and novelty (value beyond host built-ins), each from 1 to 5. The score is (2 × usefulness + quality + portability + novelty) / 5.
+- **Evidence:** `reviewed` (read and judged), `used` (used in a real project), `tested` (trigger or load checks recorded), or `evaluated` (matched outcome runs).
+- **Source:** `original`, `adapted` (with `inspiredBy` links), `vendored` (a pinned, unmodified upstream copy with its license), or `linked` (upstream only).
+- **Tags, hosts, `useWhen`, `overlap`, and `related` entries**, for matching and comparison.
+
+[Collections](collections/) group entries that work together: `starter`, `self-improvement`, `debugging`, and `project-upkeep`.
+
+## Browse
+
+- [llms.txt](llms.txt): the ranked list, one line per entry.
+- [catalog/index.json](catalog/index.json): full metadata.
+- `bun run dev`: a local browser with filters and a source viewer.
 
 ## Develop
 
 ```sh
 bun install
-bun run check            # typecheck, lint, schema and resource validation, catalog freshness, tests
+bun run check            # typecheck, lint, schema and resource validation, generated-file freshness, tests
+bun run catalog:build    # regenerate catalog/index.json and llms.txt after changing entries
 bun run plugin:validate  # needs the Claude Code CLI
-bun run dev               # catalog browser with hot reload (Vite, 127.0.0.1)
 ```
 
-After changing content, run `bun run catalog:build` and then `bun run check`. These commands do not run an agent.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding an entry, and [decisions](docs/decisions.md) for why the catalog is shaped this way. The optional [evaluation harness](docs/evaluation.md) measures trigger and outcome behavior, which raises an entry's evidence level.
 
-To measure behavior, see [evaluation](docs/evaluation.md): `bun run eval:triggers` for this library's skill triggering, `bun run eval:skills` to test any project's own skills, and `bun run eval:run` for baseline-versus-treatment outcome runs. Both use model credits.
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding a component, and [decisions](docs/decisions.md) for why the library is shaped this way.
-
-Original content is MIT licensed. Each skill includes its own license notice so it can travel independently.
+Original and adapted content is MIT licensed. Vendored entries keep their upstream licenses, shipped alongside them.
