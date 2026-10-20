@@ -329,7 +329,7 @@ test('rule installation preserves the fixture instructions in Codex and bare Cla
   }
 });
 
-test('library trigger suites test the catalog skill entries, not the discovery-only plugin', (context) => {
+test('library trigger suites wrap catalog skill entries and the discovery skill', (context) => {
   const root = sandbox(context);
   const directory = writeTriggerSuite(root);
   const plugin = join(root, directory);
@@ -337,6 +337,25 @@ test('library trigger suites test the catalog skill entries, not the discovery-o
   assert.ok(existsSync(join(plugin, 'skills/systematic-debugging/SKILL.md')));
   assert.ok(existsSync(join(plugin, 'skills/retrospective/SKILL.md')));
   assert.equal(existsSync(join(plugin, 'skills/systematic-debugging/entry.yaml')), false);
-  assert.equal(existsSync(join(plugin, 'skills/agentic-catalog')), false);
+  assert.ok(existsSync(join(plugin, 'skills/agentic-catalog/SKILL.md')), 'the discovery skill is tested alongside the entries');
+  assert.ok(existsSync(join(plugin, 'cases/agentic-catalog-ignore-6/graders/skill-not-fired.md')));
   assert.ok(existsSync(join(plugin, 'cases/systematic-debugging-activate-1/graders/skill-fired.md')));
+});
+
+test('clarify graders use the case criteria, defaulting to the missing-information check', () => {
+  const files = renderTriggerSuite([{ id: 'example', skill: 'example', triggers: [
+    { expectation: 'clarify', prompt: 'Install the thing.', criteria: 'PASS if it asks which entry.' },
+    { expectation: 'clarify', prompt: 'It is broken.' },
+  ] }]);
+  assert.match(files.get('example-clarify-1/graders/asks-first.md')!, /PASS if it asks which entry\./u);
+  assert.match(files.get('example-clarify-2/graders/asks-first.md')!, /asks for the missing project, error, or reproduction/u);
+});
+
+test('criteria are rejected on prompts that are not judged by a model', (context) => {
+  const root = sandbox(context);
+  const file = join(root, 'evals/cases/agentic-catalog.yaml');
+  writeFileSync(file, readFileSync(file, 'utf8').replace(
+    '    prompt: Write a new skill that formats our changelog entries.\n',
+    '    prompt: Write a new skill that formats our changelog entries.\n    criteria: PASS always.\n'));
+  assert.throws(() => loadCases(root), /boolean schema is false/u);
 });

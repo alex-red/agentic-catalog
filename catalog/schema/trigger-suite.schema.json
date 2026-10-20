@@ -37,12 +37,38 @@
                   "type": "string",
                   "minLength": 1,
                   "pattern": "\\S"
+                },
+                "criteria": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S",
+                  "description": "Pass condition for the model-judged clarify check; defaults to asking for the missing information before acting."
                 }
               },
               "required": [
                 "expectation",
                 "prompt"
-              ]
+              ],
+              "if": {
+                "type": "object",
+                "properties": {
+                  "expectation": {
+                    "enum": [
+                      "activate",
+                      "ignore"
+                    ]
+                  }
+                },
+                "required": [
+                  "expectation"
+                ]
+              },
+              "then": {
+                "type": "object",
+                "properties": {
+                  "criteria": false
+                }
+              }
             }
           }
         },

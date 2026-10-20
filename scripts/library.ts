@@ -75,6 +75,7 @@ export interface EvaluationCase {
 export interface EvaluationTrigger {
   expectation: 'activate' | 'ignore' | 'clarify';
   prompt: string;
+  criteria?: string;
 }
 
 export interface Catalog {
@@ -300,7 +301,7 @@ export function loadCatalog(root = repositoryRoot): Catalog {
   const ids = new Set(entries.map((entry) => entry.id));
 
   const evaluations = loadEvaluationCaseFiles(root, {
-    skill: entries.filter((entry) => entry.type === 'skill' && entry.source.kind !== 'linked').map((entry) => entry.id),
+    skill: [...entries.filter((entry) => entry.type === 'skill' && entry.source.kind !== 'linked').map((entry) => entry.id), ...pluginSkills(root)],
     rule: entries.filter((entry) => entry.type === 'rule' && entry.source.kind !== 'linked').map((entry) => entry.id),
   });
   for (const entry of entries) {
@@ -343,8 +344,12 @@ export function loadCatalog(root = repositoryRoot): Catalog {
 
 export function loadEvaluationCases(root = repositoryRoot): EvaluationCase[] {
   const catalog = loadCatalog(root);
-  const ids = (type: EntryType) => catalog.entries.filter((entry) => entry.type === type).map((entry) => entry.id);
-  return loadEvaluationCaseFiles(root, { skill: ids('skill'), rule: ids('rule') }).map(({ evaluation }) => evaluation);
+  const ids = (type: EntryType) => catalog.entries.filter((entry) => entry.type === type && entry.source.kind !== 'linked').map((entry) => entry.id);
+  return loadEvaluationCaseFiles(root, { skill: [...ids('skill'), ...pluginSkills(root)], rule: ids('rule') }).map(({ evaluation }) => evaluation);
+}
+
+function pluginSkills(root: string): string[] {
+  return directoryEntries(root, 'skills').map((directory) => basename(directory));
 }
 
 export function renderCatalog(catalog: Catalog): string {

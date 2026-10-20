@@ -62,12 +62,38 @@
             "type": "string",
             "minLength": 1,
             "pattern": "\\S"
+          },
+          "criteria": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "description": "Pass condition for the model-judged clarify check; defaults to asking for the missing information before acting."
           }
         },
         "required": [
           "expectation",
           "prompt"
-        ]
+        ],
+        "if": {
+          "type": "object",
+          "properties": {
+            "expectation": {
+              "enum": [
+                "activate",
+                "ignore"
+              ]
+            }
+          },
+          "required": [
+            "expectation"
+          ]
+        },
+        "then": {
+          "type": "object",
+          "properties": {
+            "criteria": false
+          }
+        }
       }
     },
     "grader": {
@@ -116,37 +142,88 @@
   ],
   "oneOf": [
     {
-      "required": ["skill", "triggers"],
+      "required": [
+        "skill",
+        "triggers"
+      ],
       "properties": {
-        "skill": {"$ref": "#/properties/skill"},
-        "rule": {"$ref": "#/properties/rule"},
+        "skill": {
+          "$ref": "#/properties/skill"
+        },
+        "rule": {
+          "$ref": "#/properties/rule"
+        },
         "triggers": {
           "allOf": [
-            {"$ref": "#/properties/triggers"},
-            {"type": "array", "minItems": 3}
+            {
+              "$ref": "#/properties/triggers"
+            },
+            {
+              "type": "array",
+              "minItems": 3
+            }
           ]
         }
       },
-      "not": {"properties": {"rule": {}}, "required": ["rule"]}
+      "not": {
+        "properties": {
+          "rule": {}
+        },
+        "required": [
+          "rule"
+        ]
+      }
     },
     {
-      "required": ["rule", "fixture", "request", "grader", "acceptance"],
+      "required": [
+        "rule",
+        "fixture",
+        "request",
+        "grader",
+        "acceptance"
+      ],
       "properties": {
-        "rule": {"$ref": "#/properties/rule"},
-        "skill": {"$ref": "#/properties/skill"},
-        "fixture": {"$ref": "#/properties/fixture"},
-        "request": {"$ref": "#/properties/request"},
-        "grader": {"$ref": "#/properties/grader"},
-        "runtime": {"$ref": "#/properties/runtime"},
-        "acceptance": {"$ref": "#/properties/acceptance"},
+        "rule": {
+          "$ref": "#/properties/rule"
+        },
+        "skill": {
+          "$ref": "#/properties/skill"
+        },
+        "fixture": {
+          "$ref": "#/properties/fixture"
+        },
+        "request": {
+          "$ref": "#/properties/request"
+        },
+        "grader": {
+          "$ref": "#/properties/grader"
+        },
+        "runtime": {
+          "$ref": "#/properties/runtime"
+        },
+        "acceptance": {
+          "$ref": "#/properties/acceptance"
+        },
         "triggers": {
           "allOf": [
-            {"$ref": "#/properties/triggers"},
-            {"type": "array", "maxItems": 0}
+            {
+              "$ref": "#/properties/triggers"
+            },
+            {
+              "type": "array",
+              "maxItems": 0
+            }
           ]
         }
       },
-      "not": {"properties": {"skill": {}}, "required": ["skill"]}
+      "not": {
+        "properties": {
+          "skill": {}
+        },
+        "required": [
+          "skill"
+        ]
+      }
     }
   ],
   "dependencies": {

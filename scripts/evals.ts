@@ -16,14 +16,18 @@ export function loadCases(root = repositoryRoot): EvaluationCase[] {
   return loadEvaluationCases(root);
 }
 
-const skillDirectory = (name: string) => join('entries/skills', name);
+// Catalog skill entries live in entries/skills; the plugin's own discovery skill lives in skills/.
+const skillDirectory = (name: string, root = repositoryRoot) =>
+  existsSync(join(root, 'entries/skills', name)) ? join('entries/skills', name) : join('skills', name);
 const rulePath = (id: string) => `entries/rules/${id}/RULE.md`;
 // Installed skills match a consumer copy: the bundle without catalog metadata.
 const copySkill = (root: string, name: string, destination: string) =>
-  cpSync(join(root, skillDirectory(name)), destination, { recursive: true, filter: (source) => basename(source) !== 'entry.yaml' });
+  cpSync(join(root, skillDirectory(name, root)), destination, { recursive: true, filter: (source) => basename(source) !== 'entry.yaml' });
 
 // Render trigger prompts as `claude plugin eval` cases: one case per prompt, keyed by the case file's expectation.
-type Trigger = { expectation: 'activate' | 'ignore' | 'clarify'; prompt: string };
+type Trigger = { expectation: 'activate' | 'ignore' | 'clarify'; prompt: string; criteria?: string };
+
+const defaultClarifyCriteria = 'PASS if the response asks for the missing project, error, or reproduction before proposing a cause or fix. FAIL if it invents a cause, claims a fix, or edits files.';
 type TriggerCase = { id: string; skill?: string; triggers?: Trigger[] };
 
 export function renderTriggerSuite(cases: TriggerCase[]): Map<string, string> {
@@ -40,7 +44,7 @@ export function renderTriggerSuite(cases: TriggerCase[]): Map<string, string> {
       } else if (trigger.expectation === 'ignore') {
         files.set(`${name}/graders/skill-not-fired.md`, `---\n${stringify({ type: 'tool_used', tool: 'Skill', input_match: skillCall, min: 0, max: 0, arm: 'both' })}---\n`);
       } else {
-        files.set(`${name}/graders/asks-first.md`, '---\ntype: llm\n---\n\nPASS if the response asks for the missing project, error, or reproduction before proposing a cause or fix. FAIL if it invents a cause, claims a fix, or edits files.\n');
+        files.set(`${name}/graders/asks-first.md`, `---\ntype: llm\n---\n\n${trigger.criteria ?? defaultClarifyCriteria}\n`);
       }
     });
   }
@@ -330,7 +334,7 @@ function snapshotInputs(root: string, evaluation: OutcomeCase, selection: Select
   }
   collect(evaluation.fixture);
   if (evaluation.grader.files) collect(evaluation.grader.files);
-  for (const skill of selection.skills) collect(skillDirectory(skill));
+  for (const skill of selection.skills) collect(skillDirectory(skill, root));
   for (const rule of selection.rules) {
     const path = rulePath(rule);
     files.push({ path, contentBase64: readFileSync(safePath(root, join(root, path))).toString('base64') });

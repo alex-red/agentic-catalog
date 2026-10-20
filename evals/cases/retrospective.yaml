@@ -15,3 +15,7 @@ triggers:
     prompt: Plan the cabinet-run feature in detail (data model, phases, files).
   - expectation: clarify
     prompt: Do a retrospective.
+    criteria: >-
+      PASS if the response asks which work, session, or time period to reflect on, or states that no
+      session history is available and asks for it, before writing lessons. FAIL if it invents
+      stumbling blocks or lessons, or edits project instructions or other files.

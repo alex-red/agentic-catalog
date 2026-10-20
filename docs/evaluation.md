@@ -8,10 +8,20 @@ Skill cases in `evals/cases/*.yaml` list trigger prompts with an expectation: `a
 
 ```sh
 bun run eval:triggers
-claude plugin eval eval-build --eval-dir eval-build/cases --ablation none --no-publish --json eval-build/result.json
+claude plugin eval eval-build --eval-dir cases --ablation none --no-publish --trust-plugin --json eval-build/result.json
 ```
 
-`activate` cases pass when the skill is invoked, and `ignore` cases pass when it is not. `clarify` cases are judged by a model on whether the agent asks for the missing information first. Runs are sandboxed with a temporary home: user settings, project instructions, and other plugins are not loaded. The recorded library result is 44/45 checks across the original 15 prompts: `retrospective` passed 15/15 and `systematic-debugging` passed 29/30. One `systematic-debugging` clarify check missed. Three prompts added with the retrospective outcome fixture have not been run. These results measure description-trigger behavior in the sandbox; they do not establish outcome quality or install behavior. Add `--runs 1` for a quick pass and `--max-cost-usd` for a hard ceiling. Generated cases are build output and live in the ignored `eval-build/` directory.
+`activate` cases pass when the skill is invoked, and `ignore` cases pass when it is not. `clarify` cases are judged by a model against the trigger's `criteria`. Without `criteria`, the judge uses a debugging-oriented default: ask for the missing project, error, or reproduction before proposing a fix. Give non-debugging skills their own `criteria`, which are allowed only on `clarify` prompts. The recorded `retrospective` clarify pass (2026-10-20) was judged with the debugging default, so it is weaker evidence than its count suggests. Runs are sandboxed with a temporary home: user settings, project instructions, and other plugins are not loaded. The recorded library result is 44/45 checks across the original 15 prompts: `retrospective` passed 15/15 and `systematic-debugging` passed 29/30. One `systematic-debugging` clarify check missed. Three prompts added with the retrospective outcome fixture have not been run. Seven prompts for the `agentic-catalog` discovery skill, which the generated plugin now includes alongside the catalog's skill entries, have not been run either. These results measure description-trigger behavior in the sandbox; they do not establish outcome quality or install behavior. Add `--runs 1` for a quick pass and `--max-cost-usd` for a hard ceiling. Generated cases are build output and live in the ignored `eval-build/` directory.
+
+### Harness, billing, and cost (Claude Code 2.1.301)
+
+Checked against [Test plugins with evals](https://code.claude.com/docs/en/plugin-evals.md) and `claude plugin eval --help` on 2026-10-20.
+
+- **Harness:** each case is a fresh `claude -p` session, which is Claude Code in non-interactive mode. It gets a temporary home, working directory, and Claude Code configuration. User settings, hooks, CLAUDE.md, memory, MCP servers, and other plugins are not loaded; only the plugin under test is. Most environment variables are withheld, and tools that need a grant (Bash, Write, Edit, web) are removed unless allowed.
+- **Billing:** runs use the same authentication as normal Claude Code sessions and count against the plan's usage limits or the API bill. Under the documented precedence, `ANTHROPIC_API_KEY` or a cloud provider's variables take precedence over a subscription login. Unset them to bill the subscription.
+- **Cost controls:** `--max-cost-usd` caps an estimated cost at list prices, not plan usage. It is checked before each run starts, so runs in flight can pass it, and the command exits 2 with partial results. Cases run 3 times by default; `--runs 1` gives a quick pass. The default ablation adds a no-plugin baseline arm and roughly doubles cost. Use `--ablation none` for trigger cases, since a skill cannot fire without its plugin.
+- **Models:** pin `--model`, because the default resolution is described inconsistently. `llm` graders use `--judge-model`, which defaults to Haiku, and pass on 2 of 3 votes.
+- **Reports:** written to `<eval dir>/results/<timestamp>/`. `--no-publish` keeps them local; a run started from a Claude Code session stays local unless `--publish-report` is set.
 
 ## Triggers for a project's own skills: `eval:skills`
 
