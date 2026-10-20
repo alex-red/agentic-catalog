@@ -7,7 +7,7 @@ Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The 
 
 ## Product
 
-Agentic Rules is a curated, rated catalog of the most useful agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats (Agent Skills, AGENTS.md, MCP) are preferred.
+Agentic Catalog is a curated, rated catalog of the most useful agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats (Agent Skills, AGENTS.md, MCP) are preferred.
 
 The goal is that a user can tell an agent "grab some useful skills from the catalog for this project" or "find a self-improvement loop in the catalog", and the agent can search, compare, recommend, and install entries with their source recorded.
 
@@ -54,7 +54,7 @@ Candidates that were considered and left out, with reasons, are in the research 
 
 ## Next steps
 
-1. **Publish.** Create the GitHub repository at the location in `package.json` (`ban-red/agentic-rules`), or change that one field and rebuild. Then fill in the README install line and tag `v0.1.0`.
+1. **Publish.** Create the GitHub repository at the location in `package.json` (`alex-red/agentic-catalog`), or change that one field and rebuild. Then fill in the README install line and tag `v0.1.0`.
 2. **Use it end to end.** In a real project, ask an agent in each host to "grab useful skills from the catalog" and to "find a self-improvement loop". Record trigger behavior, recommendation quality, and install friction in `evals/results/`.
 3. ~~**Check the host-specific claims.**~~ Done against Codex docs and source on 2026-10-20; see [compatibility](docs/compatibility.md). Install commands of third-party linked plugins remain upstream claims.
 4. **Raise evidence where it matters.** First trigger pass recorded on Sonnet 5.5 ([results](evals/results/triggers-sonnet-2026-10-20.md)): the discovery skill passed 7/7, and `systematic-debugging` missed 2 of 4 activations. A rerun with fixtures in the workspace showed the misses are Sonnet solving small bugs directly; next, add a hard-bug trigger fixture. Then add cases for the vendored skills, and run the prepared matched comparisons for the original entries when authorized. The harness is in `evals/`; it is optional for a catalog entry, not a release gate.

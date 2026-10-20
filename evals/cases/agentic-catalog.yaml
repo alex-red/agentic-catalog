@@ -3,11 +3,11 @@ id: agentic-catalog
 skill: agentic-catalog
 triggers:
   - expectation: activate
-    prompt: Grab some useful skills from the Agentic Rules catalog for this project.
+    prompt: Grab some useful skills from the Agentic Catalog for this project.
   - expectation: activate
     prompt: Look in the catalog for a self-improvement loop we can use here.
   - expectation: activate
-    prompt: Are there any good hooks or subagents in the agentic rules catalog for a TypeScript repo like this one?
+    prompt: Are there any good hooks or subagents in the agentic catalog for a TypeScript repo like this one?
   - expectation: ignore
     prompt: Write a new skill that formats our changelog entries.
   - expectation: ignore

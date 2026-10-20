@@ -1,4 +1,4 @@
-# Contributing to Agentic Rules
+# Contributing to Agentic Catalog
 
 This repository is a curated catalog of agent guidance. Content under `entries/` and the `agentic-catalog` skill in `skills/` is product content, not a set of automatically active instructions for contributor tasks.
 

@@ -17,7 +17,7 @@ rating:
 source:
   kind: original
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 related: [verification-evidence]
 evaluationCases:
   - evals/cases/retrospective.yaml

@@ -13,7 +13,7 @@ export interface Runtime {
 // The evaluator starts the fixture before the agent. Readiness is written to a file so
 // the existing synchronous agent executor cannot block the server's stdout reader.
 export function startRuntime(command: string[], work: string): Runtime {
-  const directory = realpathSync(mkdtempSync(join(tmpdir(), 'agentic-rules-runtime-')));
+  const directory = realpathSync(mkdtempSync(join(tmpdir(), 'agentic-catalog-runtime-')));
   const readyFile = join(directory, 'ready.jsonl');
   const errorFile = join(directory, 'stderr.txt');
   const stdout = openSync(readyFile, 'w');

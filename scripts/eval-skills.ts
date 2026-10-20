@@ -18,7 +18,7 @@ try {
     process.exit(0);
   }
   if (!values.skills || !values.cases) throw new Error(usage);
-  const output = resolve(values.out ?? mkdtempSync(join(tmpdir(), 'agentic-rules-skills-eval-')));
+  const output = resolve(values.out ?? mkdtempSync(join(tmpdir(), 'agentic-catalog-skills-eval-')));
   const { cases: count, warnings } = buildSkillsEval(values.skills, values.cases, output);
   for (const warning of warnings) console.warn(`warning: ${warning}`);
   console.log(`Built ${count} trigger case(s) in ${output}. Run them (uses model credits):\n`);

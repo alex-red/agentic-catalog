@@ -11,7 +11,7 @@ import { stringify } from 'yaml';
 import { frontmatter, readYaml, repositoryRoot } from '../scripts/library.ts';
 
 function sandbox(context: TestContext): string {
-  const root = mkdtempSync(join(tmpdir(), 'agentic-rules-evals-'));
+  const root = mkdtempSync(join(tmpdir(), 'agentic-catalog-evals-'));
   context.after(() => rmSync(root, { recursive: true, force: true }));
   for (const name of ['entries', 'skills', 'collections', 'evals', 'catalog', 'package.json', 'llms.txt']) {
     cpSync(join(repositoryRoot, name), join(root, name), { recursive: true });
@@ -146,7 +146,7 @@ test('the Codex treatment installs project skills and a marked rule block', (con
     agentsFiles.push(readFileSync(join(cwd, 'AGENTS.md'), 'utf8'));
     return { exitCode: 0, timedOut: false, stdout: '{"type":"turn.completed","usage":{"input_tokens":7,"output_tokens":3}}\n', stderr: '' };
   });
-  assert.match(agentsFiles[0], /<!-- agentic-rules:begin collection=debugging source=local-unreleased -->/u);
+  assert.match(agentsFiles[0], /<!-- agentic-catalog:begin collection=debugging source=local-unreleased -->/u);
 });
 
 test('timeouts and agent failures are not reported as passes', (context) => {
@@ -176,7 +176,7 @@ test('summaries mark unavailable measurements', (context) => {
 });
 
 function projectSkills(context: TestContext): { skills: string; suite: string; out: string } {
-  const root = mkdtempSync(join(tmpdir(), 'agentic-rules-project-'));
+  const root = mkdtempSync(join(tmpdir(), 'agentic-catalog-project-'));
   context.after(() => rmSync(root, { recursive: true, force: true }));
   const skills = join(root, '.claude/skills');
   for (const [name, description] of [['render-debug', 'Diagnose seams: from a screenshot.'], ['browser-verify', '"Check changes in the open app."']]) {
@@ -369,7 +369,7 @@ test('trigger cases with a fixture recreate it byte for byte; clarify cases stay
   assert.equal(existsSync(join(plugin, 'cases/systematic-debugging-clarify-5/scaffold.sh')), false);
   assert.equal(existsSync(join(plugin, 'cases/agentic-catalog-activate-1/scaffold.sh')), false, 'cases without a fixture get no scaffold');
 
-  const workspace = mkdtempSync(join(tmpdir(), 'agentic-rules-scaffold-'));
+  const workspace = mkdtempSync(join(tmpdir(), 'agentic-catalog-scaffold-'));
   context.after(() => rmSync(workspace, { recursive: true, force: true }));
   const result = spawnSync('bash', [join(activate, 'scaffold.sh')], { cwd: workspace, encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr);

@@ -17,7 +17,7 @@ rating:
 source:
   kind: original
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 evaluationCases:
   - evals/cases/running-app-verification.yaml
 evidence:

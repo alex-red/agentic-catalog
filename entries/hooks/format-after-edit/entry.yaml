@@ -17,7 +17,7 @@ rating:
 source:
   kind: adapted
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 inspiredBy:
   - title: Claude Code hooks guide, auto-format after edits
     url: https://code.claude.com/docs/en/hooks-guide

@@ -13,7 +13,7 @@ import {
 const sandboxPaths = ['entries', 'skills', 'collections', 'evals', 'catalog', 'package.json', 'llms.txt'];
 
 function sandbox(context: TestContext): string {
-  const root = mkdtempSync(join(tmpdir(), 'agentic-rules-test-'));
+  const root = mkdtempSync(join(tmpdir(), 'agentic-catalog-test-'));
   context.after(() => rmSync(root, { recursive: true, force: true }));
   for (const name of sandboxPaths) cpSync(join(repositoryRoot, name), join(root, name), { recursive: true });
   return root;
@@ -148,7 +148,7 @@ test('rating axes are bounded integers', (context) => {
 test('the discovery skill must point at the published catalog', (context) => {
   const root = sandbox(context);
   const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
-  manifest.repository.url = 'https://github.com/someone-else/agentic-rules';
+  manifest.repository.url = 'https://github.com/someone-else/agentic-catalog';
   writeFileSync(join(root, 'package.json'), JSON.stringify(manifest));
   assert.throws(() => loadCatalog(root), /must reference https:\/\/raw.githubusercontent.com\/someone-else/u);
 });
@@ -336,7 +336,7 @@ test('rule previews resolve the selected source text without writing files', (co
   const root = sandbox(context);
   const before = snapshot(root);
   const preview = renderRuleBlock('debugging', 'local-unreleased', root);
-  assert.ok(preview.startsWith('<!-- agentic-rules:begin collection=debugging source=local-unreleased -->'));
+  assert.ok(preview.startsWith('<!-- agentic-catalog:begin collection=debugging source=local-unreleased -->'));
   assert.ok(preview.includes('## Verification evidence'));
   assert.ok(!preview.includes('Systematic debugging'));
   assert.deepEqual(snapshot(root), before);
@@ -386,7 +386,7 @@ test('plugin manifests for both hosts agree on name and version', () => {
   const claude = read('.claude-plugin/plugin.json');
   const codex = read('plugin.json');
   const version = read('package.json').version;
-  assert.equal(claude.name, 'agentic-rules');
+  assert.equal(claude.name, 'agentic-catalog');
   assert.equal(codex.name, claude.name);
   assert.equal(claude.version, version);
   assert.equal(codex.version, version);

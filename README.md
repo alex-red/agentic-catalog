@@ -1,4 +1,4 @@
-# Agentic Rules Catalog
+# Agentic Catalog
 
 A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
@@ -8,26 +8,26 @@ A curated, rated catalog of agent guidance for coding agents: skills, rules, wor
 
 Point an agent at the catalog and say what you want:
 
-> Grab some useful skills from the Agentic Rules catalog for this project.
+> Grab some useful skills from the Agentic Catalog for this project.
 >
 > Look in the catalog for a self-improvement loop we can use.
 
 Any agent can read the ranked index directly:
 
 ```text
-https://raw.githubusercontent.com/ban-red/agentic-rules/main/llms.txt
+https://raw.githubusercontent.com/alex-red/agentic-catalog/main/llms.txt
 ```
 
 For a guided flow, install the `agentic-catalog` skill. It inspects the project, recommends a few entries with their scores and sources, and installs only what you approve. It is the only skill the plugin ships.
 
 ```sh
 # Claude Code
-claude plugin marketplace add ban-red/agentic-rules
-claude plugin install agentic-rules@agentic-rules
+claude plugin marketplace add alex-red/agentic-catalog
+claude plugin install agentic-catalog@agentic-catalog
 
 # Codex
-codex plugin marketplace add ban-red/agentic-rules
-codex plugin add agentic-rules@agentic-rules
+codex plugin marketplace add alex-red/agentic-catalog
+codex plugin add agentic-catalog@agentic-catalog
 ```
 
 Or copy `skills/agentic-catalog/` into `.claude/skills/` or `.agents/skills/`. The repository is not published yet; see the plan's next steps.

@@ -12,7 +12,7 @@ const fixture = join(repositoryRoot, 'evals/fixtures/running-app');
 const grader = join(repositoryRoot, 'evals/graders/running-app/grade.py');
 
 function temporaryFixture(context: TestContext): { root: string; evidenceDir: string; evidence: string } {
-  const temp = mkdtempSync(join(tmpdir(), 'agentic-rules-running-app-'));
+  const temp = mkdtempSync(join(tmpdir(), 'agentic-catalog-running-app-'));
   context.after(() => rmSync(temp, { recursive: true, force: true }));
   const root = join(temp, 'worktree');
   const evidenceDir = join(temp, 'evidence');

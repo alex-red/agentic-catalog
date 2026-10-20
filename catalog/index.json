@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "repository": "https://github.com/ban-red/agentic-rules",
-  "rawBase": "https://raw.githubusercontent.com/ban-red/agentic-rules/main/",
+  "repository": "https://github.com/alex-red/agentic-catalog",
+  "rawBase": "https://raw.githubusercontent.com/alex-red/agentic-catalog/main/",
   "entries": [
     {
       "schemaVersion": 2,
@@ -31,7 +31,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -353,7 +353,7 @@
       "source": {
         "kind": "original",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "related": [
         "verification-evidence"
@@ -486,7 +486,7 @@
       "source": {
         "kind": "original",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "overlap": "Default model behavior covers most ordinary bugs. A same-named skill ships in obra/superpowers; install only one.",
       "related": [
@@ -680,7 +680,7 @@
       "source": {
         "kind": "original",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "overlap": "Largely restated by Claude Code and Codex system prompts.",
       "related": [
@@ -763,7 +763,7 @@
       "source": {
         "kind": "original",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "overlap": "Largely restated by Claude Code and Codex system prompts.",
       "related": [
@@ -803,7 +803,7 @@
       "source": {
         "kind": "original",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "evaluationCases": [
         "evals/cases/running-app-verification.yaml"
@@ -845,7 +845,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -893,7 +893,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -994,7 +994,7 @@
       "source": {
         "kind": "original",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -1049,7 +1049,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -1101,7 +1101,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -1156,7 +1156,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {
@@ -1262,7 +1262,7 @@
       "source": {
         "kind": "adapted",
         "license": "MIT",
-        "author": "Agentic Rules contributors"
+        "author": "Agentic Catalog contributors"
       },
       "inspiredBy": [
         {

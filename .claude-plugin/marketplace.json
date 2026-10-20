@@ -1,14 +1,14 @@
 {
-  "name": "agentic-rules",
-  "description": "The Agentic Rules Catalog: curated, rated agent guidance.",
+  "name": "agentic-catalog",
+  "description": "The Agentic Catalog: curated, rated agent guidance.",
   "owner": {
-    "name": "Agentic Rules contributors"
+    "name": "Agentic Catalog contributors"
   },
   "plugins": [
     {
-      "name": "agentic-rules",
+      "name": "agentic-catalog",
       "source": "./",
-      "description": "Discovery skill for the Agentic Rules Catalog: find, compare, and install rated agent guidance."
+      "description": "Discovery skill for the Agentic Catalog: find, compare, and install rated agent guidance."
     }
   ]
 }

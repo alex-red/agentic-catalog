@@ -17,7 +17,7 @@ rating:
 source:
   kind: adapted
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 inspiredBy:
   - title: Anthropic pr-review-toolkit silent-failure-hunter (Apache-2.0)
     url: https://github.com/anthropics/claude-plugins-official/blob/4ca561fb8532594e7a5faef945e85096fcec0616/plugins/pr-review-toolkit/agents/silent-failure-hunter.md

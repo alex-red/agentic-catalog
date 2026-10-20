@@ -17,7 +17,7 @@ rating:
 source:
   kind: original
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 inspiredBy:
   - title: Gloaguen et al., Evaluating AGENTS.md (arXiv 2602.11988)
     url: https://arxiv.org/abs/2602.11988

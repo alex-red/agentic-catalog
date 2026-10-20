@@ -17,6 +17,6 @@ rating:
 source:
   kind: original
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 overlap: Largely restated by Claude Code and Codex system prompts.
 related: [focused-changes]

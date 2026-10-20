@@ -80,7 +80,7 @@ export function writeTriggerSuite(root = repositoryRoot, directory = 'eval-build
   // The repository plugin ships only the discovery skill, so wrap the catalog's own skill entries in a throwaway plugin.
   const cases = loadCases(root).map((evaluation) => ({ ...evaluation, workspace: evaluation.fixture ? fixtureFiles(root, evaluation.fixture) : undefined }));
   mkdirSync(join(output, '.claude-plugin'), { recursive: true });
-  writeFileSync(join(output, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-rules', version: '0.0.0', description: 'Trigger evaluation of catalog skill entries' }, null, 2)}\n`);
+  writeFileSync(join(output, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-catalog', version: '0.0.0', description: 'Trigger evaluation of catalog skill entries' }, null, 2)}\n`);
   for (const skill of new Set(cases.flatMap((evaluation) => (evaluation.skill ? [evaluation.skill] : [])))) {
     copySkill(root, skill, join(output, 'skills', skill));
   }
@@ -118,7 +118,7 @@ export function loadTriggerSuite(file: string): TriggerSuite {
   return validate<TriggerSuite>('trigger-suite', readYaml(readFileSync(file, 'utf8'), file), file);
 }
 
-const marker = '.agentic-rules-skills-eval';
+const marker = '.agentic-catalog-skills-eval';
 
 // Wrap any skills directory (for example a project's .claude/skills) in a throwaway plugin with generated trigger
 // cases, so `claude plugin eval` can test whether those skills fire. Never writes inside the skills directory.
@@ -237,7 +237,7 @@ function selectedRules(options: RunOptions, selection: Selection): string {
   if (!selection.rules.length) return '';
   if (!options.component) return renderRuleBlock(options.collection, sourceRevision(root), root);
   const bodies = selection.rules.map((id) => ruleBody(root, id));
-  return `<!-- agentic-rules:begin component=${options.component} source=${sourceRevision(root)} -->\n${bodies.join('\n\n')}\n<!-- agentic-rules:end -->\n`;
+  return `<!-- agentic-catalog:begin component=${options.component} source=${sourceRevision(root)} -->\n${bodies.join('\n\n')}\n<!-- agentic-catalog:end -->\n`;
 }
 
 // Install only the selected skills and rules; preserve the fixture's own project instructions.
@@ -260,7 +260,7 @@ export function prepareCondition(options: RunOptions, evaluation: OutcomeCase, c
       if (selection.skills.length) {
         const plugin = join(work, '.eval-plugin');
         mkdirSync(join(plugin, '.claude-plugin'), { recursive: true });
-        writeFileSync(join(plugin, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-rules', version: '0.0.1' })}\n`);
+        writeFileSync(join(plugin, '.claude-plugin/plugin.json'), `${JSON.stringify({ name: 'agentic-catalog', version: '0.0.1' })}\n`);
         for (const skill of selection.skills) copySkill(root, skill, join(plugin, 'skills', skill));
         command.push('--plugin-dir', plugin);
       }
@@ -387,7 +387,7 @@ export function runOnce(options: RunOptions, evaluation: OutcomeCase, condition:
     try { hostVersion = run([options.host, '--version'], root).output.trim() || 'unavailable'; }
     catch (error) { hostVersion = `unavailable: ${(error as Error).message}`; }
   }
-  const work = mkdtempSync(join(tmpdir(), `agentic-rules-eval-${evaluation.id}-`));
+  const work = mkdtempSync(join(tmpdir(), `agentic-catalog-eval-${evaluation.id}-`));
   let runtime: ReturnType<typeof startRuntime> | undefined;
   try {
     cpSync(join(root, evaluation.fixture), work, { recursive: true });

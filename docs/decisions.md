@@ -14,7 +14,7 @@ Neither host ships project instructions inside a plugin, so rules stay manual: c
 
 ## 3. Skill names drop the `ar-` prefix (2026-10-20)
 
-Plugin skills are namespaced by the host (`agentic-rules:systematic-debugging`), so the prefix only added noise. Copy installs can collide with same-named skills from other libraries, and the installation guide says to check for that before copying.
+Plugin skills are namespaced by the host (`agentic-catalog:systematic-debugging`), so the prefix only added noise. Copy installs can collide with same-named skills from other libraries, and the installation guide says to check for that before copying.
 
 ## 4. Reuse host evaluation tools (2026-10-20)
 
@@ -92,3 +92,7 @@ Host-specific details (Codex hook files and trust, the Codex plugin manifest loc
 ## 17. Vendored files stay byte-identical (2026-10-20)
 
 Vendored content is never reformatted or edited, so the pinned revision remains an exact provenance claim. Markdown lint skips exactly the vendored directories, and a test fails if that list and the catalog's vendored entries diverge. Required changes, such as a narrower skill description, belong in the consumer's installed copy or in a new `adapted` entry.
+
+## 18. Rename to Agentic Catalog (2026-10-20)
+
+The project is now a catalog rather than a rule library, so it is named Agentic Catalog and published at `https://github.com/alex-red/agentic-catalog`. The package, plugin, and marketplace are all `agentic-catalog`, so the discovery skill is `agentic-catalog:agentic-catalog` when installed as a plugin. Rule blocks installed in consumer files use `agentic-catalog:begin` and `agentic-catalog:end` markers. Blocks written before the rename with `agentic-rules` markers remain valid text and can be renamed by hand.

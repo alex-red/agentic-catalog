@@ -5,7 +5,7 @@ There are two things to install, and neither changes global agent settings, enab
 1. **The discovery skill** (`agentic-catalog`), which lets an agent search the catalog and install entries. It is optional: any agent can also read `llms.txt` directly.
 2. **Individual entries**, chosen per project. The discovery skill installs them after approval, or you can copy them by hand.
 
-The repository is expected at `https://github.com/ban-red/agentic-rules` (from `package.json`). It is not published yet.
+The repository is expected at `https://github.com/alex-red/agentic-catalog` (from `package.json`). It is not published yet.
 
 ## The discovery skill
 
@@ -13,24 +13,24 @@ Through the plugin marketplace:
 
 ```sh
 # Claude Code
-claude plugin marketplace add ban-red/agentic-rules
-claude plugin install agentic-rules@agentic-rules
+claude plugin marketplace add alex-red/agentic-catalog
+claude plugin install agentic-catalog@agentic-catalog
 
 # Codex
-codex plugin marketplace add ban-red/agentic-rules
-codex plugin add agentic-rules@agentic-rules
+codex plugin marketplace add alex-red/agentic-catalog
+codex plugin add agentic-catalog@agentic-catalog
 ```
 
 Or by directory copy, which pins the skill in the project's checkout:
 
 ```sh
-cp -R /path/to/agentic-rules/skills/agentic-catalog your-project/.claude/skills/   # Claude Code
-cp -R /path/to/agentic-rules/skills/agentic-catalog your-project/.agents/skills/   # Codex and other hosts
+cp -R /path/to/agentic-catalog/skills/agentic-catalog your-project/.claude/skills/   # Claude Code
+cp -R /path/to/agentic-catalog/skills/agentic-catalog your-project/.agents/skills/   # Codex and other hosts
 ```
 
 When installed as a plugin, the skill reads the catalog from the plugin's own copy. Otherwise it fetches `catalog/index.json` from the published URL.
 
-Update with `claude plugin marketplace update` and then `claude plugin update agentic-rules`, or with `codex plugin marketplace upgrade`. Remove with `claude plugin uninstall agentic-rules` or `codex plugin remove agentic-rules@agentic-rules`.
+Update with `claude plugin marketplace update` and then `claude plugin update agentic-catalog`, or with `codex plugin marketplace upgrade`. Remove with `claude plugin uninstall agentic-catalog` or `codex plugin remove agentic-catalog@agentic-catalog`.
 
 ## Entries by hand
 

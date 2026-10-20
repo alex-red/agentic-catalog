@@ -364,7 +364,7 @@ const sectionTitles: Record<EntryType, string> = {
 export function renderLlmsText(catalog: Catalog): string {
   const url = (path: string) => `${catalog.rawBase}${path}`;
   const lines = [
-    '# Agentic Rules Catalog',
+    '# Agentic Catalog',
     '',
     '> A curated, rated catalog of rules, skills, workflows, hooks, subagents, MCP servers, and plugins for coding agents, focused on Claude Code and Codex. Every entry records where it came from, its license, tags, and a curator rating.',
     '',
@@ -427,5 +427,5 @@ export function renderRuleBlock(collectionId: string, sourceRevision: string, ro
   const rules = collection.entries.filter((id) => catalog.entries.find((entry) => entry.id === id)?.type === 'rule');
   if (!rules.length) throw new Error(`Collection ${collectionId} has no rules`);
   const bodies = rules.map((id) => ruleBody(root, id).replace(/^(#{1,5}) /gmu, '#$1 '));
-  return `<!-- agentic-rules:begin collection=${collectionId} source=${sourceRevision} -->\n${bodies.join('\n\n')}\n<!-- agentic-rules:end -->\n`;
+  return `<!-- agentic-catalog:begin collection=${collectionId} source=${sourceRevision} -->\n${bodies.join('\n\n')}\n<!-- agentic-catalog:end -->\n`;
 }

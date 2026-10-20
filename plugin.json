@@ -1,10 +1,10 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "agentic-rules",
+  "name": "agentic-catalog",
   "version": "0.0.2",
-  "description": "Discovery skill for the Agentic Rules Catalog: find, compare, and install rated agent skills, rules, workflows, hooks, subagents, and MCP servers.",
+  "description": "Discovery skill for the Agentic Catalog: find, compare, and install rated agent skills, rules, workflows, hooks, subagents, and MCP servers.",
   "author": {
-    "name": "Agentic Rules contributors"
+    "name": "Agentic Catalog contributors"
   },
   "license": "MIT",
   "keywords": [

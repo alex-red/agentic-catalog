@@ -17,7 +17,7 @@ rating:
 source:
   kind: adapted
   license: MIT
-  author: Agentic Rules contributors
+  author: Agentic Catalog contributors
 inspiredBy:
   - title: AGENTS.md open format
     url: https://agents.md/
