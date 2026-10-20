@@ -1,6 +1,6 @@
 ---
-name: ar-systematic-debugging
-description: Diagnose and fix reproducible failures, crashes, or regressions. Use when behavior differs from expectations; ordinary feature implementation and diff-only review have separate scopes.
+name: systematic-debugging
+description: Diagnose and fix bugs, failing tests, crashes, and regressions by reproducing the failure, testing a hypothesis about its cause, and verifying the correction. Use when something behaves differently than expected. Not for new features or review-only requests.
 license: MIT
 ---
 

@@ -9,4 +9,5 @@ provenance:
   kind: original
 evaluationCases:
   - evals/cases/systematic-debugging.yaml
+  - evals/cases/checkout-discount.yaml
 evidence: []

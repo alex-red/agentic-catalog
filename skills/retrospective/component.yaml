@@ -1,0 +1,15 @@
+schemaVersion: 1
+category: process
+tags:
+  - retrospective
+  - project-instructions
+  - skill-triggering
+maturity: experimental
+maintainer: Agentic Rules contributors
+provenance:
+  kind: original
+evaluationCases:
+  - evals/cases/retrospective.yaml
+  - evals/cases/retrospective-outcome.yaml
+evidence:
+  - evals/results/triggers-2026-10-20.md
