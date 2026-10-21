@@ -1,5 +1,6 @@
 import data from "../../catalog/index.json";
 import "./styles.css";
+import { createCombobox, type ComboOption } from "./combobox";
 
 interface Rating {
   usefulness: number;
@@ -18,6 +19,7 @@ interface Source {
   url?: string;
   path?: string;
   revision?: string;
+  retrieved?: string;
 }
 
 interface InstallGuide {
@@ -35,7 +37,11 @@ interface CatalogEntry {
   useWhen: string;
   tags: string[];
   hosts: string[];
+  experimental?: boolean;
+  custom?: boolean;
+  featured?: boolean;
   score: number;
+  sourceUrl?: string;
   path: string;
   files: string[];
   rating: Rating;
@@ -70,6 +76,8 @@ interface Item {
   tags: string[];
   hosts: string[];
   evidence?: string;
+  reviewed?: string;
+  sourceKind?: string;
   files: string[];
   entry?: CatalogEntry;
   collection?: Collection;
@@ -85,7 +93,8 @@ const sources = Object.fromEntries(
   ).map(([path, load]) => [path.replace("../../", ""), load]),
 );
 
-const kinds: Kind[] = ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "collection"];
+// Custom and experimental entries form their own tree groups after the established types.
+const kinds: Kind[] = ["featured", "skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "custom", "experimental", "collection"];
 const kindLabels: Record<Kind, string> = {
   skill: "Skills",
   rule: "Rules",
@@ -94,11 +103,24 @@ const kindLabels: Record<Kind, string> = {
   subagent: "Subagents",
   mcp: "MCP Servers",
   plugin: "Plugins",
+  featured: "Featured",
+  custom: "Custom",
+  experimental: "Experimental",
   collection: "Collections",
 };
 
 const hostOptions = ["any", "claude-code", "codex"];
 const evidenceTiers = ["evaluated", "tested", "used", "reviewed"];
+const typeOptions = ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "collection"];
+const sourceKinds = ["original", "adapted", "vendored", "linked"];
+
+type SortKey = "score" | "name" | "evidence" | "reviewed";
+const sorters: Record<SortKey, (a: Item, b: Item) => number> = {
+  score: (a, b) => (b.score ?? 0) - (a.score ?? 0),
+  name: (a, b) => a.title.localeCompare(b.title),
+  evidence: (a, b) => evidenceTiers.indexOf(a.evidence ?? "") - evidenceTiers.indexOf(b.evidence ?? "") || (b.score ?? 0) - (a.score ?? 0),
+  reviewed: (a, b) => (b.reviewed ?? "").localeCompare(a.reviewed ?? ""),
+};
 
 const items: Item[] = [
   ...catalog.entries.map((e) => ({
@@ -110,6 +132,8 @@ const items: Item[] = [
     tags: e.tags,
     hosts: e.hosts,
     evidence: e.rating.evidence,
+    reviewed: e.rating.reviewed,
+    sourceKind: e.source.kind,
     files: [`${e.path}/entry.yaml`, ...e.files],
     entry: e,
   })),
@@ -133,6 +157,10 @@ const clearAllFiltersBtn = $<HTMLButtonElement>("#clear-all-filters");
 
 const hostsBox = $("#hosts");
 const evidenceBox = $("#evidence");
+const sidebarControls = $("#sidebar-controls");
+const comboRow = $("#combo-row");
+const filterTokens = $("#filter-tokens");
+const showExperimental = { checked: true };
 
 const list = $("#list");
 const viewer = $("#viewer");
@@ -143,6 +171,15 @@ const treeToggleAllBtn = $<HTMLButtonElement>("#tree-toggle-all");
 
 const activeHosts = new Set<string>();
 const activeEvidence = new Set<string>();
+const activeTypes = new Set<string>();
+const activeSourceKinds = new Set<string>();
+let sortKey: SortKey = "score";
+
+// Remember the sort order per viewer; storage can be unavailable, so it is best effort.
+try {
+  const saved = localStorage.getItem("catalog-sort");
+  if (saved && saved in sorters) sortKey = saved as SortKey;
+} catch {}
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, className?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
@@ -163,12 +200,16 @@ function chip(label: string, active: Set<string>, onChange: () => void, displayL
 }
 
 function hasFilters(): boolean {
-  return activeHosts.size > 0 || activeEvidence.size > 0 || input.value.trim().length > 0;
+  return activeHosts.size > 0 || activeEvidence.size > 0 || activeTypes.size > 0 || activeSourceKinds.size > 0 ||
+    !showExperimental.checked || input.value.trim().length > 0;
 }
 
 function clearFilters() {
   activeHosts.clear();
   activeEvidence.clear();
+  activeTypes.clear();
+  activeSourceKinds.clear();
+  showExperimental.checked = true;
   input.value = "";
   clearInputBtn.hidden = true;
   renderControls();
@@ -188,6 +229,9 @@ function visible(): Item[] {
     }
 
     if (activeEvidence.size > 0 && (!e.evidence || !activeEvidence.has(e.evidence))) return false;
+    if (activeTypes.size > 0 && !activeTypes.has(e.kind)) return false;
+    if (activeSourceKinds.size > 0 && (!e.sourceKind || !activeSourceKinds.has(e.sourceKind))) return false;
+    if (!showExperimental.checked && e.entry?.experimental) return false;
     if (!q) return true;
     const haystack = `${e.id} ${e.title} ${e.summary} ${e.entry?.useWhen ?? ""} ${e.tags.join(" ")}`.toLowerCase();
     return haystack.includes(q);
@@ -231,6 +275,111 @@ function renderControls() {
 
   // Compact Evidence chips
   evidenceBox.replaceChildren(...evidenceTiers.map((ev) => chip(ev, activeEvidence, refresh)));
+
+  sortCombo.refresh();
+  filterCombo.refresh();
+  renderTokens();
+}
+
+const sortLabels: Record<SortKey, string> = {
+  score: "Score, high to low",
+  name: "Name, A to Z",
+  evidence: "Evidence, strongest first",
+  reviewed: "Recently reviewed",
+};
+const sortShort: Record<SortKey, string> = { score: "Score", name: "Name", evidence: "Evidence", reviewed: "Recent" };
+const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
+
+function countBy(pick: (i: Item) => string | undefined, value: string) {
+  return items.filter((i) => pick(i) === value).length;
+}
+
+const HIDE_EXPERIMENTAL = "hide-experimental";
+
+const sortCombo = createCombobox({
+  id: "sort",
+  label: "Sort",
+  multi: false,
+  searchable: false,
+  host: sidebarControls,
+  options: () => (Object.keys(sorters) as SortKey[]).map((k) => ({ value: k, label: sortLabels[k] })),
+  isSelected: (o) => o.value === sortKey,
+  onSelect: (o) => {
+    sortKey = o.value as SortKey;
+    try {
+      localStorage.setItem("catalog-sort", sortKey);
+    } catch {}
+    renderList();
+  },
+  summary: () => sortShort[sortKey],
+});
+
+const filterCombo = createCombobox({
+  id: "filter",
+  label: "Filter",
+  multi: true,
+  searchable: true,
+  placeholder: "Filter by type or source…",
+  host: sidebarControls,
+  options: (): ComboOption[] => [
+    ...typeOptions.map((t) => ({ value: `type:${t}`, label: kindLabels[t], group: "Type", count: countBy((i) => i.kind, t) })),
+    ...sourceKinds.map((k) => ({ value: `source:${k}`, label: cap(k), group: "Source", count: countBy((i) => i.sourceKind, k) })),
+    { value: HIDE_EXPERIMENTAL, label: "Hide experimental", group: "Show" },
+  ],
+  isSelected: (o) => {
+    if (o.value === HIDE_EXPERIMENTAL) return !showExperimental.checked;
+    const [group, v] = o.value.split(":");
+    return (group === "type" ? activeTypes : activeSourceKinds).has(v);
+  },
+  onSelect: (o) => {
+    if (o.value === HIDE_EXPERIMENTAL) {
+      showExperimental.checked = !showExperimental.checked;
+    } else {
+      const [group, v] = o.value.split(":");
+      const set = group === "type" ? activeTypes : activeSourceKinds;
+      set.has(v) ? set.delete(v) : set.add(v);
+    }
+    renderControls();
+    renderList();
+  },
+  summary: () => (sidebarFilterCount() === 0 ? "All" : ""),
+  badge: sidebarFilterCount,
+  onClear: () => {
+    activeTypes.clear();
+    activeSourceKinds.clear();
+    showExperimental.checked = true;
+    renderControls();
+    renderList();
+  },
+});
+comboRow.append(sortCombo.el, filterCombo.el);
+
+function sidebarFilterCount() {
+  return activeTypes.size + activeSourceKinds.size + (showExperimental.checked ? 0 : 1);
+}
+
+function renderTokens() {
+  const tokens: { label: string; remove: () => void }[] = [
+    ...[...activeTypes].map((t) => ({ label: kindLabels[t], remove: () => activeTypes.delete(t) })),
+    ...[...activeSourceKinds].map((k) => ({ label: cap(k), remove: () => activeSourceKinds.delete(k) })),
+    ...(showExperimental.checked ? [] : [{ label: "No experimental", remove: () => (showExperimental.checked = true) }]),
+  ];
+  filterTokens.hidden = tokens.length === 0;
+  filterTokens.replaceChildren(
+    ...tokens.map((t) => {
+      const b = el("button", undefined, "filter-token");
+      b.type = "button";
+      b.title = `Remove ${t.label}`;
+      b.setAttribute("aria-label", `Remove filter ${t.label}`);
+      b.append(el("span", t.label), el("span", "×", "filter-token-x"));
+      b.addEventListener("click", () => {
+        t.remove();
+        renderControls();
+        renderList();
+      });
+      return b;
+    }),
+  );
 }
 
 function renderList() {
@@ -239,7 +388,8 @@ function renderList() {
   const shown = visible();
 
   for (const kind of kinds) {
-    const group = shown.filter((e) => e.kind === kind).sort((a, b) => (b.score ?? 0) - (a.score ?? 0) || a.id.localeCompare(b.id));
+    const sorter = sorters[sortKey];
+    const group = shown.filter((e) => (kind === "featured" ? !!e.entry?.featured : (e.entry?.experimental ? "experimental" : e.entry?.custom ? "custom" : e.kind) === kind)).sort((a, b) => sorter(a, b) || a.id.localeCompare(b.id));
     if (group.length === 0) continue;
 
     const details = el("details", undefined, "tree-group");
@@ -438,44 +588,75 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
   renderSourceViewer(collection.path, [collection.path], activeFile ?? collection.path);
 }
 
-function renderSourceViewer(title: string, files: string[], activeFile: string) {
+// Swaps the visible source file in place; set by renderSourceViewer.
+let showFile: ((file: string) => void) | undefined;
+
+// Formats a YYYY-MM-DD date as a <time> element, read as UTC so it never shifts a day.
+function dateEl(date: string, className?: string) {
+  const time = el("time", new Date(`${date}T00:00:00Z`).toLocaleDateString(undefined, { dateStyle: "medium", timeZone: "UTC" }), className);
+  time.dateTime = date;
+  return time;
+}
+
+// "Copied from upstream on <date> at <commit>" for vendored content; "Upstream read on …" for linked entries.
+function retrievalNote(entry: CatalogEntry, className: string): HTMLElement | undefined {
+  const { kind, retrieved, revision } = entry.source;
+  if (!retrieved || (kind !== "vendored" && kind !== "linked")) return undefined;
+  const note = el("p", undefined, className);
+  note.append(kind === "vendored" ? "Copied from upstream on " : "Upstream read on ", dateEl(retrieved));
+  if (revision) note.append(" at commit ", el("code", revision.slice(0, 7)));
+  return note;
+}
+
+function renderSourceViewer(title: string, files: string[], activeFile: string, caption?: HTMLElement) {
   const fileSection = el("div", undefined, "file-viewer-section");
   const tabsBar = el("div", undefined, "file-tabs-bar");
   const tabsList = el("div", undefined, "file-tabs-list");
+  const tabButtons = new Map<string, HTMLButtonElement>();
 
   for (const f of files) {
     const tabName = f.split("/").slice(3).join("/") || f.split("/").pop() || f;
     const tabBtn = el("button", tabName, "file-tab");
     tabBtn.type = "button";
-    tabBtn.setAttribute("aria-selected", String(f === activeFile));
     tabBtn.addEventListener("click", () => {
       const [path = ""] = location.hash.slice(2).split("?");
       location.hash = `#/${path}?file=${encodeURIComponent(f)}`;
     });
+    tabButtons.set(f, tabBtn);
     tabsList.append(tabBtn);
   }
 
-  const copyBtn = el("button", "📋 Copy File", "btn-action");
+  const copyBtn = el("button", "📋 Copy to Clipboard", "btn-action");
   copyBtn.type = "button";
   tabsBar.append(tabsList, copyBtn);
+  if (caption) fileSection.append(caption);
 
   const codeView = el("pre", "Loading…", "code-view");
   fileSection.append(tabsBar, codeView);
   viewer.append(fileSection);
 
-  const load = sources[activeFile];
-  if (load) {
+  let token = 0;
+  showFile = (file) => {
+    const mine = ++token;
+    for (const [f, btn] of tabButtons) btn.setAttribute("aria-selected", String(f === file));
+    codeView.scrollTop = 0;
+    const load = sources[file];
+    if (!load) {
+      codeView.textContent = `File content not found: ${file}`;
+      copyBtn.onclick = null;
+      return;
+    }
     void load().then((text) => {
+      if (mine !== token) return;
       codeView.textContent = text;
       copyBtn.onclick = async () => {
         await navigator.clipboard.writeText(text);
         copyBtn.textContent = "✓ Copied";
-        setTimeout(() => (copyBtn.textContent = "📋 Copy File"), 1200);
+        setTimeout(() => (copyBtn.textContent = "📋 Copy to Clipboard"), 1200);
       };
     });
-  } else {
-    codeView.textContent = `File content not found: ${activeFile}`;
-  }
+  };
+  showFile(activeFile);
 }
 
 async function renderViewer() {
@@ -505,6 +686,9 @@ async function renderViewer() {
 
   const badges = el("div", undefined, "card-badges");
   badges.append(el("span", entry.type, `badge badge-${entry.type}`));
+  if (entry.featured) badges.append(el("span", "Featured", "badge badge-featured"));
+  if (entry.custom) badges.append(el("span", "Custom", "badge badge-custom"));
+  if (entry.experimental) badges.append(el("span", "Experimental", "badge badge-experimental"));
 
   for (const h of entry.hosts) {
     badges.append(el("span", h === "claude-code" ? "Claude Code" : h === "codex" ? "Codex" : "Portable", `badge badge-host-${h}`));
@@ -513,12 +697,28 @@ async function renderViewer() {
   badges.append(el("span", `Score ${entry.score.toFixed(1)}`, "score-pill"));
 
   left.append(badges, el("h2", entry.title));
+  const retrieval = retrievalNote(entry, "viewer-retrieved");
+  if (retrieval) left.append(retrieval);
   titleRow.append(left);
 
   const actions = el("div", undefined, "viewer-actions");
-  if (entry.source.url) {
-    const upstream = el("a", "Upstream ↗", "btn-action");
-    upstream.href = entry.source.url;
+  if (entry.sourceUrl) {
+    const onGithub = entry.sourceUrl.startsWith("https://github.com/");
+    const upstream = el("a", undefined, "btn-source");
+    if (onGithub) {
+      // GitHub mark, inline so it follows the button's text color.
+      const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      icon.setAttribute("viewBox", "0 0 16 16");
+      icon.setAttribute("aria-hidden", "true");
+      const mark = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      mark.setAttribute("fill", "currentColor");
+      mark.setAttribute("d", "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z");
+      icon.append(mark);
+      upstream.append(icon);
+    }
+    upstream.append(onGithub ? "View source on GitHub" : "View source", el("span", "↗", "btn-source-arrow"));
+    upstream.title = entry.sourceUrl;
+    upstream.href = entry.sourceUrl;
     upstream.target = "_blank";
     upstream.rel = "noreferrer";
     actions.append(upstream);
@@ -556,8 +756,26 @@ async function renderViewer() {
   const sourceRow = el("div", undefined, "meta-row");
   sourceRow.append(el("span", "Source & License", "meta-label"));
   const sourceText = `${entry.source.kind} · ${entry.source.license}${entry.source.author ? ` · ${entry.source.author}` : ""}`;
-  sourceRow.append(el("span", sourceText, "meta-val"));
+  const sourceVal = el("span", sourceText, "meta-val");
+  if (entry.sourceUrl) {
+    // Short label: owner/repo/path @ revision for pinned GitHub sources, else host and path.
+    const { url, path, revision } = entry.source;
+    const label = url && entry.sourceUrl.startsWith(url) && url.startsWith("https://github.com/")
+      ? `${url.slice("https://github.com/".length)}${path ? `/${path}` : ""}${revision ? ` @ ${revision.slice(0, 7)}` : ""}`
+      : entry.sourceUrl.replace(/^https:\/\/(?:www\.)?/, "");
+    sourceVal.append(" · ", link(label, entry.sourceUrl));
+  }
+  sourceRow.append(sourceVal);
   provCard.append(sourceRow);
+
+  if (entry.source.retrieved) {
+    const retrievedRow = el("div", undefined, "meta-row");
+    retrievedRow.append(el("span", entry.source.kind === "vendored" ? "Copied" : "Upstream Read", "meta-label"));
+    const retrievedVal = el("span", undefined, "meta-val");
+    retrievedVal.append(dateEl(entry.source.retrieved));
+    retrievedRow.append(retrievedVal);
+    provCard.append(retrievedRow);
+  }
 
   if (entry.overlap) {
     const overlapRow = el("div", undefined, "meta-row");
@@ -601,8 +819,8 @@ async function renderViewer() {
   installHead.append(el("h4", "How to Install / Use"));
 
   const installTabs = el("div", undefined, "install-tabs");
-  let selectedHost: "claude" | "codex" | "portable" =
-    entry.hosts.includes("codex") && !entry.hosts.includes("claude-code") ? "codex" : "claude";
+  let selectedHost = (entry.hosts.includes("codex") && !entry.hosts.includes("claude-code") ? "codex" : "claude") as
+    "claude" | "codex" | "portable";
 
   const claudeTab = el("button", "Claude Code", "install-tab-btn");
   claudeTab.setAttribute("aria-selected", String(selectedHost === "claude"));
@@ -655,10 +873,23 @@ async function renderViewer() {
   viewer.append(installCard);
 
   // Source File Viewer
-  renderSourceViewer(entry.title, item.files, currentFile);
+  // Only vendored entries display upstream text in the file viewer, so only they get the copy date there.
+  const caption = entry.source.kind === "vendored" ? retrievalNote(entry, "file-retrieved") : undefined;
+  renderSourceViewer(entry.title, item.files, currentFile, caption);
 }
 
+let lastPath: string | undefined;
+
 function sync() {
+  const [path = ""] = location.hash.slice(2).split("?");
+  // Only the ?file= changed: swap the file in place so the page doesn't flash or jump.
+  if (path === lastPath && showFile && viewer.querySelector(".file-viewer-section")) {
+    const { file } = route();
+    if (file) showFile(file);
+    return;
+  }
+  lastPath = path;
+  showFile = undefined;
   renderList();
   void renderViewer();
 }
@@ -685,6 +916,7 @@ window.addEventListener("hashchange", sync);
 
 // Keyboard shortcuts
 window.addEventListener("keydown", (e) => {
+  if ((e.target as Element | null)?.closest?.(".combo, .combo-pop")) return;
   const typing = document.activeElement === input;
   if (e.key === "/" && !typing) {
     e.preventDefault();
