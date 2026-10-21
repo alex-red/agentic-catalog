@@ -44,7 +44,7 @@ function addLinkedEntry(root: string, overrides: Record<string, unknown> = {}): 
     schemaVersion: 2, id: 'example-plugin', type: 'plugin', title: 'Example plugin',
     summary: 'An upstream plugin.', useWhen: 'Testing.', tags: ['example'], hosts: ['claude-code'],
     rating: { usefulness: 3, quality: 3, portability: 2, novelty: 3, evidence: 'reviewed', reviewed: '2026-10-20', notes: 'Test entry.' },
-    source: { kind: 'linked', url: 'https://github.com/example/plugin', license: 'MIT', author: 'Example' },
+    source: { kind: 'linked', url: 'https://github.com/example/plugin', license: 'MIT', author: 'Example', retrieved: '2026-10-20' },
     ...overrides,
   }));
   return directory;
@@ -76,6 +76,66 @@ test('scores weight usefulness twice and drive llms.txt ranking', (context) => {
   const positions = order.map((entry) => rules.indexOf(`id \`${entry.id}\``));
   assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.ok(positions.every((position) => position >= 0));
+});
+
+test('experimental entries are listed only in their own llms.txt section', (context) => {
+  const root = sandbox(context);
+  updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.experimental = true; });
+  const text = renderLlmsText(loadCatalog(root));
+  const [established, experimental] = text.split('## Experimental');
+  assert.ok(!established.includes('id `focused-changes`'));
+  assert.ok(experimental.split('\n## ')[0].includes('id `focused-changes`, type rule,'));
+  updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.experimental = false; });
+  assert.throws(() => loadCatalog(root), /must be equal to constant/u);
+});
+
+test('custom entries get their own llms.txt section unless they are also experimental', (context) => {
+  const root = sandbox(context);
+  updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.custom = true; });
+  const sections = (text: string) => Object.fromEntries(text.split('\n## ').map((part) => [part.split('\n')[0], part]));
+  let listed = sections(renderLlmsText(loadCatalog(root)));
+  assert.ok(listed.Custom.includes('id `focused-changes`, type rule,'));
+  assert.ok(!listed.Rules.includes('id `focused-changes`'));
+  updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.experimental = true; });
+  listed = sections(renderLlmsText(loadCatalog(root)));
+  assert.ok(listed.Experimental.includes('id `focused-changes`'));
+  assert.ok(!(listed.Custom ?? '').includes('id `focused-changes`'));
+});
+
+test('Claude Code invocation keys in skill frontmatter are typed', (context) => {
+  const root = sandbox(context);
+  const file = join(root, skillPath, 'SKILL.md');
+  const original = readFileSync(file, 'utf8');
+  writeFileSync(file, original.replace('license: MIT', 'license: MIT\nargument-hint: "[path]"\ndisable-model-invocation: true'));
+  loadCatalog(root);
+  writeFileSync(file, original.replace('license: MIT', 'license: MIT\ndisable-model-invocation: "yes"'));
+  assert.throws(() => loadCatalog(root), /must be boolean/u);
+  writeFileSync(file, original.replace('license: MIT', 'license: MIT\nmodel-invocation: false'));
+  assert.throws(() => loadCatalog(root), /additional properties/u);
+});
+
+test('every entry with a source or citation links to it, preferring pinned GitHub paths', (context) => {
+  const root = sandbox(context);
+  for (const entry of loadCatalog(root).entries) {
+    const cited = entry.source.url ?? entry.inspiredBy?.[0].url;
+    assert.equal(Boolean(entry.sourceUrl), Boolean(cited), entry.id);
+    if (entry.source.url?.startsWith('https://github.com/') && entry.source.revision) {
+      assert.ok(entry.sourceUrl!.includes(`/${entry.source.revision}`), entry.id);
+    }
+  }
+  const sourceOf = (overrides: Record<string, unknown>) => {
+    const directory = addLinkedEntry(sandbox(context), overrides);
+    return loadCatalog(join(directory, '../../..')).entries.find((entry) => entry.id === 'example-plugin')!.sourceUrl;
+  };
+  const source = { kind: 'linked', url: 'https://github.com/example/plugin', license: 'MIT', author: 'Example', revision: 'a'.repeat(40), retrieved: '2026-10-20' };
+  assert.equal(sourceOf({ source: { ...source, path: 'plugins/x' } }), `https://github.com/example/plugin/tree/${'a'.repeat(40)}/plugins/x`);
+  assert.equal(sourceOf({ source: { ...source, path: 'agents/x.md' } }), `https://github.com/example/plugin/blob/${'a'.repeat(40)}/agents/x.md`);
+  const root2 = sandbox(context);
+  updateYaml(root2, `${rulePath}/entry.yaml`, (entry) => {
+    entry.source = { kind: 'adapted', license: 'MIT' };
+    entry.inspiredBy = [{ title: 'Docs', url: 'https://example.com/docs' }, { title: 'Repo', url: 'https://github.com/example/repo' }];
+  });
+  assert.equal(loadCatalog(root2).entries.find((entry) => entry.id === 'focused-changes')!.sourceUrl, 'https://github.com/example/repo');
 });
 
 test('entries must live under the folder for their type and match their ID', (context) => {
@@ -116,9 +176,18 @@ test('plugins must be linked and linked entries must name upstream and author', 
   assert.throws(() => loadCatalog(other), /must have required property 'url'/u);
 });
 
+test('copied and linked upstream content records when it was retrieved', (context) => {
+  const root = sandbox(context);
+  updateYaml(root, 'entries/skills/handoff/entry.yaml', (entry) => { delete (entry.source as Record<string, unknown>).retrieved; });
+  assert.throws(() => loadCatalog(root), /must have required property 'retrieved'/u);
+  const other = sandbox(context);
+  updateYaml(other, 'entries/skills/handoff/entry.yaml', (entry) => { (entry.source as Record<string, unknown>).retrieved = 'October 20'; });
+  assert.throws(() => loadCatalog(other), /must match pattern/u);
+});
+
 test('vendored entries require a pinned revision and the upstream license file', (context) => {
   const root = sandbox(context);
-  const vendored = { kind: 'vendored', url: 'https://github.com/example/rules', author: 'Example', license: 'MIT' };
+  const vendored = { kind: 'vendored', url: 'https://github.com/example/rules', author: 'Example', license: 'MIT', retrieved: '2026-10-20' };
   updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.source = vendored; });
   assert.throws(() => loadCatalog(root), /revision/u);
   updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.source = { ...vendored, revision: 'a'.repeat(40) }; });

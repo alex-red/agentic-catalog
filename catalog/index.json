@@ -57,10 +57,59 @@
         "retrospective"
       ],
       "score": 4.4,
+      "sourceUrl": "https://agents.md/",
       "path": "entries/skills/agents-md-authoring",
       "files": [
         "entries/skills/agents-md-authoring/LICENSE.txt",
         "entries/skills/agents-md-authoring/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "create-adaptable-composable",
+      "type": "skill",
+      "title": "Adaptable Vue composables",
+      "summary": "A short guide to writing Vue composables that accept a plain value, a ref, or a getter. It uses MaybeRefOrGetter for read-only inputs and MaybeRef for writable ones, normalizes with toRef() for watch sources and toValue() for one-off reads, and warns against typing callback parameters as getters, where they would be invoked by mistake.",
+      "useWhen": "Writing or refactoring a reusable Vue 3 composable whose inputs may be plain values, refs, or getters.",
+      "tags": [
+        "vue",
+        "composables",
+        "reactivity",
+        "typescript",
+        "frontend"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Small, correct, and specific; the callback-versus-getter warning is the most useful line. Useful mainly for library-style composables. The same source's Vue testing skill was passed over because several examples are stale (the msw v1 API and Vitest's removed poolOptions)."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/vuejs-ai/skills",
+        "path": "skills/create-adaptable-composable",
+        "revision": "3b0d2ce9fb473d27117670e75985b1cdffc46ff3",
+        "retrieved": "2026-10-20",
+        "license": "MIT",
+        "author": "vuejs-ai",
+        "notes": "LICENSE.txt is the repository root license; the skill's frontmatter declares MIT."
+      },
+      "overlap": "The Vue reactivity docs cover the same APIs, and host-installed Vue skills may include similar guidance. Check for those first.",
+      "related": [
+        "context7"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/vuejs-ai/skills/tree/3b0d2ce9fb473d27117670e75985b1cdffc46ff3/skills/create-adaptable-composable",
+      "path": "entries/skills/create-adaptable-composable",
+      "files": [
+        "entries/skills/create-adaptable-composable/LICENSE.txt",
+        "entries/skills/create-adaptable-composable/SKILL.md"
       ]
     },
     {
@@ -94,6 +143,7 @@
         "url": "https://github.com/mattpocock/skills",
         "path": "skills/engineering/diagnosing-bugs",
         "revision": "f3fc5632f401156837ee3872f14fe33ccf1024ea",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Matt Pocock",
         "notes": "LICENSE.txt is the repository root license. agents/openai.yaml is Codex display metadata."
@@ -104,6 +154,7 @@
         "test-driven-development"
       ],
       "score": 4.8,
+      "sourceUrl": "https://github.com/mattpocock/skills/tree/f3fc5632f401156837ee3872f14fe33ccf1024ea/skills/engineering/diagnosing-bugs",
       "path": "entries/skills/diagnosing-bugs",
       "files": [
         "entries/skills/diagnosing-bugs/LICENSE.txt",
@@ -141,6 +192,7 @@
         "url": "https://github.com/vercel-labs/skills",
         "path": "skills/find-skills",
         "revision": "773fb2c7bbf16781670a3520affc4abd0c6151ae",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Vercel"
       },
@@ -149,6 +201,7 @@
       },
       "overlap": "The agentic-catalog skill in this repository covers curated discovery. Claude Code's plugin browser and Codex's skill installer cover installation.",
       "score": 3,
+      "sourceUrl": "https://github.com/vercel-labs/skills/tree/773fb2c7bbf16781670a3520affc4abd0c6151ae/skills/find-skills",
       "path": "entries/skills/find-skills",
       "files": []
     },
@@ -182,6 +235,7 @@
         "url": "https://github.com/openai/skills",
         "path": "skills/.curated/gh-fix-ci",
         "revision": "77963424cd7687fd52e5fcfdd3f08d826ab9b1ab",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "OpenAI"
       },
@@ -190,6 +244,7 @@
         "diagnosing-bugs"
       ],
       "score": 3.8,
+      "sourceUrl": "https://github.com/openai/skills/tree/77963424cd7687fd52e5fcfdd3f08d826ab9b1ab/skills/.curated/gh-fix-ci",
       "path": "entries/skills/gh-fix-ci",
       "files": [
         "entries/skills/gh-fix-ci/LICENSE.txt",
@@ -230,17 +285,114 @@
         "url": "https://github.com/mattpocock/skills",
         "path": "skills/productivity/grilling",
         "revision": "95249b0b49782349740fd9b8c6ce32b4e59e497a",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Matt Pocock",
         "notes": "Upstream's popular grill-me is a Claude-only stub that invokes this skill. Vendor this one instead."
       },
       "overlap": "Plan mode in both hosts asks clarifying questions, but less systematically.",
       "score": 4.2,
+      "sourceUrl": "https://github.com/mattpocock/skills/tree/95249b0b49782349740fd9b8c6ce32b4e59e497a/skills/productivity/grilling",
       "path": "entries/skills/grilling",
       "files": [
         "entries/skills/grilling/LICENSE.txt",
         "entries/skills/grilling/SKILL.md",
         "entries/skills/grilling/agents/openai.yaml"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "handoff",
+      "type": "skill",
+      "title": "Handoff document for a fresh session",
+      "summary": "An explicitly invoked skill that writes a handoff document for a fresh agent to continue the current work. It saves the document to the OS temporary directory, references existing specs, plans, ADRs, and commits instead of copying them, redacts secrets and personal data, suggests skills for the next session, and tailors the document to the next session's stated focus.",
+      "useWhen": "You are ending a long session and want a new session or another agent to continue the work without replaying the conversation.",
+      "tags": [
+        "handoff",
+        "context",
+        "session",
+        "continuity",
+        "memory"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Small and well scoped. It never runs on its own, writes outside the workspace, and points to existing artifacts. It has no checklist for unresolved constraints, rejected approaches, or pending checks, so a short handoff can still drop them; ask for those explicitly. Widely installed through skills.sh."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/mattpocock/skills",
+        "path": "skills/productivity/handoff",
+        "revision": "0f5e033ebc47b142f5ffa56a582ede6d9d9bada3",
+        "retrieved": "2026-10-20",
+        "license": "MIT",
+        "author": "Matt Pocock",
+        "notes": "LICENSE.txt is the repository root license. agents/openai.yaml is Codex display metadata that disables implicit invocation. disable-model-invocation and argument-hint are Claude Code frontmatter."
+      },
+      "overlap": "Host compaction (Claude Code's /compact and Codex's automatic compaction) summarizes context within the same session. This skill instead writes a file that a different session or agent can read.",
+      "related": [
+        "grilling",
+        "explore-plan-implement-review"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/mattpocock/skills/tree/0f5e033ebc47b142f5ffa56a582ede6d9d9bada3/skills/productivity/handoff",
+      "path": "entries/skills/handoff",
+      "files": [
+        "entries/skills/handoff/LICENSE.txt",
+        "entries/skills/handoff/SKILL.md",
+        "entries/skills/handoff/agents/openai.yaml"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "improvement-loop",
+      "type": "skill",
+      "title": "Improvement loop (house prompt)",
+      "summary": "An explicitly invoked end-of-work loop. It gathers concrete stumbling blocks blamelessly, traces each to a root cause, writes prioritized improvement items with a done-when check, agrees on a short plan with the user, then improves the project's tooling in small reversible steps and verifies each change against the original stumbling block.",
+      "useWhen": "You want a deliberate, plan-first improvement pass after a piece of work, ending in tooling changes you approve and can verify.",
+      "tags": [
+        "self-improvement",
+        "retrospective",
+        "tooling",
+        "planning",
+        "root-cause"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "custom": true,
+      "featured": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Grew from the hand-pasted prompt that the retrospective skill also came from, expanded with root-cause classification, items with done-when checks, payoff-based prioritization, an approval gate before changes, and before/after verification. Its stance on tooling quality is distinctive. Unmeasured; it runs only when invoked, so it does not compete with retrospective for triggers."
+      },
+      "source": {
+        "kind": "original",
+        "license": "MIT",
+        "author": "Alex Red"
+      },
+      "overlap": "The retrospective skill covers the same moment, with deeper guidance on where instructions load and on skill trigger checks, and it triggers on its own. This one is plan-first and focuses on tooling changes. Use one per session.",
+      "related": [
+        "retrospective",
+        "self-improvement-loop"
+      ],
+      "score": 3.6,
+      "path": "entries/skills/improvement-loop",
+      "files": [
+        "entries/skills/improvement-loop/LICENSE.txt",
+        "entries/skills/improvement-loop/SKILL.md"
       ]
     },
     {
@@ -273,6 +425,7 @@
         "url": "https://github.com/anthropics/skills",
         "path": "skills/mcp-builder",
         "revision": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "Anthropic"
       },
@@ -280,7 +433,108 @@
         "any": "npx skills add anthropics/skills --skill mcp-builder"
       },
       "score": 3.6,
+      "sourceUrl": "https://github.com/anthropics/skills/tree/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/mcp-builder",
       "path": "entries/skills/mcp-builder",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ponytail",
+      "type": "skill",
+      "title": "Ponytail minimal-change mode",
+      "summary": "A session-wide \"lazy senior developer\" mode. Before writing code it checks whether the code needs to exist, then reuses the codebase, the standard library, the platform, and installed dependencies before adding anything new. It keeps validation and error handling, finishes every caller and test the change touches, and ends each reply with what was skipped. It has lite, full, and ultra levels.",
+      "useWhen": "You want to try a stronger push toward small diffs and reuse than a focused-changes rule gives, and are willing to compare the results yourself.",
+      "tags": [
+        "scope",
+        "diff-size",
+        "reuse",
+        "simplicity",
+        "conventions"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "An unusually clear reuse ladder with explicit never-cut items. Experimental because the upstream benchmark (39 tasks, Bash disabled) shows similar correctness to baseline (87/90 vs 86/90) and mostly measures smaller output. Its trigger covers any coding task and it stays on for the session, so it is easy to over-apply. Upstream reports large adoption."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/DietrichGebert/ponytail",
+        "path": "skills/ponytail",
+        "revision": "df9e89941d50419fd5bcf1de41e28097f1db49b2",
+        "retrieved": "2026-10-20",
+        "license": "MIT",
+        "author": "Dietrich Gebert",
+        "notes": "LICENSE.txt is the repository root license. Only the core skill is vendored. The upstream plugin adds session hooks, a statusline script, an optional dashboard webhook, and review and audit commands; none of these are included."
+      },
+      "overlap": "Restates much of focused-changes, karpathy-coding-guidelines, and host system prompts. Install one of those, not several.",
+      "related": [
+        "focused-changes",
+        "karpathy-coding-guidelines"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/DietrichGebert/ponytail/tree/df9e89941d50419fd5bcf1de41e28097f1db49b2/skills/ponytail",
+      "path": "entries/skills/ponytail",
+      "files": [
+        "entries/skills/ponytail/LICENSE.txt",
+        "entries/skills/ponytail/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "property-based-testing",
+      "type": "skill",
+      "title": "Property-based testing (Trail of Bits)",
+      "summary": "Writes, reviews, and debugs property-based tests with Hypothesis, fast-check, proptest, jqwik, rapid, and Solidity fuzzers. It catalogs roundtrip, oracle, idempotence, and invariant properties by strength, rejects tautological and vacuous properties, separates a wrong property from a real bug in a shrunk counterexample, and accepts that example tests can be the better fit.",
+      "useWhen": "Code has an algebraic shape (encode and decode pairs, parsers, normalizers, comparators, data structures, contract invariants), or existing property tests need review.",
+      "tags": [
+        "testing",
+        "property-based-testing",
+        "fuzzing",
+        "hypothesis",
+        "fast-check"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 5,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Strong test-design guidance beyond a TDD loop, with task-specific references that load on demand. It treats adding a testing library as the user's decision. Linked rather than vendored because the repository is CC-BY-SA-4.0. Upstream ships its own eval prompts; we have not run them."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/trailofbits/skills",
+        "path": "plugins/property-based-testing/skills/property-based-testing",
+        "revision": "123037ec8aed26f0d86327cc39137ee5043e5deb",
+        "retrieved": "2026-10-20",
+        "license": "CC-BY-SA-4.0",
+        "author": "Trail of Bits"
+      },
+      "install": {
+        "claude-code": "/plugin marketplace add trailofbits/skills, then /plugin install property-based-testing@trailofbits",
+        "codex": "codex plugin marketplace add trailofbits/skills, then codex plugin add property-based-testing@trailofbits",
+        "notes": "Other hosts can copy the skill directory from the pinned revision; keep the CC-BY-SA-4.0 attribution and share-alike terms with it."
+      },
+      "overlap": "test-driven-development covers the red-green loop, not property design. Models write simple property tests unprompted, but rarely check them for tautology or vacuity.",
+      "related": [
+        "test-driven-development",
+        "verification-before-completion"
+      ],
+      "score": 4,
+      "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/property-based-testing/skills/property-based-testing",
+      "path": "entries/skills/property-based-testing",
       "files": []
     },
     {
@@ -314,6 +568,7 @@
         "url": "https://github.com/vercel-labs/agent-skills",
         "path": "skills/react-best-practices",
         "revision": "dc8367e6f91c022d83361f03c3313fa05e848ee5",
+        "retrieved": "2026-10-20",
         "license": "MIT (declared; no license file)",
         "author": "Vercel"
       },
@@ -321,6 +576,7 @@
         "any": "npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices"
       },
       "score": 4.2,
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills/tree/dc8367e6f91c022d83361f03c3313fa05e848ee5/skills/react-best-practices",
       "path": "entries/skills/react-best-practices",
       "files": []
     },
@@ -377,6 +633,65 @@
     },
     {
       "schemaVersion": 2,
+      "id": "secret-serialization",
+      "type": "skill",
+      "title": "Secret serialization review (Sentry)",
+      "summary": "An opt-in review for credentials that leak through generated serialization. It pairs a holder (a secret field on a dataclass, pydantic model, or JavaScript object) with a sink (logs, spans, error context, caches, or responses that serialize whole objects), searches the whole repository for the missing side, and grades each finding by the path that is still unblocked.",
+      "useWhen": "A change adds a credential field to a dataclass, model, or config object, or adds code that stringifies whole objects or every kwarg into logs or telemetry, in Python or JavaScript and TypeScript.",
+      "tags": [
+        "security",
+        "secrets",
+        "logging",
+        "telemetry",
+        "code-review",
+        "python",
+        "typescript"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 5,
+        "portability": 4,
+        "novelty": 5,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Precise and narrow. A per-mechanism table shows what each exclusion blocks, raw attribute access is treated as a sink, and do-not-report cases keep noise down. Upstream SOURCES.md records one positive and two negative runs on a non-Claude model; that is upstream evidence, not ours. It calls itself too noisy for every review, so use it when credentials live on objects."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/getsentry/skills",
+        "path": "skills/secret-serialization",
+        "revision": "473d2594cd91c96ac8348f297e016b631e842487",
+        "retrieved": "2026-10-20",
+        "license": "Apache-2.0",
+        "author": "Sentry",
+        "notes": "LICENSE.txt is the repository root license; the skill directory has no local notice and the repository has no NOTICE file. SPEC.md and SOURCES.md are upstream design and evidence notes. The skill defers direct secret logging to a security-review skill in the upstream repository, which is not included."
+      },
+      "overlap": "Claude Code's /security-review and the security-threat-model entry look for direct leaks and design risks. Secret scanners find hardcoded literals. None of them trace generated serialization paths.",
+      "related": [
+        "security-threat-model",
+        "pr-review-code-reviewer",
+        "variant-analysis"
+      ],
+      "evaluationCases": [
+        "evals/cases/secret-serialization.yaml"
+      ],
+      "score": 4,
+      "sourceUrl": "https://github.com/getsentry/skills/tree/473d2594cd91c96ac8348f297e016b631e842487/skills/secret-serialization",
+      "path": "entries/skills/secret-serialization",
+      "files": [
+        "entries/skills/secret-serialization/LICENSE.txt",
+        "entries/skills/secret-serialization/SKILL.md",
+        "entries/skills/secret-serialization/SOURCES.md",
+        "entries/skills/secret-serialization/SPEC.md",
+        "entries/skills/secret-serialization/references/javascript-typescript.md",
+        "entries/skills/secret-serialization/references/python.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "security-threat-model",
       "type": "skill",
       "title": "Repository threat model",
@@ -404,11 +719,13 @@
         "url": "https://github.com/openai/skills",
         "path": "skills/.curated/security-threat-model",
         "revision": "5c8f1e26803bcfaffeceef1e7accbcf7e388417a",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "OpenAI"
       },
       "overlap": "Claude Code /security-review and Codex /review inspect diffs. Neither builds a whole-system threat model.",
       "score": 3.8,
+      "sourceUrl": "https://github.com/openai/skills/tree/5c8f1e26803bcfaffeceef1e7accbcf7e388417a/skills/.curated/security-threat-model",
       "path": "entries/skills/security-threat-model",
       "files": [
         "entries/skills/security-threat-model/LICENSE.txt",
@@ -447,6 +764,7 @@
         "url": "https://github.com/anthropics/skills",
         "path": "skills/skill-creator",
         "revision": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "Anthropic"
       },
@@ -455,6 +773,7 @@
         "retrospective"
       ],
       "score": 3,
+      "sourceUrl": "https://github.com/anthropics/skills/tree/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/skill-creator",
       "path": "entries/skills/skill-creator",
       "files": []
     },
@@ -538,6 +857,7 @@
         "url": "https://github.com/obra/superpowers",
         "path": "skills/test-driven-development",
         "revision": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Jesse Vincent (obra)",
         "notes": "LICENSE.txt is the repository root license."
@@ -549,12 +869,64 @@
         "superpowers"
       ],
       "score": 3.8,
+      "sourceUrl": "https://github.com/obra/superpowers/tree/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/test-driven-development",
       "path": "entries/skills/test-driven-development",
       "files": [
         "entries/skills/test-driven-development/LICENSE.txt",
         "entries/skills/test-driven-development/SKILL.md",
         "entries/skills/test-driven-development/writing-good-tests.md"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "variant-analysis",
+      "type": "skill",
+      "title": "Variant analysis (Trail of Bits)",
+      "summary": "Finds the other instances of a bug already found. It extracts the root cause, writes a pattern that matches only the known instance, generalizes one element at a time, and stops when more than half the matches are noise. Triage and a report template follow, with CodeQL and Semgrep starters for five languages.",
+      "useWhen": "A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs.",
+      "tags": [
+        "security",
+        "code-review",
+        "semgrep",
+        "codeql",
+        "bug-hunting"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 5,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "The exact-match-first rule and the one-change-at-a-time ladder are distinctive and keep reports from flooding. Not for discovering the first bug. It names sibling skills (audit-context-building, issue-writer), and its parallel /variant-analysis:variants workflow needs the plugin. Linked because the repository is CC-BY-SA-4.0. Upstream ships eval prompts; we have not run them."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/trailofbits/skills",
+        "path": "plugins/variant-analysis/skills/variant-analysis",
+        "revision": "123037ec8aed26f0d86327cc39137ee5043e5deb",
+        "retrieved": "2026-10-20",
+        "license": "CC-BY-SA-4.0",
+        "author": "Trail of Bits"
+      },
+      "install": {
+        "claude-code": "/plugin marketplace add trailofbits/skills, then /plugin install variant-analysis@trailofbits",
+        "codex": "codex plugin marketplace add trailofbits/skills, then codex plugin add variant-analysis@trailofbits",
+        "notes": "Other hosts can copy the skill directory, including resources/, from the pinned revision; keep the CC-BY-SA-4.0 attribution and share-alike terms with it. CodeQL or Semgrep are optional."
+      },
+      "overlap": "Host review commands and the security-threat-model entry find issues in a diff or a design; none of them start from a known bug and expand it systematically.",
+      "related": [
+        "security-threat-model",
+        "secret-serialization",
+        "diagnosing-bugs"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/variant-analysis/skills/variant-analysis",
+      "path": "entries/skills/variant-analysis",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -587,6 +959,7 @@
         "url": "https://github.com/obra/superpowers",
         "path": "skills/verification-before-completion",
         "revision": "3be5aad3dd2400ef23b15680969f4bcd3b6d7b8b",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Jesse Vincent (obra)",
         "notes": "LICENSE.txt is the repository root license; the skill has no license file of its own."
@@ -598,6 +971,7 @@
         "test-driven-development"
       ],
       "score": 4.4,
+      "sourceUrl": "https://github.com/obra/superpowers/tree/3be5aad3dd2400ef23b15680969f4bcd3b6d7b8b/skills/verification-before-completion",
       "path": "entries/skills/verification-before-completion",
       "files": [
         "entries/skills/verification-before-completion/LICENSE.txt",
@@ -635,6 +1009,7 @@
         "url": "https://github.com/anthropics/skills",
         "path": "skills/webapp-testing",
         "revision": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "Anthropic"
       },
@@ -643,6 +1018,7 @@
         "verification-evidence"
       ],
       "score": 3.8,
+      "sourceUrl": "https://github.com/anthropics/skills/tree/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/webapp-testing",
       "path": "entries/skills/webapp-testing",
       "files": [
         "entries/skills/webapp-testing/LICENSE.txt",
@@ -651,6 +1027,58 @@
         "entries/skills/webapp-testing/examples/element_discovery.py",
         "entries/skills/webapp-testing/examples/static_html_automation.py",
         "entries/skills/webapp-testing/scripts/with_server.py"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "workers-best-practices",
+      "type": "skill",
+      "title": "Cloudflare Workers best practices",
+      "summary": "Cloudflare's guidance for writing and reviewing Workers. It treats the project's compatibility date, flags, generated binding types, and Wrangler schema as the baseline, and flags buffered unbounded bodies, floating promises, request state at module scope, unbound ctx methods, hand-written Env types, and mismatched serialization at Queue, Workflow, storage, and WebSocket boundaries.",
+      "useWhen": "Writing, reviewing, or configuring Cloudflare Workers code or Wrangler configuration.",
+      "tags": [
+        "cloudflare",
+        "workers",
+        "serverless",
+        "typescript",
+        "code-review",
+        "observability"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-20",
+        "notes": "Concrete, platform-maintained anti-patterns with consequences and checks; three references load on demand. It asks the agent to verify claims against current Cloudflare docs, which is documentation lookup, not remote instructions. It enables logs and traces for production Workers by default, so check that against your cost and logging policy. It names sibling skills (durable-objects, cf-cli, wrangler) that are not included."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/cloudflare/skills",
+        "path": "skills/workers-best-practices",
+        "revision": "cf56dd4c544917ca6692a475b65a181f2845d557",
+        "retrieved": "2026-10-20",
+        "license": "Apache-2.0",
+        "author": "Cloudflare",
+        "notes": "LICENSE.txt is the repository root license; the repository has no NOTICE file. The upstream plugin also configures Cloudflare's remote MCP server. Copying this skill does not configure it."
+      },
+      "overlap": "context7 can fetch Cloudflare docs on request, and models know common Workers patterns, but neither supplies this review checklist or the version-aware baseline.",
+      "related": [
+        "context7"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/cloudflare/skills/tree/cf56dd4c544917ca6692a475b65a181f2845d557/skills/workers-best-practices",
+      "path": "entries/skills/workers-best-practices",
+      "files": [
+        "entries/skills/workers-best-practices/LICENSE.txt",
+        "entries/skills/workers-best-practices/SKILL.md",
+        "entries/skills/workers-best-practices/references/configuration.md",
+        "entries/skills/workers-best-practices/references/platform-apis.md",
+        "entries/skills/workers-best-practices/references/runtime-patterns.md"
       ]
     },
     {
@@ -722,6 +1150,7 @@
         "url": "https://github.com/multica-ai/andrej-karpathy-skills",
         "path": "CLAUDE.md",
         "revision": "8462496b34419f20b32778610571ac723e91f94c",
+        "retrieved": "2026-10-20",
         "license": "MIT (declared; no license file)",
         "author": "forrestchang / multica-ai"
       },
@@ -733,6 +1162,7 @@
         "focused-changes"
       ],
       "score": 3.8,
+      "sourceUrl": "https://github.com/multica-ai/andrej-karpathy-skills/blob/8462496b34419f20b32778610571ac723e91f94c/CLAUDE.md",
       "path": "entries/rules/karpathy-coding-guidelines",
       "files": []
     },
@@ -860,6 +1290,7 @@
         "grilling"
       ],
       "score": 4,
+      "sourceUrl": "https://code.claude.com/docs/en/best-practices",
       "path": "entries/workflows/explore-plan-implement-review",
       "files": [
         "entries/workflows/explore-plan-implement-review/WORKFLOW.md"
@@ -915,6 +1346,7 @@
         "explore-plan-implement-review"
       ],
       "score": 3.4,
+      "sourceUrl": "https://github.com/ClaytonFarr/ralph-playbook/blob/8f58cace8a8e4f4fbbf74b09653b500a2b7f4d6e/README.md",
       "path": "entries/workflows/ralph-loop",
       "files": [
         "entries/workflows/ralph-loop/WORKFLOW.md"
@@ -950,6 +1382,7 @@
         "url": "https://github.com/anthropics/claude-plugins-official",
         "path": "plugins/claude-md-management/commands/revise-claude-md.md",
         "revision": "a86e34672c44fa1fb1ae2b2c4143abcf26612ace",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "Anthropic"
       },
@@ -962,6 +1395,7 @@
         "self-improvement-loop"
       ],
       "score": 3.4,
+      "sourceUrl": "https://github.com/anthropics/claude-plugins-official/blob/a86e34672c44fa1fb1ae2b2c4143abcf26612ace/plugins/claude-md-management/commands/revise-claude-md.md",
       "path": "entries/workflows/revise-claude-md",
       "files": []
     },
@@ -1016,6 +1450,7 @@
         "stop-gate-checks"
       ],
       "score": 4.2,
+      "sourceUrl": "https://github.com/EveryInc/compound-engineering-plugin",
       "path": "entries/workflows/self-improvement-loop",
       "files": [
         "entries/workflows/self-improvement-loop/WORKFLOW.md"
@@ -1067,6 +1502,7 @@
         "stop-gate-checks"
       ],
       "score": 3.8,
+      "sourceUrl": "https://code.claude.com/docs/en/hooks-guide",
       "path": "entries/hooks/format-after-edit",
       "files": [
         "entries/hooks/format-after-edit/HOOK.md"
@@ -1122,6 +1558,7 @@
         "format-after-edit"
       ],
       "score": 3.4,
+      "sourceUrl": "https://github.com/disler/claude-code-hooks-mastery/blob/1a574d7cbddc8f4fbbe1c2cfbd30f64534de8e53/.claude/hooks/pre_tool_use.py",
       "path": "entries/hooks/protect-files-and-commands",
       "files": [
         "entries/hooks/protect-files-and-commands/HOOK.md"
@@ -1179,6 +1616,7 @@
         "format-after-edit"
       ],
       "score": 3.4,
+      "sourceUrl": "https://code.claude.com/docs/en/best-practices",
       "path": "entries/hooks/stop-gate-checks",
       "files": [
         "entries/hooks/stop-gate-checks/HOOK.md"
@@ -1214,6 +1652,7 @@
         "url": "https://github.com/anthropics/claude-plugins-official",
         "path": "plugins/pr-review-toolkit/agents/code-reviewer.md",
         "revision": "ce721c1f1d5da2c281588818e072ae01a05d2e73",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "Anthropic",
         "notes": "LICENSE is the pr-review-toolkit plugin license. The whole toolkit installs with /plugin install pr-review-toolkit@claude-plugins-official."
@@ -1228,6 +1667,7 @@
         "explore-plan-implement-review"
       ],
       "score": 3.4,
+      "sourceUrl": "https://github.com/anthropics/claude-plugins-official/blob/ce721c1f1d5da2c281588818e072ae01a05d2e73/plugins/pr-review-toolkit/agents/code-reviewer.md",
       "path": "entries/subagents/pr-review-code-reviewer",
       "files": [
         "entries/subagents/pr-review-code-reviewer/AGENT.md",
@@ -1279,6 +1719,7 @@
         "pr-review-code-reviewer"
       ],
       "score": 4,
+      "sourceUrl": "https://github.com/anthropics/claude-plugins-official/blob/4ca561fb8532594e7a5faef945e85096fcec0616/plugins/pr-review-toolkit/agents/silent-failure-hunter.md",
       "path": "entries/subagents/silent-failure-hunter",
       "files": [
         "entries/subagents/silent-failure-hunter/AGENT.md"
@@ -1313,6 +1754,7 @@
         "kind": "linked",
         "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
         "revision": "5463101120f94fc7c79d43c44c01a4ab57835279",
+        "retrieved": "2026-10-20",
         "license": "Apache-2.0",
         "author": "Google Chrome DevTools team"
       },
@@ -1327,6 +1769,7 @@
         "webapp-testing"
       ],
       "score": 4,
+      "sourceUrl": "https://github.com/ChromeDevTools/chrome-devtools-mcp/tree/5463101120f94fc7c79d43c44c01a4ab57835279",
       "path": "entries/mcps/chrome-devtools-mcp",
       "files": []
     },
@@ -1358,6 +1801,7 @@
         "kind": "linked",
         "url": "https://github.com/upstash/context7",
         "revision": "74eda1819f17f8b177e0bdad10de14bdc6bb26af",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Upstash"
       },
@@ -1369,6 +1813,7 @@
       },
       "overlap": "Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.",
       "score": 4,
+      "sourceUrl": "https://github.com/upstash/context7/tree/74eda1819f17f8b177e0bdad10de14bdc6bb26af",
       "path": "entries/mcps/context7",
       "files": []
     },
@@ -1401,6 +1846,7 @@
         "kind": "linked",
         "url": "https://github.com/BayramAnnakov/claude-reflect",
         "revision": "77c3340592aefc6ca964909198effc70fca3d01e",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Bayram Annakov"
       },
@@ -1414,6 +1860,7 @@
         "self-improvement-loop"
       ],
       "score": 2.6,
+      "sourceUrl": "https://github.com/BayramAnnakov/claude-reflect/tree/77c3340592aefc6ca964909198effc70fca3d01e",
       "path": "entries/plugins/claude-reflect",
       "files": []
     },
@@ -1448,6 +1895,7 @@
         "kind": "linked",
         "url": "https://github.com/EveryInc/compound-engineering-plugin",
         "revision": "bdc53d034ccfa5baf01b6139cd46082145ff95cc",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Every (Kieran Klaassen, Trevin Chow)"
       },
@@ -1463,6 +1911,7 @@
         "explore-plan-implement-review"
       ],
       "score": 4,
+      "sourceUrl": "https://github.com/EveryInc/compound-engineering-plugin/tree/bdc53d034ccfa5baf01b6139cd46082145ff95cc",
       "path": "entries/plugins/compound-engineering",
       "files": []
     },
@@ -1498,6 +1947,7 @@
         "kind": "linked",
         "url": "https://github.com/obra/superpowers",
         "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+        "retrieved": "2026-10-20",
         "license": "MIT",
         "author": "Jesse Vincent (obra)"
       },
@@ -1512,6 +1962,7 @@
         "test-driven-development"
       ],
       "score": 4.4,
+      "sourceUrl": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3",
       "path": "entries/plugins/superpowers",
       "files": []
     }

@@ -18,6 +18,7 @@ source:
   kind: linked
   url: https://github.com/ChromeDevTools/chrome-devtools-mcp
   revision: 5463101120f94fc7c79d43c44c01a4ab57835279
+  retrieved: 2026-10-20
   license: Apache-2.0
   author: Google Chrome DevTools team
 install:

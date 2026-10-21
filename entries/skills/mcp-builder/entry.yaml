@@ -19,6 +19,7 @@ source:
   url: https://github.com/anthropics/skills
   path: skills/mcp-builder
   revision: b9e19e6f44773509fbdd7001d77ff41a49a486c1
+  retrieved: 2026-10-20
   license: Apache-2.0
   author: Anthropic
 install:

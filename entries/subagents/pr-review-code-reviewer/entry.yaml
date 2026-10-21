@@ -19,6 +19,7 @@ source:
   url: https://github.com/anthropics/claude-plugins-official
   path: plugins/pr-review-toolkit/agents/code-reviewer.md
   revision: ce721c1f1d5da2c281588818e072ae01a05d2e73
+  retrieved: 2026-10-20
   license: Apache-2.0
   author: Anthropic
   notes: LICENSE is the pr-review-toolkit plugin license. The whole toolkit installs with /plugin install pr-review-toolkit@claude-plugins-official.

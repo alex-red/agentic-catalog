@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: secret-serialization
+type: skill
+title: Secret serialization review (Sentry)
+summary: An opt-in review for credentials that leak through generated serialization. It pairs a holder (a secret field on a dataclass, pydantic model, or JavaScript object) with a sink (logs, spans, error context, caches, or responses that serialize whole objects), searches the whole repository for the missing side, and grades each finding by the path that is still unblocked.
+useWhen: A change adds a credential field to a dataclass, model, or config object, or adds code that stringifies whole objects or every kwarg into logs or telemetry, in Python or JavaScript and TypeScript.
+tags: [security, secrets, logging, telemetry, code-review, python, typescript]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 5
+  portability: 4
+  novelty: 5
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Precise and narrow. A per-mechanism table shows what each exclusion blocks, raw attribute access is treated as a sink, and do-not-report cases keep noise down. Upstream SOURCES.md records one positive and two negative runs on a non-Claude model; that is upstream evidence, not ours. It calls itself too noisy for every review, so use it when credentials live on objects.
+source:
+  kind: vendored
+  url: https://github.com/getsentry/skills
+  path: skills/secret-serialization
+  revision: 473d2594cd91c96ac8348f297e016b631e842487
+  retrieved: 2026-10-20
+  license: Apache-2.0
+  author: Sentry
+  notes: LICENSE.txt is the repository root license; the skill directory has no local notice and the repository has no NOTICE file. SPEC.md and SOURCES.md are upstream design and evidence notes. The skill defers direct secret logging to a security-review skill in the upstream repository, which is not included.
+overlap: Claude Code's /security-review and the security-threat-model entry look for direct leaks and design risks. Secret scanners find hardcoded literals. None of them trace generated serialization paths.
+related: [security-threat-model, pr-review-code-reviewer, variant-analysis]
+evaluationCases: [evals/cases/secret-serialization.yaml]

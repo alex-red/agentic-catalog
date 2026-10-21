@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: workers-best-practices
+type: skill
+title: Cloudflare Workers best practices
+summary: Cloudflare's guidance for writing and reviewing Workers. It treats the project's compatibility date, flags, generated binding types, and Wrangler schema as the baseline, and flags buffered unbounded bodies, floating promises, request state at module scope, unbound ctx methods, hand-written Env types, and mismatched serialization at Queue, Workflow, storage, and WebSocket boundaries.
+useWhen: Writing, reviewing, or configuring Cloudflare Workers code or Wrangler configuration.
+tags: [cloudflare, workers, serverless, typescript, code-review, observability]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Concrete, platform-maintained anti-patterns with consequences and checks; three references load on demand. It asks the agent to verify claims against current Cloudflare docs, which is documentation lookup, not remote instructions. It enables logs and traces for production Workers by default, so check that against your cost and logging policy. It names sibling skills (durable-objects, cf-cli, wrangler) that are not included.
+source:
+  kind: vendored
+  url: https://github.com/cloudflare/skills
+  path: skills/workers-best-practices
+  revision: cf56dd4c544917ca6692a475b65a181f2845d557
+  retrieved: 2026-10-20
+  license: Apache-2.0
+  author: Cloudflare
+  notes: LICENSE.txt is the repository root license; the repository has no NOTICE file. The upstream plugin also configures Cloudflare's remote MCP server. Copying this skill does not configure it.
+overlap: context7 can fetch Cloudflare docs on request, and models know common Workers patterns, but neither supplies this review checklist or the version-aware baseline.
+related: [context7]

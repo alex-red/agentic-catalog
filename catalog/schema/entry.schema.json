@@ -110,6 +110,18 @@
       "uniqueItems": true,
       "minItems": 1
     },
+    "experimental": {
+      "const": true,
+      "description": "Interesting but unproven: listed apart from the established entries and recommended only when the user asks for experimental options."
+    },
+    "custom": {
+      "const": true,
+      "description": "A bespoke house item written for this catalog's owner rather than selected from outside research. Listed in its own section; still rated honestly."
+    },
+    "featured": {
+      "const": true,
+      "description": "Highlighted in the browser's Featured group as well as under its own type. Does not change llms.txt or ratings."
+    },
     "rating": {
       "type": "object",
       "additionalProperties": false,
@@ -182,6 +194,11 @@
         "revision": {
           "$ref": "#/definitions/sha"
         },
+        "retrieved": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Date the upstream content was copied (vendored) or read (linked) at the pinned revision."
+        },
         "license": {
           "$ref": "#/definitions/text"
         },
@@ -214,7 +231,8 @@
             "required": [
               "url",
               "revision",
-              "author"
+              "author",
+              "retrieved"
             ],
             "properties": {
               "url": {
@@ -224,6 +242,9 @@
                 "type": "string"
               },
               "author": {
+                "type": "string"
+              },
+              "retrieved": {
                 "type": "string"
               }
             }
@@ -245,13 +266,17 @@
             "type": "object",
             "required": [
               "url",
-              "author"
+              "author",
+              "retrieved"
             ],
             "properties": {
               "url": {
                 "type": "string"
               },
               "author": {
+                "type": "string"
+              },
+              "retrieved": {
                 "type": "string"
               }
             }

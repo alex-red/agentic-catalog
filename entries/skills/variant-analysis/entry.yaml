@@ -1,0 +1,30 @@
+schemaVersion: 2
+id: variant-analysis
+type: skill
+title: Variant analysis (Trail of Bits)
+summary: Finds the other instances of a bug already found. It extracts the root cause, writes a pattern that matches only the known instance, generalizes one element at a time, and stops when more than half the matches are noise. Triage and a report template follow, with CodeQL and Semgrep starters for five languages.
+useWhen: A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs.
+tags: [security, code-review, semgrep, codeql, bug-hunting]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 5
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: The exact-match-first rule and the one-change-at-a-time ladder are distinctive and keep reports from flooding. Not for discovering the first bug. It names sibling skills (audit-context-building, issue-writer), and its parallel /variant-analysis:variants workflow needs the plugin. Linked because the repository is CC-BY-SA-4.0. Upstream ships eval prompts; we have not run them.
+source:
+  kind: linked
+  url: https://github.com/trailofbits/skills
+  path: plugins/variant-analysis/skills/variant-analysis
+  revision: 123037ec8aed26f0d86327cc39137ee5043e5deb
+  retrieved: 2026-10-20
+  license: CC-BY-SA-4.0
+  author: Trail of Bits
+install:
+  claude-code: /plugin marketplace add trailofbits/skills, then /plugin install variant-analysis@trailofbits
+  codex: codex plugin marketplace add trailofbits/skills, then codex plugin add variant-analysis@trailofbits
+  notes: Other hosts can copy the skill directory, including resources/, from the pinned revision; keep the CC-BY-SA-4.0 attribution and share-alike terms with it. CodeQL or Semgrep are optional.
+overlap: Host review commands and the security-threat-model entry find issues in a diff or a design; none of them start from a known bug and expand it systematically.
+related: [security-threat-model, secret-serialization, diagnosing-bugs]

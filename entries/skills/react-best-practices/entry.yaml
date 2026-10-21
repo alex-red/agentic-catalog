@@ -19,6 +19,7 @@ source:
   url: https://github.com/vercel-labs/agent-skills
   path: skills/react-best-practices
   revision: dc8367e6f91c022d83361f03c3313fa05e848ee5
+  retrieved: 2026-10-20
   license: MIT (declared; no license file)
   author: Vercel
 install:

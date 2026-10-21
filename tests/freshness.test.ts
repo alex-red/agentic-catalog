@@ -18,7 +18,8 @@ test('pinned revisions that match upstream are current; moved paths are flagged'
   const grilling = rows.find((row) => row.id === 'grilling')!;
   assert.equal(grilling.status, 'behind');
   assert.ok(rows.filter((row) => row.id !== 'grilling').every((row) => !needsAttention(row)));
-  assert.match(renderFreshness(rows), /grilling \(vendored\): upstream moved: 95249b0 -> fffffff/u);
+  const pinnedGrilling = catalog.entries.find((entry) => entry.id === 'grilling')!.source.revision!.slice(0, 7);
+  assert.ok(renderFreshness(rows).includes(`grilling (vendored): upstream moved: ${pinnedGrilling} -> fffffff`));
 });
 
 test('failed lookups and stale reviews need attention', async () => {

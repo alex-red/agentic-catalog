@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: ponytail
+type: skill
+title: Ponytail minimal-change mode
+summary: A session-wide "lazy senior developer" mode. Before writing code it checks whether the code needs to exist, then reuses the codebase, the standard library, the platform, and installed dependencies before adding anything new. It keeps validation and error handling, finishes every caller and test the change touches, and ends each reply with what was skipped. It has lite, full, and ultra levels.
+useWhen: You want to try a stronger push toward small diffs and reuse than a focused-changes rule gives, and are willing to compare the results yourself.
+tags: [scope, diff-size, reuse, simplicity, conventions]
+hosts: [any]
+experimental: true
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 4
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: An unusually clear reuse ladder with explicit never-cut items. Experimental because the upstream benchmark (39 tasks, Bash disabled) shows similar correctness to baseline (87/90 vs 86/90) and mostly measures smaller output. Its trigger covers any coding task and it stays on for the session, so it is easy to over-apply. Upstream reports large adoption.
+source:
+  kind: vendored
+  url: https://github.com/DietrichGebert/ponytail
+  path: skills/ponytail
+  revision: df9e89941d50419fd5bcf1de41e28097f1db49b2
+  retrieved: 2026-10-20
+  license: MIT
+  author: Dietrich Gebert
+  notes: LICENSE.txt is the repository root license. Only the core skill is vendored. The upstream plugin adds session hooks, a statusline script, an optional dashboard webhook, and review and audit commands; none of these are included.
+overlap: Restates much of focused-changes, karpathy-coding-guidelines, and host system prompts. Install one of those, not several.
+related: [focused-changes, karpathy-coding-guidelines]

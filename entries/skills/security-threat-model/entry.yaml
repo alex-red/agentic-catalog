@@ -19,6 +19,7 @@ source:
   url: https://github.com/openai/skills
   path: skills/.curated/security-threat-model
   revision: 5c8f1e26803bcfaffeceef1e7accbcf7e388417a
+  retrieved: 2026-10-20
   license: Apache-2.0
   author: OpenAI
 overlap: Claude Code /security-review and Codex /review inspect diffs. Neither builds a whole-system threat model.

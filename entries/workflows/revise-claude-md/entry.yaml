@@ -19,6 +19,7 @@ source:
   url: https://github.com/anthropics/claude-plugins-official
   path: plugins/claude-md-management/commands/revise-claude-md.md
   revision: a86e34672c44fa1fb1ae2b2c4143abcf26612ace
+  retrieved: 2026-10-20
   license: Apache-2.0
   author: Anthropic
 install:

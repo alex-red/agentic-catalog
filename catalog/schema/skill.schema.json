@@ -36,6 +36,16 @@
       "type": "string",
       "minLength": 1,
       "pattern": "\\S"
+    },
+    "argument-hint": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "Claude Code: hint shown for the skill's slash-command arguments."
+    },
+    "disable-model-invocation": {
+      "type": "boolean",
+      "description": "Claude Code: true makes the skill run only when the user invokes it."
     }
   },
   "required": [

@@ -19,6 +19,7 @@ source:
   url: https://github.com/mattpocock/skills
   path: skills/engineering/diagnosing-bugs
   revision: f3fc5632f401156837ee3872f14fe33ccf1024ea
+  retrieved: 2026-10-20
   license: MIT
   author: Matt Pocock
   notes: LICENSE.txt is the repository root license. agents/openai.yaml is Codex display metadata.

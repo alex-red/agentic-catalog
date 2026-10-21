@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: create-adaptable-composable
+type: skill
+title: Adaptable Vue composables
+summary: A short guide to writing Vue composables that accept a plain value, a ref, or a getter. It uses MaybeRefOrGetter for read-only inputs and MaybeRef for writable ones, normalizes with toRef() for watch sources and toValue() for one-off reads, and warns against typing callback parameters as getters, where they would be invoked by mistake.
+useWhen: Writing or refactoring a reusable Vue 3 composable whose inputs may be plain values, refs, or getters.
+tags: [vue, composables, reactivity, typescript, frontend]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Small, correct, and specific; the callback-versus-getter warning is the most useful line. Useful mainly for library-style composables. The same source's Vue testing skill was passed over because several examples are stale (the msw v1 API and Vitest's removed poolOptions).
+source:
+  kind: vendored
+  url: https://github.com/vuejs-ai/skills
+  path: skills/create-adaptable-composable
+  revision: 3b0d2ce9fb473d27117670e75985b1cdffc46ff3
+  retrieved: 2026-10-20
+  license: MIT
+  author: vuejs-ai
+  notes: LICENSE.txt is the repository root license; the skill's frontmatter declares MIT.
+overlap: The Vue reactivity docs cover the same APIs, and host-installed Vue skills may include similar guidance. Check for those first.
+related: [context7]

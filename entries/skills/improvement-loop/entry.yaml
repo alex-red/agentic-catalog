@@ -1,0 +1,24 @@
+schemaVersion: 2
+id: improvement-loop
+type: skill
+title: Improvement loop (house prompt)
+summary: An explicitly invoked end-of-work loop. It gathers concrete stumbling blocks blamelessly, traces each to a root cause, writes prioritized improvement items with a done-when check, agrees on a short plan with the user, then improves the project's tooling in small reversible steps and verifies each change against the original stumbling block.
+useWhen: You want a deliberate, plan-first improvement pass after a piece of work, ending in tooling changes you approve and can verify.
+tags: [self-improvement, retrospective, tooling, planning, root-cause]
+hosts: [any]
+custom: true
+featured: true
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Grew from the hand-pasted prompt that the retrospective skill also came from, expanded with root-cause classification, items with done-when checks, payoff-based prioritization, an approval gate before changes, and before/after verification. Its stance on tooling quality is distinctive. Unmeasured; it runs only when invoked, so it does not compete with retrospective for triggers.
+source:
+  kind: original
+  license: MIT
+  author: Alex Red
+overlap: The retrospective skill covers the same moment, with deeper guidance on where instructions load and on skill trigger checks, and it triggers on its own. This one is plan-first and focuses on tooling changes. Use one per session.
+related: [retrospective, self-improvement-loop]

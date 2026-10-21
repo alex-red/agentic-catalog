@@ -31,8 +31,14 @@ export interface EntryMetadata {
   useWhen: string;
   tags: string[];
   hosts: ('any' | 'claude-code' | 'codex')[];
+  /** Interesting but unproven; listed apart from established entries. */
+  experimental?: true;
+  /** A bespoke house item rather than one selected from outside research. */
+  custom?: true;
+  /** Also shown under a Featured group in the browser, in addition to its own type. */
+  featured?: true;
   rating: { usefulness: number; quality: number; portability: number; novelty: number; evidence: Evidence; reviewed: string; notes: string };
-  source: { kind: 'original' | 'adapted' | 'vendored' | 'linked'; url?: string; path?: string; revision?: string; license: string; author?: string; notes?: string };
+  source: { kind: 'original' | 'adapted' | 'vendored' | 'linked'; url?: string; path?: string; revision?: string; retrieved?: string; license: string; author?: string; notes?: string };
   inspiredBy?: { title: string; url: string }[];
   install?: Partial<Record<'claude-code' | 'codex' | 'any' | 'notes', string>>;
   overlap?: string;
@@ -44,6 +50,8 @@ export interface EntryMetadata {
 export interface Entry extends EntryMetadata {
   /** Weighted curator score: usefulness counts twice. */
   score: number;
+  /** Best link to where the entry came from: the pinned upstream path, else a cited source, GitHub first. */
+  sourceUrl?: string;
   /** Repo-relative entry directory. */
   path: string;
   /** Repo-relative installable files (everything except entry.yaml); empty for linked entries. */
@@ -246,6 +254,18 @@ function loadEvaluationCaseFiles(root: string, known: { skill: string[]; rule: s
   return cases;
 }
 
+const github = (url: string) => url.startsWith('https://github.com/');
+
+export function sourceUrl(entry: EntryMetadata): string | undefined {
+  const { url, path, revision } = entry.source;
+  if (url && github(url) && (path || revision)) {
+    const view = path && /\.[A-Za-z0-9]+$/u.test(path) ? 'blob' : 'tree';
+    return `${url.replace(/\/$/u, '')}/${view}/${revision ?? 'HEAD'}${path ? `/${path}` : ''}`;
+  }
+  const cited = [...(url ? [url] : []), ...(entry.inspiredBy ?? []).map((link) => link.url)];
+  return cited.find(github) ?? cited[0];
+}
+
 export function entryScore(rating: EntryMetadata['rating']): number {
   return Math.round(((2 * rating.usefulness + rating.quality + rating.portability + rating.novelty) / 5) * 10) / 10;
 }
@@ -286,7 +306,8 @@ function loadEntry(root: string, directory: string, type: EntryType): Entry {
     }
   }
   for (const path of entry.evidence ?? []) repoFile(root, path);
-  return { ...entry, score: entryScore(entry.rating), path: label, files: files.map((file) => localName(root, file)) };
+  const link = sourceUrl(entry);
+  return { ...entry, score: entryScore(entry.rating), ...(link && { sourceUrl: link }), path: label, files: files.map((file) => localName(root, file)) };
 }
 
 export function loadCatalog(root = repositoryRoot): Catalog {
@@ -372,18 +393,31 @@ export function renderLlmsText(catalog: Catalog): string {
     '',
     'Score (1-5) = (2 × usefulness + quality + portability + novelty) / 5, where novelty means value beyond host built-ins. Evidence, from weakest to strongest: reviewed, used, tested, evaluated. Hosts: `any` means portable through an open format. Entries are ranked by score within each section. Show users the score, the evidence level, and the source before installing anything.',
   ];
+  const byScore = (a: Entry, b: Entry) => b.score - a.score || a.id.localeCompare(b.id);
+  const line = (entry: Entry) => {
+    const primary = primaryFiles[entry.type];
+    const target = entry.source.kind === 'linked' || !primary ? entry.sourceUrl! : url(`${entry.path}/${primary}`);
+    const origin = entry.source.kind === 'original'
+      ? `original${entry.sourceUrl ? `, informed by ${entry.sourceUrl}` : ''}` : `${entry.source.kind} from ${entry.sourceUrl}`;
+    const kind = entry.experimental || entry.custom ? `type ${entry.type}, ` : '';
+    return `- [${entry.title}](${target}): ${entry.summary} Use when: ${entry.useWhen} — id \`${entry.id}\`, ${kind}score ${entry.score.toFixed(1)}, evidence ${entry.rating.evidence}, hosts ${entry.hosts.join('/')}, tags ${entry.tags.join(', ')}, ${origin}, [metadata](${url(`${entry.path}/entry.yaml`)})`;
+  };
   for (const type of entryTypes) {
-    const group = catalog.entries.filter((entry) => entry.type === type).sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
+    const group = catalog.entries.filter((entry) => entry.type === type && !entry.experimental && !entry.custom).sort(byScore);
     if (!group.length) continue;
     lines.push('', `## ${sectionTitles[type]}`, '');
-    for (const entry of group) {
-      const primary = primaryFiles[entry.type];
-      const upstream = entry.source.path && entry.source.url!.startsWith('https://github.com/')
-        ? `${entry.source.url}/tree/${entry.source.revision ?? 'HEAD'}/${entry.source.path}` : entry.source.url!;
-      const target = entry.source.kind === 'linked' || !primary ? upstream : url(`${entry.path}/${primary}`);
-      const origin = entry.source.kind === 'original' ? 'original' : `${entry.source.kind} from ${entry.source.url ?? entry.inspiredBy![0].url}`;
-      lines.push(`- [${entry.title}](${target}): ${entry.summary} Use when: ${entry.useWhen} — id \`${entry.id}\`, score ${entry.score.toFixed(1)}, evidence ${entry.rating.evidence}, hosts ${entry.hosts.join('/')}, tags ${entry.tags.join(', ')}, ${origin}, [metadata](${url(`${entry.path}/entry.yaml`)})`);
-    }
+    lines.push(...group.map(line));
+  }
+  // An entry that is both custom and experimental is listed as experimental.
+  const custom = catalog.entries.filter((entry) => entry.custom && !entry.experimental).sort(byScore);
+  if (custom.length) {
+    lines.push('', '## Custom', '', 'Bespoke house items written for this catalog rather than selected from outside research. Recommend them like any other entry when they fit, and say that they are custom.', '');
+    lines.push(...custom.map(line));
+  }
+  const experimental = catalog.entries.filter((entry) => entry.experimental).sort(byScore);
+  if (experimental.length) {
+    lines.push('', '## Experimental', '', 'Interesting but unproven. Recommend these only when the user asks for experimental options, and say that they are experimental.', '');
+    lines.push(...experimental.map(line));
   }
   if (catalog.collections.length) {
     lines.push('', '## Collections', '');

@@ -7,13 +7,18 @@
   "ignores": [
     "node_modules/**",
     "eval-build/**",
+    "entries/skills/create-adaptable-composable/**",
     "entries/skills/diagnosing-bugs/**",
     "entries/skills/gh-fix-ci/**",
     "entries/skills/grilling/**",
+    "entries/skills/handoff/**",
+    "entries/skills/ponytail/**",
+    "entries/skills/secret-serialization/**",
     "entries/skills/security-threat-model/**",
     "entries/skills/test-driven-development/**",
     "entries/skills/verification-before-completion/**",
     "entries/skills/webapp-testing/**",
+    "entries/skills/workers-best-practices/**",
     "entries/subagents/pr-review-code-reviewer/**"
   ],
   "config": {

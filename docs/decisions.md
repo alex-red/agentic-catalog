@@ -96,3 +96,35 @@ Vendored content is never reformatted or edited, so the pinned revision remains 
 ## 18. Rename to Agentic Catalog (2026-10-20)
 
 The project is now a catalog rather than a rule library, so it is named Agentic Catalog and published at `https://github.com/alex-red/agentic-catalog`. The package, plugin, and marketplace are all `agentic-catalog`, so the discovery skill is `agentic-catalog:agentic-catalog` when installed as a plugin. Rule blocks installed in consumer files use `agentic-catalog:begin` and `agentic-catalog:end` markers. Blocks written before the rename with `agentic-rules` markers remain valid text and can be renamed by hand.
+
+## 19. Keep broad discovery separate from entry admission (2026-10-20)
+
+The [October research queue](research-2026-10.md) combines popular collections, scoped rules, specialist maintainers, and focused projects such as Ponytail rather than selecting only by stars. Stars, registry install counts, maintainer curation, and author benchmarks are distinct signals; none alone establishes usefulness or behavioral evaluation. Prioritize concrete gaps and review individual artifacts, their licensing, host overlap, and resource closure before admission. Research candidates stay in documentation until usable entries have been reviewed; do not create placeholder entries or install runtime integrations during discovery.
+
+## 20. First admission batch from the October research (2026-10-20)
+
+Admitted from the [research queue](research-2026-10.md), each at evidence level `reviewed` after reading every shipped file at the pinned revision:
+
+- **Vendored:** `handoff` (Matt Pocock, MIT), `secret-serialization` (Sentry, Apache-2.0), `workers-best-practices` (Cloudflare, Apache-2.0), and `create-adaptable-composable` (vuejs-ai, MIT). Each repository's root license is copied as `LICENSE.txt`; none of the repositories has a NOTICE file.
+- **Linked:** `property-based-testing` and `variant-analysis` from Trail of Bits, because the repository is CC-BY-SA-4.0 and only permissive licenses are vendored.
+- **Checked current:** `diagnosing-bugs` and `grilling` are byte-identical at the research snapshot, so their pins stand.
+
+Each pin is the last commit that touched the entry's path, as the freshness check expects, not the repository head the research recorded.
+
+The Vue testing skill from the same source was passed over because several examples are stale (the msw v1 handler API, Vitest's removed `poolOptions`, and `restoreAllMocks` used to undo fake timers). Workers' instructions to check current Cloudflare docs are documentation lookup, not the unpinned remote instructions excluded in §16. Its sibling skills and the plugin's remote MCP server are not included.
+
+The skill frontmatter schema now accepts Claude Code's `argument-hint` and `disable-model-invocation` keys, which upstream skills use. Other unknown keys are still rejected.
+
+Still held, for the reasons in the research: Supabase until its SQL examples are verified, Liran Tal's security rules until upstream corrects them, Sentry's Django review until its license terms are clear, and Matt's architecture skill, Planning with Files, and terraform-test until their linked workflows are reviewed.
+
+## 21. An experimental tier for promising, unproven entries (2026-10-20)
+
+Some candidates are interesting enough to list but lack evidence that they beat the established entries or host defaults. Ponytail is the first: its own benchmark shows similar correctness to baseline. Entries like this carry `experimental: true`. They follow every other rule, including honest ratings, an evidence level, and overlap. `llms.txt` lists them in their own section instead of the type sections, the browser shows them as a separate group with a badge, and the discovery skill recommends them only when the user asks for experimental options or nothing established fits. An entry leaves the tier when evidence supports it, and is removed if evidence goes against it.
+
+## 22. Bespoke house items (2026-10-20)
+
+The catalog can hold the owner's own prompts and workflows alongside curated ones. These entries carry `custom: true` and `source.kind: original`, and follow every other rule, including honest ratings and overlap. `llms.txt` lists them in a Custom section, the browser shows them as a separate group with a badge, and the discovery skill recommends them like any other entry but labels them custom. An entry that is both custom and experimental is listed as experimental. The first is `improvement-loop`, which started as the hand-pasted prompt that `retrospective` grew from and was then expanded into a plan-first, tooling-focused loop. It is invoke-only, so the two do not compete for the same triggers.
+
+## 23. A Featured group in the browser (2026-10-20)
+
+An entry can carry `featured: true` to appear in a Featured group at the top of the browser tree as well as under its own type. It is a display highlight only: `llms.txt`, ratings and discovery recommendations are unchanged, and the entry still lists once in its own section. The first featured entry is `improvement-loop`.

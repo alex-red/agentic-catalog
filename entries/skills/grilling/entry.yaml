@@ -19,6 +19,7 @@ source:
   url: https://github.com/mattpocock/skills
   path: skills/productivity/grilling
   revision: 95249b0b49782349740fd9b8c6ce32b4e59e497a
+  retrieved: 2026-10-20
   license: MIT
   author: Matt Pocock
   notes: Upstream's popular grill-me is a Claude-only stub that invokes this skill. Vendor this one instead.

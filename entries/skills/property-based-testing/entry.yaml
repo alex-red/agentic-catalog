@@ -1,0 +1,30 @@
+schemaVersion: 2
+id: property-based-testing
+type: skill
+title: Property-based testing (Trail of Bits)
+summary: Writes, reviews, and debugs property-based tests with Hypothesis, fast-check, proptest, jqwik, rapid, and Solidity fuzzers. It catalogs roundtrip, oracle, idempotence, and invariant properties by strength, rejects tautological and vacuous properties, separates a wrong property from a real bug in a shrunk counterexample, and accepts that example tests can be the better fit.
+useWhen: Code has an algebraic shape (encode and decode pairs, parsers, normalizers, comparators, data structures, contract invariants), or existing property tests need review.
+tags: [testing, property-based-testing, fuzzing, hypothesis, fast-check]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 5
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Strong test-design guidance beyond a TDD loop, with task-specific references that load on demand. It treats adding a testing library as the user's decision. Linked rather than vendored because the repository is CC-BY-SA-4.0. Upstream ships its own eval prompts; we have not run them.
+source:
+  kind: linked
+  url: https://github.com/trailofbits/skills
+  path: plugins/property-based-testing/skills/property-based-testing
+  revision: 123037ec8aed26f0d86327cc39137ee5043e5deb
+  retrieved: 2026-10-20
+  license: CC-BY-SA-4.0
+  author: Trail of Bits
+install:
+  claude-code: /plugin marketplace add trailofbits/skills, then /plugin install property-based-testing@trailofbits
+  codex: codex plugin marketplace add trailofbits/skills, then codex plugin add property-based-testing@trailofbits
+  notes: Other hosts can copy the skill directory from the pinned revision; keep the CC-BY-SA-4.0 attribution and share-alike terms with it.
+overlap: test-driven-development covers the red-green loop, not property design. Models write simple property tests unprompted, but rarely check them for tautology or vacuity.
+related: [test-driven-development, verification-before-completion]

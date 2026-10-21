@@ -19,6 +19,7 @@ source:
   url: https://github.com/obra/superpowers
   path: skills/test-driven-development
   revision: 5bf4e78011075bcfc0dc295f0724994cd123ee71
+  retrieved: 2026-10-20
   license: MIT
   author: Jesse Vincent (obra)
   notes: LICENSE.txt is the repository root license.

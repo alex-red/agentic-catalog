@@ -19,6 +19,7 @@ source:
   url: https://github.com/openai/skills
   path: skills/.curated/gh-fix-ci
   revision: 77963424cd7687fd52e5fcfdd3f08d826ab9b1ab
+  retrieved: 2026-10-20
   license: Apache-2.0
   author: OpenAI
 overlap: GitHub integrations in both hosts give partial access to CI logs.

@@ -18,6 +18,7 @@ source:
   kind: linked
   url: https://github.com/upstash/context7
   revision: 74eda1819f17f8b177e0bdad10de14bdc6bb26af
+  retrieved: 2026-10-20
   license: MIT
   author: Upstash
 install:

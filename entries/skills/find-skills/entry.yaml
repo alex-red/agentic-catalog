@@ -19,6 +19,7 @@ source:
   url: https://github.com/vercel-labs/skills
   path: skills/find-skills
   revision: 773fb2c7bbf16781670a3520affc4abd0c6151ae
+  retrieved: 2026-10-20
   license: MIT
   author: Vercel
 install:

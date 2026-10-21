@@ -9,7 +9,7 @@ try {
   const rows = await checkFreshness(loadCatalog(), githubLatestCommit(token));
   console.log(renderFreshness(rows));
   if (rows.some(needsAttention)) {
-    console.log('\nRe-read changed upstream content before re-vendoring or updating a revision; then re-rate and set rating.reviewed.');
+    console.log('\nRe-read changed upstream content before re-vendoring or updating a revision; then set source.retrieved, re-rate, and set rating.reviewed.');
     if (strict) process.exitCode = 1;
   }
 } catch (error) {

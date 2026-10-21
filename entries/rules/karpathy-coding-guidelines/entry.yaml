@@ -19,6 +19,7 @@ source:
   url: https://github.com/multica-ai/andrej-karpathy-skills
   path: CLAUDE.md
   revision: 8462496b34419f20b32778610571ac723e91f94c
+  retrieved: 2026-10-20
   license: MIT (declared; no license file)
   author: forrestchang / multica-ai
 install:

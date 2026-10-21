@@ -18,6 +18,7 @@ source:
   kind: linked
   url: https://github.com/BayramAnnakov/claude-reflect
   revision: 77c3340592aefc6ca964909198effc70fca3d01e
+  retrieved: 2026-10-20
   license: MIT
   author: Bayram Annakov
 install:

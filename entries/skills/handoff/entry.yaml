@@ -1,0 +1,27 @@
+schemaVersion: 2
+id: handoff
+type: skill
+title: Handoff document for a fresh session
+summary: An explicitly invoked skill that writes a handoff document for a fresh agent to continue the current work. It saves the document to the OS temporary directory, references existing specs, plans, ADRs, and commits instead of copying them, redacts secrets and personal data, suggests skills for the next session, and tailors the document to the next session's stated focus.
+useWhen: You are ending a long session and want a new session or another agent to continue the work without replaying the conversation.
+tags: [handoff, context, session, continuity, memory]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-20
+  notes: Small and well scoped. It never runs on its own, writes outside the workspace, and points to existing artifacts. It has no checklist for unresolved constraints, rejected approaches, or pending checks, so a short handoff can still drop them; ask for those explicitly. Widely installed through skills.sh.
+source:
+  kind: vendored
+  url: https://github.com/mattpocock/skills
+  path: skills/productivity/handoff
+  revision: 0f5e033ebc47b142f5ffa56a582ede6d9d9bada3
+  retrieved: 2026-10-20
+  license: MIT
+  author: Matt Pocock
+  notes: LICENSE.txt is the repository root license. agents/openai.yaml is Codex display metadata that disables implicit invocation. disable-model-invocation and argument-hint are Claude Code frontmatter.
+overlap: Host compaction (Claude Code's /compact and Codex's automatic compaction) summarizes context within the same session. This skill instead writes a file that a different session or agent can read.
+related: [grilling, explore-plan-implement-review]
