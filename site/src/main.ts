@@ -457,9 +457,20 @@ function renderList() {
   }
 }
 
+const REPO_URL = "https://github.com/alex-red/agentic-catalog";
 const RAW_BASE = "https://raw.githubusercontent.com/alex-red/agentic-catalog/main";
 
-function installSnippet(e: CatalogEntry, host: "claude" | "codex" | "portable"): { text: string; note?: string } {
+type InstallHost = "claude" | "codex" | "portable" | "skills";
+
+function installSnippet(e: CatalogEntry, host: InstallHost): { text: string; note?: string } {
+  // skills.sh style: the skills CLI installs one directory by its tree URL. Linked skills use their upstream.
+  if (host === "skills") {
+    if (e.source.kind === "linked") return installSnippet(e, "portable");
+    return {
+      text: `npx skills add ${REPO_URL}/tree/main/${e.path}`,
+      note: "Uses the skills CLI (skills.sh). It asks which agents to install for; add -a claude-code or -a codex to skip the prompt. The installed folder includes entry.yaml, which agents ignore.",
+    };
+  }
   const custom = e.install;
   let text = "";
 
@@ -827,8 +838,7 @@ async function renderViewer() {
   installHead.append(el("h4", "How to Install / Use"));
 
   const installTabs = el("div", undefined, "install-tabs");
-  let selectedHost = (entry.hosts.includes("codex") && !entry.hosts.includes("claude-code") ? "codex" : "claude") as
-    "claude" | "codex" | "portable";
+  let selectedHost = (entry.hosts.includes("codex") && !entry.hosts.includes("claude-code") ? "codex" : "claude") as InstallHost;
 
   const claudeTab = el("button", "Claude Code", "install-tab-btn");
   claudeTab.setAttribute("aria-selected", String(selectedHost === "claude"));
@@ -837,7 +847,10 @@ async function renderViewer() {
   const portableTab = el("button", "Portable", "install-tab-btn");
   portableTab.setAttribute("aria-selected", String(selectedHost === "portable"));
 
+  const skillsTab = el("button", "skills.sh", "install-tab-btn");
+  skillsTab.setAttribute("aria-selected", "false");
   installTabs.append(claudeTab, codexTab, portableTab);
+  if (entry.type === "skill") installTabs.append(skillsTab);
   installHead.append(installTabs);
   installCard.append(installHead);
 
@@ -857,11 +870,12 @@ async function renderViewer() {
   noteBox.style.color = "var(--text-muted)";
   noteBox.hidden = !initialSnippet.note;
 
-  const updateSnippet = (host: "claude" | "codex" | "portable") => {
+  const updateSnippet = (host: InstallHost) => {
     selectedHost = host;
     claudeTab.setAttribute("aria-selected", String(host === "claude"));
     codexTab.setAttribute("aria-selected", String(host === "codex"));
     portableTab.setAttribute("aria-selected", String(host === "portable"));
+    skillsTab.setAttribute("aria-selected", String(host === "skills"));
     const updated = installSnippet(entry, host);
     snippetText.textContent = updated.text;
     if (updated.note) {
@@ -875,6 +889,7 @@ async function renderViewer() {
   claudeTab.onclick = () => updateSnippet("claude");
   codexTab.onclick = () => updateSnippet("codex");
   portableTab.onclick = () => updateSnippet("portable");
+  skillsTab.onclick = () => updateSnippet("skills");
 
   snippetBox.append(snippetText, copySnippetBtn);
   installCard.append(snippetBox, noteBox);

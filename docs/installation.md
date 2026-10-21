@@ -37,6 +37,7 @@ Update with `claude plugin marketplace update` and then `claude plugin update ag
 The [install guide](../skills/agentic-catalog/references/install.md) gives the target location for every entry type and host. In short:
 
 - **Skills:** copy `entries/skills/<id>/` without `entry.yaml` to `.claude/skills/<id>/` or `.agents/skills/<id>/`. Check first for a same-named skill.
+- **Skills with the skills CLI:** `npx skills add https://github.com/alex-red/agentic-catalog/tree/main/entries/skills/<id>` installs one skill by its directory URL (the browser's skills.sh tab shows it). `npx skills add alex-red/agentic-catalog` only finds the discovery skill, because the CLI searches `skills/` and agent folders, not `entries/`.
 - **Rules:** paste the body of `RULE.md` into `AGENTS.md` inside a marked block, or copy it to `.claude/rules/<id>.md`. `bun run rules:preview -- COLLECTION REVISION` prints the marked block for a collection's rules.
 - **Workflows, hooks, and subagents:** follow the entry's `WORKFLOW.md`, `HOOK.md`, or `AGENT.md`. Review every hook command before enabling it.
 - **Linked entries, MCP servers, and plugins:** use the entry's `install` steps and its pinned `source.revision`.
