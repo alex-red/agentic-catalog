@@ -457,6 +457,8 @@ function renderList() {
   }
 }
 
+const RAW_BASE = "https://raw.githubusercontent.com/alex-red/agentic-catalog/main";
+
 function installSnippet(e: CatalogEntry, host: "claude" | "codex" | "portable"): { text: string; note?: string } {
   const custom = e.install;
   let text = "";
@@ -477,30 +479,36 @@ function installSnippet(e: CatalogEntry, host: "claude" | "codex" | "portable"):
         text = `# Refer to upstream install guide at:\n# ${e.source.url}`;
       }
     } else {
+      // Commands fetch from the published repo, so they work without a local checkout.
+      const raw = (path: string) => `${RAW_BASE}/${path}`;
+      const primary = (name: string) => raw(`${e.path}/${name}`);
       switch (e.type) {
-        case "skill":
-          if (host === "claude") text = `cp -r ${e.path} .claude/skills/${e.id}`;
-          else if (host === "codex") text = `cp -r ${e.path} .agents/skills/${e.id}`;
-          else text = `cp -r ${e.path} .agents/skills/${e.id}`;
+        case "skill": {
+          const dest = `${host === "claude" ? ".claude" : ".agents"}/skills/${e.id}`;
+          const files = e.files.map((f) => f.slice(e.path.length + 1));
+          const dirs = [...new Set(files.map((f) => f.split("/").slice(0, -1).join("/")))];
+          const mkdirs = `mkdir -p ${dirs.map((d) => (d ? `${dest}/${d}` : dest)).join(" ")}`;
+          text = [mkdirs, ...files.map((f) => `curl -fsSL ${primary(f)} -o ${dest}/${f}`)].join("\n");
           break;
+        }
         case "rule":
-          if (host === "claude") text = `cp ${e.path}/RULE.md .claude/rules/${e.id}.md`;
-          else text = `<!-- agentic-catalog:begin id=${e.id} -->\n# Add contents of ${e.path}/RULE.md to AGENTS.md\n<!-- agentic-catalog:end -->`;
+          if (host === "claude") text = `mkdir -p .claude/rules\ncurl -fsSL ${primary("RULE.md")} -o .claude/rules/${e.id}.md`;
+          else text = `{ echo '<!-- agentic-catalog:begin id=${e.id} -->'; curl -fsSL ${primary("RULE.md")}; echo '<!-- agentic-catalog:end -->'; } >> AGENTS.md`;
           break;
         case "workflow":
-          text = `# Follow workflow instructions:\ncat ${e.path}/WORKFLOW.md`;
+          text = `# Read the workflow, then follow it:\ncurl -fsSL ${primary("WORKFLOW.md")}`;
           break;
         case "hook":
-          if (host === "claude") text = `# Copy hook script to .claude/hooks/ and register in .claude/settings.json:\ncat ${e.path}/HOOK.md`;
-          else text = `# Register hook in .codex/hooks.json:\ncat ${e.path}/HOOK.md`;
+          if (host === "claude") text = `# Review the script, copy it to .claude/hooks/, and register it in .claude/settings.json:\ncurl -fsSL ${primary("HOOK.md")}`;
+          else text = `# Review the script, then register it in .codex/hooks.json:\ncurl -fsSL ${primary("HOOK.md")}`;
           break;
         case "subagent":
-          if (host === "claude") text = `cp ${e.path}/AGENT.md .claude/agents/${e.id}.md`;
-          else text = `# Add developer_instructions to .codex/agents/${e.id}.toml:\ncat ${e.path}/AGENT.md`;
+          if (host === "claude") text = `mkdir -p .claude/agents\ncurl -fsSL ${primary("AGENT.md")} -o .claude/agents/${e.id}.md`;
+          else text = `# Add developer_instructions to .codex/agents/${e.id}.toml:\ncurl -fsSL ${primary("AGENT.md")}`;
           break;
         case "mcp":
           if (host === "claude") text = `claude mcp add ${e.id} --scope project ...`;
-          else text = `# Configure in .codex/config.toml under [mcp_servers.${e.id}]:\ncat ${e.path}/MCP.md`;
+          else text = `# Configure in .codex/config.toml under [mcp_servers.${e.id}]:\ncurl -fsSL ${primary("MCP.md")}`;
           break;
         case "plugin":
           if (host === "claude") text = `claude plugin marketplace add alex-red/agentic-catalog\nclaude plugin install ${e.id}@agentic-catalog`;
