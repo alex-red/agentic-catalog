@@ -1,0 +1,19 @@
+name: Report a problem
+description: Something in an entry, the validator, the discovery skill, or the browser is wrong.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+      description: Name the entry, script, or page, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+  - type: input
+    id: version
+    attributes:
+      label: Revision or version

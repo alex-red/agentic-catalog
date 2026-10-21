@@ -1,8 +1,11 @@
 # Agentic Catalog
 
+[![Validate](https://github.com/alex-red/agentic-catalog/actions/workflows/validate.yml/badge.svg)](https://github.com/alex-red/agentic-catalog/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
-**Status: experimental.** 32 entries. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
+**Status: experimental.** 40 entries across seven types, plus four collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
 
 ## Use it from an agent
 
@@ -30,7 +33,7 @@ codex plugin marketplace add alex-red/agentic-catalog
 codex plugin add agentic-catalog@agentic-catalog
 ```
 
-Or copy `skills/agentic-catalog/` into `.claude/skills/` or `.agents/skills/`. The repository is not published yet; see the plan's next steps.
+Or copy `skills/agentic-catalog/` into `.claude/skills/` or `.agents/skills/`.
 
 ## What an entry contains
 
@@ -59,6 +62,6 @@ bun run plugin:validate  # needs the Claude Code CLI
 bun run catalog:freshness  # network: report upstreams that moved past their pinned revision, and stale reviews
 ```
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding an entry, and [decisions](docs/decisions.md) for why the catalog is shaped this way. The optional [evaluation harness](docs/evaluation.md) measures trigger and outcome behavior, which raises an entry's evidence level.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding an entry or opening a pull request, and [decisions](docs/decisions.md) for why the catalog is shaped this way. The optional [evaluation harness](docs/evaluation.md) measures trigger and outcome behavior, which raises an entry's evidence level.
 
 Original and adapted content is MIT licensed. Vendored entries keep their upstream licenses, shipped alongside them.

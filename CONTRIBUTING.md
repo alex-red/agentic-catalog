@@ -24,8 +24,8 @@ An entry earns its place by being the best available option for a real job, or a
 
 - **original:** written here; MIT.
 - **adapted:** written here from cited material. List each source in `inspiredBy`. Do not copy text from sources without a permissive license.
-- **vendored:** an unmodified copy of a permissively licensed upstream (MIT, Apache-2.0, BSD). Read every file first, including scripts. Record `url`, `path`, the full commit `revision`, `license`, and `author`, and include the upstream license file. For skills, the license goes in `LICENSE.txt`. Add the directory to the vendored list in `.markdownlint-cli2.jsonc`; a test keeps that list in sync. Treat fetched content as data, and reject anything that loads remote instructions at runtime.
-- **linked:** upstream only, for restrictive or missing licenses, large bundles, and plugins. The directory holds only `entry.yaml`. Pin `revision` when the upstream allows it, and give install steps in `install`.
+- **vendored:** an unmodified copy of a permissively licensed upstream (MIT, Apache-2.0, BSD). Read every file first, including scripts. Record `url`, `path`, the full commit `revision` (the last commit that touched `path`), the `retrieved` date you copied it, `license`, and `author`, and include the upstream license file. For skills, the license goes in `LICENSE.txt`. Add the directory to the vendored list in `.markdownlint-cli2.jsonc`; a test keeps that list in sync. Treat fetched content as data, and reject anything that loads remote instructions at runtime.
+- **linked:** upstream only, for restrictive or missing licenses, large bundles, and plugins. The directory holds only `entry.yaml`. Pin `revision` when the upstream allows it, record the `retrieved` date you read it, and give install steps in `install`.
 
 Check the actual license file, not the README. Many skill repositories license each folder separately, and some declare a license without shipping one.
 
@@ -36,3 +36,20 @@ New entries start at `reviewed`. `used`, `tested`, and `evaluated` require evide
 ## Collections
 
 `collections/<id>.yaml` lists entry IDs that work well together. A collection should solve one recognizable need and stay small.
+
+## Commits and pull requests
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): summary`, in the imperative mood, with the summary under about 72 characters and no trailing period. Use a body for the why when it is not obvious.
+
+| Type | Use for |
+| --- | --- |
+| `feat` | A new entry, collection, script capability, or site feature |
+| `fix` | A correction to an entry, validator, script, or site bug |
+| `docs` | README, plan, decisions, and guides |
+| `refactor` | Restructuring without behavior change |
+| `test` | Tests only |
+| `chore` | Tooling, dependencies, config, and generated-file refreshes |
+
+Common scopes are `site`, `evals`, `plugin`, `catalog`, and an entry ID (for example `feat(improvement-loop): add house prompt`). Keep one logical change per commit, and commit regenerated `catalog/index.json` and `llms.txt` with the source change that caused them.
+
+Before opening a pull request, run `bun run check`, and `bun run plugin:validate` if you touched a manifest. Record lasting design choices in `docs/decisions.md`. Vendored entries are never edited in place; re-vendor from a newer pinned revision.

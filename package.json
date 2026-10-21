@@ -5,6 +5,7 @@
   "description": "A curated, rated catalog of rules, skills, workflows, hooks, subagents, and MCP servers for coding agents.",
   "type": "module",
   "license": "MIT",
+  "author": "Alex Red",
   "repository": {
     "type": "git",
     "url": "https://github.com/alex-red/agentic-catalog"

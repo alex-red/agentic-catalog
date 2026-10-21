@@ -1,0 +1,37 @@
+name: Propose an entry
+description: Suggest a skill, rule, workflow, hook, subagent, MCP server, or plugin for the catalog.
+labels: [entry-proposal]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Where the guidance lives. Pin a commit if you can.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options: [skill, rule, workflow, hook, subagent, mcp, plugin]
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: Check the actual license file, not the README.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it belongs
+      description: The real job it does, and what it adds beyond Claude Code and Codex built-ins.
+    validations:
+      required: true
+  - type: textarea
+    id: overlap
+    attributes:
+      label: Overlap
+      description: Existing catalog entries or host built-ins that cover similar ground.

@@ -5,7 +5,7 @@ There are two things to install, and neither changes global agent settings, enab
 1. **The discovery skill** (`agentic-catalog`), which lets an agent search the catalog and install entries. It is optional: any agent can also read `llms.txt` directly.
 2. **Individual entries**, chosen per project. The discovery skill installs them after approval, or you can copy them by hand.
 
-The repository is expected at `https://github.com/alex-red/agentic-catalog` (from `package.json`). It is not published yet.
+The repository lives at `https://github.com/alex-red/agentic-catalog`.
 
 ## The discovery skill
 
