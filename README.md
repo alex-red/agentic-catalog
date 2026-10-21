@@ -1,11 +1,14 @@
 # Agentic Catalog
 
 [![Validate](https://github.com/alex-red/agentic-catalog/actions/workflows/validate.yml/badge.svg)](https://github.com/alex-red/agentic-catalog/actions/workflows/validate.yml)
+[![Browse](https://img.shields.io/badge/browse-live%20catalog-58a6ff.svg)](https://alex-red.github.io/agentic-catalog/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
 **Status: experimental.** 40 entries across seven types, plus four collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
+
+**[Browse the catalog online](https://alex-red.github.io/agentic-catalog/)**: search, filter, and read every entry's rating, provenance, and source files.
 
 ## Use it from an agent
 
@@ -48,9 +51,10 @@ Each entry lives in `entries/<type>s/<id>/` with an `entry.yaml` and, unless it 
 
 ## Browse
 
+- [Live catalog browser](https://alex-red.github.io/agentic-catalog/): search, sort, filter, and read entry sources.
 - [llms.txt](llms.txt): the ranked list, one line per entry.
 - [catalog/index.json](catalog/index.json): full metadata.
-- `bun run dev`: a local browser with filters and a source viewer.
+- `bun run dev`: the same browser locally.
 
 ## Develop
 
