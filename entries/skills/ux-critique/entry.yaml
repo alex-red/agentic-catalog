@@ -1,0 +1,32 @@
+schemaVersion: 2
+id: ux-critique
+type: skill
+title: Evidence-grounded UX critique (Thecsiz)
+summary: Reviews interfaces and product flows by observing first, checking missing states, comparing relevant local UX references, verifying citation support, and challenging each finding with a skeptic pass. Reports concrete fixes with separate confidence labels and structural, behavioral, or visual classifications; chat is the default output.
+useWhen: You want direct, evidence-grounded criticism of an app screen, prototype, screenshot, or connected user flow, with unsupported findings challenged before reporting.
+tags: [ux, critique, usability, design-review, evidence]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-21
+  notes: Observation-first review, citation-support checks, and a skeptic pass add structure beyond generic critique. Fixed structural-over-visual ordering, a mandatory Brief check-in, and large KB dependencies limit it. Quick Scan checks IDs without auditing support. Expert critique is not user research. Core instructions and retrieval/usage scripts reviewed; 606 KB paths checked, not every body or Figma script audited. No behavioral evaluation; upstream receipt/retrieval fixtures do not establish critique quality.
+source:
+  kind: linked
+  url: https://github.com/Thecsiz/ux-critique
+  path: skills/ux-critique
+  revision: 3da293cafb639195bf71797590081d4ffb0045ba
+  retrieved: 2026-10-21
+  license: MIT AND CC-BY-4.0
+  author: Thecsiz
+  notes: Runtime and workflow references are MIT; the KB, generated facets, ID lookup, and documentation are CC-BY-4.0. The complete install also needs the repository-root kb directory and license notices, so copying only source.path is incomplete. Linked to preserve upstream packaging and mixed license scope.
+install:
+  claude-code: Fetch source.url at source.revision. Copy the contents of skills/ux-critique into the project's .claude/skills/ux-critique, then copy the repository-root kb directory into that installed directory as kb. Include LICENSE, LICENSE-MIT, LICENSE-CC-BY-4.0, and THIRD_PARTY_NOTICES.md from the repository root. Check for an existing skill before copying.
+  codex: Fetch source.url at source.revision. Copy the contents of skills/ux-critique into the project's .agents/skills/ux-critique, including agents/openai.yaml, then copy the repository-root kb directory into that installed directory as kb. Include LICENSE, LICENSE-MIT, LICENSE-CC-BY-4.0, and THIRD_PARTY_NOTICES.md from the repository root. Check for an existing skill before copying.
+  any: Assemble the same complete skill and root kb bundle at the pinned revision in the host's skill directory, retaining all four root license and notice files. Keep references, scripts, facets, and kb-ids.json together with SKILL.md; do not install SKILL.md alone.
+  notes: Start with Standard review in chat. Figma output needs a separately connected integration and explicit write authorization; installing this entry configures neither. Deep Flow uses workers for four or more screens by default; pass --serial to avoid that workflow. Upstream records aggregate local citation counts by default; set UX_CRITIQUE_DISABLE_USAGE=1 to disable recording. HTML artifact output is incomplete because its template is absent from this revision, and Apply Mode is experimental; neither is recommended here.
+overlap: Generic model critique and frontend-design guidance already identify familiar UI issues. This entry adds an explicit observation, citation-support, skeptic, and confidence pipeline. webapp-testing and chrome-devtools-mcp collect runtime evidence but do not supply that critique method. grilling stress-tests decisions through questions; improvement-loop and retrospective improve agent tooling and process. None of these substitutes for observing real users.
+related: [webapp-testing, chrome-devtools-mcp, grilling, verification-before-completion]

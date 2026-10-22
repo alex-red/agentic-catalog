@@ -128,3 +128,9 @@ The catalog can hold the owner's own prompts and workflows alongside curated one
 ## 23. A Featured group in the browser (2026-10-20)
 
 An entry can carry `featured: true` to appear in a Featured group at the top of the browser tree as well as under its own type. It is a display highlight only: `llms.txt`, ratings and discovery recommendations are unchanged, and the entry still lists once in its own section. The first featured entry is `improvement-loop`.
+
+## 24. Admit a linked UX critique skill with its complete install requirements (2026-10-21)
+
+Selected Thecsiz's `ux-critique` from the [user-critique research](user-critique-research-2026-10.md), pinned at `3da293cafb639195bf71797590081d4ffb0045ba`. Its observation-first, citation-support, skeptic, and confidence pipeline fills a product-critique gap beyond browser testing and generic design advice. The entry starts at `reviewed`; source review and resource-path checks are not behavioral evaluation or evidence of representative user reactions.
+
+The entry is linked rather than vendored. The runtime is MIT, but its required knowledge base and generated metadata are CC-BY-4.0. Installation must combine the skill directory with the repository-root `kb/` and all four license/notice files at the same revision. Copying only the skill directory silently loses full-reference support. The entry discloses default local citation-count recording and its disable switch, optional Deep Flow workers and `--serial`, separate Figma authorization, the absent HTML artifact template, and experimental Apply Mode. No host installation, Figma connection, or additional workflow is activated by catalog admission.

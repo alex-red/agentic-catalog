@@ -1,7 +1,7 @@
 # Plan
 
-Updated: October 20, 2026
-Status: experimental. The catalog has 40 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Updated: October 21, 2026
+Status: experimental. The catalog has 41 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -40,7 +40,7 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 
 | Type | Entries |
 | --- | --- |
-| Skills (22) | diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked) |
+| Skills (23) | diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked) |
 | Rules (4) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority |
 | Workflows (4) | self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked) |
 | Hooks (3) | format-after-edit, protect-files-and-commands, stop-gate-checks |
