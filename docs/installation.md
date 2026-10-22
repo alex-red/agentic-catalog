@@ -32,6 +32,20 @@ When installed as a plugin, the skill reads the catalog from the plugin's own co
 
 Update with `claude plugin marketplace update` and then `claude plugin update agentic-catalog`, or with `codex plugin marketplace upgrade`. Remove with `claude plugin uninstall agentic-catalog` or `codex plugin remove agentic-catalog@agentic-catalog`.
 
+## Bulk install from the browser
+
+Tick entries or whole collections in the [catalog browser](https://alex-red.github.io/agentic-catalog/), then choose **Install…**. Pick the host, the scope, and whether skills should go through the skills CLI.
+
+- **This repository** installs into the directory you run the script in (`.claude/`, or `.agents/` and `AGENTS.md`), so it can be committed and shared. Run the script from the repository root.
+- **All my projects** installs into your home folder (`~/.claude/`, or `~/.agents/` and `${CODEX_HOME:-~/.codex}/AGENTS.md`) and applies only to you. It can run from any directory. Project and user entries both load, and neither overrides the other, so don't install the same entry in both.
+
+The dialog lists what will be installed, removed, or left as manual steps, and gives two files:
+
+- `install-agentic-catalog.sh` copies skills, rules, and Claude Code subagents from the commit the site was built from. Read it, then run `bash install-agentic-catalog.sh`. Files that already exist and differ (local edits or an upstream change) are skipped unless you run it with `FORCE=1`. Codex rules are written as marked blocks in the scope's `AGENTS.md`, and a re-run replaces the block rather than adding a second one. Hooks, MCP servers, workflows, plugins, and linked entries without a plain installer appear only as commented manual steps.
+- `agentic-catalog.yaml` records the revision, host, scope, and entries. The script writes it to `.agents/agentic-catalog.yaml`, or to `~/.agents/agentic-catalog.yaml` for the user scope. [Its schema](../catalog/schema/install-config.schema.json) is linked from the file for editor completion.
+
+To update or remove entries later, choose **Load config** in the sidebar and pick `.agents/agentic-catalog.yaml` or `~/.agents/agentic-catalog.yaml` (on macOS, press ⌘⇧. in the file picker to show dot-folders). The selection is restored, and entries you untick get removal steps in the next script. Updating to newer catalog content is the same step: the new script fetches the current revision. The browser keeps the current selection in local storage, so it survives a reload.
+
 ## Entries by hand
 
 The [install guide](../skills/agentic-catalog/references/install.md) gives the target location for every entry type and host. In short:

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Install config",
+  "description": "A consumer project's record of installed catalog entries, stored as .agents/agentic-catalog.yaml in a repository or ~/.agents/agentic-catalog.yaml for a user and written by the browser's bulk install script.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "revision": {
+      "description": "Catalog commit the files were fetched from.",
+      "type": "string",
+      "pattern": "^(?:[0-9a-f]{7,40}|main)$"
+    },
+    "host": { "enum": ["claude-code", "codex"] },
+    "scope": {
+      "description": "project installs into the repository the script ran in; user installs under the home folder for every project. Defaults to project.",
+      "enum": ["project", "user"]
+    },
+    "skillsCli": {
+      "description": "Install catalog skills with the skills CLI (skills.sh) instead of copying files.",
+      "type": "boolean"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "type": { "enum": ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin"] }
+        },
+        "required": ["id", "type"]
+      }
+    },
+    "collections": {
+      "description": "Collections the selection started from; entries stays the source of truth.",
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+      "uniqueItems": true
+    }
+  },
+  "required": ["schemaVersion", "revision", "host", "entries"]
+}

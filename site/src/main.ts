@@ -1,6 +1,12 @@
 import data from "../../catalog/index.json";
 import "./styles.css";
 import { createCombobox, type ComboOption } from "./combobox";
+import {
+  CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
+  type BulkHost, type BulkScope, type InstallConfig, type StepKind,
+} from "./bulk";
+
+declare const __CATALOG_REVISION__: string;
 
 interface Rating {
   usefulness: number;
@@ -179,6 +185,42 @@ let sortKey: SortKey = "score";
 try {
   const saved = localStorage.getItem("catalog-sort");
   if (saved && saved in sorters) sortKey = saved as SortKey;
+} catch {}
+
+// Bulk selection, kept per viewer in localStorage so it survives reloads.
+const selected = new Set<string>();
+const selectedCollections = new Set<string>();
+let bulkHost: BulkHost = "claude-code";
+let bulkScope: BulkScope = "project";
+let bulkSkillsCli = false;
+// The config the viewer uploaded; entries dropped from it get removal steps.
+let baseline: InstallConfig | undefined;
+let uploadWarnings: string[] = [];
+
+const SELECTION_KEY = "catalog-selection";
+const entryIds = new Set(catalog.entries.map((e) => e.id));
+
+function saveSelection() {
+  try {
+    localStorage.setItem(SELECTION_KEY, JSON.stringify({
+      ids: [...selected], collections: [...selectedCollections], host: bulkHost, scope: bulkScope, skillsCli: bulkSkillsCli, baseline,
+    }));
+  } catch {}
+}
+
+try {
+  const saved = JSON.parse(localStorage.getItem(SELECTION_KEY) ?? "null") as {
+    ids?: string[]; collections?: string[]; host?: string; scope?: string; skillsCli?: boolean; baseline?: InstallConfig;
+  } | null;
+  if (saved) {
+    for (const id of saved.ids ?? []) if (entryIds.has(id)) selected.add(id);
+    for (const id of saved.collections ?? []) if (catalog.collections.some((c) => c.id === id)) selectedCollections.add(id);
+    if (saved.host === "claude-code" || saved.host === "codex") bulkHost = saved.host;
+    if (saved.scope === "project" || saved.scope === "user") bulkScope = saved.scope;
+    bulkSkillsCli = saved.skillsCli === true;
+    // Re-validate the stored baseline; drop it if it no longer parses.
+    if (saved.baseline) baseline = parseConfig(JSON.stringify(saved.baseline), catalog.entries).config;
+  }
 } catch {}
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, className?: string): HTMLElementTagNameMap[K] {
@@ -435,7 +477,9 @@ function renderList() {
         a.append(el("span", item.score.toFixed(1), "tree-item-score"));
       }
 
-      treeItems.append(a);
+      const row = el("div", undefined, "tree-row");
+      row.append(selectBox(item), a);
+      treeItems.append(row);
     }
 
     details.append(treeItems);
@@ -457,7 +501,263 @@ function renderList() {
   }
 }
 
+// A checkbox for an entry, or for all of a collection's members.
+function selectBox(item: Item): HTMLInputElement {
+  const box = el("input", undefined, "tree-check");
+  box.type = "checkbox";
+  box.setAttribute("aria-label", `Select ${item.title}`);
+  const members = item.collection ? item.collection.entries.filter((id) => entryIds.has(id)) : [item.id];
+  const count = members.filter((id) => selected.has(id)).length;
+  box.checked = count === members.length;
+  box.indeterminate = count > 0 && count < members.length;
+  box.addEventListener("change", () => {
+    for (const id of members) box.checked ? selected.add(id) : selected.delete(id);
+    if (item.collection) box.checked ? selectedCollections.add(item.id) : selectedCollections.delete(item.id);
+    selectionChanged();
+  });
+  return box;
+}
+
+function selectionChanged() {
+  // A collection stays recorded only while all of its members are selected.
+  for (const id of selectedCollections) {
+    const c = catalog.collections.find((c) => c.id === id);
+    if (!c || !c.entries.every((e) => selected.has(e))) selectedCollections.delete(id);
+  }
+  saveSelection();
+  renderList();
+  renderSelectionBar();
+}
+
+const selectionBar = $("#selection-bar");
+const selectionCount = $("#selection-count");
+const bulkDialog = $<HTMLDialogElement>("#bulk-dialog");
+const bulkBody = $("#bulk-body");
+const configFile = $<HTMLInputElement>("#config-file");
+
+function renderSelectionBar() {
+  selectionBar.hidden = selected.size === 0 && !baseline;
+  selectionCount.textContent = `${selected.size} selected`;
+}
+
+function currentConfig(): InstallConfig {
+  return makeConfig(catalog.entries, selected, {
+    revision: __CATALOG_REVISION__, host: bulkHost, scope: bulkScope, skillsCli: bulkSkillsCli, collections: selectedCollections,
+  });
+}
+
+const PAGES_URL = "https://alex-red.github.io/agentic-catalog/";
+const SCRIPT_FILE = "install-agentic-catalog.sh";
+let bulkTab: "script" | "config" = "script";
+
+function download(name: string, text: string, type: string) {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  const a = el("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function renderBulkDialog(error?: string) {
+  const opts = { repository: REPO_URL, rawRoot: RAW_ROOT, siteUrl: PAGES_URL };
+  const config = currentConfig();
+  const steps = planSteps(catalog.entries, config, opts, baseline);
+  bulkBody.replaceChildren();
+
+  if (error) bulkBody.append(el("p", error, "bulk-error"));
+
+  // Settings
+  const settings = el("div", undefined, "bulk-settings");
+  const segmented = <T extends string>(label: string, current: T, options: readonly (readonly [T, string])[], set: (v: T) => void) => {
+    const group = el("div", undefined, "install-tabs");
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", label);
+    for (const [value, text] of options) {
+      const b = el("button", text, "install-tab-btn");
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(current === value));
+      b.onclick = () => {
+        set(value);
+        saveSelection();
+        renderBulkDialog();
+      };
+      group.append(b);
+    }
+    return group;
+  };
+  const cliLabel = el("label", undefined, "bulk-check");
+  const cli = el("input");
+  cli.type = "checkbox";
+  cli.checked = bulkSkillsCli;
+  cli.onchange = () => {
+    bulkSkillsCli = cli.checked;
+    saveSelection();
+    renderBulkDialog();
+  };
+  cliLabel.append(cli, " Install skills with the skills CLI (skills.sh)");
+  settings.append(
+    segmented("Host", bulkHost, [["claude-code", "Claude Code"], ["codex", "Codex"]], (v) => (bulkHost = v)),
+    segmented("Scope", bulkScope, [["project", "This repository"], ["user", "All my projects"]], (v) => (bulkScope = v)),
+    cliLabel,
+  );
+  bulkBody.append(settings);
+
+  // What each scope means, in terms of where things land.
+  const scopeNote = el("p", undefined, "bulk-scope");
+  if (bulkScope === "project") {
+    scopeNote.append(
+      "Installs into the repository you run the script in (", el("code", bulkHost === "claude-code" ? ".claude/" : ".agents/ and AGENTS.md"),
+      "), so it can be committed and shared with everyone who clones it. The selection is saved to ", el("code", configPath("project")), ".",
+    );
+  } else {
+    scopeNote.append(
+      "Installs into your home folder (", el("code", bulkHost === "claude-code" ? "~/.claude/" : "~/.agents/ and ~/.codex/AGENTS.md"),
+      "), so it applies to every project on this machine and only for you. The selection is saved to ", el("code", configPath("user")),
+      ". Project entries load as well; if a project and a global entry disagree, the agent may follow either, so avoid installing the same entry in both.",
+    );
+  }
+  bulkBody.append(scopeNote);
+
+  // Where the files come from, and what removals are computed against.
+  const meta = el("p", undefined, "bulk-meta");
+  meta.append("Catalog revision ", el("code", __CATALOG_REVISION__.slice(0, 7)));
+  if (baseline) {
+    meta.append(". Removals are computed against the uploaded config");
+    if (baseline.revision !== __CATALOG_REVISION__) meta.append(" from ", el("code", baseline.revision.slice(0, 7)));
+    meta.append(". ");
+    const forget = el("button", "Forget uploaded config", "btn-tree-action");
+    forget.type = "button";
+    forget.onclick = () => {
+      baseline = undefined;
+      uploadWarnings = [];
+      saveSelection();
+      renderSelectionBar();
+      renderBulkDialog();
+    };
+    meta.append(forget);
+  }
+  bulkBody.append(meta);
+
+  if (uploadWarnings.length) {
+    const warn = el("ul", undefined, "bulk-warnings");
+    for (const w of uploadWarnings) warn.append(el("li", w));
+    bulkBody.append(warn);
+  }
+
+  // What the script will do
+  const groups: [StepKind, string][] = [["install", "Installs"], ["remove", "Removes"], ["manual", "Manual steps"]];
+  const plan = el("div", undefined, "bulk-plan");
+  for (const [kind, title] of groups) {
+    const chosen = steps.filter((s) => s.kind === kind);
+    if (!chosen.length) continue;
+    const col = el("div", undefined, "bulk-plan-group");
+    col.append(el("h3", `${title} (${chosen.length})`));
+    const ul = el("ul");
+    for (const s of chosen) {
+      const li = el("li");
+      li.append(el("span", s.id, "bulk-plan-id"), el("span", s.summary, "bulk-plan-where"));
+      ul.append(li);
+    }
+    col.append(ul);
+    plan.append(col);
+  }
+  if (!steps.length) plan.append(el("p", "Nothing selected. Tick entries in the sidebar, or load a config.", "bulk-meta"));
+  bulkBody.append(plan);
+
+  // Script and config output
+  const script = configToScript(catalog.entries, config, opts, baseline);
+  const yaml = configToYaml(config, opts);
+  const out = el("div", undefined, "bulk-output");
+  const bar = el("div", undefined, "bulk-output-bar");
+  const tabs = el("div", undefined, "install-tabs");
+  tabs.setAttribute("role", "tablist");
+  const pre = el("pre", bulkTab === "script" ? script : yaml, "code-view bulk-code");
+  for (const [tab, label] of [["script", SCRIPT_FILE], ["config", configPath(bulkScope)]] as const) {
+    const b = el("button", label, "install-tab-btn");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", String(bulkTab === tab));
+    b.onclick = () => {
+      bulkTab = tab;
+      renderBulkDialog();
+    };
+    tabs.append(b);
+  }
+  const actions = el("div", undefined, "bulk-output-actions");
+  const copy = el("button", "Copy", "btn-snippet-copy");
+  copy.type = "button";
+  copy.onclick = async () => {
+    await navigator.clipboard.writeText(pre.textContent ?? "");
+    copy.textContent = "✓ Copied";
+    setTimeout(() => (copy.textContent = "Copy"), 1200);
+  };
+  const save = el("button", "Download", "btn-snippet-copy");
+  save.type = "button";
+  save.onclick = () => (bulkTab === "script" ? download(SCRIPT_FILE, script, "text/x-shellscript") : download(CONFIG_NAME, yaml, "application/yaml"));
+  actions.append(copy, save);
+  bar.append(tabs, actions);
+  out.append(bar, pre);
+  bulkBody.append(out);
+
+  const how = el("p", undefined, "bulk-meta");
+  const run = `bash ${SCRIPT_FILE} && rm ${SCRIPT_FILE}`;
+  how.append(
+    bulkScope === "project" ? "Save the script in the repository root, read it, then run " : "Save the script anywhere, read it, then run ",
+    el("code", run), ". It writes ", el("code", configPath(bulkScope)),
+    "; choose Load config here later to update or remove entries. ",
+    bulkScope === "user" ? "The file picker hides dot-folders such as ~/.agents; on macOS press ⌘⇧. to show them." : "",
+  );
+  bulkBody.append(how);
+}
+
+function openBulkDialog(error?: string) {
+  renderBulkDialog(error);
+  if (!bulkDialog.open) bulkDialog.showModal();
+}
+
+async function loadConfig(file: File) {
+  try {
+    const { config, known, warnings } = parseConfig(await file.text(), catalog.entries);
+    selected.clear();
+    for (const id of known) selected.add(id);
+    selectedCollections.clear();
+    for (const id of config.collections ?? []) selectedCollections.add(id);
+    bulkHost = config.host;
+    bulkScope = config.scope;
+    bulkSkillsCli = config.skillsCli;
+    baseline = config;
+    uploadWarnings = warnings;
+    selectionChanged();
+    openBulkDialog();
+  } catch (err) {
+    openBulkDialog(`${file.name}: ${(err as Error).message}`);
+  }
+}
+
+$("#config-load").addEventListener("click", () => configFile.click());
+configFile.addEventListener("change", () => {
+  const file = configFile.files?.[0];
+  configFile.value = "";
+  if (file) void loadConfig(file);
+});
+$("#selection-review").addEventListener("click", () => openBulkDialog());
+$("#selection-clear").addEventListener("click", () => {
+  selected.clear();
+  selectedCollections.clear();
+  selectionChanged();
+});
+$("#selection-shown").addEventListener("click", () => {
+  for (const item of visible()) if (item.entry) selected.add(item.id);
+  selectionChanged();
+});
+$("#bulk-close").addEventListener("click", () => bulkDialog.close());
+bulkDialog.addEventListener("click", (e) => {
+  if (e.target === bulkDialog) bulkDialog.close();
+});
+
 const REPO_URL = "https://github.com/alex-red/agentic-catalog";
+const RAW_ROOT = "https://raw.githubusercontent.com/alex-red/agentic-catalog";
 const RAW_BASE = "https://raw.githubusercontent.com/alex-red/agentic-catalog/main";
 
 type InstallHost = "claude" | "codex" | "portable" | "skills";
@@ -495,7 +795,7 @@ function installSnippet(e: CatalogEntry, host: InstallHost): { text: string; not
       const primary = (name: string) => raw(`${e.path}/${name}`);
       switch (e.type) {
         case "skill": {
-          const dest = `${host === "claude" ? ".claude" : ".agents"}/skills/${e.id}`;
+          const dest = skillDir(host === "claude" ? "claude-code" : "codex", e.id);
           const files = e.files.map((f) => f.slice(e.path.length + 1));
           const dirs = [...new Set(files.map((f) => f.split("/").slice(0, -1).join("/")))];
           const mkdirs = `mkdir -p ${dirs.map((d) => (d ? `${dest}/${d}` : dest)).join(" ")}`;
@@ -940,6 +1240,8 @@ window.addEventListener("hashchange", sync);
 // Keyboard shortcuts
 window.addEventListener("keydown", (e) => {
   if ((e.target as Element | null)?.closest?.(".combo, .combo-pop")) return;
+  // Open dialogs handle Escape themselves; don't also reset the page behind them.
+  if (bulkDialog.open) return;
   const typing = document.activeElement === input;
   if (e.key === "/" && !typing) {
     e.preventDefault();
@@ -983,4 +1285,5 @@ treeToggleAllBtn.addEventListener("click", () => {
 $("#counts").textContent = `${catalog.entries.length}`;
 
 renderControls();
+renderSelectionBar();
 sync();

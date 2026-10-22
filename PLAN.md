@@ -70,4 +70,4 @@ Candidates that were considered and left out, with reasons, are in the research 
 
 ## Out of scope until evidence asks for it
 
-A custom installer CLI, an MCP server for the catalog, a hosted website, automatic installation of hooks or MCP servers, and per-entry versioning beyond pinned upstream revisions.
+A custom installer CLI (the browser's generated bulk install script is not one; see [decision 25](docs/decisions.md)), an MCP server for the catalog, a hosted website, automatic installation of hooks or MCP servers, and per-entry versioning beyond pinned upstream revisions.
