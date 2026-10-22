@@ -27,7 +27,7 @@ Always-loaded instructions cost context in every session, and measurements publi
 
 - Keep the root file short, under about 150 lines. In a monorepo, add a nested `AGENTS.md` per package; the nearest file wins.
 - Scope path-specific rules with nested files, or with `.claude/rules/*.md` files that declare `paths:`.
-- Claude Code reads `AGENTS.md` only when no `CLAUDE.md` exists. Otherwise put `@AGENTS.md` in `CLAUDE.md` so both hosts share one source.
+- Claude Code 2.1.277 and later reads `AGENTS.md` itself, but by default only when no `CLAUDE.md` exists in the working directory or any parent. Otherwise put `@AGENTS.md` in `CLAUDE.md` so both hosts share one source.
 
 ## Audit an existing file
 
