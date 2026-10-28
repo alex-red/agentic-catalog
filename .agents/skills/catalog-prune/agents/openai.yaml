@@ -1,0 +1,4 @@
+interface:
+  display_name: "Catalog Prune"
+  short_description: "Review and retire entries that no longer earn a place"
+  default_prompt: "Use $catalog-prune to review our existing skills for declining value and recommend what to keep, refresh, archive, or remove."

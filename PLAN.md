@@ -1,7 +1,7 @@
 # Plan
 
-Updated: October 21, 2026
-Status: experimental. The catalog has 41 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Updated: October 27, 2026
+Status: experimental. The catalog has 43 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -40,8 +40,8 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 
 | Type | Entries |
 | --- | --- |
-| Skills (23) | diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked) |
-| Rules (4) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority |
+| Skills (24) | diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked) |
+| Rules (5) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority, markdown-accessibility |
 | Workflows (4) | self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked) |
 | Hooks (3) | format-after-edit, protect-files-and-commands, stop-gate-checks |
 | Subagents (2) | silent-failure-hunter, pr-review-code-reviewer |
@@ -58,7 +58,7 @@ Candidates that were considered and left out, with reasons, are in the research 
 2. **Use it end to end.** In a real project, ask an agent in each host to "grab useful skills from the catalog" and to "find a self-improvement loop". Record trigger behavior, recommendation quality, and install friction in `evals/results/`.
 3. ~~**Check the host-specific claims.**~~ Done against Codex docs and source on 2026-10-20; see [compatibility](docs/compatibility.md). Install commands of third-party linked plugins remain upstream claims.
 4. **Raise evidence where it matters.** First trigger pass recorded on Sonnet 5.5 ([results](evals/results/triggers-sonnet-2026-10-20.md)): the discovery skill passed 7/7, and `systematic-debugging` missed 2 of 4 activations. A rerun with fixtures in the workspace showed the misses are Sonnet solving small bugs directly; next, add a hard-bug trigger fixture. Then add cases for the vendored skills, and run the prepared matched comparisons for the original entries when authorized. The harness is in `evals/`; it is optional for a catalog entry, not a release gate.
-5. **Grow carefully.** The first batch from the [October research queue](docs/research-2026-10.md) is in ([decision 20](docs/decisions.md)). Next come the linked workflows (Matt Pocock's architecture skill, Planning with Files, terraform-test) and the held candidates (verify the Supabase SQL, wait for corrected Liran Tal rules, clarify the Sentry Django license). Interesting but unproven candidates go in the experimental tier ([decision 21](docs/decisions.md)). Each new entry starts at `reviewed`.
+5. **Grow carefully.** The first batch from the [October research queue](docs/research-2026-10.md) is in ([decision 20](docs/decisions.md)). Domain modeling and Markdown accessibility from the [October 27 scout](docs/research/2026-10-27-catalog-scout.md) are now admitted ([decision 28](docs/decisions.md)). Next review Actions security and sharp-edges; resolve the Durable Objects reference discrepancy and Terraform testing errors before considering those additions. Keep the earlier Supabase SQL, Node security rules, Django licensing, and Planning with Files runtime holds open. Interesting but unproven candidates can enter the experimental tier ([decision 21](docs/decisions.md)); every new entry still starts at `reviewed`.
 6. ~~**Automate freshness.**~~ Done: `bun run catalog:freshness` reports pinned upstreams that have moved and reviews older than six months (`--strict` exits non-zero). On 2026-10-20 all vendored entries were current, and four linked repositories had moved by 1 to 9 commits.
 
 ## Release gate for v0.1

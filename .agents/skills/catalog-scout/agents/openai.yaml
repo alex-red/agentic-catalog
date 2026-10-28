@@ -1,0 +1,4 @@
+interface:
+  display_name: "Catalog Scout"
+  short_description: "Research and rank additions to Agentic Catalog"
+  default_prompt: "Use $catalog-scout to survey the current skills and rules ecosystem, refresh our review queue, and recommend the strongest additions to the catalog."

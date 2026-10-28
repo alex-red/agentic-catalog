@@ -9,6 +9,7 @@
     "eval-build/**",
     "entries/skills/create-adaptable-composable/**",
     "entries/skills/diagnosing-bugs/**",
+    "entries/skills/domain-modeling/**",
     "entries/skills/gh-fix-ci/**",
     "entries/skills/grilling/**",
     "entries/skills/handoff/**",

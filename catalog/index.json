@@ -165,6 +165,62 @@
     },
     {
       "schemaVersion": 2,
+      "id": "domain-modeling",
+      "type": "skill",
+      "title": "Domain vocabulary and decision records",
+      "summary": "Sharpen business-domain terminology against the code, record resolved terms in a glossary, and offer short architecture decision records for consequential tradeoffs. Includes glossary and ADR formats, with a glossary map for projects with multiple contexts.",
+      "useWhen": "Discussing ambiguous codebase terminology, maintaining a domain glossary, or recording the reasoning behind a consequential architecture decision.",
+      "tags": [
+        "domain-modeling",
+        "glossary",
+        "architecture",
+        "decisions",
+        "documentation"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-27",
+        "notes": "Small and complete, with concrete terminology checks and a useful threshold for offering ADRs. Ordinary models can already write glossaries and decision notes; the value is the ongoing discipline. It writes resolved terms inline and prescribes GLOSSARY.md and docs/adr/ conventions, which must yield to the consumer project's existing guidance. No trigger or outcome evaluation has been run."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/mattpocock/skills",
+        "path": "skills/engineering/domain-modeling",
+        "revision": "d80fa0f4ebe0c5714af0adf8670336065233ecc6",
+        "retrieved": "2026-10-27",
+        "license": "MIT",
+        "author": "Matt Pocock",
+        "notes": "The complete four-file skill subtree is copied unchanged. LICENSE.txt is the root license at the same revision; there is no applicable NOTICE file. agents/openai.yaml contains display metadata and leaves normal skill discovery enabled. No sibling skill, script, hook, or external service is required."
+      },
+      "install": {
+        "notes": "Copy the entire skill directory, including both format references and LICENSE.txt. It updates resolved terms in GLOSSARY.md inline, can use GLOSSARY-MAP.md for multiple contexts, and offers ADRs in docs/adr/. Preserve existing project document conventions; no files are created by catalog admission or installation alone."
+      },
+      "overlap": "Ordinary model behavior covers terminology clarification and drafting ADRs. grilling interviews design decisions, handoff preserves session context, and explore-plan-implement-review organizes implementation; none specifically maintains canonical domain language against the code. Check for an existing host or project glossary skill before installing another.",
+      "related": [
+        "grilling",
+        "handoff",
+        "explore-plan-implement-review"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/mattpocock/skills/tree/d80fa0f4ebe0c5714af0adf8670336065233ecc6/skills/engineering/domain-modeling",
+      "path": "entries/skills/domain-modeling",
+      "files": [
+        "entries/skills/domain-modeling/ADR-FORMAT.md",
+        "entries/skills/domain-modeling/GLOSSARY-FORMAT.md",
+        "entries/skills/domain-modeling/LICENSE.txt",
+        "entries/skills/domain-modeling/SKILL.md",
+        "entries/skills/domain-modeling/agents/openai.yaml"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "find-skills",
       "type": "skill",
       "title": "Find skills on skills.sh",
@@ -1219,6 +1275,66 @@
       "sourceUrl": "https://github.com/multica-ai/andrej-karpathy-skills/blob/8462496b34419f20b32778610571ac723e91f94c/CLAUDE.md",
       "path": "entries/rules/karpathy-coding-guidelines",
       "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "markdown-accessibility",
+      "type": "rule",
+      "title": "Accessible Markdown documentation",
+      "summary": "Keep Markdown documentation usable through meaningful links, context-appropriate image alternatives, navigable headings, semantic lists and tables, and instructions that do not depend on visual cues. Preserves decorative images, generated titles, and the project's voice and renderer conventions.",
+      "useWhen": "Writing or reviewing Markdown documentation where screen-reader navigation, image alternatives, or visual-only instructions need attention beyond formatter and lint checks.",
+      "tags": [
+        "accessibility",
+        "markdown",
+        "documentation",
+        "code-review"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-27",
+        "notes": "A scoped, independently written adaptation of GitHub's documentation guidance. Markdown lint catches some heading and list structure but cannot judge link meaning or image context. The rule preserves decorative empty alt text and treats one-H1 style as a renderer or project convention. Source review is not an accessibility conformance audit or behavioral evaluation."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Written here from the MIT-licensed GitHub instruction at its path-specific pin and W3C guidance. No upstream payload text or Copilot applyTo frontmatter is copied. The source instruction and actual root MIT license were read before adaptation."
+      },
+      "inspiredBy": [
+        {
+          "title": "GitHub awesome-copilot Markdown accessibility instruction (MIT)",
+          "url": "https://github.com/github/awesome-copilot/blob/e2c948023120a8318645170132b839280b50557e/instructions/markdown-accessibility.instructions.md"
+        },
+        {
+          "title": "W3C WAI decorative image alternatives",
+          "url": "https://www.w3.org/WAI/tutorials/images/decorative/"
+        },
+        {
+          "title": "W3C WAI heading structure",
+          "url": "https://www.w3.org/WAI/tutorials/page-structure/headings/"
+        }
+      ],
+      "install": {
+        "notes": "Apply RULE.md only to Markdown authoring and review. Preserve the consumer host's rule-loading conventions and existing renderer or generated-title behavior; this entry does not install a formatter, linter, hook, or integration."
+      },
+      "overlap": "Markdown linters already catch some heading, list, and image syntax issues. Models and host writing guidance cover plain language; frontend-design and ux-critique address interface design. This rule adds a bounded documentation review for meaningful link text, image purpose, semantic navigation, and nonvisual instructions. Skip it when existing project accessibility guidance covers those checks.",
+      "related": [
+        "ux-critique",
+        "focused-changes"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/github/awesome-copilot/blob/e2c948023120a8318645170132b839280b50557e/instructions/markdown-accessibility.instructions.md",
+      "path": "entries/rules/markdown-accessibility",
+      "files": [
+        "entries/rules/markdown-accessibility/RULE.md"
+      ]
     },
     {
       "schemaVersion": 2,

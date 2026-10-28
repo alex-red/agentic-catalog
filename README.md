@@ -6,7 +6,7 @@
 
 A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
-**Status: experimental.** 41 entries across seven types, plus four collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
+**Status: experimental.** 43 entries across seven types, plus four collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
 
 **[Browse the catalog online](https://alex-red.github.io/agentic-catalog/)**: search, filter, and read every entry's rating, provenance, and source files.
 

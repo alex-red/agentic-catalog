@@ -4,6 +4,14 @@ An entry earns its place by being the best available option for a real job, or a
 
 ## Add an entry
 
+For upstream discovery, use the repository-local skill at `.agents/skills/catalog-scout/SKILL.md`:
+
+```text
+$catalog-scout Survey the current skills and rules ecosystem, refresh our review queue, and recommend the five strongest additions to the catalog.
+```
+
+It saves dated reports under `docs/research/`, building on prior research and admission decisions. Reports separate source-reviewed recommendations from candidates needing further inspection, preserve holds and exclusions, and identify existing entries worth revisiting. Scouting does not add or install entries. The maintainer skill is separate from the consumer-facing `agentic-catalog` plugin skill.
+
 1. Create `entries/<type>s/<id>/entry.yaml` following the [entry schema](catalog/schema/entry.schema.json). The ID must match the directory, and the type must match the parent folder.
 2. Add the payload unless the entry is linked:
 
@@ -19,6 +27,16 @@ An entry earns its place by being the best available option for a real job, or a
 
 3. Rate it honestly on all four axes, and explain the rating in `rating.notes`. Score novelty against host built-ins and default model behavior, and record the overlap in `overlap`.
 4. Run `bun run catalog:build` and `bun run check`.
+
+## Review and retire entries
+
+Use `.agents/skills/catalog-prune/SKILL.md` for catalog upkeep:
+
+```text
+$catalog-prune Review our existing skills and recommend what to keep, refresh, archive, or remove.
+```
+
+A review writes a dated report under `docs/research/`. A request to apply retirements authorizes the scoped repository changes. Archives preserve complete entries outside the active catalog under `archive/YYYY-MM-DD/<type>s/<id>/`, with reasons, provenance, and restoration steps in `archive/YYYY-MM-DD/records/<id>.md`. Removal records use the same convention without retaining the payload. The skill repairs active references and rebuilds the catalog when applying changes; it does not uninstall consumer copies. Declining popularity alone is not a retirement reason.
 
 ## Sources and licenses
 

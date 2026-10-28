@@ -1,0 +1,32 @@
+schemaVersion: 2
+id: markdown-accessibility
+type: rule
+title: Accessible Markdown documentation
+summary: Keep Markdown documentation usable through meaningful links, context-appropriate image alternatives, navigable headings, semantic lists and tables, and instructions that do not depend on visual cues. Preserves decorative images, generated titles, and the project's voice and renderer conventions.
+useWhen: Writing or reviewing Markdown documentation where screen-reader navigation, image alternatives, or visual-only instructions need attention beyond formatter and lint checks.
+tags: [accessibility, markdown, documentation, code-review]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-27
+  notes: A scoped, independently written adaptation of GitHub's documentation guidance. Markdown lint catches some heading and list structure but cannot judge link meaning or image context. The rule preserves decorative empty alt text and treats one-H1 style as a renderer or project convention. Source review is not an accessibility conformance audit or behavioral evaluation.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Written here from the MIT-licensed GitHub instruction at its path-specific pin and W3C guidance. No upstream payload text or Copilot applyTo frontmatter is copied. The source instruction and actual root MIT license were read before adaptation.
+inspiredBy:
+  - title: GitHub awesome-copilot Markdown accessibility instruction (MIT)
+    url: https://github.com/github/awesome-copilot/blob/e2c948023120a8318645170132b839280b50557e/instructions/markdown-accessibility.instructions.md
+  - title: W3C WAI decorative image alternatives
+    url: https://www.w3.org/WAI/tutorials/images/decorative/
+  - title: W3C WAI heading structure
+    url: https://www.w3.org/WAI/tutorials/page-structure/headings/
+install:
+  notes: Apply RULE.md only to Markdown authoring and review. Preserve the consumer host's rule-loading conventions and existing renderer or generated-title behavior; this entry does not install a formatter, linter, hook, or integration.
+overlap: Markdown linters already catch some heading, list, and image syntax issues. Models and host writing guidance cover plain language; frontend-design and ux-critique address interface design. This rule adds a bounded documentation review for meaningful link text, image purpose, semantic navigation, and nonvisual instructions. Skip it when existing project accessibility guidance covers those checks.
+related: [ux-critique, focused-changes]
