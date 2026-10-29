@@ -1,6 +1,7 @@
 import data from "../../catalog/index.json";
 import "./styles.css";
 import "./scrollbars.css";
+import { catalogIcon } from "./icons";
 import { highlightSource } from "./highlight";
 import { createCombobox, type ComboOption } from "./combobox";
 import { createCommandPalette } from "./command-palette";
@@ -332,6 +333,12 @@ function link(text: string, href: string) {
   return a;
 }
 
+function kindBadge(kind: string, label = kind) {
+  const badge = el("span", undefined, `badge badge-${kind}`);
+  badge.append(catalogIcon(kind), document.createTextNode(label));
+  return badge;
+}
+
 function renderControls() {
   const refresh = () => {
     renderControls();
@@ -483,7 +490,7 @@ function renderList() {
     const chevron = el("span", "▸", "tree-chevron");
     const title = el("span", kindLabels[kind] ?? kind, "tree-group-title");
     const count = el("span", String(group.length), "tree-group-count");
-    summary.append(chevron, title, count);
+    summary.append(chevron, catalogIcon(kind), title, count);
     details.append(summary);
 
     const treeItems = el("div", undefined, "tree-items");
@@ -511,7 +518,7 @@ function renderList() {
       }
 
       const itemTitle = el("span", item.title, "tree-item-title");
-      a.append(dot, itemTitle);
+      a.append(dot, catalogIcon(item.kind), itemTitle);
 
       if (item.score !== undefined) {
         a.append(el("span", item.score.toFixed(1), "tree-item-score"));
@@ -954,7 +961,7 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
   const left = el("div", undefined, "viewer-title-left");
 
   const badges = el("div", undefined, "card-badges");
-  badges.append(el("span", "Collection", "badge badge-collection"));
+  badges.append(kindBadge("collection", "Collection"));
   left.append(badges, el("h2", collection.title));
   titleRow.append(left, copyForLlm(undefined, collection));
   header.append(titleRow);
@@ -977,7 +984,7 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
     card.href = `#/${entryItem.kind}/${entryItem.id}`;
 
     const top = el("div", undefined, "card-top");
-    top.append(el("span", entryItem.kind, `badge badge-${entryItem.kind}`));
+    top.append(kindBadge(entryItem.kind));
     if (entryItem.score !== undefined) {
       top.append(el("span", entryItem.score.toFixed(1), "score-pill"));
     }
@@ -1101,7 +1108,12 @@ async function renderViewer() {
 
   if (!item) {
     const empty = el("div", undefined, "empty-state");
-    empty.append(el("span", "🧭", "empty-icon"), el("p", "Select an item from the list to inspect ratings, rubric, and files."));
+    const logo = el("img", undefined, "empty-logo");
+    logo.src = `${import.meta.env.BASE_URL}logo-192.png`;
+    logo.alt = "";
+    logo.width = 64;
+    logo.height = 64;
+    empty.append(logo, el("p", "Select an item from the list to inspect ratings, rubric, and files."));
     empty.append(copyForLlm());
     viewer.append(empty);
     return;
@@ -1122,10 +1134,10 @@ async function renderViewer() {
   const left = el("div", undefined, "viewer-title-left");
 
   const badges = el("div", undefined, "card-badges");
-  badges.append(el("span", entry.type, `badge badge-${entry.type}`));
-  if (entry.featured) badges.append(el("span", "Featured", "badge badge-featured"));
-  if (entry.custom) badges.append(el("span", "Custom", "badge badge-custom"));
-  if (entry.experimental) badges.append(el("span", "Experimental", "badge badge-experimental"));
+  badges.append(kindBadge(entry.type));
+  if (entry.featured) badges.append(kindBadge("featured", "Featured"));
+  if (entry.custom) badges.append(kindBadge("custom", "Custom"));
+  if (entry.experimental) badges.append(kindBadge("experimental", "Experimental"));
 
   for (const h of entry.hosts) {
     badges.append(el("span", h === "claude-code" ? "Claude Code" : h === "codex" ? "Codex" : "Portable", `badge badge-host-${h}`));

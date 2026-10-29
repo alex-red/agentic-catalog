@@ -434,3 +434,15 @@ At the user's direction ("review the rest, decide for us"), read the four review
   Both remain reconsiderable at upstream pins that fix these.
 
 Both new entries start at `reviewed`. The catalog now has 108 entries, 60 of them skills, twenty-one experimental and eight collections. No plugin manifest, version, hook or consumer installation changes. Generated indexes are rebuilt from source.
+
+## 56. Give catalog types a custom icon vocabulary (2026-10-29)
+
+The browser uses original inline SVG glyphs for all eight entry types, collections, topic groups and special groups. A shared 20-unit grid, 1.5-unit stroke and open geometry match the compact workbench theme. Distinct silhouettes identify types in group headings, entry rows and viewer/collection badges; row icons retain the underlying type inside topic and status groups. Existing host dots keep their host meaning.
+
+Icons inherit theme colors, remain decorative beside text labels and add no asset or icon-library dependency. The single source in `site/src/icons.ts` keeps the vocabulary consistent across placements.
+
+## 57. Give the browser a generated catalog compass mark (2026-10-29)
+
+Replaced the compass emoji branding with an original blue layered-card mark and a compass-arrow cutout, generated with the built-in image generation tool. The transparent master lives in `site/public/logo.png`; local PNG sizes and a multi-size ICO serve the header, empty state, browser favicon and Apple touch icon. Image resizing preserves the generated alpha. Base-aware asset paths support the GitHub Pages subdirectory. No new runtime dependency is introduced.
+
+The generation brief and asset map live in [logo notes](design/logo.md).
