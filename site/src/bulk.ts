@@ -1,6 +1,7 @@
 // Bulk install: turns a selection of catalog entries into a reviewable bash script and a YAML config.
 // No DOM access here, so the logic is shared by the browser and the tests.
 import { parse, stringify } from "yaml";
+import { canInstallHook } from "./hook-install.ts";
 
 export type BulkHost = "claude-code" | "codex";
 /** `project` installs into the repository the script runs in; `user` installs under $HOME for every project. */
@@ -13,7 +14,8 @@ export interface BulkEntry {
   title?: string;
   path: string;
   files: string[];
-  source: { kind: string; url?: string; path?: string };
+  hosts?: string[];
+  source: { kind: string; url?: string; path?: string; revision?: string };
   install?: { "claude-code"?: string; codex?: string; any?: string; notes?: string };
 }
 
@@ -145,7 +147,13 @@ function installStep(e: BulkEntry, config: InstallConfig, opts: BulkOptions): St
     });
     return step(at(scope, `.claude/agents/${e.id}.md`).show, lines);
   }
-  // Hooks, MCP servers, workflows, plugins, and linked entries without a plain installer are never run implicitly.
+  if (scope === "project" && canInstallHook(e, host)) {
+    return step(`copy runtime and merge ${host === "claude-code" ? ".claude/settings.json" : ".codex/hooks.json"}`, [
+      'fetch scripts/install-hook.py hook-installer.py',
+      `python3 "$STAGE/hook-installer.py" ${sh(e.id)} --host ${sh(host)} --revision ${sh(revision)} --raw-base "$BASE"`,
+    ]);
+  }
+  // Unsupported/global hooks, MCP servers, workflows, plugins and prose installers stay manual.
   return { id: e.id, type: e.type, kind: "manual", summary: e.type === "hook" || e.type === "mcp" ? "review and configure by hand" : "follow the steps by hand", lines: [head, ...comment(`manual: ${guidance(e, host, opts, revision)}`)] };
 }
 
@@ -269,7 +277,7 @@ export function configToScript(catalog: BulkEntry[], config: InstallConfig, opts
     "",
     ...section("remove", "Remove entries dropped from the config"),
     ...section("install", "Install"),
-    ...section("manual", "Manual steps (hooks, MCP servers, workflows, plugins, and linked entries are never run automatically)"),
+    ...section("manual", "Manual steps (unsupported/global hooks, MCP servers, workflows, plugins, and prose installers)"),
     "# --- Record the selection ---",
     "",
     `mkdir -p ${at(config.scope, ".agents").sh}`,

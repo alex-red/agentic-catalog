@@ -1,6 +1,7 @@
 import data from "../../catalog/index.json";
 import "./styles.css";
 import { createCombobox, type ComboOption } from "./combobox";
+import { canInstallHook, hookInstallCommand } from "./hook-install";
 import {
   CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
   type BulkHost, type BulkScope, type InstallConfig, type StepKind,
@@ -763,6 +764,13 @@ const RAW_BASE = "https://raw.githubusercontent.com/alex-red/agentic-catalog/mai
 type InstallHost = "claude" | "codex" | "portable" | "skills";
 
 function installSnippet(e: CatalogEntry, host: InstallHost): { text: string; note?: string } {
+  const hookHost = host === "claude" ? "claude-code" : host === "codex" ? "codex" : undefined;
+  if (hookHost && canInstallHook(e, hookHost)) {
+    return {
+      text: hookInstallCommand(e, hookHost, __CATALOG_REVISION__, RAW_ROOT),
+      note: `Run from the target project. Requires Python 3.9+, Git and curl. Copies missing runtime files and merges only missing hooks into ${hookHost === "claude-code" ? ".claude/settings.json" : ".codex/hooks.json"}; preserves other settings, backs up changes, and stops on conflicting files. Review the hook and its dependencies before running. ${hookHost === "codex" ? "Then review and trust it in /hooks. " : ""}${e.install?.notes ?? ""}`,
+    };
+  }
   // skills.sh style: the skills CLI installs one directory by its tree URL. Linked skills use their upstream.
   if (host === "skills") {
     if (e.source.kind === "linked") return installSnippet(e, "portable");

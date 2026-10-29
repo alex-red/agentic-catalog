@@ -1628,10 +1628,314 @@
     },
     {
       "schemaVersion": 2,
+      "id": "case-insensitive-guard",
+      "type": "hook",
+      "title": "Catch filesystem case collisions",
+      "summary": "Checks destructive shell targets against real directory entries to catch content versus Content collisions on case-insensitive volumes.",
+      "useWhen": "Agents delete or overwrite similarly capitalized paths on macOS, Windows, or shared case-insensitive drives.",
+      "tags": [
+        "filesystem",
+        "data-loss",
+        "pre-tool-use"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Models several shell chains and wrappers without probe writes. Dynamic targets, substitutions, globs, and complete shell semantics remain outside coverage. Exact-case deletes and case-only renames pass. Not a general deletion sandbox. Codex support is a documented direct-script registration for canonical Bash/deny payloads; live invocation remains unverified."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/karanb192/claude-code-hooks",
+        "path": "plugins/case-insensitive-guard",
+        "revision": "63e0354bdf6ec56dd508d8ceef33b416ab6d8b14",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Karan Bansal",
+        "notes": "Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; reads directory metadata and logs full blocked/asked commands plus path spellings to ~/.claude/hooks-logs. Only useful on case-insensitive volumes."
+      },
+      "install": {
+        "claude-code": "For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/case-insensitive-guard as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/case-insensitive-guard. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install case-insensitive-guard@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.",
+        "notes": "Node.js; reads directory metadata and logs full blocked/asked commands plus path spellings to ~/.claude/hooks-logs. Only useful on case-insensitive volumes. Do not combine the individual guard with upstream guard-pack, which duplicates it.",
+        "codex": "Fetch https://github.com/karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14; retain root LICENSE and copy the unchanged plugins/case-insensitive-guard/case-insensitive-guard.js into .codex/hooks/case-insensitive-guard/. Requires Node.js. Merge this JSON into .codex/hooks.json: {\"hooks\":{\"PreToolUse\":[{\"matcher\":\"^Bash$\",\"hooks\":[{\"type\":\"command\",\"command\":\"node \\\"$(git rev-parse --show-toplevel)/.codex/hooks/case-insensitive-guard/case-insensitive-guard.js\\\"\",\"timeout\":10}]}]}}. Trust the project and exact hook definition in /hooks. Codex canonical Bash command/cwd and PreToolUse deny JSON match this script. Use only deny mode: keep HOOK_ASK_CRITICAL/HIGH/STRICT unset or false; Codex PreToolUse ask is unsupported. Hook errors/timeouts can proceed without a deny; no onFailure field is claimed. Upstream logs still use ~/.claude/hooks-logs. No Codex plugin loader or marketplace install is needed."
+      },
+      "overlap": "protect-files-and-commands blocks a few destructive patterns; this addresses actual path spelling collisions that generic command rules miss.",
+      "related": [
+        "protect-files-and-commands"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/tree/63e0354bdf6ec56dd508d8ceef33b416ab6d8b14/plugins/case-insensitive-guard",
+      "path": "entries/hooks/case-insensitive-guard",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "compact-context",
+      "type": "hook",
+      "title": "Restore a small compaction note",
+      "summary": "Reinjects a maintained, size-limited project note after compaction in Claude Code or Codex. Each harness reads its own project-local note.",
+      "useWhen": "Compaction repeatedly loses a few critical details that are not already covered by loaded project instructions.",
+      "tags": [
+        "context",
+        "compaction",
+        "session-start"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Claude reads CLAUDE_PROJECT_DIR; the Codex adapter infers the project from its .codex/hooks installation and reads .codex/compact-context.md. Bounded to 6000 UTF-8 bytes. Missing/oversize/outside-root notes are not loaded. Source-level fixtures only; host invocation remains unverified."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks."
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code hook documentation",
+          "url": "https://code.claude.com/docs/en/hooks-guide#re-inject-context-after-compaction"
+        },
+        {
+          "title": "Official Codex hooks contract",
+          "url": "https://learn.chatgpt.com/docs/hooks"
+        }
+      ],
+      "install": {
+        "claude-code": "Read HOOK.md, copy this entry's runtime files into .claude/hooks/compact-context/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.",
+        "notes": "Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup.",
+        "codex": "Read HOOK.md. In a trusted local Git project, copy this entry's runtime files into .codex/hooks/compact-context/ and merge codex-hooks.example.json into .codex/hooks.json without replacing existing handlers. Review and trust the exact definition in /hooks. The example resolves its script from the Git root; do not copy Claude's args or onFailure fields into Codex. Project-local installation only; no activation is performed by the catalog."
+      },
+      "overlap": "CLAUDE.md, auto memory and compaction already preserve context. Use only for demonstrated gaps; handoff and retrospective provide broader state and instruction workflows.",
+      "related": [
+        "handoff",
+        "retrospective"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://code.claude.com/docs/en/hooks-guide#re-inject-context-after-compaction",
+      "path": "entries/hooks/compact-context",
+      "files": [
+        "entries/hooks/compact-context/HOOK.md",
+        "entries/hooks/compact-context/codex-hooks.example.json",
+        "entries/hooks/compact-context/restore.py",
+        "entries/hooks/compact-context/settings.example.json"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "config-guard",
+      "type": "hook",
+      "title": "Protect agent configuration",
+      "summary": "Blocks common agent edits and shell mutations of hook settings, scripts, MCP configuration, and plugin manifests; supports per-level ask mode.",
+      "useWhen": "The agent must leave its own guardrail configuration to a human.",
+      "tags": [
+        "security",
+        "configuration",
+        "pre-tool-use"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 2,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Resolves direct edit paths through symlinks, but Bash checks are heuristics. Interpreter writes, variable-built paths, and some Git commands bypass them. Parse errors allow. Default high level blocks plugin management too."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/karanb192/claude-code-hooks",
+        "path": "plugins/config-guard",
+        "revision": "63e0354bdf6ec56dd508d8ceef33b416ab6d8b14",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Karan Bansal",
+        "notes": "Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; local decision logs under ~/.claude/hooks-logs include truncated targets. CONFIG_GUARD_ALLOW=true bypasses checks. Choose policies consistent with existing authorization."
+      },
+      "install": {
+        "claude-code": "For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/config-guard as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/config-guard. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install config-guard@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.",
+        "notes": "Node.js; local decision logs under ~/.claude/hooks-logs include truncated targets. CONFIG_GUARD_ALLOW=true bypasses checks. Choose policies consistent with existing authorization. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: this upstream script targets .claude paths and Claude CLI mutations, not .codex/config.toml, hook trust or apply_patch headers. Needs a separately reviewed adapted policy; do not register it unchanged as Codex configuration protection."
+      },
+      "overlap": "protect-files-and-commands protects a few files; native managed settings and permissions provide stronger enforcement. This adds configuration-specific diagnostics.",
+      "related": [
+        "config-watch",
+        "protect-files-and-commands"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/tree/63e0354bdf6ec56dd508d8ceef33b416ab6d8b14/plugins/config-guard",
+      "path": "entries/hooks/config-guard",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "config-watch",
+      "type": "hook",
+      "title": "Watch configuration changes",
+      "summary": "Makes mid-session settings and skills changes visible, including changes made outside agent tool calls. Optional block mode prevents eligible changes from taking effect.",
+      "useWhen": "Installers or other processes may alter agent settings while a session runs.",
+      "tags": [
+        "configuration",
+        "audit",
+        "config-change"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 2,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Warns by default; CONFIG_WATCH_BLOCK=true blocks eligible changes, including intentional user changes. Managed policy cannot be blocked. Full event payloads are logged locally; upstream's undocumented-payload caveat is outdated."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/karanb192/claude-code-hooks",
+        "path": "plugins/config-watch",
+        "revision": "63e0354bdf6ec56dd508d8ceef33b416ab6d8b14",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Karan Bansal",
+        "notes": "Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; writes raw ConfigChange payloads to ~/.claude/hooks-logs. It prevents configuration application in block mode, not the underlying filesystem write."
+      },
+      "install": {
+        "claude-code": "For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/config-watch as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/config-watch. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install config-watch@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.",
+        "notes": "Node.js; writes raw ConfigChange payloads to ~/.claude/hooks-logs. It prevents configuration application in block mode, not the underlying filesystem write. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: no documented Codex ConfigChange event. A filesystem watcher would be a different workflow and cannot promise to veto configuration reloads. Remains Claude-only."
+      },
+      "overlap": "Complements config-guard by watching configuration reloads rather than agent tool inputs; native ConfigChange supplies the event.",
+      "related": [
+        "config-guard"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/tree/63e0354bdf6ec56dd508d8ceef33b416ab6d8b14/plugins/config-watch",
+      "path": "entries/hooks/config-watch",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "context-hogs",
+      "type": "hook",
+      "title": "Find expensive context files",
+      "summary": "Records tool-result byte estimates by file and displays a cross-session context-cost leaderboard, with suggested instruction changes for review.",
+      "useWhen": "Large generated files or repeated reads appear to consume disproportionate context.",
+      "tags": [
+        "context",
+        "observability",
+        "post-tool-use"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 2,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Byte-derived token/cost estimates, not billing telemetry. Read attribution is strongest; shell/search attribution is heuristic. Async events can be lost at shutdown and compaction can lose concurrent rows. Suggestions do not modify project instructions."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/karanb192/claude-code-hooks",
+        "path": "plugins/context-hogs",
+        "revision": "68238bcbfcd628a458548dbb92c02a414df8f975",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Karan Bansal",
+        "notes": "Read the complete runtime script, README, manifest, hook registration, and required leaderboard skill. Tests were inventoried, not fully reviewed or executed. Node.js; local paths, byte counts and estimates in ~/.claude/context-hogs and ~/.claude/hooks-logs. Includes an invoke-only leaderboard skill. Set the model cost estimate yourself; SessionEnd display is host-dependent."
+      },
+      "install": {
+        "claude-code": "For a reproducible manual install, obtain karanb192/claude-code-hooks at 68238bcbfcd628a458548dbb92c02a414df8f975, retain its root LICENSE, and register only plugins/context-hogs as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/context-hogs. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install context-hogs@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.",
+        "notes": "Node.js; local paths, byte counts and estimates in ~/.claude/context-hogs and ~/.claude/hooks-logs. Includes an invoke-only leaderboard skill. Set the model cost estimate yourself; SessionEnd display is host-dependent. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: Codex tool names/results need new attribution adapters and SessionEnd output cannot steer the model. The bundled Claude leaderboard skill uses Claude paths. Needs an adapted package, not only a copied hooks.json."
+      },
+      "overlap": "Claude's context display shows current context; this adds persistent per-file estimates. No automatic read denial or instruction activation occurs.",
+      "related": [
+        "no-email-context",
+        "compact-context"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/tree/68238bcbfcd628a458548dbb92c02a414df8f975/plugins/context-hogs",
+      "path": "entries/hooks/context-hogs",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "desktop-attention",
+      "type": "hook",
+      "title": "Local desktop attention alerts",
+      "summary": "Sends a fixed local desktop notification when Claude Code needs permission, input, or an MCP answer, without forwarding prompts or tool contents.",
+      "useWhen": "You switch applications while agents work and miss permission or input prompts.",
+      "tags": [
+        "notifications",
+        "local",
+        "attention"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Small independent Python implementation of the native notification pattern. macOS and Linux desktop support only; requires notification permissions/daemon. Failures are advisory; no remote notification service or dynamic prompt text."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks."
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code hook documentation",
+          "url": "https://code.claude.com/docs/en/hooks-guide#get-notified-when-claude-needs-input"
+        }
+      ],
+      "install": {
+        "claude-code": "Read HOOK.md, copy this entry's runtime files into .claude/hooks/desktop-attention/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.",
+        "notes": "Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup. Harness review: Codex has no documented Notification hook. Use native client/TUI notification settings when available; Stop or PermissionRequest would change trigger/decision semantics, so this script remains Claude-only."
+      },
+      "overlap": "Claude's UI already signals attention; this provides a local desktop alert. Skip it if native app notifications already suffice.",
+      "related": [],
+      "score": 3.6,
+      "sourceUrl": "https://code.claude.com/docs/en/hooks-guide#get-notified-when-claude-needs-input",
+      "path": "entries/hooks/desktop-attention",
+      "files": [
+        "entries/hooks/desktop-attention/HOOK.md",
+        "entries/hooks/desktop-attention/notify.py",
+        "entries/hooks/desktop-attention/settings.example.json"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "format-after-edit",
       "type": "hook",
       "title": "Format after agent edits",
-      "summary": "A PostToolUse hook that runs the project's formatter on files the agent edits, turning a prose style rule into a deterministic step. Includes a Claude Code version keyed on the edited path and a Codex version keyed on changed files.",
+      "summary": "A PostToolUse formatter for explicit edited paths in Claude Code and Codex, including newly added apply_patch files. Uses argument arrays instead of whitespace-splitting xargs and avoids unrelated dirty files.",
       "useWhen": "The project has a formatter, and agents leave style drift or spend turns fixing formatting.",
       "tags": [
         "formatting",
@@ -1648,8 +1952,8 @@
         "portability": 3,
         "novelty": 4,
         "evidence": "reviewed",
-        "reviewed": "2026-10-20",
-        "notes": "This is the canonical example in Anthropic's hooks guide, and it follows the best-practice advice to move rules that must always hold out of prose. The Codex hook file location and trust step come from Codex's documentation and have not been tried here."
+        "reviewed": "2026-10-28",
+        "notes": "Independent Python implementation of the documented formatting pattern, refreshed for explicit path handling. Scratch checks cover spaces, quotes, leading dashes and new patch files. Requires a locally installed formatter. No host behavior or matched outcome evaluation."
       },
       "source": {
         "kind": "adapted",
@@ -1666,7 +1970,7 @@
           "url": "https://developers.openai.com/codex/hooks"
         }
       ],
-      "overlap": "None built in. A formatter on save or in a pre-commit hook covers the human side.",
+      "overlap": "Editor save hooks and pre-commit formatters overlap. This adds formatting immediately after supported agent edits; skip duplicate tooling when it already suffices.",
       "related": [
         "protect-files-and-commands",
         "stop-gate-checks"
@@ -1675,7 +1979,230 @@
       "sourceUrl": "https://code.claude.com/docs/en/hooks-guide",
       "path": "entries/hooks/format-after-edit",
       "files": [
-        "entries/hooks/format-after-edit/HOOK.md"
+        "entries/hooks/format-after-edit/HOOK.md",
+        "entries/hooks/format-after-edit/codex-hooks.example.json",
+        "entries/hooks/format-after-edit/format.py",
+        "entries/hooks/format-after-edit/settings.example.json"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "git-safety",
+      "type": "hook",
+      "title": "Protect shared Git branches",
+      "summary": "Heuristic pre-tool checks for direct main/master mutations, protected-branch pushes and deletion, and destructive GitHub CLI actions.",
+      "useWhen": "A project forbids agents from modifying main/master or merging and closing GitHub items.",
+      "tags": [
+        "git",
+        "guardrails",
+        "pre-tool-use"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Hardcoded main/master policy; branch lookup uses hook process cwd and does not model cd, git -C, aliases, or arbitrary shell semantics. Critical level applies no rules. Strict adds force-push checks but permits --force-with-lease. Codex support is a documented direct-script registration for canonical Bash/deny payloads; live invocation remains unverified."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/karanb192/claude-code-hooks",
+        "path": "plugins/git-safety",
+        "revision": "63e0354bdf6ec56dd508d8ceef33b416ab6d8b14",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Karan Bansal",
+        "notes": "Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js and Git; logs complete blocked commands to ~/.claude/hooks-logs. Default high level also denies gh pr merge/close and issue close; install only when that policy fits."
+      },
+      "install": {
+        "claude-code": "For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/git-safety as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/git-safety. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install git-safety@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.",
+        "notes": "Node.js and Git; logs complete blocked commands to ~/.claude/hooks-logs. Default high level also denies gh pr merge/close and issue close; install only when that policy fits. Do not combine the individual guard with upstream guard-pack, which duplicates it.",
+        "codex": "Fetch https://github.com/karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14; retain root LICENSE and copy the unchanged plugins/git-safety/git-safety.js into .codex/hooks/git-safety/. Requires Node.js and Git. Merge this JSON into .codex/hooks.json: {\"hooks\":{\"PreToolUse\":[{\"matcher\":\"^Bash$\",\"hooks\":[{\"type\":\"command\",\"command\":\"node \\\"$(git rev-parse --show-toplevel)/.codex/hooks/git-safety/git-safety.js\\\"\",\"timeout\":10}]}]}}. Trust the project and exact hook definition in /hooks. Codex canonical Bash command/cwd and PreToolUse deny JSON match this script. Use only deny mode: keep HOOK_ASK_CRITICAL/HIGH/STRICT unset or false; Codex PreToolUse ask is unsupported. Hook errors/timeouts can proceed without a deny; no onFailure field is claimed. Upstream logs still use ~/.claude/hooks-logs. No Codex plugin loader or marketplace install is needed."
+      },
+      "overlap": "An opt-in policy alternative to protect-files-and-commands; server branch protection and scoped credentials remain authoritative.",
+      "related": [
+        "protect-files-and-commands",
+        "scope-and-authority"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/tree/63e0354bdf6ec56dd508d8ceef33b416ab6d8b14/plugins/git-safety",
+      "path": "entries/hooks/git-safety",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "no-email-context",
+      "type": "hook",
+      "title": "Remove account email from initial context",
+      "summary": "A Claude Code mod that removes the named userEmail block from initial model-visible context while preserving other blocks. Packaged upstream as a small plugin.",
+      "useWhen": "You want Claude Code's injected account-email context removed before a new conversation reaches the model.",
+      "tags": [
+        "privacy",
+        "context",
+        "mod"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 1,
+        "novelty": 5,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Complete MIT source and two tests read. Claude Code 2.1.301 static validation passes with a missing-author warning; no final-request or privacy outcome test. User-installed prompt.context mods are skipped under organization management unless deployed through managed settings."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/AlexErrant/claude-code-no-email",
+        "path": ".claude/skills/no-email",
+        "revision": "930d0b2cfabdc41feffb9f15ef0e981259d1e856",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "AlexErrant",
+        "notes": "All seven tracked repository files read. The plugin root is the nested directory, not the repo root; there is no SKILL.md. Runtime uses only the mod API; development types are generated by the host."
+      },
+      "install": {
+        "claude-code": "Obtain AlexErrant/claude-code-no-email at 930d0b2cfabdc41feffb9f15ef0e981259d1e856 and retain the root LICENSE. The plugin root is .claude/skills/no-email. Validate that directory with claude plugin validate; use claude --plugin-dir /absolute/path/to/.claude/skills/no-email for a session-local trial, or register that directory through a local marketplace. Terminal mods require Claude Code 2.1.287+; validate against the installed build. Start a fresh conversation and verify the final request with synthetic identity data. Organization-managed deployments need managed installation.",
+        "notes": "Removes only the exact userEmail context block, which published types place with the first user message. Does not scrub files, Git identity, tool results, existing histories or logs. Default mod error fallback can preserve unfiltered context; other middleware may reinsert it. No runtime filesystem/network calls in the handler. Harness review: no documented Codex prompt.context/block-removal equivalent; keep Claude-only. Do not substitute a prompt reminder for removing model-visible data."
+      },
+      "overlap": "Native context transformation supplies the mechanism, but no equivalent account-email setting was verified. prompt-secret-check handles newly submitted credential-like text; secret-serialization concerns application data models.",
+      "related": [
+        "prompt-secret-check",
+        "secret-serialization"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/AlexErrant/claude-code-no-email/tree/930d0b2cfabdc41feffb9f15ef0e981259d1e856/.claude/skills/no-email",
+      "path": "entries/hooks/no-email-context",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "post-edit-diagnostics",
+      "type": "hook",
+      "title": "Run fast diagnostics after source edits",
+      "summary": "Runs one project-selected fast checker after Claude source edits or Codex apply_patch edits, using a deadline and bounded feedback. Does not install tools or undo edits.",
+      "useWhen": "Type errors or lint diagnostics should reach the agent immediately after source edits, and the project has a fast read-only check.",
+      "tags": [
+        "diagnostics",
+        "post-tool-use",
+        "verification"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Claude Edit/Write paths and Codex apply_patch Add/Update/Move headers select one checker run. Codex paths resolve from event cwd, checker runs at installed project root. Argument arrays and a 20-second deadline; no edit rollback. Requires Python 3.9+ and installed tools. No host invocation evaluation."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks."
+      },
+      "inspiredBy": [
+        {
+          "title": "Anthropic automation recommendations",
+          "url": "https://github.com/anthropics/claude-plugins-official/blob/f8c5e7a1dcb71b10cb74586224b5401f3de5db28/plugins/claude-code-setup/skills/claude-automation-recommender/references/hooks-patterns.md"
+        },
+        {
+          "title": "Official Codex hooks contract",
+          "url": "https://learn.chatgpt.com/docs/hooks"
+        }
+      ],
+      "install": {
+        "claude-code": "Read HOOK.md, copy this entry's runtime files into .claude/hooks/post-edit-diagnostics/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.",
+        "notes": "Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup.",
+        "codex": "Read HOOK.md. In a trusted local Git project, copy this entry's runtime files into .codex/hooks/post-edit-diagnostics/ and merge codex-hooks.example.json into .codex/hooks.json without replacing existing handlers. Review and trust the exact definition in /hooks. The example resolves its script from the Git root; do not copy Claude's args or onFailure fields into Codex. Project-local installation only; no activation is performed by the catalog."
+      },
+      "overlap": "format-after-edit normalizes style; this reports diagnostics without fixing files. stop-gate-checks checks completion. Avoid duplicate expensive checks across both gates.",
+      "related": [
+        "format-after-edit",
+        "stop-gate-checks"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/anthropics/claude-plugins-official/blob/f8c5e7a1dcb71b10cb74586224b5401f3de5db28/plugins/claude-code-setup/skills/claude-automation-recommender/references/hooks-patterns.md",
+      "path": "entries/hooks/post-edit-diagnostics",
+      "files": [
+        "entries/hooks/post-edit-diagnostics/HOOK.md",
+        "entries/hooks/post-edit-diagnostics/check.py",
+        "entries/hooks/post-edit-diagnostics/codex-hooks.example.json",
+        "entries/hooks/post-edit-diagnostics/command.json",
+        "entries/hooks/post-edit-diagnostics/settings.example.json"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "prompt-secret-check",
+      "type": "hook",
+      "title": "Catch recognizable credentials in prompts",
+      "summary": "Rejects newly submitted prompts containing private-key headers, AWS access-key identifiers, or classic GitHub token shapes. Reports only the category, never the matching value.",
+      "useWhen": "Accidental credential pastes are a recurring risk before prompts reach the model.",
+      "tags": [
+        "privacy",
+        "credentials",
+        "user-prompt-submit"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Shared UserPromptSubmit prompt field and exit-2 rejection for Claude/Codex. Recognizes only a few shapes; examples can trigger it and other secrets pass. Does not erase UI/history or screen files/auxiliary requests. Claude onFailure is omitted in Codex; host error/timeout behavior remains a limitation."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks."
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code hook documentation",
+          "url": "https://code.claude.com/docs/en/hooks#userpromptsubmit"
+        },
+        {
+          "title": "Official Codex hooks contract",
+          "url": "https://learn.chatgpt.com/docs/hooks"
+        }
+      ],
+      "install": {
+        "claude-code": "Read HOOK.md, copy this entry's runtime files into .claude/hooks/prompt-secret-check/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.",
+        "notes": "Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup.",
+        "codex": "Read HOOK.md. In a trusted local Git project, copy this entry's runtime files into .codex/hooks/prompt-secret-check/ and merge codex-hooks.example.json into .codex/hooks.json without replacing existing handlers. Review and trust the exact definition in /hooks. The example resolves its script from the Git root; do not copy Claude's args or onFailure fields into Codex. Project-local installation only; no activation is performed by the catalog."
+      },
+      "overlap": "no-email-context removes a host-injected identity block; this screens user submissions. Native DLP and secret scanners may provide broader coverage. Neither replaces credential isolation.",
+      "related": [
+        "no-email-context"
+      ],
+      "score": 4,
+      "sourceUrl": "https://code.claude.com/docs/en/hooks#userpromptsubmit",
+      "path": "entries/hooks/prompt-secret-check",
+      "files": [
+        "entries/hooks/prompt-secret-check/HOOK.md",
+        "entries/hooks/prompt-secret-check/check.py",
+        "entries/hooks/prompt-secret-check/codex-hooks.example.json",
+        "entries/hooks/prompt-secret-check/settings.example.json"
       ]
     },
     {
@@ -1701,8 +2228,8 @@
         "portability": 3,
         "novelty": 3,
         "evidence": "reviewed",
-        "reviewed": "2026-10-20",
-        "notes": "It combines the official protected-files example with the widely copied rm -rf check. Pattern matching is easy to bypass, and both vendors say hooks are guardrails, not security boundaries. Use permission deny rules and sandboxing first."
+        "reviewed": "2026-10-28",
+        "notes": "Refreshed Codex patch checks to align lockfile names with direct edits and cover Move headers. A simple heuristic with known command/path bypasses and overmatches; permissions and sandboxing remain authoritative. Scratch checks do not establish host behavior."
       },
       "source": {
         "kind": "adapted",
@@ -1731,8 +2258,59 @@
       "sourceUrl": "https://github.com/disler/claude-code-hooks-mastery/blob/1a574d7cbddc8f4fbbe1c2cfbd30f64534de8e53/.claude/hooks/pre_tool_use.py",
       "path": "entries/hooks/protect-files-and-commands",
       "files": [
-        "entries/hooks/protect-files-and-commands/HOOK.md"
+        "entries/hooks/protect-files-and-commands/HOOK.md",
+        "entries/hooks/protect-files-and-commands/codex-hooks.example.json",
+        "entries/hooks/protect-files-and-commands/guard.sh",
+        "entries/hooks/protect-files-and-commands/settings.example.json"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "protect-tests",
+      "type": "hook",
+      "title": "Prevent disabling tests",
+      "summary": "Detects common test deletion, disabling renames, and newly introduced skip/xfail markers before agent edits and shell calls.",
+      "useWhen": "Agents have made failing suites pass by removing or skipping tests instead of fixing code.",
+      "tags": [
+        "testing",
+        "guardrails",
+        "pre-tool-use"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 2,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "A heuristic for named paths and skip markers, not semantic test integrity. It can reject legitimate skips and misses assertion weakening, interpreter writes, and some deletion syntax. Default high does not screen whole-file Write; strict does."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/karanb192/claude-code-hooks",
+        "path": "plugins/protect-tests",
+        "revision": "63e0354bdf6ec56dd508d8ceef33b416ab6d8b14",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Karan Bansal",
+        "notes": "Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; local decision logs under ~/.claude/hooks-logs. Intentional test removal or skips may require a human edit; no auto-approval is added."
+      },
+      "install": {
+        "claude-code": "For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/protect-tests as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/protect-tests. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install protect-tests@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.",
+        "notes": "Node.js; local decision logs under ~/.claude/hooks-logs. Intentional test removal or skips may require a human edit; no auto-approval is added. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: Codex apply_patch inputs do not have Edit old_string/new_string fields. A correct adapter must inspect patch operations and test-file diffs; matching Edit aliases alone silently misses them. Keep Claude-only until implemented."
+      },
+      "overlap": "stop-gate-checks checks results; test-driven-development guides process. This targets an evasion those checks do not detect. CI and human review remain needed.",
+      "related": [
+        "stop-gate-checks",
+        "test-driven-development"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/tree/63e0354bdf6ec56dd508d8ceef33b416ab6d8b14/plugins/protect-tests",
+      "path": "entries/hooks/protect-tests",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -1757,8 +2335,8 @@
         "portability": 3,
         "novelty": 3,
         "evidence": "reviewed",
-        "reviewed": "2026-10-20",
-        "notes": "The deterministic way to gate stopping, and the mechanism behind in-session Ralph loops. It runs on every stop that changed files, so it only suits projects with a fast gate. The /goal command in both hosts is the softer built-in."
+        "reviewed": "2026-10-28",
+        "notes": "Refreshed to detect untracked-only changes. The retry guard allows ending after one blocked Stop; this is a bounded reminder, not an invariant that checks always pass. Whole-tree dirtiness includes pre-existing changes. Scratch script checks do not establish host behavior."
       },
       "source": {
         "kind": "adapted",
@@ -1789,7 +2367,70 @@
       "sourceUrl": "https://code.claude.com/docs/en/best-practices",
       "path": "entries/hooks/stop-gate-checks",
       "files": [
-        "entries/hooks/stop-gate-checks/HOOK.md"
+        "entries/hooks/stop-gate-checks/HOOK.md",
+        "entries/hooks/stop-gate-checks/codex-hooks.example.json",
+        "entries/hooks/stop-gate-checks/settings.example.json",
+        "entries/hooks/stop-gate-checks/stop-gate.sh"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "subagent-budget",
+      "type": "hook",
+      "title": "Limit subagent calls per session",
+      "summary": "Atomically bounds Claude Agent/Task or Codex spawn_agent attempts per session ID using SQLite. Preserves ordinary permission checks and stores no prompts.",
+      "useWhen": "A workflow needs a small explicit limit on subagent call attempts to prevent runaway fan-out.",
+      "tags": [
+        "subagents",
+        "budgets",
+        "pre-tool-use"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Atomic SQLite attempt reservations for Claude Agent/Task and Codex spawn_agent. Keeps harness session-ID namespaces separate; later tool failure/denial still consumes a reservation. Codex errors/timeouts are not guaranteed fail-closed by the documented handler contract. No billing or global nested-agent guarantee."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks."
+      },
+      "inspiredBy": [
+        {
+          "title": "Karan Bansal subagent spawn cap",
+          "url": "https://github.com/karanb192/claude-code-hooks/blob/57a28c7687305e4a9b9dd50490e9b3c552c71ca4/plugins/subagent-spawn-cap/subagent-spawn-cap.js"
+        },
+        {
+          "title": "Official Codex hooks contract",
+          "url": "https://learn.chatgpt.com/docs/hooks"
+        }
+      ],
+      "install": {
+        "claude-code": "Read HOOK.md, copy this entry's runtime files into .claude/hooks/subagent-budget/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.",
+        "notes": "Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup.",
+        "codex": "Read HOOK.md. In a trusted local Git project, copy this entry's runtime files into .codex/hooks/subagent-budget/ and merge codex-hooks.example.json into .codex/hooks.json without replacing existing handlers. Review and trust the exact definition in /hooks. The example resolves its script from the Git root; do not copy Claude's args or onFailure fields into Codex. Project-local installation only; no activation is performed by the catalog."
+      },
+      "overlap": "Native concurrency/depth controls limit simultaneous agents; this limits total attempts for an event session ID. Does not authorize delegation or override existing approvals.",
+      "related": [
+        "silent-failure-hunter"
+      ],
+      "score": 4,
+      "sourceUrl": "https://github.com/karanb192/claude-code-hooks/blob/57a28c7687305e4a9b9dd50490e9b3c552c71ca4/plugins/subagent-spawn-cap/subagent-spawn-cap.js",
+      "path": "entries/hooks/subagent-budget",
+      "files": [
+        "entries/hooks/subagent-budget/HOOK.md",
+        "entries/hooks/subagent-budget/budget.py",
+        "entries/hooks/subagent-budget/codex-hooks.example.json",
+        "entries/hooks/subagent-budget/settings.example.json"
       ]
     },
     {

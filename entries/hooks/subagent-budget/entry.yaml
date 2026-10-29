@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: subagent-budget
+type: hook
+title: Limit subagent calls per session
+summary: Atomically bounds Claude Agent/Task or Codex spawn_agent attempts per session ID using SQLite. Preserves ordinary permission checks and stores no prompts.
+useWhen: A workflow needs a small explicit limit on subagent call attempts to prevent runaway fan-out.
+tags:
+  - subagents
+  - budgets
+  - pre-tool-use
+hosts:
+  - claude-code
+  - codex
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Atomic SQLite attempt reservations for Claude Agent/Task and Codex spawn_agent. Keeps harness session-ID namespaces separate; later tool failure/denial still consumes a reservation. Codex errors/timeouts are not guaranteed fail-closed by the documented handler contract. No billing or global nested-agent guarantee.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks.
+inspiredBy:
+  - title: Karan Bansal subagent spawn cap
+    url: https://github.com/karanb192/claude-code-hooks/blob/57a28c7687305e4a9b9dd50490e9b3c552c71ca4/plugins/subagent-spawn-cap/subagent-spawn-cap.js
+  - title: Official Codex hooks contract
+    url: https://learn.chatgpt.com/docs/hooks
+install:
+  claude-code: Read HOOK.md, copy this entry's runtime files into .claude/hooks/subagent-budget/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.
+  notes: Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup.
+  codex: Read HOOK.md. In a trusted local Git project, copy this entry's runtime files into .codex/hooks/subagent-budget/ and merge codex-hooks.example.json into .codex/hooks.json without replacing existing handlers. Review and trust the exact definition in /hooks. The example resolves its script from the Git root; do not copy Claude's args or onFailure fields into Codex. Project-local installation only; no activation is performed by the catalog.
+overlap: Native concurrency/depth controls limit simultaneous agents; this limits total attempts for an event session ID. Does not authorize delegation or override existing approvals.
+related:
+  - silent-failure-hunter

@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: prompt-secret-check
+type: hook
+title: Catch recognizable credentials in prompts
+summary: Rejects newly submitted prompts containing private-key headers, AWS access-key identifiers, or classic GitHub token shapes. Reports only the category, never the matching value.
+useWhen: Accidental credential pastes are a recurring risk before prompts reach the model.
+tags:
+  - privacy
+  - credentials
+  - user-prompt-submit
+hosts:
+  - claude-code
+  - codex
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Shared UserPromptSubmit prompt field and exit-2 rejection for Claude/Codex. Recognizes only a few shapes; examples can trigger it and other secrets pass. Does not erase UI/history or screen files/auxiliary requests. Claude onFailure is omitted in Codex; host error/timeout behavior remains a limitation.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks.
+inspiredBy:
+  - title: Claude Code hook documentation
+    url: https://code.claude.com/docs/en/hooks#userpromptsubmit
+  - title: Official Codex hooks contract
+    url: https://learn.chatgpt.com/docs/hooks
+install:
+  claude-code: Read HOOK.md, copy this entry's runtime files into .claude/hooks/prompt-secret-check/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.
+  notes: Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup.
+  codex: Read HOOK.md. In a trusted local Git project, copy this entry's runtime files into .codex/hooks/prompt-secret-check/ and merge codex-hooks.example.json into .codex/hooks.json without replacing existing handlers. Review and trust the exact definition in /hooks. The example resolves its script from the Git root; do not copy Claude's args or onFailure fields into Codex. Project-local installation only; no activation is performed by the catalog.
+overlap: no-email-context removes a host-injected identity block; this screens user submissions. Native DLP and secret scanners may provide broader coverage. Neither replaces credential isolation.
+related:
+  - no-email-context

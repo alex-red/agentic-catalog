@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: git-safety
+type: hook
+title: Protect shared Git branches
+summary: Heuristic pre-tool checks for direct main/master mutations, protected-branch pushes and deletion, and destructive GitHub CLI actions.
+useWhen: A project forbids agents from modifying main/master or merging and closing GitHub items.
+tags:
+  - git
+  - guardrails
+  - pre-tool-use
+hosts:
+  - claude-code
+  - codex
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 3
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Hardcoded main/master policy; branch lookup uses hook process cwd and does not model cd, git -C, aliases, or arbitrary shell semantics. Critical level applies no rules. Strict adds force-push checks but permits --force-with-lease. Codex support is a documented direct-script registration for canonical Bash/deny payloads; live invocation remains unverified.
+source:
+  kind: linked
+  url: https://github.com/karanb192/claude-code-hooks
+  path: plugins/git-safety
+  revision: 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14
+  retrieved: 2026-10-28
+  license: MIT
+  author: Karan Bansal
+  notes: Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js and Git; logs complete blocked commands to ~/.claude/hooks-logs. Default high level also denies gh pr merge/close and issue close; install only when that policy fits.
+install:
+  claude-code: For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/git-safety as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/git-safety. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install git-safety@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.
+  notes: Node.js and Git; logs complete blocked commands to ~/.claude/hooks-logs. Default high level also denies gh pr merge/close and issue close; install only when that policy fits. Do not combine the individual guard with upstream guard-pack, which duplicates it.
+  codex: 'Fetch https://github.com/karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14; retain root LICENSE and copy the unchanged plugins/git-safety/git-safety.js into .codex/hooks/git-safety/. Requires Node.js and Git. Merge this JSON into .codex/hooks.json: {"hooks":{"PreToolUse":[{"matcher":"^Bash$","hooks":[{"type":"command","command":"node \"$(git rev-parse --show-toplevel)/.codex/hooks/git-safety/git-safety.js\"","timeout":10}]}]}}. Trust the project and exact hook definition in /hooks. Codex canonical Bash command/cwd and PreToolUse deny JSON match this script. Use only deny mode: keep HOOK_ASK_CRITICAL/HIGH/STRICT unset or false; Codex PreToolUse ask is unsupported. Hook errors/timeouts can proceed without a deny; no onFailure field is claimed. Upstream logs still use ~/.claude/hooks-logs. No Codex plugin loader or marketplace install is needed.'
+overlap: An opt-in policy alternative to protect-files-and-commands; server branch protection and scoped credentials remain authoritative.
+related:
+  - protect-files-and-commands
+  - scope-and-authority

@@ -1,0 +1,36 @@
+schemaVersion: 2
+id: context-hogs
+type: hook
+title: Find expensive context files
+summary: Records tool-result byte estimates by file and displays a cross-session context-cost leaderboard, with suggested instruction changes for review.
+useWhen: Large generated files or repeated reads appear to consume disproportionate context.
+tags:
+  - context
+  - observability
+  - post-tool-use
+hosts:
+  - claude-code
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 2
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Byte-derived token/cost estimates, not billing telemetry. Read attribution is strongest; shell/search attribution is heuristic. Async events can be lost at shutdown and compaction can lose concurrent rows. Suggestions do not modify project instructions.
+source:
+  kind: linked
+  url: https://github.com/karanb192/claude-code-hooks
+  path: plugins/context-hogs
+  revision: 68238bcbfcd628a458548dbb92c02a414df8f975
+  retrieved: 2026-10-28
+  license: MIT
+  author: Karan Bansal
+  notes: Read the complete runtime script, README, manifest, hook registration, and required leaderboard skill. Tests were inventoried, not fully reviewed or executed. Node.js; local paths, byte counts and estimates in ~/.claude/context-hogs and ~/.claude/hooks-logs. Includes an invoke-only leaderboard skill. Set the model cost estimate yourself; SessionEnd display is host-dependent.
+install:
+  claude-code: For a reproducible manual install, obtain karanb192/claude-code-hooks at 68238bcbfcd628a458548dbb92c02a414df8f975, retain its root LICENSE, and register only plugins/context-hogs as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/context-hogs. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install context-hogs@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.
+  notes: "Node.js; local paths, byte counts and estimates in ~/.claude/context-hogs and ~/.claude/hooks-logs. Includes an invoke-only leaderboard skill. Set the model cost estimate yourself; SessionEnd display is host-dependent. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: Codex tool names/results need new attribution adapters and SessionEnd output cannot steer the model. The bundled Claude leaderboard skill uses Claude paths. Needs an adapted package, not only a copied hooks.json."
+overlap: Claude's context display shows current context; this adds persistent per-file estimates. No automatic read denial or instruction activation occurs.
+related:
+  - no-email-context
+  - compact-context

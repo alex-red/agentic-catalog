@@ -1,0 +1,37 @@
+schemaVersion: 2
+id: case-insensitive-guard
+type: hook
+title: Catch filesystem case collisions
+summary: Checks destructive shell targets against real directory entries to catch content versus Content collisions on case-insensitive volumes.
+useWhen: Agents delete or overwrite similarly capitalized paths on macOS, Windows, or shared case-insensitive drives.
+tags:
+  - filesystem
+  - data-loss
+  - pre-tool-use
+hosts:
+  - claude-code
+  - codex
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Models several shell chains and wrappers without probe writes. Dynamic targets, substitutions, globs, and complete shell semantics remain outside coverage. Exact-case deletes and case-only renames pass. Not a general deletion sandbox. Codex support is a documented direct-script registration for canonical Bash/deny payloads; live invocation remains unverified.
+source:
+  kind: linked
+  url: https://github.com/karanb192/claude-code-hooks
+  path: plugins/case-insensitive-guard
+  revision: 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14
+  retrieved: 2026-10-28
+  license: MIT
+  author: Karan Bansal
+  notes: Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; reads directory metadata and logs full blocked/asked commands plus path spellings to ~/.claude/hooks-logs. Only useful on case-insensitive volumes.
+install:
+  claude-code: For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/case-insensitive-guard as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/case-insensitive-guard. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install case-insensitive-guard@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.
+  notes: Node.js; reads directory metadata and logs full blocked/asked commands plus path spellings to ~/.claude/hooks-logs. Only useful on case-insensitive volumes. Do not combine the individual guard with upstream guard-pack, which duplicates it.
+  codex: 'Fetch https://github.com/karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14; retain root LICENSE and copy the unchanged plugins/case-insensitive-guard/case-insensitive-guard.js into .codex/hooks/case-insensitive-guard/. Requires Node.js. Merge this JSON into .codex/hooks.json: {"hooks":{"PreToolUse":[{"matcher":"^Bash$","hooks":[{"type":"command","command":"node \"$(git rev-parse --show-toplevel)/.codex/hooks/case-insensitive-guard/case-insensitive-guard.js\"","timeout":10}]}]}}. Trust the project and exact hook definition in /hooks. Codex canonical Bash command/cwd and PreToolUse deny JSON match this script. Use only deny mode: keep HOOK_ASK_CRITICAL/HIGH/STRICT unset or false; Codex PreToolUse ask is unsupported. Hook errors/timeouts can proceed without a deny; no onFailure field is claimed. Upstream logs still use ~/.claude/hooks-logs. No Codex plugin loader or marketplace install is needed.'
+overlap: protect-files-and-commands blocks a few destructive patterns; this addresses actual path spelling collisions that generic command rules miss.
+related:
+  - protect-files-and-commands

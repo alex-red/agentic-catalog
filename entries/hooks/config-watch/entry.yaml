@@ -1,0 +1,35 @@
+schemaVersion: 2
+id: config-watch
+type: hook
+title: Watch configuration changes
+summary: Makes mid-session settings and skills changes visible, including changes made outside agent tool calls. Optional block mode prevents eligible changes from taking effect.
+useWhen: Installers or other processes may alter agent settings while a session runs.
+tags:
+  - configuration
+  - audit
+  - config-change
+hosts:
+  - claude-code
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 2
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Warns by default; CONFIG_WATCH_BLOCK=true blocks eligible changes, including intentional user changes. Managed policy cannot be blocked. Full event payloads are logged locally; upstream's undocumented-payload caveat is outdated.
+source:
+  kind: linked
+  url: https://github.com/karanb192/claude-code-hooks
+  path: plugins/config-watch
+  revision: 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14
+  retrieved: 2026-10-28
+  license: MIT
+  author: Karan Bansal
+  notes: Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; writes raw ConfigChange payloads to ~/.claude/hooks-logs. It prevents configuration application in block mode, not the underlying filesystem write.
+install:
+  claude-code: For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/config-watch as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/config-watch. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install config-watch@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.
+  notes: "Node.js; writes raw ConfigChange payloads to ~/.claude/hooks-logs. It prevents configuration application in block mode, not the underlying filesystem write. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: no documented Codex ConfigChange event. A filesystem watcher would be a different workflow and cannot promise to veto configuration reloads. Remains Claude-only."
+overlap: Complements config-guard by watching configuration reloads rather than agent tool inputs; native ConfigChange supplies the event.
+related:
+  - config-guard

@@ -1,0 +1,16 @@
+{
+  "description": "Optional prompt-secret-check hook for a trusted local Codex project.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/prompt-secret-check/check.py\"",
+            "timeout": 8
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/subagent-budget/budget.py"
+            ],
+            "timeout": 8,
+            "onFailure": "block"
+          }
+        ]
+      }
+    ]
+  }
+}

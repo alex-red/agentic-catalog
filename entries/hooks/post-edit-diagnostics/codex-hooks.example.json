@@ -1,0 +1,17 @@
+{
+  "description": "Optional post-edit-diagnostics hook for a trusted local Codex project.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/post-edit-diagnostics/check.py\" --harness codex",
+            "timeout": 25
+          }
+        ]
+      }
+    ]
+  }
+}

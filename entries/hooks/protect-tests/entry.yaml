@@ -1,0 +1,36 @@
+schemaVersion: 2
+id: protect-tests
+type: hook
+title: Prevent disabling tests
+summary: Detects common test deletion, disabling renames, and newly introduced skip/xfail markers before agent edits and shell calls.
+useWhen: Agents have made failing suites pass by removing or skipping tests instead of fixing code.
+tags:
+  - testing
+  - guardrails
+  - pre-tool-use
+hosts:
+  - claude-code
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 2
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: A heuristic for named paths and skip markers, not semantic test integrity. It can reject legitimate skips and misses assertion weakening, interpreter writes, and some deletion syntax. Default high does not screen whole-file Write; strict does.
+source:
+  kind: linked
+  url: https://github.com/karanb192/claude-code-hooks
+  path: plugins/protect-tests
+  revision: 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14
+  retrieved: 2026-10-28
+  license: MIT
+  author: Karan Bansal
+  notes: Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; local decision logs under ~/.claude/hooks-logs. Intentional test removal or skips may require a human edit; no auto-approval is added.
+install:
+  claude-code: For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/protect-tests as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/protect-tests. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install protect-tests@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.
+  notes: "Node.js; local decision logs under ~/.claude/hooks-logs. Intentional test removal or skips may require a human edit; no auto-approval is added. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: Codex apply_patch inputs do not have Edit old_string/new_string fields. A correct adapter must inspect patch operations and test-file diffs; matching Edit aliases alone silently misses them. Keep Claude-only until implemented."
+overlap: stop-gate-checks checks results; test-driven-development guides process. This targets an evasion those checks do not detect. CI and human review remain needed.
+related:
+  - stop-gate-checks
+  - test-driven-development

@@ -4,16 +4,22 @@ type: hook
 title: Block "done" until checks pass
 summary: A Stop hook that runs the project's fast typecheck, lint, or tests when the agent tries to finish, and blocks with the failure output until they pass. It has guards against looping and against pure question turns.
 useWhen: Agents end turns with failing checks, or unattended sessions must not finish red.
-tags: [verification, quality-gate, stop-hook, autonomous-loop]
-hosts: [claude-code, codex]
+tags:
+  - verification
+  - quality-gate
+  - stop-hook
+  - autonomous-loop
+hosts:
+  - claude-code
+  - codex
 rating:
   usefulness: 4
   quality: 3
   portability: 3
   novelty: 3
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The deterministic way to gate stopping, and the mechanism behind in-session Ralph loops. It runs on every stop that changed files, so it only suits projects with a fast gate. The /goal command in both hosts is the softer built-in.
+  reviewed: 2026-10-28
+  notes: Refreshed to detect untracked-only changes. The retry guard allows ending after one blocked Stop; this is a bounded reminder, not an invariant that checks always pass. Whole-tree dirtiness includes pre-existing changes. Scratch script checks do not establish host behavior.
 source:
   kind: adapted
   license: MIT
@@ -26,4 +32,7 @@ inspiredBy:
   - title: Codex hooks
     url: https://developers.openai.com/codex/hooks
 overlap: The /goal command in Claude Code and Codex; CI.
-related: [ralph-loop, verification-before-completion, format-after-edit]
+related:
+  - ralph-loop
+  - verification-before-completion
+  - format-after-edit

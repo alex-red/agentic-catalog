@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/prompt-secret-check/check.py"
+            ],
+            "timeout": 8,
+            "onFailure": "block"
+          }
+        ]
+      }
+    ]
+  }
+}

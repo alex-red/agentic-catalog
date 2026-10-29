@@ -1,7 +1,7 @@
 # Plan
 
-Updated: October 27, 2026
-Status: experimental. The catalog has 43 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Updated: October 28, 2026
+Status: experimental. The catalog has 55 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -43,7 +43,7 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 | Skills (24) | diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked) |
 | Rules (5) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority, markdown-accessibility |
 | Workflows (4) | self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked) |
-| Hooks (3) | format-after-edit, protect-files-and-commands, stop-gate-checks |
+| Hooks (15) | format-after-edit, protect-files-and-commands, stop-gate-checks, no-email-context, config-guard, config-watch, git-safety, protect-tests, case-insensitive-guard, context-hogs, desktop-attention, compact-context, post-edit-diagnostics, subagent-budget, prompt-secret-check |
 | Subagents (2) | silent-failure-hunter, pr-review-code-reviewer |
 | MCP servers (2) | chrome-devtools-mcp, context7 |
 | Plugins (3) | superpowers, compound-engineering, claude-reflect |
@@ -70,4 +70,4 @@ Candidates that were considered and left out, with reasons, are in the research 
 
 ## Out of scope until evidence asks for it
 
-A custom installer CLI (the browser's generated bulk install script is not one; see [decision 25](docs/decisions.md)), an MCP server for the catalog, a hosted website, automatic installation of hooks or MCP servers, and per-entry versioning beyond pinned upstream revisions.
+A general-purpose installer CLI (the browser's generated scripts and explicitly selected hook setup helper are scoped exceptions; see [decisions 25 and 31](docs/decisions.md)), an MCP server for the catalog, a hosted website, implicit installation of hooks or MCP servers, and per-entry versioning beyond pinned upstream revisions.

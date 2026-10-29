@@ -1,0 +1,36 @@
+schemaVersion: 2
+id: config-guard
+type: hook
+title: Protect agent configuration
+summary: Blocks common agent edits and shell mutations of hook settings, scripts, MCP configuration, and plugin manifests; supports per-level ask mode.
+useWhen: The agent must leave its own guardrail configuration to a human.
+tags:
+  - security
+  - configuration
+  - pre-tool-use
+hosts:
+  - claude-code
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 2
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Resolves direct edit paths through symlinks, but Bash checks are heuristics. Interpreter writes, variable-built paths, and some Git commands bypass them. Parse errors allow. Default high level blocks plugin management too.
+source:
+  kind: linked
+  url: https://github.com/karanb192/claude-code-hooks
+  path: plugins/config-guard
+  revision: 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14
+  retrieved: 2026-10-28
+  license: MIT
+  author: Karan Bansal
+  notes: Read the complete runtime script, README, manifest, hook registration. Tests were inventoried, not fully reviewed or executed. Node.js; local decision logs under ~/.claude/hooks-logs include truncated targets. CONFIG_GUARD_ALLOW=true bypasses checks. Choose policies consistent with existing authorization.
+install:
+  claude-code: For a reproducible manual install, obtain karanb192/claude-code-hooks at 63e0354bdf6ec56dd508d8ceef33b416ab6d8b14, retain its root LICENSE, and register only plugins/config-guard as a local plugin using your host's local marketplace workflow. For a session-local smoke check, use claude --plugin-dir /absolute/path/to/plugins/config-guard. Upstream's convenient tracking install is /plugin marketplace add karanb192/claude-code-hooks then /plugin install config-guard@claude-code-hooks; it follows marketplace updates rather than this catalog pin. Review commands, policy and local logging before enabling.
+  notes: "Node.js; local decision logs under ~/.claude/hooks-logs include truncated targets. CONFIG_GUARD_ALLOW=true bypasses checks. Choose policies consistent with existing authorization. Do not combine the individual guard with upstream guard-pack, which duplicates it. Harness review: this upstream script targets .claude paths and Claude CLI mutations, not .codex/config.toml, hook trust or apply_patch headers. Needs a separately reviewed adapted policy; do not register it unchanged as Codex configuration protection."
+overlap: protect-files-and-commands protects a few files; native managed settings and permissions provide stronger enforcement. This adds configuration-specific diagnostics.
+related:
+  - config-watch
+  - protect-files-and-commands

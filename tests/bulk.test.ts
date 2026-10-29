@@ -76,13 +76,23 @@ test('entries missing from the catalog become warnings and manual removals', () 
   assert.ok(removal.lines.every((l) => l.startsWith('#')));
 });
 
-test('hooks, MCP servers, workflows, plugins, and prose installers never produce commands', () => {
-  const ids = catalog.filter((e) => ['hook', 'mcp', 'workflow', 'plugin'].includes(e.type) || e.id === 'ux-critique').map((e) => e.id);
+test('unsupported hooks, MCP servers, workflows, plugins, and prose installers stay manual', () => {
+  const ids = catalog.filter((e) => ['mcp', 'workflow', 'plugin'].includes(e.type) || ['no-email-context', 'ux-critique'].includes(e.id)).map((e) => e.id);
   for (const host of ['claude-code', 'codex'] as const) {
     for (const step of planSteps(catalog, config(ids, host), opts)) {
       assert.equal(step.kind, 'manual', step.id);
       assert.ok(step.lines.every((l) => l.startsWith('#')), `${step.id} has a command line`);
     }
+  }
+});
+
+test('selected project hooks copy and register through the shared installer; user scope stays manual', () => {
+  for (const host of ['claude-code', 'codex'] as const) {
+    const step = planSteps(catalog, config(['compact-context'], host), opts)[0];
+    assert.equal(step.kind, 'install');
+    assert.ok(step.lines.some(line => line.includes('hook-installer.py')));
+    const global = planSteps(catalog, config(['compact-context'], host, false, 'user'), opts)[0];
+    assert.equal(global.kind, 'manual');
   }
 });
 
@@ -113,6 +123,24 @@ async function runScript(dir: string, base: string, script: string, env: Record<
   return run('bash', ['install.sh'], { cwd: dir, env: { ...process.env, CATALOG_RAW_BASE: base, ...env } });
 }
 
+test('generated hook setup downloads files, preserves settings and registers only once', async (t) => {
+  const base = await serveRepository(t);
+  const dir = project(t);
+  const original = { permissions: { deny: ['Bash(rm:*)'] }, hooks: { Stop: [{ hooks: [{ type: 'command', command: 'existing-stop' }] }] } };
+  const { mkdirSync } = await import('node:fs');
+  mkdirSync(join(dir, '.claude'));
+  writeFileSync(join(dir, '.claude/settings.json'), JSON.stringify(original));
+  const script = configToScript(catalog, config(['prompt-secret-check']), opts);
+  await runScript(dir, base, script);
+  const first = readFileSync(join(dir, '.claude/settings.json'), 'utf8');
+  const registered = JSON.parse(first);
+  assert.deepEqual(registered.permissions, original.permissions);
+  assert.deepEqual(registered.hooks.Stop, original.hooks.Stop);
+  assert.ok(existsSync(join(dir, '.claude/hooks/prompt-secret-check/check.py')));
+  await runScript(dir, base, script);
+  assert.equal(readFileSync(join(dir, '.claude/settings.json'), 'utf8'), first);
+});
+
 test('the script installs Claude Code files, records the config, and is safe to re-run', async (t) => {
   const base = await serveRepository(t);
   const dir = project(t);
@@ -126,7 +154,7 @@ test('the script installs Claude Code files, records the config, and is safe to 
   assert.ok(!existsSync(join(skill, 'entry.yaml')));
   assert.ok(existsSync(join(dir, '.claude/rules/focused-changes.md')));
   assert.ok(existsSync(join(dir, '.claude/agents/silent-failure-hunter.md')));
-  assert.ok(!existsSync(join(dir, '.claude/hooks')), 'hooks must not be installed');
+  assert.ok(existsSync(join(dir, '.claude/hooks/format-after-edit/format.py')));
   assert.deepEqual(parseConfig(readFileSync(join(dir, '.agents', CONFIG_NAME), 'utf8'), catalog).config, selected);
 
   const again = await runScript(dir, base, script);

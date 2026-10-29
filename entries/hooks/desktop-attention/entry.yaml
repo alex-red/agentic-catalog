@@ -1,0 +1,33 @@
+schemaVersion: 2
+id: desktop-attention
+type: hook
+title: Local desktop attention alerts
+summary: Sends a fixed local desktop notification when Claude Code needs permission, input, or an MCP answer, without forwarding prompts or tool contents.
+useWhen: You switch applications while agents work and miss permission or input prompts.
+tags:
+  - notifications
+  - local
+  - attention
+hosts:
+  - claude-code
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Small independent Python implementation of the native notification pattern. macOS and Linux desktop support only; requires notification permissions/daemon. Failures are advisory; no remote notification service or dynamic prompt text.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independent implementation of the cited pattern; no upstream code copied. Host behavior is not established by local script checks.
+inspiredBy:
+  - title: Claude Code hook documentation
+    url: https://code.claude.com/docs/en/hooks-guide#get-notified-when-claude-needs-input
+install:
+  claude-code: Read HOOK.md, copy this entry's runtime files into .claude/hooks/desktop-attention/, and merge settings.example.json into the project's .claude/settings.json. Review the command and its effects before enabling; preserve existing hooks.
+  notes: "Project-local opt-in. Running the generated setup command registers this hook; the handler is not executed during setup. Harness review: Codex has no documented Notification hook. Use native client/TUI notification settings when available; Stop or PermissionRequest would change trigger/decision semantics, so this script remains Claude-only."
+overlap: Claude's UI already signals attention; this provides a local desktop alert. Skip it if native app notifications already suffice.
+related: []

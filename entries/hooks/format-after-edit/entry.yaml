@@ -2,18 +2,23 @@ schemaVersion: 2
 id: format-after-edit
 type: hook
 title: Format after agent edits
-summary: A PostToolUse hook that runs the project's formatter on files the agent edits, turning a prose style rule into a deterministic step. Includes a Claude Code version keyed on the edited path and a Codex version keyed on changed files.
+summary: A PostToolUse formatter for explicit edited paths in Claude Code and Codex, including newly added apply_patch files. Uses argument arrays instead of whitespace-splitting xargs and avoids unrelated dirty files.
 useWhen: The project has a formatter, and agents leave style drift or spend turns fixing formatting.
-tags: [formatting, automation, post-tool-use]
-hosts: [claude-code, codex]
+tags:
+  - formatting
+  - automation
+  - post-tool-use
+hosts:
+  - claude-code
+  - codex
 rating:
   usefulness: 4
   quality: 4
   portability: 3
   novelty: 4
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: This is the canonical example in Anthropic's hooks guide, and it follows the best-practice advice to move rules that must always hold out of prose. The Codex hook file location and trust step come from Codex's documentation and have not been tried here.
+  reviewed: 2026-10-28
+  notes: Independent Python implementation of the documented formatting pattern, refreshed for explicit path handling. Scratch checks cover spaces, quotes, leading dashes and new patch files. Requires a locally installed formatter. No host behavior or matched outcome evaluation.
 source:
   kind: adapted
   license: MIT
@@ -23,5 +28,7 @@ inspiredBy:
     url: https://code.claude.com/docs/en/hooks-guide
   - title: Codex hooks
     url: https://developers.openai.com/codex/hooks
-overlap: None built in. A formatter on save or in a pre-commit hook covers the human side.
-related: [protect-files-and-commands, stop-gate-checks]
+overlap: Editor save hooks and pre-commit formatters overlap. This adds formatting immediately after supported agent edits; skip duplicate tooling when it already suffices.
+related:
+  - protect-files-and-commands
+  - stop-gate-checks
