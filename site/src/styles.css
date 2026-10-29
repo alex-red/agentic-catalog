@@ -867,9 +867,23 @@ kbd {
 
 .viewer-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  flex-shrink: 0;
+  flex-shrink: 1;
+}
+
+.llm-copy-body { padding: 1.5rem; }
+.llm-copy-text {
+  width: 100%;
+  min-height: 45vh;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  resize: vertical;
 }
 
 .btn-action {

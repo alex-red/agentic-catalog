@@ -2,6 +2,7 @@ import data from "../../catalog/index.json";
 import "./styles.css";
 import { createCombobox, type ComboOption } from "./combobox";
 import { canInstallHook, hookInstallCommand } from "./hook-install";
+import { installPrompt } from "./llm-prompt";
 import {
   CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
   type BulkHost, type BulkScope, type InstallConfig, type StepKind,
@@ -868,6 +869,43 @@ function rubricMeter(r: Rating) {
   return box;
 }
 
+function copyForLlm(entry?: CatalogEntry, collection?: Collection) {
+  const button = el("button", "Copy for LLM", "btn-action");
+  button.type = "button";
+  button.title = "Copy installation instructions to paste into your coding agent";
+  button.onclick = async () => {
+    const text = installPrompt({ revision: __CATALOG_REVISION__, entries: catalog.entries, entry, collection });
+    try {
+      await navigator.clipboard.writeText(text);
+      button.textContent = "✓ Copied for LLM";
+      setTimeout(() => (button.textContent = "Copy for LLM"), 1800);
+    } catch {
+      // Clipboard access can be denied or unavailable outside a secure context.
+      const dialog = el("dialog", undefined, "dialog-modal");
+      dialog.setAttribute("aria-label", "Copy instructions for LLM");
+      const header = el("div", undefined, "dialog-header");
+      const close = el("button", "×", "btn-dialog-close");
+      close.type = "button";
+      close.setAttribute("aria-label", "Close dialog");
+      close.onclick = () => dialog.close();
+      header.append(el("h2", "Copy for LLM"), close);
+      const body = el("div", undefined, "llm-copy-body");
+      const field = el("textarea", undefined, "llm-copy-text");
+      field.value = text;
+      field.readOnly = true;
+      field.setAttribute("aria-label", "Installation instructions");
+      body.append(el("p", "Clipboard access is unavailable. Copy these instructions and paste them into your coding agent."), field);
+      dialog.append(header, body);
+      dialog.addEventListener("close", () => dialog.remove(), { once: true });
+      document.body.append(dialog);
+      dialog.showModal();
+      field.focus();
+      field.select();
+    }
+  };
+  return button;
+}
+
 function renderCollectionViewer(collection: Collection, activeFile?: string) {
   viewer.replaceChildren();
   viewer.scrollTop = 0;
@@ -879,7 +917,7 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
   const badges = el("div", undefined, "card-badges");
   badges.append(el("span", "Collection", "badge badge-collection"));
   left.append(badges, el("h2", collection.title));
-  titleRow.append(left);
+  titleRow.append(left, copyForLlm(undefined, collection));
   header.append(titleRow);
 
   const desc = el("div", undefined, "callout-when");
@@ -993,6 +1031,7 @@ async function renderViewer() {
   if (!item) {
     const empty = el("div", undefined, "empty-state");
     empty.append(el("span", "🧭", "empty-icon"), el("p", "Select an item from the list to inspect ratings, rubric, and files."));
+    empty.append(copyForLlm());
     viewer.append(empty);
     return;
   }
@@ -1029,6 +1068,7 @@ async function renderViewer() {
   titleRow.append(left);
 
   const actions = el("div", undefined, "viewer-actions");
+  actions.append(copyForLlm(entry));
   if (entry.sourceUrl) {
     const onGithub = entry.sourceUrl.startsWith("https://github.com/");
     const upstream = el("a", undefined, "btn-source");
