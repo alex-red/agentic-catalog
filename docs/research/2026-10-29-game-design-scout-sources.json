@@ -1,0 +1,225 @@
+{
+  "asOf": "2026-10-29",
+  "researchDate": "2026-10-29",
+  "timezone": "America/Edmonton",
+  "method": "Read-only GitHub API and web discovery; no upstream instructions, scripts or installers executed; no behavioral trials.",
+  "repositories": [
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "stars": 5575,
+      "license": "Apache-2.0 + NOTICE",
+      "read": [
+        "LICENSE",
+        "NOTICE",
+        "skills/workflows/prototype-fast/SKILL.md",
+        "skills/disciplines/level-design/SKILL.md",
+        "skills/disciplines/level-design/references/pacing-and-flow.md",
+        "skills/disciplines/game-feel/SKILL.md",
+        "skills/disciplines/game-feel/references/feedback-recipes.md",
+        "skills/genres/rpg/SKILL.md",
+        "skills/genres/rpg/references/stats-combat-quests.md"
+      ],
+      "unread": "Other engine, genre, router and workflow payloads; no engine examples executed.",
+      "reviewedHead": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "treeTruncated": false,
+      "inventoryCount": 251,
+      "inventoryCountScope": "all blob paths in untruncated API inventory"
+    },
+    {
+      "repo": "Donchitos/Claude-Code-Game-Studios",
+      "stars": 28922,
+      "license": "MIT",
+      "read": [
+        "LICENSE",
+        ".claude/skills/balance-check/SKILL.md",
+        ".claude/skills/playtest-report/SKILL.md"
+      ],
+      "unread": "Required yaml-helper.sh, config and automation rules, director gates, agents and remaining studio runtime.",
+      "reviewedHead": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+      "treeTruncated": false,
+      "inventoryCount": 638,
+      "inventoryCountScope": "all blob paths in untruncated API inventory"
+    },
+    {
+      "repo": "bmad-code-org/bmad-module-game-dev-studio",
+      "stars": 262,
+      "license": "MIT with trademark notice",
+      "read": [
+        "LICENSE",
+        "src/workflows/gametest/gds-playtest-plan/SKILL.md",
+        "src/workflows/gds-quick-flow/gds-quick-dev/SKILL.md",
+        "src/agents/gds-agent-game-dev/gametest/knowledge/playtesting.md",
+        "src/workflows/gametest/gds-playtest-plan/customize.toml"
+      ],
+      "unread": "Checklist, template, remaining step files, installation/customization resolver and broader framework runtime.",
+      "reviewedHead": "ff8870955203e1665f4bf75a64049078e6d4080c",
+      "treeTruncated": false,
+      "inventoryCount": 323,
+      "inventoryCountScope": "all blob paths in untruncated API inventory"
+    },
+    {
+      "repo": "saschb2b/skills",
+      "stars": 22,
+      "license": "MIT",
+      "read": [
+        "LICENSE",
+        "skills/productivity/game-design/SKILL.md",
+        "skills/productivity/game-design/INTEGRATION.md"
+      ],
+      "excerpts": [
+        "skills/productivity/game-design/references/design/patterns.md",
+        "skills/productivity/game-design/references/design/systems.md"
+      ],
+      "unread": "Remaining game-design reference closure and external OKF resources. Hook example inspected as text, never executed.",
+      "reviewedHead": "31a6a1364b73ff24f388f9e35c6e3ccd9baa7d89",
+      "treeTruncated": false,
+      "inventoryCount": 567,
+      "inventoryCountScope": "all blob paths in untruncated API inventory"
+    },
+    {
+      "repo": "omer-metin/skills-for-antigravity",
+      "stars": 183,
+      "license": "API identification Apache-2.0; license text not read",
+      "read": [
+        "skills/game-design-core/SKILL.md"
+      ],
+      "unread": "Three required references, root license text and other skills.",
+      "reviewedHead": "e8dcf4e8737921a10088bd5c9eb65e81f74c051f",
+      "treeTruncated": false,
+      "inventoryCount": 2768,
+      "inventoryCountScope": "all tree entries (files and directories); only relevant paths returned"
+    },
+    {
+      "repo": "sickn33/agentic-awesome-skills",
+      "alias": "sickn33/antigravity-awesome-skills",
+      "stars": 48730,
+      "license": "LICENSE-CONTENT declares CC-BY-4.0 for original prose with upstream exceptions; MIT code",
+      "read": [
+        "LICENSE-CONTENT",
+        "skills/game-development/game-design/SKILL.md"
+      ],
+      "excerpts": [
+        "docs/sources/sources.md"
+      ],
+      "unread": "Remaining routing subtree, upstream vudovn/ag-kit attribution closure, full license texts and derivative packaging.",
+      "reviewedHead": "753c5f7bb64650b7d3ac0ab84d9b24892d7aed8b",
+      "treeTruncated": false,
+      "inventoryCount": 41173,
+      "inventoryCountScope": "all tree entries (files and directories); only relevant paths returned"
+    },
+    {
+      "repo": "indieshade/game-design-analysis-skill",
+      "stars": 0,
+      "license": "API identification MIT; license text not read",
+      "read": [
+        "SKILL.md"
+      ],
+      "unread": "README and license text; referenced frameworks.md absent from complete tree.",
+      "reviewedHead": "1a0851c6dffdad6d3eca67df93cc5e861ab92056",
+      "treeTruncated": false,
+      "inventoryCount": 4,
+      "inventoryCountScope": "all blob paths in untruncated API inventory"
+    }
+  ],
+  "lastPathCommits": [
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "path": "skills/workflows/prototype-fast",
+      "date": "2026-08-08T11:53:04Z",
+      "sha": "3727d02499efac5d4703ccdc5e59e54e60e954b7",
+      "subject": "feat: modernize game development skills and asset pipeline"
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "path": "skills/disciplines/level-design",
+      "date": "2026-10-24T02:13:15Z",
+      "sha": "5dea243846da81e60129210bdd2cb73c68fc6a20",
+      "subject": "fix(level-design): derive jump metrics from controller constants, working gate validator, blockout tools"
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "path": "skills/disciplines/game-feel",
+      "date": "2026-10-24T02:11:09Z",
+      "sha": "1b71e6315900d9a4729fa4c0bb40f24052caa24b",
+      "subject": "fix(game-ui-ux): stretch-aware safe area, real focus trapping and screen stack, Input System UI module, XAG text and contrast floors"
+    },
+    {
+      "repo": "Donchitos/Claude-Code-Game-Studios",
+      "path": ".claude/skills/balance-check",
+      "date": "2026-10-19T02:09:09Z",
+      "sha": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+      "subject": "Release 1.2.0 \u2014 the main path, rebuilt and tested\n\nMinor release after 1.1.3: the story skills are rebuilt around shared\nhelper scripts, a read guard stops whole-file reads of large design docs,\nthe engine references move to Godot 4.7 and Unreal Engine 5.8, and no\nskill pre-approves every shell command any more. Details in CHANGELOG.md;\nupgrade steps in UPGRADING.md (v1.1.3 \u2192 v1.2.0).\n\nRefs #58\nRefs #64\nRefs #76\nRefs #121\nRefs #133\nRefs #136\nRefs #140\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01J9wxspZHKt6QmB2vW9trry"
+    },
+    {
+      "repo": "bmad-code-org/bmad-module-game-dev-studio",
+      "path": "src/workflows/gametest/gds-playtest-plan",
+      "date": "2026-09-25T10:18:14Z",
+      "sha": "ff8870955203e1665f4bf75a64049078e6d4080c",
+      "subject": "Resolve {project-root} by walking up to the nearest _bmad/ (#38)\n\nSkills started inside a worktree or subfolder now find the _bmad/ install above them instead of assuming the working directory."
+    },
+    {
+      "repo": "saschb2b/skills",
+      "path": "skills/productivity/game-design",
+      "date": "2026-08-21T10:14:03Z",
+      "sha": "5fe23350bcbe5f101e5dbb2f72864f105962470c",
+      "subject": "chore: sign game-design changes"
+    }
+  ],
+  "additionalSources": [
+    {
+      "repo": "openai/plugins",
+      "sha": "0722921d5542fc593105c27bd52630babd8b8c2a",
+      "stars": 7656,
+      "read": [
+        "plugins/game-studio/skills/game-studio/SKILL.md",
+        "plugins/game-studio/skills/game-playtest/SKILL.md",
+        "plugins/game-studio/references/playtest-checklist.md",
+        "plugins/game-studio/.codex-plugin/plugin.json"
+      ],
+      "licenseLimit": "Manifest declares MIT; no applicable LICENSE file found in selected plugin/root license paths. Not cleared for copying.",
+      "unread": "Remaining references, sibling skills, scripts and agent metadata."
+    },
+    {
+      "repo": "github/awesome-copilot",
+      "sha": "b6483db44fb602654bca6a097185fcaddb305f97",
+      "read": [
+        "skills/game-engine/SKILL.md"
+      ],
+      "unread": "Assets, references and license not read; terminology.md is referenced by the entrypoint but absent from the inspected subtree."
+    },
+    {
+      "repo": "PatrickJS/awesome-cursorrules",
+      "sha": "b044f956f021b6e8877f16781bcfc466a6a120e9",
+      "inventoryOnly": [
+        "rules/unity-cursor-ai-c-cursorrules-prompt-file.mdc"
+      ]
+    },
+    {
+      "repo": "openai/skills",
+      "sha": "49f948faa9258a0c61caceaf225e179651397431",
+      "finding": "Untruncated API tree filtered for develop-web-game has no matches; registry source entry therefore unresolved at this HEAD. Full tree output was truncated locally; no claim to reading all files."
+    },
+    {
+      "repo": "jord-jd/jord-skills",
+      "finding": "GitHub API 404; registry lead only."
+    }
+  ],
+  "popularity": {
+    "source": "https://www.skills.sh/gamedev-skills/awesome-gamedev-agent-skills",
+    "registry": "Cached/rendered pages observed 2026-10-29; aggregate CLI installs, not users or outcomes.",
+    "values": {
+      "gameFeel": "11.0K",
+      "levelDesign": "8.9K",
+      "prototypeFast": "7.2K",
+      "rpg": "7.3K",
+      "sickn33GameDevelopment": "3.8K",
+      "saschb2bGameDesign": 75,
+      "openaiDevelopWebGame": "1.1K"
+    }
+  },
+  "limitations": [
+    "Initial huge omer/sickn33 inventory outputs truncated locally; repeated server-side filtered queries returned untruncated API trees and only relevant paths.",
+    "Downloaded or enumerated content is not automatically read.",
+    "No causal improvement, adoption beyond channel metrics, or popularity growth established."
+  ]
+}

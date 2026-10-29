@@ -3,6 +3,7 @@ import "./styles.css";
 import { createCombobox, type ComboOption } from "./combobox";
 import { canInstallHook, hookInstallCommand } from "./hook-install";
 import { installPrompt } from "./llm-prompt";
+import { belongsToTreeGroup, catalogCategories, categoryOf, matchesCategories } from "./categories";
 import {
   CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
   type BulkHost, type BulkScope, type InstallConfig, type StepKind,
@@ -101,9 +102,10 @@ const sources = Object.fromEntries(
   ).map(([path, load]) => [path.replace("../../", ""), load]),
 );
 
-// Custom and experimental entries form their own tree groups after the established types.
-const kinds: Kind[] = ["featured", "skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "custom", "experimental", "collection"];
+// Topic categories preserve each entry's underlying type for routing and installation.
+const kinds: Kind[] = ["featured", ...catalogCategories.map((category) => category.id), "skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "custom", "experimental", "collection"];
 const kindLabels: Record<Kind, string> = {
+  ...Object.fromEntries(catalogCategories.map((category) => [category.id, category.label])),
   skill: "Skills",
   rule: "Rules",
   workflow: "Workflows",
@@ -180,6 +182,7 @@ const treeToggleAllBtn = $<HTMLButtonElement>("#tree-toggle-all");
 const activeHosts = new Set<string>();
 const activeEvidence = new Set<string>();
 const activeTypes = new Set<string>();
+const activeCategories = new Set<string>();
 const activeSourceKinds = new Set<string>();
 let sortKey: SortKey = "score";
 
@@ -244,7 +247,7 @@ function chip(label: string, active: Set<string>, onChange: () => void, displayL
 }
 
 function hasFilters(): boolean {
-  return activeHosts.size > 0 || activeEvidence.size > 0 || activeTypes.size > 0 || activeSourceKinds.size > 0 ||
+  return activeHosts.size > 0 || activeEvidence.size > 0 || activeTypes.size > 0 || activeCategories.size > 0 || activeSourceKinds.size > 0 ||
     !showExperimental.checked || input.value.trim().length > 0;
 }
 
@@ -252,6 +255,7 @@ function clearFilters() {
   activeHosts.clear();
   activeEvidence.clear();
   activeTypes.clear();
+  activeCategories.clear();
   activeSourceKinds.clear();
   showExperimental.checked = true;
   input.value = "";
@@ -274,6 +278,7 @@ function visible(): Item[] {
 
     if (activeEvidence.size > 0 && (!e.evidence || !activeEvidence.has(e.evidence))) return false;
     if (activeTypes.size > 0 && !activeTypes.has(e.kind)) return false;
+    if (!matchesCategories(e, activeCategories)) return false;
     if (activeSourceKinds.size > 0 && (!e.sourceKind || !activeSourceKinds.has(e.sourceKind))) return false;
     if (!showExperimental.checked && e.entry?.experimental) return false;
     if (!q) return true;
@@ -363,9 +368,10 @@ const filterCombo = createCombobox({
   label: "Filter",
   multi: true,
   searchable: true,
-  placeholder: "Filter by type or source…",
+  placeholder: "Filter by category, type or source…",
   host: sidebarControls,
   options: (): ComboOption[] => [
+    ...catalogCategories.map((category) => ({ value: `category:${category.id}`, label: category.label, group: "Category", count: countBy(categoryOf, category.id) })),
     ...typeOptions.map((t) => ({ value: `type:${t}`, label: kindLabels[t], group: "Type", count: countBy((i) => i.kind, t) })),
     ...sourceKinds.map((k) => ({ value: `source:${k}`, label: cap(k), group: "Source", count: countBy((i) => i.sourceKind, k) })),
     { value: HIDE_EXPERIMENTAL, label: "Hide experimental", group: "Show" },
@@ -373,14 +379,14 @@ const filterCombo = createCombobox({
   isSelected: (o) => {
     if (o.value === HIDE_EXPERIMENTAL) return !showExperimental.checked;
     const [group, v] = o.value.split(":");
-    return (group === "type" ? activeTypes : activeSourceKinds).has(v);
+    return (group === "category" ? activeCategories : group === "type" ? activeTypes : activeSourceKinds).has(v);
   },
   onSelect: (o) => {
     if (o.value === HIDE_EXPERIMENTAL) {
       showExperimental.checked = !showExperimental.checked;
     } else {
       const [group, v] = o.value.split(":");
-      const set = group === "type" ? activeTypes : activeSourceKinds;
+      const set = group === "category" ? activeCategories : group === "type" ? activeTypes : activeSourceKinds;
       set.has(v) ? set.delete(v) : set.add(v);
     }
     renderControls();
@@ -390,6 +396,7 @@ const filterCombo = createCombobox({
   badge: sidebarFilterCount,
   onClear: () => {
     activeTypes.clear();
+    activeCategories.clear();
     activeSourceKinds.clear();
     showExperimental.checked = true;
     renderControls();
@@ -399,11 +406,12 @@ const filterCombo = createCombobox({
 comboRow.append(sortCombo.el, filterCombo.el);
 
 function sidebarFilterCount() {
-  return activeTypes.size + activeSourceKinds.size + (showExperimental.checked ? 0 : 1);
+  return activeTypes.size + activeCategories.size + activeSourceKinds.size + (showExperimental.checked ? 0 : 1);
 }
 
 function renderTokens() {
   const tokens: { label: string; remove: () => void }[] = [
+    ...[...activeCategories].map((category) => ({ label: kindLabels[category], remove: () => activeCategories.delete(category) })),
     ...[...activeTypes].map((t) => ({ label: kindLabels[t], remove: () => activeTypes.delete(t) })),
     ...[...activeSourceKinds].map((k) => ({ label: cap(k), remove: () => activeSourceKinds.delete(k) })),
     ...(showExperimental.checked ? [] : [{ label: "No experimental", remove: () => (showExperimental.checked = true) }]),
@@ -433,7 +441,7 @@ function renderList() {
 
   for (const kind of kinds) {
     const sorter = sorters[sortKey];
-    const group = shown.filter((e) => (kind === "featured" ? !!e.entry?.featured : (e.entry?.experimental ? "experimental" : e.entry?.custom ? "custom" : e.kind) === kind)).sort((a, b) => sorter(a, b) || a.id.localeCompare(b.id));
+    const group = shown.filter((e) => belongsToTreeGroup(e, kind)).sort((a, b) => sorter(a, b) || a.id.localeCompare(b.id));
     if (group.length === 0) continue;
 
     const details = el("details", undefined, "tree-group");

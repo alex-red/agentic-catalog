@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: game-feel
+type: skill
+title: Responsive and readable gameplay feedback
+summary: Improves existing actions through proportionate timing and audiovisual response, with input, simulation, effect ownership and accessibility constraints. Avoids universal effect recipes and unverified global hit-stop helpers.
+useWhen: Tuning the responsiveness, impact or readability of hits, jumps, pickups and other gameplay events, including repeated effects and camera motion.
+tags: [game-design, game-feel, feedback, accessibility]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Compact conceptual adaptation with overlap, cancellation, multiplayer and reduced-effects decisions. No executable recipes are included; upstream time-scale risks remain documented in research. No player-comfort study, runtime demonstration or matched outcome evaluation.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independent prose inspired by the reviewed game-feel entry and feedback reference. Flawed shared-time examples, universal effect counts and blanket easing preferences are excluded; no upstream code or expression copied.
+inspiredBy:
+  - title: Game Feel — reviewed source
+    url: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/SKILL.md
+  - title: Feedback Recipes — reviewed reference
+    url: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/references/feedback-recipes.md
+overlap: Native design reasoning covers audiovisual polish; emil-design-eng addresses interface motion; human-interface-design addresses general feedback and access. This targets gameplay event timing, simulation boundaries, repeated impact and effect ownership without requiring an engine or motion library.
+related: [mmorpg-design, level-design, mechanic-prototyping, gameplay-playtesting]

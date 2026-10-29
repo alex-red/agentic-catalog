@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: game-balance-review
+type: workflow
+title: Evidence-backed game balance analysis
+summary: Reviews combat, economy, progression and loot against explicit rules, targets and available evidence. Separates missing inputs, structural defects, uncertain acquisition distributions and observed player outcomes.
+useWhen: Assessing game balance from formulas, content data, progression requirements, loot rules or telemetry, and proposing bounded tuning experiments.
+tags: [game-design, balance, virtual-economies, progression, workflow]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Independent method retains data/target/not-assessed distinctions without studio helpers, registry conventions or automatic agent review. Math models require explicit assumptions; missing telemetry is not a healthy verdict. No behavioral evaluation or actual game-balance outcome recorded.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independent adaptation of the inspected balance-check method. Does not adopt unread studio runtime, dynamic shell loading, fixed project paths or universal critical verdicts. No upstream wording or helper code copied.
+inspiredBy:
+  - title: Claude Code Game Studios — balance-check
+    url: https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/balance-check/SKILL.md
+overlap: mmorpg-design examines mechanics and incentives; native analysis can calculate formulas; synthesize-research organizes evidence. This supplies a data-bearing balance review with cohort/condition assumptions and acquisition-tail analysis. It does not replace project targets or require a studio configuration.
+related: [mmorpg-design, mechanic-prototyping, gameplay-playtesting]

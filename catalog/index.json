@@ -312,6 +312,62 @@
     },
     {
       "schemaVersion": 2,
+      "id": "game-feel",
+      "type": "skill",
+      "title": "Responsive and readable gameplay feedback",
+      "summary": "Improves existing actions through proportionate timing and audiovisual response, with input, simulation, effect ownership and accessibility constraints. Avoids universal effect recipes and unverified global hit-stop helpers.",
+      "useWhen": "Tuning the responsiveness, impact or readability of hits, jumps, pickups and other gameplay events, including repeated effects and camera motion.",
+      "tags": [
+        "game-design",
+        "game-feel",
+        "feedback",
+        "accessibility"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Compact conceptual adaptation with overlap, cancellation, multiplayer and reduced-effects decisions. No executable recipes are included; upstream time-scale risks remain documented in research. No player-comfort study, runtime demonstration or matched outcome evaluation."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent prose inspired by the reviewed game-feel entry and feedback reference. Flawed shared-time examples, universal effect counts and blanket easing preferences are excluded; no upstream code or expression copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "Game Feel — reviewed source",
+          "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/SKILL.md"
+        },
+        {
+          "title": "Feedback Recipes — reviewed reference",
+          "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/references/feedback-recipes.md"
+        }
+      ],
+      "overlap": "Native design reasoning covers audiovisual polish; emil-design-eng addresses interface motion; human-interface-design addresses general feedback and access. This targets gameplay event timing, simulation boundaries, repeated impact and effect ownership without requiring an engine or motion library.",
+      "related": [
+        "mmorpg-design",
+        "level-design",
+        "mechanic-prototyping",
+        "gameplay-playtesting"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/SKILL.md",
+      "path": "entries/skills/game-feel",
+      "files": [
+        "entries/skills/game-feel/LICENSE.txt",
+        "entries/skills/game-feel/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "gh-fix-ci",
       "type": "skill",
       "title": "Fix failing GitHub Actions checks",
@@ -502,6 +558,63 @@
     },
     {
       "schemaVersion": 2,
+      "id": "level-design",
+      "type": "skill",
+      "title": "Playable spaces and encounter layout",
+      "summary": "Designs and reviews maps through measured traversal, camera constraints, cheap blockouts, gates and observation. Includes a conditional reference for platform-based farming loops and shared space.",
+      "useWhen": "Planning or reviewing playable level geometry, encounters, wayfinding, gates, platform spacing or repeatable farming routes.",
+      "tags": [
+        "game-design",
+        "level-design",
+        "encounters",
+        "platformers"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Independent core and platform-map reference distinguish measured capability, topology, intended pacing and player evidence. Genre-specific curves remain optional. No engine snippets or helpers shipped. Structural review is not proof of enjoyable levels or agent effectiveness."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independently written from the reviewed level-design method. Replaces universal pacing and geometry prescriptions with intent-dependent decisions. No upstream wording, pseudocode or engine resources copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "Level Design — reviewed source",
+          "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/level-design/SKILL.md"
+        },
+        {
+          "title": "Pacing and Flow — reviewed reference",
+          "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/level-design/references/pacing-and-flow.md"
+        }
+      ],
+      "overlap": "Native engine tools create geometry; frontend-design and human-interface-design address interfaces; mmorpg-design addresses persistent systems. This adds traversal measurement, spatial state/gate reasoning and encounter iteration. Related entries are optional and existing controller/camera contracts retain authority.",
+      "related": [
+        "mmorpg-design",
+        "mechanic-prototyping",
+        "game-feel",
+        "gameplay-playtesting"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/level-design/SKILL.md",
+      "path": "entries/skills/level-design",
+      "files": [
+        "entries/skills/level-design/LICENSE.txt",
+        "entries/skills/level-design/SKILL.md",
+        "entries/skills/level-design/references/platform-maps.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "mcp-builder",
       "type": "skill",
       "title": "MCP server builder",
@@ -541,6 +654,77 @@
       "sourceUrl": "https://github.com/anthropics/skills/tree/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/mcp-builder",
       "path": "entries/skills/mcp-builder",
       "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "mmorpg-design",
+      "type": "skill",
+      "title": "Persistent-world systems design",
+      "summary": "Turns MMORPG progression, combat, social and economy ideas into explicit incentives, tradeoffs and testable decisions. Includes a conditional MapleStory case-study reference with primary sources and evidence limits.",
+      "useWhen": "Designing or reviewing MMORPG mechanics, especially progression milestones, cooperative play, trading, account growth and recurring activities in MapleStory-like games.",
+      "tags": [
+        "game-design",
+        "mmorpg",
+        "progression",
+        "social-design",
+        "virtual-economies",
+        "research"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Focused domain method with a self-contained case-study reference and source limitations. Useful for game projects rather than typical software work. Reviewed for scope, causal reasoning, regional distinctions and actionable validation. No trigger trials, gameplay experiments or matched agent-outcome evaluation have been run; structural checks do not establish effectiveness."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independently written from the session's MMORPG and MapleStory research. Publisher documentation and research papers are cited as inspiration; no upstream prose, game assets, scripts or proprietary rules tables are copied. Mutable sources require version-specific verification."
+      },
+      "inspiredBy": [
+        {
+          "title": "Nexon — Heroic, Interactive and Seasonal Worlds",
+          "url": "https://support-maplestory.nexon.com/hc/en-us/articles/22984919392788-What-are-Heroic-Interactive-and-Seasonal-Worlds"
+        },
+        {
+          "title": "MapleSEA — Big Bang Sneak Preview 1 (2011)",
+          "url": "https://www.maplesea.com/news_events/view/big_bang_sneak_preview_1/"
+        },
+        {
+          "title": "Yee — Motivations for Play in Online Games (2006)",
+          "url": "https://www.nickyee.com/pubs/Yee%20-%20Motivations%20%282006%29.pdf"
+        },
+        {
+          "title": "Huynh et al. — Stepping out of the Magic Circle (2013)",
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/jcc4.12011"
+        },
+        {
+          "title": "Hogan-Hennessy et al. — Market Interventions in a Large-Scale Virtual Economy (2022)",
+          "url": "https://arxiv.org/abs/2210.07970"
+        }
+      ],
+      "install": {
+        "notes": "Copy the complete skill directory, including its case-study reference and LICENSE.txt. Requires no other skill, script, game account or tool connection. Source verification uses whatever research tools the host provides."
+      },
+      "overlap": "Host-native reasoning can already propose game mechanics and research sources. grilling challenges decisions; synthesize-research and moderated-usability-study address research methods; human-interface-design addresses interfaces. This adds domain-specific incentive tracing across persistent progression, social continuity, trade, variance and account growth. No MMORPG-specific built-in or existing catalog equivalent was found in this session's inventory; it requires none of the related entries.",
+      "related": [
+        "grilling"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://support-maplestory.nexon.com/hc/en-us/articles/22984919392788-What-are-Heroic-Interactive-and-Seasonal-Worlds",
+      "path": "entries/skills/mmorpg-design",
+      "files": [
+        "entries/skills/mmorpg-design/LICENSE.txt",
+        "entries/skills/mmorpg-design/SKILL.md",
+        "entries/skills/mmorpg-design/references/maplestory-and-comparisons.md"
+      ]
     },
     {
       "schemaVersion": 2,
@@ -1762,6 +1946,115 @@
     },
     {
       "schemaVersion": 2,
+      "id": "game-balance-review",
+      "type": "workflow",
+      "title": "Evidence-backed game balance analysis",
+      "summary": "Reviews combat, economy, progression and loot against explicit rules, targets and available evidence. Separates missing inputs, structural defects, uncertain acquisition distributions and observed player outcomes.",
+      "useWhen": "Assessing game balance from formulas, content data, progression requirements, loot rules or telemetry, and proposing bounded tuning experiments.",
+      "tags": [
+        "game-design",
+        "balance",
+        "virtual-economies",
+        "progression",
+        "workflow"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Independent method retains data/target/not-assessed distinctions without studio helpers, registry conventions or automatic agent review. Math models require explicit assumptions; missing telemetry is not a healthy verdict. No behavioral evaluation or actual game-balance outcome recorded."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent adaptation of the inspected balance-check method. Does not adopt unread studio runtime, dynamic shell loading, fixed project paths or universal critical verdicts. No upstream wording or helper code copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "Claude Code Game Studios — balance-check",
+          "url": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/balance-check/SKILL.md"
+        }
+      ],
+      "overlap": "mmorpg-design examines mechanics and incentives; native analysis can calculate formulas; synthesize-research organizes evidence. This supplies a data-bearing balance review with cohort/condition assumptions and acquisition-tail analysis. It does not replace project targets or require a studio configuration.",
+      "related": [
+        "mmorpg-design",
+        "mechanic-prototyping",
+        "gameplay-playtesting"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/balance-check/SKILL.md",
+      "path": "entries/workflows/game-balance-review",
+      "files": [
+        "entries/workflows/game-balance-review/LICENSE.txt",
+        "entries/workflows/game-balance-review/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "gameplay-playtesting",
+      "type": "workflow",
+      "title": "Gameplay studies and observation workflow",
+      "summary": "Prepares and interprets focused gameplay tests, keeping implementation checks, design inspection and real-player evidence separate. Connects traceable observations to decisions and comparable retests without a studio runtime.",
+      "useWhen": "Planning gameplay studies, analyzing playtest notes or recordings, or exercising a playable build to investigate controls, learning, fairness, pacing or cooperation.",
+      "tags": [
+        "game-design",
+        "playtesting",
+        "research",
+        "verification",
+        "workflow"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Independent game-specific workflow reuses evidence discipline while covering gameplay failures, controls, repeated sessions and browser render state. No invented participant results, fixed sample guarantees or automatic recruitment. Source and structural review only; no study or agent outcome evaluation performed."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independent prose inspired by inspected BMad playtest planning and knowledge guidance. Omits unread template/resolver runtime, arbitrary frequency thresholds, automatic agents and mandatory checkpoints. No upstream text or code copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "BMad — playtest planning",
+          "url": "https://github.com/bmad-code-org/bmad-module-game-dev-studio/blob/ff8870955203e1665f4bf75a64049078e6d4080c/src/workflows/gametest/gds-playtest-plan/SKILL.md"
+        },
+        {
+          "title": "BMad — playtesting knowledge",
+          "url": "https://github.com/bmad-code-org/bmad-module-game-dev-studio/blob/ff8870955203e1665f4bf75a64049078e6d4080c/src/agents/gds-agent-game-dev/gametest/knowledge/playtesting.md"
+        }
+      ],
+      "overlap": "moderated-usability-study handles general participant sessions, synthesize-research handles findings and webapp-testing handles browser checks. This is a game-specific route through the needed evidence, including mastery, fairness, repeat loops and controls; it requires none of those entries and does not claim automated play proves human enjoyment.",
+      "related": [
+        "webapp-testing",
+        "mmorpg-design",
+        "game-balance-review",
+        "mechanic-prototyping"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/bmad-code-org/bmad-module-game-dev-studio/blob/ff8870955203e1665f4bf75a64049078e6d4080c/src/workflows/gametest/gds-playtest-plan/SKILL.md",
+      "path": "entries/workflows/gameplay-playtesting",
+      "files": [
+        "entries/workflows/gameplay-playtesting/LICENSE.txt",
+        "entries/workflows/gameplay-playtesting/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "harness-experiment-loop",
       "type": "workflow",
       "title": "Harness experiment loop",
@@ -1821,6 +2114,59 @@
       "files": [
         "entries/workflows/harness-experiment-loop/LICENSE.txt",
         "entries/workflows/harness-experiment-loop/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "mechanic-prototyping",
+      "type": "workflow",
+      "title": "Playable mechanic experiments",
+      "summary": "Turns one gameplay uncertainty into a scoped playable experiment and an evidence-backed keep, revise, stop or inconclusive decision. Preserves the target experience and separates prototypes from production commitments.",
+      "useWhen": "Testing a gameplay idea, control interaction or small loop before committing to production, or comparing mechanic variants in a playable prototype.",
+      "tags": [
+        "game-design",
+        "prototyping",
+        "experimentation",
+        "workflow"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 2,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Independent method with conditional scope budgets, context-dependent presentation and explicit evidence limits. Adds a learning-oriented alternative to feature delivery. Source and structural review only; no activation or matched outcome evaluation."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Original prose inspired by prototype-fast. Omits universal timing and success thresholds, mandatory participant recruitment, engine dependencies and blanket rewrite rules. No upstream wording or code copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "Prototype Fast — reviewed source",
+          "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/workflows/prototype-fast/SKILL.md"
+        }
+      ],
+      "overlap": "Native planning can build prototypes; explore-plan-implement-review organizes production work; mmorpg-design proposes testable mechanics. This adds experiment containment, observable decision criteria and inconclusive outcomes without requiring another skill or engine.",
+      "related": [
+        "mmorpg-design",
+        "level-design",
+        "game-feel",
+        "gameplay-playtesting",
+        "explore-plan-implement-review"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/workflows/prototype-fast/SKILL.md",
+      "path": "entries/workflows/mechanic-prototyping",
+      "files": [
+        "entries/workflows/mechanic-prototyping/LICENSE.txt",
+        "entries/workflows/mechanic-prototyping/WORKFLOW.md"
       ]
     },
     {

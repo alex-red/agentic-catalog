@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: level-design
+type: skill
+title: Playable spaces and encounter layout
+summary: Designs and reviews maps through measured traversal, camera constraints, cheap blockouts, gates and observation. Includes a conditional reference for platform-based farming loops and shared space.
+useWhen: Planning or reviewing playable level geometry, encounters, wayfinding, gates, platform spacing or repeatable farming routes.
+tags: [game-design, level-design, encounters, platformers]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Independent core and platform-map reference distinguish measured capability, topology, intended pacing and player evidence. Genre-specific curves remain optional. No engine snippets or helpers shipped. Structural review is not proof of enjoyable levels or agent effectiveness.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written from the reviewed level-design method. Replaces universal pacing and geometry prescriptions with intent-dependent decisions. No upstream wording, pseudocode or engine resources copied.
+inspiredBy:
+  - title: Level Design — reviewed source
+    url: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/level-design/SKILL.md
+  - title: Pacing and Flow — reviewed reference
+    url: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/level-design/references/pacing-and-flow.md
+overlap: Native engine tools create geometry; frontend-design and human-interface-design address interfaces; mmorpg-design addresses persistent systems. This adds traversal measurement, spatial state/gate reasoning and encounter iteration. Related entries are optional and existing controller/camera contracts retain authority.
+related: [mmorpg-design, mechanic-prototyping, game-feel, gameplay-playtesting]

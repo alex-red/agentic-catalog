@@ -1,0 +1,36 @@
+schemaVersion: 2
+id: mmorpg-design
+type: skill
+title: Persistent-world systems design
+summary: Turns MMORPG progression, combat, social and economy ideas into explicit incentives, tradeoffs and testable decisions. Includes a conditional MapleStory case-study reference with primary sources and evidence limits.
+useWhen: Designing or reviewing MMORPG mechanics, especially progression milestones, cooperative play, trading, account growth and recurring activities in MapleStory-like games.
+tags: [game-design, mmorpg, progression, social-design, virtual-economies, research]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Focused domain method with a self-contained case-study reference and source limitations. Useful for game projects rather than typical software work. Reviewed for scope, causal reasoning, regional distinctions and actionable validation. No trigger trials, gameplay experiments or matched agent-outcome evaluation have been run; structural checks do not establish effectiveness.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written from the session's MMORPG and MapleStory research. Publisher documentation and research papers are cited as inspiration; no upstream prose, game assets, scripts or proprietary rules tables are copied. Mutable sources require version-specific verification.
+inspiredBy:
+  - title: Nexon — Heroic, Interactive and Seasonal Worlds
+    url: https://support-maplestory.nexon.com/hc/en-us/articles/22984919392788-What-are-Heroic-Interactive-and-Seasonal-Worlds
+  - title: MapleSEA — Big Bang Sneak Preview 1 (2011)
+    url: https://www.maplesea.com/news_events/view/big_bang_sneak_preview_1/
+  - title: Yee — Motivations for Play in Online Games (2006)
+    url: https://www.nickyee.com/pubs/Yee%20-%20Motivations%20%282006%29.pdf
+  - title: Huynh et al. — Stepping out of the Magic Circle (2013)
+    url: https://onlinelibrary.wiley.com/doi/full/10.1111/jcc4.12011
+  - title: Hogan-Hennessy et al. — Market Interventions in a Large-Scale Virtual Economy (2022)
+    url: https://arxiv.org/abs/2210.07970
+install:
+  notes: Copy the complete skill directory, including its case-study reference and LICENSE.txt. Requires no other skill, script, game account or tool connection. Source verification uses whatever research tools the host provides.
+overlap: Host-native reasoning can already propose game mechanics and research sources. grilling challenges decisions; synthesize-research and moderated-usability-study address research methods; human-interface-design addresses interfaces. This adds domain-specific incentive tracing across persistent progression, social continuity, trade, variance and account growth. No MMORPG-specific built-in or existing catalog equivalent was found in this session's inventory; it requires none of the related entries.
+related: [grilling]

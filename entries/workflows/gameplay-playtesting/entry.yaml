@@ -1,0 +1,28 @@
+schemaVersion: 2
+id: gameplay-playtesting
+type: workflow
+title: Gameplay studies and observation workflow
+summary: Prepares and interprets focused gameplay tests, keeping implementation checks, design inspection and real-player evidence separate. Connects traceable observations to decisions and comparable retests without a studio runtime.
+useWhen: Planning gameplay studies, analyzing playtest notes or recordings, or exercising a playable build to investigate controls, learning, fairness, pacing or cooperation.
+tags: [game-design, playtesting, research, verification, workflow]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Independent game-specific workflow reuses evidence discipline while covering gameplay failures, controls, repeated sessions and browser render state. No invented participant results, fixed sample guarantees or automatic recruitment. Source and structural review only; no study or agent outcome evaluation performed.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independent prose inspired by inspected BMad playtest planning and knowledge guidance. Omits unread template/resolver runtime, arbitrary frequency thresholds, automatic agents and mandatory checkpoints. No upstream text or code copied.
+inspiredBy:
+  - title: BMad — playtest planning
+    url: https://github.com/bmad-code-org/bmad-module-game-dev-studio/blob/ff8870955203e1665f4bf75a64049078e6d4080c/src/workflows/gametest/gds-playtest-plan/SKILL.md
+  - title: BMad — playtesting knowledge
+    url: https://github.com/bmad-code-org/bmad-module-game-dev-studio/blob/ff8870955203e1665f4bf75a64049078e6d4080c/src/agents/gds-agent-game-dev/gametest/knowledge/playtesting.md
+overlap: moderated-usability-study handles general participant sessions, synthesize-research handles findings and webapp-testing handles browser checks. This is a game-specific route through the needed evidence, including mastery, fairness, repeat loops and controls; it requires none of those entries and does not claim automated play proves human enjoyment.
+related: [webapp-testing, mmorpg-design, game-balance-review, mechanic-prototyping]

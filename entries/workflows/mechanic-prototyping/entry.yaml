@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: mechanic-prototyping
+type: workflow
+title: Playable mechanic experiments
+summary: Turns one gameplay uncertainty into a scoped playable experiment and an evidence-backed keep, revise, stop or inconclusive decision. Preserves the target experience and separates prototypes from production commitments.
+useWhen: Testing a gameplay idea, control interaction or small loop before committing to production, or comparing mechanic variants in a playable prototype.
+tags: [game-design, prototyping, experimentation, workflow]
+hosts: [any]
+rating:
+  usefulness: 2
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Independent method with conditional scope budgets, context-dependent presentation and explicit evidence limits. Adds a learning-oriented alternative to feature delivery. Source and structural review only; no activation or matched outcome evaluation.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Original prose inspired by prototype-fast. Omits universal timing and success thresholds, mandatory participant recruitment, engine dependencies and blanket rewrite rules. No upstream wording or code copied.
+inspiredBy:
+  - title: Prototype Fast — reviewed source
+    url: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/workflows/prototype-fast/SKILL.md
+overlap: Native planning can build prototypes; explore-plan-implement-review organizes production work; mmorpg-design proposes testable mechanics. This adds experiment containment, observable decision criteria and inconclusive outcomes without requiring another skill or engine.
+related: [mmorpg-design, level-design, game-feel, gameplay-playtesting, explore-plan-implement-review]

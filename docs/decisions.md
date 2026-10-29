@@ -249,8 +249,28 @@ The general workflow separates package, task and release graphs, conservative af
 
 Ten disposable fixture checks passed on Bun 1.4.3, including current filtered-add support, consumer-scoped imports, dependency order, catalog resolution, clean frozen installation and local packing. They do not establish agent outcomes, cross-platform behavior, lifecycle readiness, cache correctness or deployment success. The catalog now has 64 entries, including 29 skills and eight workflows, with seven collections. No upstream skill expression or executable is copied, and all prior research holds remain unless explicitly resolved in the new report.
 
+## 41. Distill MMORPG research into a focused design skill (2026-10-29)
+
+Following the user's request to turn the session's MMORPG and MapleStory investigation into a skill, added adapted `mmorpg-design`, titled Persistent-world systems design. Its core traces mechanics through incentives, behavior, effects on other players and long-term consequences. A conditional reference retains primary sources, historical pacing, trade restrictions, account investment and comparison questions for Ragnarok Online, Dungeon Fighter Online and Guild Wars 2.
+
+The skill uses independently written MIT prose. It distinguishes documented mechanics, developer intentions, player observations and design hypotheses; region and era matter. It does not present nostalgia, a selected interview sample, or observational retention correlations as causal proof. It favors capability changes, social reconnection, acquisition variance and aggregate recurring work over engagement alone. MapleStory supplies examples rather than a universal design prescription.
+
+Overlap was checked against the available host skills and catalog metadata. Native reasoning, grilling and research methods cover adjacent work; no MMORPG-specific equivalent was present. The entry adds domain-specific decision criteria without requiring another skill, runtime, tool connection or persistence convention. It is admitted at `reviewed`, with conservative usefulness for typical software projects; no activation trial, gameplay experiment or matched agent-outcome improvement is claimed.
+
+All installable files, the research reference and license live inside the entry directory. Admission does not install the skill into a consumer project or personal skill directory. The catalog now contains 65 entries, including 30 skills, and seven collections; no collection or plugin manifest changes.
+
 ## 42. Copy installation handoffs from every catalog page (2026-10-29)
 
 The browser's Copy for LLM action generates a project-scoped installation prompt for an entry or every member of a collection. The overview instead requests a shortlist and user selection. Prompts include catalog files and the type-specific install reference at the site's build revision, upstream provenance, supported hosts, experimental status and entry-specific installation guidance. Complete payloads and licenses remain required; linked upstream instructions retain their own pins.
 
 The handoff preserves project conventions, existing files and approval for executable integrations. It does not run workflow tasks or activate integrations on copying. Clipboard failure opens selectable text for manual copying. Existing source and shell snippet copy controls retain their respective jobs. Prompt tests cover all catalog types, collection membership, missing members and overview selection boundaries; they do not establish agent installation behavior.
+
+## 43. Add game-design methods and a topic category (2026-10-29)
+
+Following the user's request to add all five shortlisted [game-design methods](research/2026-10-29-catalog-scout-2.md), admitted adapted `mechanic-prototyping`, `level-design`, `game-feel`, `game-balance-review` and `gameplay-playtesting`. The [admission record](research/2026-10-29-game-design-admission.md) documents independent authoring, source boundaries and validation. Two skills and three workflows complement existing `mmorpg-design`; every new entry starts at `reviewed`.
+
+The methods are self-contained MIT prose with immutable inspiration and explicit overlap. They omit upstream runtime dependencies, universal success thresholds, flawed effect snippets and studio-specific configuration. The prior whole-package review gaps are not treated as resolved. No consumer guidance, reviewer agent, hook, service, recording or participant contact is activated by admission.
+
+The browser now supports a Game design topic category derived from the existing `game-design` tag. It has a dedicated primary tree group and a Category filter that composes with existing filters. Entry types and installation routes remain unchanged. Featured remains an additional listing; Custom and Experimental keep their existing placement priority. A topic category is not a new entry type or an install-all collection.
+
+Generated indexes are rebuilt from source, and the [selection guide](game-design-options.md) explains each method. The catalog now has 70 entries, including 32 skills and 11 workflows, with seven collections. Category tests, a site build and local browser verification assess implementation; they do not establish improved gameplay or agent outcomes.
