@@ -284,3 +284,9 @@ Explicit selection permits listing these alternatives without claiming their pri
 The exact requested `reverse_engineering` tag uses a separate tag schema accepting single hyphen or underscore separators. Entry and relation IDs keep their hyphen-only convention. Tests preserve that distinction and reject malformed tags. This is a searchable tag, not a new entry type, topic category or install-all collection.
 
 The recovered RE report now uses a descriptive filename after a shared-workspace dated-filename collision; the existing game-design report and its links are preserved. Generated indexes are rebuilt from source. The catalog now contains 76 entries, including 34 skills, six MCP servers, seven experimental entries, one custom entry and seven collections. No plugin manifest or version changes.
+
+## 45. Add a global catalog command palette (2026-10-29)
+
+The catalog browser exposes a Commands button and Cmd/Ctrl+K shortcut. An empty query offers overview navigation, filter reset, Codex and Claude Code browsing, About, installation review when a selection exists, the starter collection and up to four featured non-experimental entries. Installation review only opens the existing preview; palette actions do not select or install entries.
+
+Search covers all entries and collections independently of sidebar filters, matching every query word across titles, IDs, summaries, use cases, tags and hosts. Title matches rank first, with curator score as an entry tie-breaker. Results are capped at thirty with an accessible count and narrowing hint. The native modal contains a combobox/listbox with arrow navigation, Enter activation, Escape dismissal and focus restoration; page shortcuts ignore the palette. The existing slash shortcut still focuses sidebar search.

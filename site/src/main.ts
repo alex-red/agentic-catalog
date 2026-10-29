@@ -1,6 +1,8 @@
 import data from "../../catalog/index.json";
 import "./styles.css";
 import { createCombobox, type ComboOption } from "./combobox";
+import { createCommandPalette } from "./command-palette";
+import type { SearchCommand } from "./command-search";
 import { canInstallHook, hookInstallCommand } from "./hook-install";
 import { installPrompt } from "./llm-prompt";
 import { belongsToTreeGroup, catalogCategories, categoryOf, matchesCategories } from "./categories";
@@ -1295,10 +1297,11 @@ window.addEventListener("hashchange", sync);
 
 // Keyboard shortcuts
 window.addEventListener("keydown", (e) => {
+  if ((e.target as Element | null)?.closest?.("#command-palette")) return;
   if ((e.target as Element | null)?.closest?.(".combo, .combo-pop")) return;
   // Open dialogs handle Escape themselves; don't also reset the page behind them.
   if (bulkDialog.open) return;
-  const typing = document.activeElement === input;
+  const typing = !!(e.target as Element | null)?.closest?.("input, textarea, select, [contenteditable]:not([contenteditable='false'])");
   if (e.key === "/" && !typing) {
     e.preventDefault();
     input.focus();
@@ -1339,6 +1342,49 @@ treeToggleAllBtn.addEventListener("click", () => {
 });
 
 $("#counts").textContent = `${catalog.entries.length}`;
+
+// Global navigation searches all items independently of the sidebar's filters.
+const itemCommands: SearchCommand[] = items.map((item) => ({
+  id: `open:${item.kind}:${item.id}`,
+  title: item.title,
+  detail: `${kindLabels[item.kind]} · ${item.summary}`,
+  group: item.kind === "collection" ? "Collections" : "Catalog entries",
+  keywords: `${item.id} ${item.tags.join(" ")} ${item.hosts.join(" ")} ${item.entry?.useWhen ?? ""}`,
+  priority: item.score ?? 0,
+  run: () => { location.hash = `#/${item.kind}/${item.id}`; },
+}));
+
+function paletteActions(): SearchCommand[] {
+  const action = (id: string, title: string, detail: string, run: () => void): SearchCommand => ({
+    id, title, detail, group: "Quick actions", priority: 10, run,
+  });
+  return [
+    action("overview", "Go to catalog overview", "Explore the catalog and its collections", () => { location.hash = ""; }),
+    action("reset", "Reset all filters", "Show the full catalog again", clearFilters),
+    ...["codex", "claude-code"].map((host) => action(`host:${host}`, `Browse for ${host === "codex" ? "Codex" : "Claude Code"}`,
+      "Show compatible entries, including portable guidance", () => {
+        clearFilters();
+        activeHosts.add(host);
+        renderControls();
+        renderList();
+      })),
+    ...(selected.size || baseline ? [action("selection", "Review installation selection", `${selected.size} entries selected · preview installation instructions`, () => openBulkDialog())] : []),
+    action("about", "About Agentic Catalog", "Ratings, evidence levels and keyboard shortcuts", () => introDialog.showModal()),
+  ];
+}
+
+createCommandPalette({
+  trigger: $<HTMLButtonElement>("#command-toggle"),
+  commands: () => [...paletteActions(), ...itemCommands],
+  defaults: () => [
+    ...paletteActions(),
+    ...itemCommands.filter((command) => command.id === "open:collection:starter"),
+    ...items.filter((item) => item.entry?.featured && !item.entry.experimental)
+      .sort(sorters.score).slice(0, 4)
+      .flatMap((item) => itemCommands.filter((command) => command.id === `open:${item.kind}:${item.id}`))
+      .map((command) => ({ ...command, group: "Featured entries" })),
+  ],
+});
 
 renderControls();
 renderSelectionBar();
