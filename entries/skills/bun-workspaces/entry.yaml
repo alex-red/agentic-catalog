@@ -1,0 +1,23 @@
+schemaVersion: 2
+id: bun-workspaces
+type: skill
+title: Bun monorepo workspaces
+summary: Configure Bun workspace membership, dependency ownership, catalogs, linker policy and filtered task execution. Verify package resolution from the consumer scope, prerequisite ordering, frozen installation and packed public artifacts.
+useWhen: Creating, configuring or debugging a Bun monorepo with cross-package dependency, filter, linker, catalog or package-export problems.
+tags: [bun, monorepo, workspaces, dependencies, package-management, build-systems, testing]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Original Bun-specific guidance using current official contracts with version checks. A disposable three-package fixture verified ten selection, ordering, catalog, install and packing invariants on Bun 1.4.3. This is not an agent evaluation or cross-platform/deployment test.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written from official tool contracts. No upstream skill text, examples, scripts or runtime are copied.
+overlap: bun-migration-verification selects migration layers; monorepo-change-verification selects cross-package evidence; repo-research supplies repository context. Bun docs and installed task runners provide actual commands. This skill supplies workspace-specific contracts and does not install Bun, Turbo, Nx, hooks or services.
+related: [monorepo-change-verification, bun-migration-verification, repo-research, verification-before-completion]

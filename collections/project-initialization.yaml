@@ -1,0 +1,10 @@
+schemaVersion: 2
+id: project-initialization
+title: Lightweight project initialization
+description: Research an existing repo or new project's foundation, clarify the goal, write lean project instructions, then implement and verify a runnable first slice. Optional domain modeling, handoff, documentation tools and hooks are selected separately when needed.
+entries:
+  - repo-research
+  - grilling
+  - agents-md-authoring
+  - explore-plan-implement-review
+  - verification-before-completion

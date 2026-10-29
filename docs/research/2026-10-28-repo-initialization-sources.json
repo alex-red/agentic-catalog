@@ -1,0 +1,199 @@
+{
+  "asOf": "2026-10-28",
+  "researchTimezone": "America/Edmonton",
+  "observedAtUtc": "2026-10-28T23:51:07.783919+00:00",
+  "method": "Read-only public GitHub repository, commit and recursive tree APIs. Source downloads were data only; no upstream code executed. HEAD snapshots are not admission path-specific pins.",
+  "repositories": [
+    {
+      "repo": "gsd-build/get-shit-done",
+      "canonical": "gsd-build/get-shit-done",
+      "sha": "bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815",
+      "stars": 64197,
+      "archived": true,
+      "commitDate": "2026-05-31T13:34:35Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/gsd-build/get-shit-done/blob/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "filesDownloaded": [],
+      "licenseScope": "Not renewed in this pass.",
+      "inventoryFileCount": 1854
+    },
+    {
+      "repo": "open-gsd/gsd-core",
+      "canonical": "open-gsd/gsd-core",
+      "sha": "65638993a3aff373159b1a4d5585e5e5c48a9578",
+      "stars": 10974,
+      "archived": false,
+      "commitDate": "2026-10-28T17:38:36Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/open-gsd/gsd-core/blob/65638993a3aff373159b1a4d5585e5e5c48a9578/",
+      "filesReadFully": [
+        "README.md",
+        "LICENSE",
+        "skills/gsd-new-project/SKILL.md",
+        "skills/gsd-map-codebase/SKILL.md",
+        "skills/gsd-onboard/SKILL.md",
+        "docs/tutorials/onboarding-an-existing-codebase.md",
+        "hooks/hooks.json"
+      ],
+      "sectionsInspected": [
+        "gsd-core/workflows/new-project.md: research/configuration/commit sections",
+        "agents/gsd-project-researcher.md: role/imports/research provider/cache sections"
+      ],
+      "filesDownloaded": [
+        "LICENSE",
+        "README.md",
+        "agents/gsd-project-researcher.md",
+        "docs/tutorials/onboarding-an-existing-codebase.md",
+        "gsd-core/workflows/map-codebase.md",
+        "gsd-core/workflows/new-project.md",
+        "hooks/hooks.json",
+        "skills/gsd-map-codebase/SKILL.md",
+        "skills/gsd-new-project/SKILL.md",
+        "skills/gsd-onboard/SKILL.md"
+      ],
+      "licenseScope": "Root MIT license read; not a complete dependency or third-party notice audit.",
+      "inventoryFileCount": 4275
+    },
+    {
+      "repo": "github/spec-kit",
+      "canonical": "github/spec-kit",
+      "sha": "99e047e9b48c3ecbbc5c3e530fb45bed671960bc",
+      "stars": 143659,
+      "archived": false,
+      "commitDate": "2026-10-28T20:37:09Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/github/spec-kit/blob/99e047e9b48c3ecbbc5c3e530fb45bed671960bc/",
+      "filesReadFully": [
+        "LICENSE",
+        "templates/commands/plan.md"
+      ],
+      "sectionsInspected": [
+        "README.md: installation and process sections"
+      ],
+      "filesDownloaded": [
+        "LICENSE",
+        "README.md",
+        "templates/commands/analyze.md",
+        "templates/commands/constitution.md",
+        "templates/commands/plan.md",
+        "templates/commands/specify.md"
+      ],
+      "licenseScope": "Root MIT license read; not a complete dependency or third-party notice audit.",
+      "inventoryFileCount": 1005
+    },
+    {
+      "repo": "Fission-AI/OpenSpec",
+      "canonical": "Fission-AI/OpenSpec",
+      "sha": "6d04a1b58dedc95729d34e4f223d9d483aae210a",
+      "stars": 73264,
+      "archived": false,
+      "commitDate": "2026-10-24T03:51:03Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/Fission-AI/OpenSpec/blob/6d04a1b58dedc95729d34e4f223d9d483aae210a/",
+      "filesReadFully": [
+        "LICENSE",
+        "docs/existing-projects.md"
+      ],
+      "sectionsInspected": [
+        "skills/openspec-explore/SKILL.md: beginning/project/store/discovery sections and later capture/guardrail sections; not complete inspection"
+      ],
+      "filesDownloaded": [
+        "LICENSE",
+        "README.md",
+        "docs/existing-projects.md",
+        "docs/installation.md",
+        "skills/openspec-explore/SKILL.md"
+      ],
+      "licenseScope": "Root MIT license read; not a complete dependency or third-party notice audit.",
+      "inventoryFileCount": 1317
+    },
+    {
+      "repo": "obra/superpowers",
+      "canonical": "obra/superpowers",
+      "sha": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "stars": 307418,
+      "archived": false,
+      "commitDate": "2026-10-21T21:00:49Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/",
+      "filesReadFully": [
+        "LICENSE",
+        "skills/using-superpowers/SKILL.md",
+        "hooks/hooks.json"
+      ],
+      "sectionsInspected": [
+        "skills/brainstorming/SKILL.md: first 140 lines"
+      ],
+      "filesDownloaded": [
+        "LICENSE",
+        "README.md",
+        "hooks/hooks.json",
+        "skills/brainstorming/SKILL.md",
+        "skills/using-superpowers/SKILL.md"
+      ],
+      "licenseScope": "Root MIT license read; not a complete dependency or third-party notice audit.",
+      "inventoryFileCount": 231
+    },
+    {
+      "repo": "EveryInc/compound-engineering-plugin",
+      "canonical": "EveryInc/compound-engineering-plugin",
+      "sha": "e86a51a744de2fc884752d86c817dc5351884fa2",
+      "stars": 25755,
+      "archived": false,
+      "commitDate": "2026-10-28T23:10:23Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/EveryInc/compound-engineering-plugin/blob/e86a51a744de2fc884752d86c817dc5351884fa2/",
+      "filesReadFully": [
+        "LICENSE",
+        "skills/ce-plan/SKILL.md",
+        "skills/ce-plan/references/agents/repo-research-analyst.md"
+      ],
+      "sectionsInspected": [
+        "skills/ce-plan/references/agents/best-practices-researcher.md: methodology and source hierarchy sections; ce-plan research.md remains uninspected"
+      ],
+      "filesDownloaded": [
+        "LICENSE",
+        "README.md",
+        "skills/ce-plan/SKILL.md",
+        "skills/ce-plan/references/agents/best-practices-researcher.md",
+        "skills/ce-plan/references/agents/repo-research-analyst.md",
+        "skills/ce-plan/references/research.md"
+      ],
+      "licenseScope": "Root MIT license read; not a complete dependency or third-party notice audit.",
+      "inventoryFileCount": 1648
+    },
+    {
+      "repo": "affaan-m/everything-claude-code",
+      "canonical": "affaan-m/ECC",
+      "sha": "25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "stars": 291736,
+      "archived": false,
+      "commitDate": "2026-10-26T04:03:57Z",
+      "truncated": false,
+      "sourceBase": "https://github.com/affaan-m/ECC/blob/25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b/",
+      "filesReadFully": [
+        "LICENSE",
+        "skills/search-first/SKILL.md"
+      ],
+      "sectionsInspected": [],
+      "filesDownloaded": [
+        "LICENSE",
+        "README.md",
+        "hooks/hooks.json",
+        "skills/search-first/SKILL.md"
+      ],
+      "licenseScope": "Root MIT license read; not a complete dependency or third-party notice audit.",
+      "inventoryFileCount": 4649,
+      "searchFirstSubtree": [
+        "skills/search-first/SKILL.md"
+      ]
+    }
+  ],
+  "limits": [
+    "Sampled research; no independent active usage, outcome or cost evidence.",
+    "Downloaded files do not imply complete review. Explicit full-read and section scope are separated.",
+    "Full runtime closure of frameworks and enabled hooks remains unreviewed."
+  ]
+}

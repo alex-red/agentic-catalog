@@ -1,0 +1,234 @@
+{
+  "asOf": "2026-10-28",
+  "researched": "2026-10-28",
+  "timezone": "America/Edmonton",
+  "method": "Read-only pinned public source downloads and primary web documentation. Inventory/download does not mean inspection. Revisions are repository HEAD, not last path commits. No upstream executable or skill was run.",
+  "repositories": [
+    {
+      "requestedRepository": "vuejs-ai/skills",
+      "canonicalRepository": "vuejs-ai/skills",
+      "headRevision": "198f0cd8f7f9c0a3d9b566ccc16de6677519ee78",
+      "inventoryFileCount": 211,
+      "filesRead": [
+        "LICENSE",
+        "skills/vue-best-practices/SKILL.md",
+        "skills/vue-router-best-practices/SKILL.md",
+        "skills/vue-router-best-practices/reference/router-beforeenter-no-param-trigger.md",
+        "skills/vue-router-best-practices/reference/router-navigation-guard-next-deprecated.md",
+        "skills/vue-router-best-practices/reference/router-param-change-no-lifecycle.md",
+        "skills/vue-pinia-best-practices/SKILL.md",
+        "skills/vue-pinia-best-practices/reference/store-method-binding-parentheses.md",
+        "skills/vue-testing-best-practices/SKILL.md"
+      ],
+      "sampled": [
+        "skills/vue-best-practices/references/reactivity.md",
+        "skills/vue-best-practices/references/composables.md",
+        "skills/vue-testing-best-practices/reference/testing-async-await-flushpromises.md",
+        "skills/vue-testing-best-practices/reference/testing-vitest-recommended-for-vue.md"
+      ],
+      "unread": "Remaining Vue core/optional references, five router references, five Pinia references, remaining testing references; no bundle-wide approval."
+    },
+    {
+      "requestedRepository": "antfu/skills",
+      "canonicalRepository": "antfu/skills",
+      "headRevision": "8886fe2d385d3644cbb47e46ae9cb1cf09307d3b",
+      "inventoryFileCount": 179,
+      "filesRead": [
+        "LICENSE.md",
+        "skills/vue/SKILL.md",
+        "skills/vue/GENERATION.md",
+        "skills/vite/SKILL.md",
+        "skills/vite/GENERATION.md",
+        "skills/vitest/SKILL.md",
+        "skills/vitest/references/features-mocking.md",
+        "skills/vitest/references/advanced-vi.md",
+        "skills/pinia/SKILL.md",
+        "skills/pinia/references/best-practices-outside-component.md",
+        "skills/pinia/references/best-practices-testing.md",
+        "skills/pinia/references/advanced-ssr.md",
+        "skills/vue/references/advanced-patterns.md",
+        "skills/vue/references/core-new-apis.md",
+        "skills/vue/references/script-setup-macros.md",
+        "skills/vite/references/build-and-ssr.md",
+        "skills/vite/references/core-config.md",
+        "skills/vite/references/core-features.md",
+        "skills/vite/references/core-plugin-api.md",
+        "skills/vite/references/environment-api.md",
+        "skills/vite/references/rolldown-migration.md"
+      ],
+      "unread": "Other Vitest and Pinia references; generation scripts and other skills. Generation manifests record source SHAs, not evaluation results."
+    },
+    {
+      "requestedRepository": "vercel-labs/agent-skills",
+      "canonicalRepository": "vercel-labs/agent-skills",
+      "headRevision": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "inventoryFileCount": 443,
+      "filesRead": [
+        "skills/composition-patterns/SKILL.md",
+        "skills/composition-patterns/README.md",
+        "skills/composition-patterns/metadata.json",
+        "skills/react-best-practices/SKILL.md",
+        "skills/react-best-practices/rules/server-no-shared-module-state.md",
+        "skills/react-best-practices/rules/advanced-effect-event-deps.md",
+        "skills/react-best-practices/rules/rerender-use-deferred-value.md",
+        "skills/react-best-practices/rules/async-parallel.md",
+        "skills/composition-patterns/rules/_sections.md",
+        "skills/composition-patterns/rules/_template.md",
+        "skills/composition-patterns/rules/architecture-avoid-boolean-props.md",
+        "skills/composition-patterns/rules/architecture-compound-components.md",
+        "skills/composition-patterns/rules/patterns-children-over-render-props.md",
+        "skills/composition-patterns/rules/patterns-explicit-variants.md",
+        "skills/composition-patterns/rules/react19-no-forwardref.md",
+        "skills/composition-patterns/rules/state-context-interface.md",
+        "skills/composition-patterns/rules/state-decouple-implementation.md",
+        "skills/composition-patterns/rules/state-lift-state.md"
+      ],
+      "sampled": [
+        "skills/react-best-practices/rules/server-auth-actions.md"
+      ],
+      "unread": "Compiled composition AGENTS.md and remainder of React performance rules; root license absent from downloaded inventory."
+    },
+    {
+      "requestedRepository": "millionco/react-doctor",
+      "canonicalRepository": "millionco/react-doctor",
+      "headRevision": "84ad0c8d0df7a3ab7d26946367fae3bc39c100d0",
+      "inventoryFileCount": 7414,
+      "filesRead": [
+        "skills/react-doctor/SKILL.md",
+        "skills/performance/SKILL.md",
+        "LICENSE",
+        "packages/react-doctor/package.json",
+        "packages/react-doctor/src/cli/utils/is-telemetry-enabled.ts"
+      ],
+      "sampled": [
+        "skills/improve-react/SKILL.md",
+        "packages/react-doctor/src/instrument.ts"
+      ],
+      "unread": "Doctor explain reference, improve-react supporting files, scanner/browser/runtime closure and telemetry destinations/scrubber. No CLI run."
+    },
+    {
+      "requestedRepository": "harlan-zw/vue-ecosystem-skills",
+      "canonicalRepository": "skilld-dev/vue-ecosystem-skills",
+      "headRevision": "c60d4ccc466a8ca2694cbb089fdd3b3d97b78961",
+      "inventoryFileCount": 228,
+      "filesRead": [
+        "README.md",
+        "LICENSE",
+        "skills/vue-skilld/SKILL.md",
+        "skills/vue-skilld/references/api-changes.md",
+        "skills/vue-skilld/references/api-surface.md",
+        "skills/vue-skilld/references/best-practices.md",
+        "skills/vue-skilld/references/vapor-mode.md"
+      ],
+      "unread": "Other skills and sync/validation scripts; no installer executed. Installed host skill read separately and is older."
+    },
+    {
+      "requestedRepository": "sickn33/antigravity-awesome-skills",
+      "canonicalRepository": "sickn33/agentic-awesome-skills",
+      "headRevision": "e9809578fd426a284af017c5db99f8eb6628e6ca",
+      "inventoryFileCount": 27621,
+      "filesRead": [
+        "skills/bun-development/SKILL.md",
+        "skills/bun-development/references/detailed-guide.md",
+        "LICENSE",
+        "LICENSE-CONTENT"
+      ],
+      "sampled": [
+        "docs/sources/sources.md"
+      ],
+      "unread": "Full attribution closure and library runtime. Content license differs from tooling license."
+    },
+    {
+      "requestedRepository": "elysiajs/skills",
+      "canonicalRepository": "elysiajs/skills",
+      "headRevision": "1466d85aa4f2a0fec91f71311e65bbfa91aa7dc5",
+      "inventoryFileCount": 27,
+      "filesRead": [
+        "elysia/SKILL.md",
+        "elysia/metadata.json",
+        "elysia/references/versions.md",
+        "elysia/references/testing.md",
+        "elysia/references/migration.md"
+      ],
+      "sampled": [
+        "elysia/references/runtimes.md"
+      ],
+      "unread": "Remaining references, RC package verification, and applicable licensing (no license file in inventory)."
+    },
+    {
+      "requestedRepository": "daleseo/bun-skills",
+      "canonicalRepository": "daleseo/bun-skills",
+      "headRevision": "10ac42f094a52dcbe15febb4992f381dd1f0b60d",
+      "inventoryFileCount": 28,
+      "filesRead": [
+        "README.md",
+        "LICENSE",
+        "skills/bun-init/SKILL.md",
+        "skills/node-to-bun/SKILL.md",
+        "skills/bun-test/SKILL.md",
+        "skills/bun-test/references/mocking.md"
+      ],
+      "unread": "Node compatibility matrix, test examples/Jest migration, remaining five skills. No bundle-wide conclusion."
+    }
+  ],
+  "officialBun": {
+    "headRevision": "37a5e3a71c7a9c470f63f65387cdfa1eb39e76b2",
+    "sourceAccess": "Three guessed init template raw paths returned 404; AGENTS.md retrieved but not used as contributor guidance. Bun initialization evaluated through official docs, not claimed as a pinned template inspection."
+  },
+  "popularity": {
+    "kind": "rounded skills.sh aggregate CLI install displays; cached pages accessed October 28, not guaranteed contemporaneous counters",
+    "sources": [
+      {
+        "repository": "vercel-labs/agent-skills",
+        "page": "https://www.skills.sh/vercel-labs/agent-skills",
+        "counts": {
+          "vercel-react-best-practices": "849.3K",
+          "vercel-composition-patterns": "424.8K"
+        }
+      },
+      {
+        "repository": "vuejs-ai/skills",
+        "page": "https://www.skills.sh/vuejs-ai/skills",
+        "counts": {
+          "vue-best-practices": "42.8K",
+          "vue-router-best-practices": "15.0K",
+          "vue-testing-best-practices": "13.7K"
+        }
+      },
+      {
+        "repository": "antfu/skills",
+        "page": "https://www.skills.sh/antfu/skills",
+        "counts": {
+          "vitest": "44.1K",
+          "vite": "40.1K",
+          "vue": "35.9K",
+          "pinia": "19.8K"
+        }
+      },
+      {
+        "repository": "millionco/react-doctor",
+        "page": "https://www.skills.sh/millionco/react-doctor",
+        "counts": {
+          "react-doctor": "15.8K",
+          "improve-react": "2.3K"
+        }
+      },
+      {
+        "repository": "daleseo/bun-skills",
+        "page": "https://www.skills.sh/daleseo/bun-skills",
+        "counts": {
+          "bun-test": 224,
+          "node-to-bun": 43,
+          "bun-init": 39
+        }
+      },
+      {
+        "repository": "skilld-dev/vue-ecosystem-skills",
+        "page": "https://www.skills.sh/skilld-dev/vue-ecosystem-skills",
+        "counts": {
+          "vue-skilld": 325
+        }
+      }
+    ]
+  }
+}

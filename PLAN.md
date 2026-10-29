@@ -1,7 +1,7 @@
 # Plan
 
 Updated: October 28, 2026
-Status: experimental. The catalog has 56 entries across seven types and four collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Status: experimental. The catalog has 64 entries across seven types and seven collections, including one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -40,15 +40,15 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 
 | Type | Entries |
 | --- | --- |
-| Skills (24) | diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked) |
+| Skills (29) | bun-workspaces, react-component-composition, vue-async-state, tokio-async-correctness, repo-research, diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked) |
 | Rules (5) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority, markdown-accessibility |
-| Workflows (5) | harness-experiment-loop, self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked) |
+| Workflows (8) | monorepo-change-verification, harness-experiment-loop, bun-migration-verification, rust-verification-ladder, self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked) |
 | Hooks (15) | format-after-edit, protect-files-and-commands, stop-gate-checks, no-email-context, config-guard, config-watch, git-safety, protect-tests, case-insensitive-guard, context-hogs, desktop-attention, compact-context, post-edit-diagnostics, subagent-budget, prompt-secret-check |
 | Subagents (2) | silent-failure-hunter, pr-review-code-reviewer |
 | MCP servers (2) | chrome-devtools-mcp, context7 |
 | Plugins (3) | superpowers, compound-engineering, claude-reflect |
 
-Collections: starter, self-improvement, debugging, project-upkeep.
+Collections: starter, self-improvement, debugging, project-upkeep, project-initialization, frontend-quality, security-review.
 
 Candidates that were considered and left out, with reasons, are in the research notes summarized in [decision 16](docs/decisions.md). Examples: skills that fetch unpinned remote instructions at runtime, unlicensed repositories, and generic reviewer personas.
 

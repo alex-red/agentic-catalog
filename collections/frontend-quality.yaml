@@ -1,0 +1,9 @@
+schemaVersion: 2
+id: frontend-quality
+title: Frontend quality
+description: Improve React and Next.js interfaces with performance guidance, browser verification, evidence-grounded UX critique and final checks. Use native browser tools when sufficient, preserve linked skill prerequisites, and select matching stack guidance for non-React projects.
+entries:
+  - react-best-practices
+  - webapp-testing
+  - ux-critique
+  - verification-before-completion

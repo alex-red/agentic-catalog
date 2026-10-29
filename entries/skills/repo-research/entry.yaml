@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: repo-research
+type: skill
+title: Research a repo and its technical foundation
+summary: Scope an unfamiliar repository or new project, resolve consequential technical choices against current sources, distinguish discovered commands from verified results, and hand off a concrete foundation plan without adopting extra tooling implicitly.
+useWhen: Onboarding to a repository, assessing its setup, or researching stack and integration choices before project initialization.
+tags: [research, onboarding, project-setup, architecture, documentation]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: A small research contract with workspace scoping, source attribution, uncertainty labels and command status. Native agents already explore repositories and browse docs; the added value is a bounded decision-ready handoff. No runtime dependencies or automatic writes. Source and structural review only; trigger reliability and outcome benefit have not been measured.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written from the source-reviewed repository-analysis role; no upstream code or wording is copied, and the parent framework is not required.
+inspiredBy:
+  - title: Compound Engineering scoped repository research analyst
+    url: https://github.com/EveryInc/compound-engineering-plugin/blob/e86a51a744de2fc884752d86c817dc5351884fa2/skills/ce-plan/references/agents/repo-research-analyst.md
+overlap: Native file search, browsing and plan mode already support exploration. agents-md-authoring writes project instructions; grilling clarifies requirements; domain-modeling maintains terminology; explore-plan-implement-review executes changes. This skill supplies the evidence and setup handoff without requiring those entries or the Compound Engineering runtime.
+related: [agents-md-authoring, grilling, domain-modeling, explore-plan-implement-review, verification-before-completion, handoff]

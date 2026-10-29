@@ -1,0 +1,523 @@
+{
+  "observedAtUtc": "2026-10-29T00:24:47.644179+00:00",
+  "repositories": [
+    {
+      "requestedRepo": "obra/superpowers",
+      "repo": "obra/superpowers",
+      "sha": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "stars": 307433,
+      "archived": false,
+      "commitDate": "2026-10-21T21:00:49Z",
+      "treeTruncated": false,
+      "description": "An agentic skills framework & software development methodology that works.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 231,
+      "inventorySkillEntrypoints": 15,
+      "sourceBase": "https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "mattpocock/skills",
+      "repo": "mattpocock/skills",
+      "sha": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+      "stars": 305755,
+      "archived": false,
+      "commitDate": "2026-10-27T07:44:12Z",
+      "treeTruncated": false,
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 194,
+      "inventorySkillEntrypoints": 38,
+      "sourceBase": "https://github.com/mattpocock/skills/blob/59db609eb1e18aaf59b63284d0e52255aff0c63c/",
+      "filesReadFully": [
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "README installation/setup, engineering/composition sections"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "affaan-m/ECC",
+      "repo": "affaan-m/ECC",
+      "sha": "25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+      "stars": 291754,
+      "archived": false,
+      "commitDate": "2026-10-26T04:03:57Z",
+      "treeTruncated": false,
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 4649,
+      "inventorySkillEntrypoints": 1062,
+      "sourceBase": "https://github.com/affaan-m/ECC/blob/25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "anthropics/skills",
+      "repo": "anthropics/skills",
+      "sha": "ca45fc496a3436251f191354091d557da31c15b5",
+      "stars": 184517,
+      "archived": false,
+      "commitDate": "2026-10-28T19:20:38Z",
+      "treeTruncated": false,
+      "description": "Public repository for Agent Skills",
+      "licenseLabel": null,
+      "downloadedFiles": [
+        "README.md",
+        "skills/docx/LICENSE.txt",
+        "skills/frontend-design/LICENSE.txt",
+        "skills/frontend-design/SKILL.md"
+      ],
+      "inventoryFileCount": 446,
+      "inventorySkillEntrypoints": 20,
+      "sourceBase": "https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/",
+      "filesReadFully": [
+        "README.md",
+        "skills/docx/LICENSE.txt"
+      ],
+      "sectionsInspected": [
+        "frontend-design Apache license identification"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "addyosmani/agent-skills",
+      "repo": "addyosmani/agent-skills",
+      "sha": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+      "stars": 111466,
+      "archived": false,
+      "commitDate": "2026-10-13T20:21:06Z",
+      "treeTruncated": false,
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        ".claude-plugin/plugin.json",
+        "LICENSE",
+        "README.md",
+        "plugin.json",
+        "skills/code-simplification/SKILL.md",
+        "skills/source-driven-development/SKILL.md",
+        "skills/using-agent-skills/SKILL.md"
+      ],
+      "inventoryFileCount": 217,
+      "inventorySkillEntrypoints": 25,
+      "sourceBase": "https://github.com/addyosmani/agent-skills/blob/aeac41d4d005999432bb7312f7ff06383a91d59d/",
+      "filesReadFully": [
+        "skills/using-agent-skills/SKILL.md",
+        "skills/code-simplification/SKILL.md",
+        "plugin.json",
+        ".claude-plugin/plugin.json",
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "README installation, resource-closure, lifecycle and adapter sections"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "pbakaus/impeccable",
+      "repo": "pbakaus/impeccable",
+      "sha": "5e745ace7e151feb2a93d360d0281fe39448b857",
+      "stars": 92623,
+      "archived": false,
+      "commitDate": "2026-10-28T23:28:51Z",
+      "treeTruncated": false,
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "licenseLabel": "Apache-2.0",
+      "downloadedFiles": [
+        ".agents/skills/impeccable/SKILL.md",
+        ".agents/skills/impeccable/reference/audit.md",
+        ".agents/skills/impeccable/reference/critique.md",
+        ".agents/skills/impeccable/reference/live-setup.md",
+        ".agents/skills/impeccable/reference/routing.md",
+        ".agents/skills/impeccable/scripts/impeccable",
+        "LICENSE",
+        "README.md",
+        "package.json"
+      ],
+      "inventoryFileCount": 4439,
+      "inventorySkillEntrypoints": 26,
+      "sourceBase": "https://github.com/pbakaus/impeccable/blob/5e745ace7e151feb2a93d360d0281fe39448b857/",
+      "filesReadFully": [
+        ".agents/skills/impeccable/SKILL.md",
+        ".agents/skills/impeccable/scripts/impeccable",
+        "package.json"
+      ],
+      "sectionsInspected": [
+        "reference/audit.md and reference/critique.md selected sections; root Apache license identification"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "github/awesome-copilot",
+      "repo": "github/awesome-copilot",
+      "sha": "b6483db44fb602654bca6a097185fcaddb305f97",
+      "stars": 40516,
+      "archived": false,
+      "commitDate": "2026-10-28T23:53:23Z",
+      "treeTruncated": false,
+      "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 3985,
+      "inventorySkillEntrypoints": 466,
+      "sourceBase": "https://github.com/github/awesome-copilot/blob/b6483db44fb602654bca6a097185fcaddb305f97/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "PatrickJS/awesome-cursorrules",
+      "repo": "PatrickJS/awesome-cursorrules",
+      "sha": "b044f956f021b6e8877f16781bcfc466a6a120e9",
+      "stars": 41042,
+      "archived": false,
+      "commitDate": "2026-05-30T18:01:29Z",
+      "treeTruncated": false,
+      "description": "\ud83d\udcc4  Configuration files that enhance Cursor AI editor experience with custom rules and behaviors",
+      "licenseLabel": "CC0-1.0",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 295,
+      "inventorySkillEntrypoints": 0,
+      "sourceBase": "https://github.com/PatrickJS/awesome-cursorrules/blob/b044f956f021b6e8877f16781bcfc466a6a120e9/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "VoltAgent/awesome-agent-skills",
+      "repo": "VoltAgent/awesome-agent-skills",
+      "sha": "5ee93a1e79eaf5e25f79ea07bfcb629abecdbf2c",
+      "stars": 36518,
+      "archived": false,
+      "commitDate": "2026-10-28T20:33:58Z",
+      "treeTruncated": false,
+      "description": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor, and more.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 4,
+      "inventorySkillEntrypoints": 0,
+      "sourceBase": "https://github.com/VoltAgent/awesome-agent-skills/blob/5ee93a1e79eaf5e25f79ea07bfcb629abecdbf2c/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "wshobson/agents",
+      "repo": "wshobson/agents",
+      "sha": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "stars": 41939,
+      "archived": false,
+      "commitDate": "2026-10-17T21:39:17Z",
+      "treeTruncated": false,
+      "description": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "plugins/python-development/.claude-plugin/plugin.json",
+        "plugins/python-development/skills/python-testing-patterns/SKILL.md",
+        "plugins/python-development/skills/python-testing-patterns/references/advanced-patterns.md",
+        "plugins/python-development/skills/python-testing-patterns/references/details.md"
+      ],
+      "inventoryFileCount": 1170,
+      "inventorySkillEntrypoints": 185,
+      "sourceBase": "https://github.com/wshobson/agents/blob/0874a27b17a22e2b7c2e2bcd725768e0803cad06/",
+      "filesReadFully": [
+        "plugins/python-development/skills/python-testing-patterns/SKILL.md",
+        "plugins/python-development/skills/python-testing-patterns/references/details.md",
+        "plugins/python-development/skills/python-testing-patterns/references/advanced-patterns.md",
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "README host installation, module composition and evaluation sections"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "ComposioHQ/awesome-claude-skills",
+      "repo": "ComposioHQ/awesome-claude-skills",
+      "sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
+      "stars": 78198,
+      "archived": false,
+      "commitDate": "2026-07-24T07:48:01Z",
+      "treeTruncated": false,
+      "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
+      "licenseLabel": null,
+      "downloadedFiles": [
+        "README.md"
+      ],
+      "inventoryFileCount": 1142,
+      "inventorySkillEntrypoints": 864,
+      "sourceBase": "https://github.com/ComposioHQ/awesome-claude-skills/blob/be2a406907dbc61b73e6827ded415c96139d13a2/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "sickn33/antigravity-awesome-skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "coreyhaines31/marketingskills",
+      "repo": "coreyhaines31/marketingskills",
+      "sha": "0cd9b3a0ef4c411a1d690419ce843f2a1da32cce",
+      "stars": 57128,
+      "archived": false,
+      "commitDate": "2026-10-27T21:15:52Z",
+      "treeTruncated": false,
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        ".claude-plugin/plugin.json",
+        "LICENSE",
+        "README.md",
+        "skills/cro/SKILL.md",
+        "skills/cro/evals/evals.json",
+        "skills/cro/references/experiments.md",
+        "skills/cro/references/form.md",
+        "skills/product-marketing/SKILL.md",
+        "skills/product-marketing/evals/evals.json",
+        "skills/product-marketing/references/brand-voice.md"
+      ],
+      "inventoryFileCount": 771,
+      "inventorySkillEntrypoints": 52,
+      "sourceBase": "https://github.com/coreyhaines31/marketingskills/blob/0cd9b3a0ef4c411a1d690419ce843f2a1da32cce/",
+      "filesReadFully": [
+        "skills/product-marketing/SKILL.md",
+        "skills/product-marketing/references/brand-voice.md",
+        ".claude-plugin/plugin.json",
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "README audience, sponsored integrations and workflow sections"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "trailofbits/skills",
+      "repo": "trailofbits/skills",
+      "sha": "2be6433b39e009cd2b6fd3be1895f6b1faa5af9a",
+      "stars": 7867,
+      "archived": false,
+      "commitDate": "2026-10-28T18:38:54Z",
+      "treeTruncated": false,
+      "description": "Trail of Bits skills for security research, vulnerability detection, and audit workflows",
+      "licenseLabel": "CC-BY-SA-4.0",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "plugins/sharp-edges/.claude-plugin/plugin.json",
+        "plugins/sharp-edges/README.md",
+        "plugins/sharp-edges/agents/sharp-edges-analyzer.md",
+        "plugins/sharp-edges/skills/sharp-edges/SKILL.md",
+        "plugins/sharp-edges/skills/sharp-edges/agents/openai.yaml",
+        "plugins/sharp-edges/skills/sharp-edges/assets/trail-of-bits-mark.svg",
+        "plugins/sharp-edges/skills/sharp-edges/references/auth-patterns.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/case-studies.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/config-patterns.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/crypto-apis.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-c.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-csharp.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-go.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-java.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-javascript.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-kotlin.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-php.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-python.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-ruby.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-rust.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/lang-swift.md",
+        "plugins/sharp-edges/skills/sharp-edges/references/language-specific.md"
+      ],
+      "inventoryFileCount": 1598,
+      "inventorySkillEntrypoints": 97,
+      "sourceBase": "https://github.com/trailofbits/skills/blob/2be6433b39e009cd2b6fd3be1895f6b1faa5af9a/",
+      "filesReadFully": [
+        "plugins/sharp-edges/skills/sharp-edges/SKILL.md",
+        "plugins/sharp-edges/agents/sharp-edges-analyzer.md",
+        "plugins/sharp-edges/.claude-plugin/plugin.json"
+      ],
+      "sectionsInspected": [
+        "Root CC-BY-SA license identification; reference inventory only"
+      ],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "antfu/skills",
+      "repo": "antfu/skills",
+      "sha": "8886fe2d385d3644cbb47e46ae9cb1cf09307d3b",
+      "stars": 6019,
+      "archived": false,
+      "commitDate": "2026-10-23T02:36:45Z",
+      "treeTruncated": false,
+      "description": "Anthony Fu's curated collection of agent skills.",
+      "licenseLabel": "MIT",
+      "downloadedFiles": [
+        "LICENSE.md",
+        "README.md",
+        "skills/vite/SKILL.md"
+      ],
+      "inventoryFileCount": 179,
+      "inventorySkillEntrypoints": 12,
+      "sourceBase": "https://github.com/antfu/skills/blob/8886fe2d385d3644cbb47e46ae9cb1cf09307d3b/",
+      "filesReadFully": [
+        "skills/vite/SKILL.md"
+      ],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "vercel-labs/agent-skills",
+      "repo": "vercel-labs/agent-skills",
+      "sha": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "stars": 33167,
+      "archived": false,
+      "commitDate": "2026-10-27T21:40:02Z",
+      "treeTruncated": false,
+      "description": "Vercel's official collection of agent skills",
+      "licenseLabel": null,
+      "downloadedFiles": [
+        "README.md",
+        "skills/composition-patterns/SKILL.md",
+        "skills/web-design-guidelines/SKILL.md"
+      ],
+      "inventoryFileCount": 444,
+      "inventorySkillEntrypoints": 9,
+      "sourceBase": "https://github.com/vercel-labs/agent-skills/blob/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/",
+      "filesReadFully": [
+        "skills/web-design-guidelines/SKILL.md",
+        "skills/composition-patterns/SKILL.md"
+      ],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "cloudflare/skills",
+      "repo": "cloudflare/skills",
+      "sha": "49a31e0b3229ccdffe4944be9c61bc7481d1d432",
+      "stars": 3198,
+      "archived": false,
+      "commitDate": "2026-10-28T10:55:22Z",
+      "treeTruncated": false,
+      "description": "Skills for teaching agents how to build on Cloudflare.",
+      "licenseLabel": "Apache-2.0",
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "inventoryFileCount": 256,
+      "inventorySkillEntrypoints": 19,
+      "sourceBase": "https://github.com/cloudflare/skills/blob/49a31e0b3229ccdffe4944be9c61bc7481d1d432/",
+      "filesReadFully": [],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded files and complete tree inventories are not full source review. Transitive dependencies, binary engines and sibling workflows remain unreviewed unless explicitly listed."
+    },
+    {
+      "requestedRepo": "getsentry/skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "supabase/agent-skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "hashicorp/agent-skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "expo/skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "microsoft/skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "K-Dense-AI/claude-scientific-skills",
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "requestedRepo": "bmad-code-org/BMAD-METHOD",
+      "error": "HTTP Error 403: rate limit exceeded"
+    }
+  ],
+  "asOf": "2026-10-28",
+  "researchTimezone": "America/Edmonton",
+  "method": "Read-only public GitHub API metadata/commits/recursive trees plus pinned raw file downloads. Repository HEADs are research snapshots, not admission path-specific pins. Downloaded source was treated as data. No upstream code or installer executed.",
+  "registryObservations": [
+    {
+      "repo": "mattpocock/skills",
+      "url": "https://www.skills.sh/mattpocock/skills",
+      "displayedTotalInstalls": "30.5M",
+      "displayedSkillsHeader": 55,
+      "interpretation": "Rounded aggregate CLI-channel installs, not users or outcome evidence; listing may include historical aliases."
+    },
+    {
+      "repo": "pbakaus/impeccable",
+      "url": "https://www.skills.sh/pbakaus/impeccable",
+      "displayedTotalInstalls": "1.9M",
+      "displayedSkillsHeader": 24,
+      "interpretation": "Rounded aggregate CLI-channel installs, not users or outcome evidence; listing may include historical aliases."
+    },
+    {
+      "repo": "coreyhaines31/marketingskills",
+      "url": "https://www.skills.sh/coreyhaines31/marketingskills",
+      "displayedTotalInstalls": "5.9M",
+      "displayedSkillsHeader": 72,
+      "interpretation": "Rounded aggregate CLI-channel installs, not users or outcome evidence; listing may include historical aliases."
+    },
+    {
+      "repo": "trailofbits/skills",
+      "url": "https://www.skills.sh/trailofbits/skills",
+      "displayedTotalInstalls": "428.0K",
+      "displayedSkillsHeader": 105,
+      "interpretation": "Rounded aggregate CLI-channel installs, not users or outcome evidence; listing may include historical aliases."
+    }
+  ],
+  "webOnlyCanonicalObservations": [
+    {
+      "requested": "sickn33/antigravity-awesome-skills",
+      "canonical": "sickn33/agentic-awesome-skills",
+      "displayedStars": "48.7k",
+      "pin": null
+    },
+    {
+      "requested": "K-Dense-AI/claude-scientific-skills",
+      "canonical": "K-Dense-AI/scientific-agent-skills",
+      "displayedStars": "55.1k",
+      "pin": null
+    }
+  ],
+  "limits": [
+    "Eight API source lookups rate limited; no retry loop or substituted historical count.",
+    "skills.sh packs are unlisted; no public pack leaderboard.",
+    "No installed behavior, API-account usage, cost comparison or comprehensive bundle audit.",
+    "Unrelated outstanding holds remain in prior reports."
+  ]
+}

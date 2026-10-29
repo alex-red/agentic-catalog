@@ -1,0 +1,22 @@
+schemaVersion: 2
+id: rust-verification-ladder
+type: workflow
+title: Rust verification ladder
+summary: Match a Rust change to appropriate evidence, starting with existing Cargo checks and selectively using Miri, Loom, fuzzing, Kani, mutation testing or API compatibility checks. Record versions, target/features, bounds and limitations instead of treating one passing run as a proof.
+useWhen: Choosing or reviewing verification for a Rust change involving unsafe code, concurrency, input handling, test quality or a public library API.
+tags: [rust, verification, testing, unsafe-code, concurrency, fuzzing, api-compatibility]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Selects distinct evidence rather than running every advanced tool. Preserves MSRV, feature matrices and project policy, and distinguishes bounded tests/models from soundness proofs. The baseline was checked in a disposable Rust fixture; specialized tools were not installed or exercised. No trigger or matched outcome evaluation.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Catalog contributors
+overlap: Cargo, rustfmt, Clippy and project CI supply the actual checks. verification-before-completion requires evidence but does not select Rust-specific layers. property-based-testing and variant-analysis supply adjacent methods; tokio-async-correctness covers runtime lifecycle review. Optional tools are separate prerequisites, not bundled capabilities.
+related: [verification-before-completion, property-based-testing, variant-analysis, tokio-async-correctness, repo-research]

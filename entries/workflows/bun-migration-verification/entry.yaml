@@ -1,0 +1,23 @@
+schemaVersion: 2
+id: bun-migration-verification
+type: workflow
+title: Bun migration and verification
+summary: Select package-manager, runtime, bundler and test-runner changes independently. Preserve lockfile inputs and local work, review lifecycle trust, verify clean installation and target behavior, and report scoped evidence with a recoverable rollback.
+useWhen: Initializing a Bun project or planning, implementing or reviewing a migration to Bun package management, runtime, bundling or testing.
+tags: [bun, javascript, typescript, migration, verification, package-management, testing]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Original workflow based on current official Bun documentation. Separates capability and compatibility checks by installed version and preserves established framework pipelines. Repository validation does not establish a successful consumer migration or improved agent outcomes.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written against official product documentation. No third-party skill wording, examples, scripts or runtime are copied.
+overlap: repo-research establishes project conventions; verification-before-completion requires evidence. Bun and framework tooling perform actual installation, checks and builds. This workflow selects Bun-specific migration boundaries and resolution/trust checks; it installs no runtime, hooks or tools.
+related: [repo-research, verification-before-completion, react-best-practices]

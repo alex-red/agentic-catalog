@@ -1,0 +1,23 @@
+schemaVersion: 2
+id: tokio-async-correctness
+type: skill
+title: Tokio async correctness
+summary: Trace task ownership, partial progress, capacity and shutdown through Tokio flows. Distinguish cancellation data loss from fairness loss, detached handles from aborting task sets, and application errors from join errors. Includes a bounded intake/drain example.
+useWhen: Reviewing or fixing Tokio select loops, lost work, orphan tasks, closed-channel spins, unbounded spawning or shutdown behavior.
+tags: [rust, tokio, async, concurrency, cancellation, backpressure, testing]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Targets lifecycle bugs that compile successfully, using official Tokio contracts. Includes a complete bounded task example with supervisor-cancellation and result-memory limits disclosed. Compiled and checked with coordinated scratch cases; no agent trigger, representative schedule coverage or matched outcome evaluation is claimed.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written against official Tokio contracts. The research identified faulty cancellation examples in third-party bundles; none of their code or wording is copied.
+overlap: Rust compiler diagnostics and Clippy catch some mistakes; diagnosing-bugs and property-based-testing supply general methods. This skill owns Tokio cancellation, task lifecycle and bounded work. rust-verification-ladder selects wider verification tools; no Tokio dependency, tool connection or background process is installed by selecting the skill.
+related: [rust-verification-ladder, diagnosing-bugs, property-based-testing, verification-before-completion]

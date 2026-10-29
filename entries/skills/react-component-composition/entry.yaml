@@ -1,0 +1,23 @@
+schemaVersion: 2
+id: react-component-composition
+type: skill
+title: React component composition
+summary: Refactor component contracts around valid variants, state ownership and scoped context while preserving refs, events, accessibility and state identity. Keeps React 18 and 19 API choices explicit without banning useful booleans or render callbacks.
+useWhen: Designing or refactoring React APIs with interacting mode flags, duplicated state, tangled providers or behavior-sensitive component extraction.
+tags: [react, frontend, architecture, components, state-management, refactoring]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Independently written from official React contracts to complement existing performance guidance. Avoids mandatory context, blanket memoization and React 19-only defaults. Source reviewed; no representative behavioral or agent trigger evaluation.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written against official product documentation. No third-party skill wording, examples, scripts or runtime are copied.
+overlap: react-best-practices supplies performance guidance and frontend-design supplies visual implementation. Native code review and React docs cover basic composition; this skill focuses on public contract and ownership changes that must preserve interaction and state identity.
+related: [react-best-practices, verification-before-completion, webapp-testing]

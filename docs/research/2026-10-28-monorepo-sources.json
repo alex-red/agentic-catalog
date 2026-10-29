@@ -1,0 +1,94 @@
+{
+  "asOf": "2026-10-28",
+  "researched": "2026-10-28",
+  "timezone": "America/Edmonton",
+  "revisions": "Repository HEAD snapshots, not last artifact-path commits. No upstream payload admitted.",
+  "repositories": [
+    {
+      "repo": "vercel/turborepo",
+      "errors": {},
+      "head": "e158e859f804019fa48dd1af15bc247e4759d81e",
+      "fetchedFiles": [
+        "skills/turborepo/SKILL.md",
+        "LICENSE"
+      ],
+      "inspection": "Full entrypoint and MIT license read. Required installed-package documentation not reviewed."
+    },
+    {
+      "repo": "wshobson/agents",
+      "errors": {
+        "plugins/javascript-typescript/skills/monorepo-management/SKILL.md": "HTTP Error 404: Not Found",
+        "plugins/monorepo-management/skills/monorepo-management/SKILL.md": "HTTP Error 404: Not Found"
+      },
+      "head": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "fetchedFiles": [
+        "plugins/developer-essentials/skills/monorepo-management/SKILL.md",
+        "LICENSE",
+        "plugins/developer-essentials/skills/monorepo-management/references/details.md"
+      ],
+      "inspection": "Full entrypoint, reference and MIT license read."
+    },
+    {
+      "repo": "shepherdjerred/monorepo",
+      "errors": {
+        "packages/dotfiles/dot_claude/skills/bun-workspaces/SKILL.md": "HTTP Error 404: Not Found"
+      },
+      "head": "ad7466e9f46d7529eb078794d0f088121e90f1a6",
+      "fetchedFiles": [
+        "packages/dotfiles/dot_agents/skills/bun-workspaces/SKILL.md",
+        "LICENSE",
+        "packages/dotfiles/dot_agents/skills/bun-workspaces/references/releases.md",
+        "packages/dotfiles/dot_agents/skills/bun-workspaces/references/linkers-dependencies-and-lockfiles.md",
+        "packages/dotfiles/dot_agents/skills/bun-workspaces/references/scripts-builds-and-publishing.md"
+      ],
+      "inspection": "Full entrypoint and three references read; root GPLv3 license identified. No copy/adaptation."
+    },
+    {
+      "repo": "shipshitdev/skills",
+      "errors": {
+        "skills/bun-validator/SKILL.md": "HTTP Error 404: Not Found",
+        "bun-validator/SKILL.md": "HTTP Error 404: Not Found",
+        "LICENSE": "HTTP Error 404: Not Found"
+      },
+      "head": "5813ea28a554d8b759453fd547c7f70c6424c01f",
+      "fetchedFiles": [],
+      "inspection": "Current full repository tree searched; advertised Bun validator missing. Unrelated Git license does not establish Bun rights.",
+      "treeTruncated": false
+    }
+  ],
+  "officialDocs": [
+    "https://bun.com/docs/pm/workspaces",
+    "https://bun.com/docs/pm/filter",
+    "https://bun.com/docs/pm/catalogs",
+    "https://bun.com/docs/pm/isolated-installs",
+    "https://bun.com/docs/pm/lifecycle",
+    "https://turborepo.dev/docs/crafting-your-repository/configuring-tasks",
+    "https://turborepo.dev/docs/crafting-your-repository/caching",
+    "https://nx.dev/docs/features/ci-features/affected",
+    "https://pnpm.io/filtering",
+    "https://www.typescriptlang.org/docs/handbook/modules/reference.html#paths"
+  ],
+  "popularity": {
+    "observed": "2026-10-28",
+    "metric": "cached rounded aggregate skills.sh CLI installs, not unique users or outcome evidence",
+    "turborepo": "85.5K (page crawled yesterday)",
+    "monorepo-management": "14.4K (page crawled last week)",
+    "bunCandidates": "unavailable"
+  },
+  "fixture": {
+    "bun": "1.4.3",
+    "checks": [
+      "filtered add edits the selected app manifest",
+      "filtered add leaves root dependency ownership intact",
+      "frozen install preserves the root lockfile",
+      "dependency closure builds core before app and excludes unrelated",
+      "reverse dependency selection includes app, excludes unrelated",
+      "exact package filter selects only the app",
+      "declared workspace import and built app resolve from the consumer package",
+      "packing includes public output and rewrites workspace dependency version",
+      "clean isolated frozen install succeeds with default and named catalogs",
+      "clean dependency-aware build does not rely on prior artifacts"
+    ]
+  },
+  "evidenceLimit": "Scratch commands establish listed invariants on Bun 1.4.3 only; entries start reviewed, not agent-evaluated."
+}

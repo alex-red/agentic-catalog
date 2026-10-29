@@ -1,0 +1,23 @@
+schemaVersion: 2
+id: vue-async-state
+type: skill
+title: Vue async state ownership
+summary: Trace Vue watcher, request and route lifetimes so obsolete async work cannot overwrite current data, errors or loading state. Includes a cancellable latest-request example with guarded completion and explicit disposal.
+useWhen: Reviewing or fixing stale Vue 3 results during rapid input, reused route components, cancellation or shared state disposal.
+tags: [vue, async, reactivity, cancellation, routing, testing]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: A focused alternative to overlapping core Vue bundles. Uses official watcher and Router contracts and preserves project API style. Scratch checks exercise the example, not agent activation or representative application outcomes.
+source:
+  kind: original
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written against official product documentation. No third-party skill wording, examples, scripts or runtime are copied.
+overlap: Installed Vue skills and official docs cover core APIs. create-adaptable-composable covers flexible inputs; this entry covers invalidation and completion ownership. Existing query libraries may already supply cancellation and cache behavior. webapp-testing supplies browser interaction checks when needed.
+related: [create-adaptable-composable, diagnosing-bugs, verification-before-completion, webapp-testing]

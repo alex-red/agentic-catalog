@@ -1,0 +1,8 @@
+schemaVersion: 2
+id: security-review
+title: Focused security review
+description: Select a repository threat model, credential serialization review or known-bug variant analysis for the security question at hand. The methods are conditional, not three mandatory scans for every change; variant analysis requires a seed defect.
+entries:
+  - security-threat-model
+  - secret-serialization
+  - variant-analysis
