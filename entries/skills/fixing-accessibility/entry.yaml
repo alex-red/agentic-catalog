@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: fixing-accessibility
+type: skill
+title: Focused HTML accessibility review (Ibelick)
+summary: Checks accessible names, native semantics, keyboard access, modal focus, form errors, announcements, contrast and reduced motion. Reports exact snippets, user impact and small code-level fixes while avoiding unrelated refactoring.
+useWhen: Reviewing or fixing a focused HTML accessibility issue with native semantics and targeted changes.
+tags:
+  - accessibility
+  - html
+  - frontend
+  - code-review
+  - keyboard
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 5
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Complete entrypoint and MIT license reviewed. Broad Tab-reachability wording needs composite-widget exceptions; arrow-key and roving-tabindex patterns remain valid. Review checks do not certify WCAG conformance or replace assistive-technology testing. No behavioral evaluation.
+source:
+  kind: linked
+  url: https://github.com/ibelick/ui-skills
+  path: skills/fixing-accessibility
+  revision: df4eb34c5dee830e8e36490d6fde3451c187339b
+  retrieved: 2026-10-28
+  license: MIT
+  author: Julien Thibeaut
+  notes: Standalone prompt. Use native elements and existing accessible primitives. Interpret Tab guidance through the actual WAI-ARIA widget pattern rather than adding every item to the tab order.
+install:
+  any: Fetch https://github.com/ibelick/ui-skills at df4eb34c5dee830e8e36490d6fde3451c187339b. Copy the entire skills/fixing-accessibility subtree into .claude/skills/fixing-accessibility for Claude Code or .agents/skills/fixing-accessibility for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: ux-critique, webapp-testing and native browser tools already cover some accessibility issues. This is a compact code-level checklist, with narrower scope and lower novelty. better-typography owns text rendering rather than complete accessibility.
+related:
+  - ux-critique
+  - webapp-testing
+  - better-typography

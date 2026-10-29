@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: remove-animations
+type: skill
+title: Reduce unnecessary motion (Emil Kowalski)
+summary: Audits existing motion by purpose and frequency, then removes or reduces unnecessary animation while checking hidden start states, callbacks, delayed unmounts, focus timing and orphaned code. Reports deliberate keep decisions and proposed dependency cleanup.
+useWhen: An interface feels slow or over-animated and you want a focused motion-reduction pass that preserves interaction behavior.
+tags:
+  - animation
+  - interaction
+  - performance
+  - frontend
+  - refactoring
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Complete entrypoint and MIT license reviewed. Dependency hazards are concrete; universal keyboard/frequency deletion rules and a fixed kept-animation quota are opinions. Apply the user's scope and accepted project decisions first. Dependency removal is separately proposed. No behavioral evaluation.
+source:
+  kind: linked
+  url: https://github.com/emilkowalski/skills
+  path: skills/remove-animations
+  revision: a81dbca07f2217b7103e510c0f13f8d5b017afc9
+  retrieved: 2026-10-28
+  license: MIT
+  author: Emil Kowalski
+  notes: Standalone core procedure. Referenced improve/review animation siblings are optional handoffs, not included or implicitly installed. Verify focus, unmount and visibility after removal.
+install:
+  any: Fetch https://github.com/emilkowalski/skills at a81dbca07f2217b7103e510c0f13f8d5b017afc9. Copy the entire skills/remove-animations subtree into .claude/skills/remove-animations for Claude Code or .agents/skills/remove-animations for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: emil-design-eng and baseline-ui address motion policy; ux-critique may identify excessive motion. This adds an explicit removal-hazard procedure. It opposes Taste's marketing motion quota, so choose according to the task rather than combining them.
+related:
+  - emil-design-eng
+  - fixing-motion-performance
+  - ux-critique

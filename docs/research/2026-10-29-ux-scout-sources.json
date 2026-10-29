@@ -1,0 +1,489 @@
+{
+  "asOfDate": "2026-10-29",
+  "researchWindowLocalDates": [
+    "2026-10-28",
+    "2026-10-29"
+  ],
+  "timezone": "America/Edmonton",
+  "snapshotSavedAtUtc": "2026-10-29T06:07:16.551697+00:00",
+  "repositories": [
+    {
+      "repo": "JoaoMonteiro100/ux-design-skills",
+      "repositoryHead": "ef9596b06350cb6362716ac3acc6ea82681550ef",
+      "headCommitDate": "2026-07-27T19:25:58Z",
+      "starsObserved": 0,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/JoaoMonteiro100/ux-design-skills",
+      "sourceBase": "https://github.com/JoaoMonteiro100/ux-design-skills/blob/ef9596b06350cb6362716ac3acc6ea82681550ef/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 22,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "skills/heuristic-evaluation/README.md",
+        "skills/heuristic-evaluation/SKILL.md",
+        "skills/persona-builder/README.md",
+        "skills/persona-builder/SKILL.md",
+        "skills/ux-usability-study/README.md",
+        "skills/ux-usability-study/SKILL.md",
+        "skills/ux-usability-study/scripts/discovery_rate.py",
+        "skills/ux-usability-study/scripts/sus.py"
+      ],
+      "filesReadFully": [
+        "skills/ux-usability-study/SKILL.md",
+        "skills/ux-usability-study/README.md",
+        "skills/ux-usability-study/scripts/sus.py",
+        "skills/ux-usability-study/scripts/discovery_rate.py",
+        "skills/heuristic-evaluation/SKILL.md",
+        "skills/heuristic-evaluation/README.md",
+        "LICENSE"
+      ],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "Rob7850/usability-test-skill",
+      "repositoryHead": "c232332a476d35b5ba6913396de5a8fa502ce0fe",
+      "headCommitDate": "2026-07-19T08:25:34Z",
+      "starsObserved": 0,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/Rob7850/usability-test-skill",
+      "sourceBase": "https://github.com/Rob7850/usability-test-skill/blob/c232332a476d35b5ba6913396de5a8fa502ce0fe/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 8,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "SKILL.md",
+        "references/browser-driving.md",
+        "references/ux-evaluation-guidelines.md",
+        "references/visual-craft.md",
+        "references/writing-test-cases.md"
+      ],
+      "filesReadFully": [
+        "references/browser-driving.md",
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "SKILL.md lifecycle, signoff requirements, simulated-user-research claims and reporting via primary web page"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "Thecsiz/ux-critique",
+      "repositoryHead": "3da293cafb639195bf71797590081d4ffb0045ba",
+      "headCommitDate": "2026-07-10T05:42:30Z",
+      "starsObserved": 0,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/Thecsiz/ux-critique",
+      "sourceBase": "https://github.com/Thecsiz/ux-critique/blob/3da293cafb639195bf71797590081d4ffb0045ba/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 752,
+      "downloadedFiles": [
+        "LICENSE",
+        "LICENSE-CC-BY-4.0",
+        "LICENSE-MIT",
+        "README.md",
+        "THIRD_PARTY_NOTICES.md",
+        "skills/ux-critique/SKILL.md"
+      ],
+      "filesReadFully": [
+        "skills/ux-critique/SKILL.md"
+      ],
+      "sectionsInspected": [],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "alirezarezvani/claude-skills",
+      "repositoryHead": "5434623a788ec3105d238328cfe554e1e2242ff7",
+      "headCommitDate": "2026-10-26T16:54:35Z",
+      "starsObserved": 28929,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/alirezarezvani/claude-skills",
+      "sourceBase": "https://github.com/alirezarezvani/claude-skills/blob/5434623a788ec3105d238328cfe554e1e2242ff7/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 5771,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "product-team/skills/ux-researcher-designer/SKILL.md",
+        "product-team/skills/ux-researcher-designer/assets/research_plan_template.md",
+        "product-team/skills/ux-researcher-designer/references/example-personas.md",
+        "product-team/skills/ux-researcher-designer/references/journey-mapping-guide.md",
+        "product-team/skills/ux-researcher-designer/references/persona-methodology.md",
+        "product-team/skills/ux-researcher-designer/references/usability-testing-frameworks.md",
+        "product-team/skills/ux-researcher-designer/scripts/persona_generator.py",
+        "research-ops/skills/interview-mapper/SKILL.md",
+        "research-ops/skills/interview-mapper/assets/evals/evals.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/brand-positioning/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/brand-positioning/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/brand-positioning/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/candidate/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/candidate/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/candidate/review-example.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/candidate/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/change-readiness/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/change-readiness/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/change-readiness/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/conflict-mediation/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/conflict-mediation/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/conflict-mediation/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/custdev/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/custdev/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/custdev/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/ethnographic/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/ethnographic/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/ethnographic/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/exit/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/exit/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/exit/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/expert/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/expert/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/expert/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/focus-group/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/focus-group/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/focus-group/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/intercept/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/intercept/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/intercept/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/jtbd/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/jtbd/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/jtbd/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/mappings/nuggets.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/org-mapping-vmdi/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/org-mapping-vmdi/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/org-mapping-vmdi/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/team-retro/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/team-retro/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/team-retro/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/usability/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/usability/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/usability/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/visitor-experience/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/visitor-experience/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/visitor-experience/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/winloss/claims.json",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/winloss/gold.md",
+        "research-ops/skills/interview-mapper/assets/evals/fixtures/winloss/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/evals/gold/gold.json",
+        "research-ops/skills/interview-mapper/assets/evals/gold/transcript.txt",
+        "research-ops/skills/interview-mapper/assets/example-outputs/decision-memo.md",
+        "research-ops/skills/interview-mapper/assets/example-outputs/insight-cards.md",
+        "research-ops/skills/interview-mapper/assets/example-outputs/journey-map.md",
+        "research-ops/skills/interview-mapper/assets/example-outputs/opportunity-prioritization.md",
+        "research-ops/skills/interview-mapper/assets/example-outputs/personas.md",
+        "research-ops/skills/interview-mapper/references/ethics.md",
+        "research-ops/skills/interview-mapper/references/intake.md",
+        "research-ops/skills/interview-mapper/references/pipeline.md",
+        "research-ops/skills/interview-mapper/references/reliability.md",
+        "research-ops/skills/interview-mapper/references/rubric.md",
+        "research-ops/skills/interview-mapper/references/synthesis.md",
+        "research-ops/skills/interview-mapper/references/validation.md",
+        "research-ops/skills/interview-mapper/scripts/batch_prepare.py",
+        "research-ops/skills/interview-mapper/scripts/build_provenance.py",
+        "research-ops/skills/interview-mapper/scripts/calibrate_threshold.py",
+        "research-ops/skills/interview-mapper/scripts/check_support.py",
+        "research-ops/skills/interview-mapper/scripts/compare_to_gold.py",
+        "research-ops/skills/interview-mapper/scripts/consensus.py",
+        "research-ops/skills/interview-mapper/scripts/coverage_gaps.py",
+        "research-ops/skills/interview-mapper/scripts/extract_claims.py",
+        "research-ops/skills/interview-mapper/scripts/extract_nuggets.py",
+        "research-ops/skills/interview-mapper/scripts/make_adjudication.py",
+        "research-ops/skills/interview-mapper/scripts/number_lines.py",
+        "research-ops/skills/interview-mapper/scripts/render_board.py",
+        "research-ops/skills/interview-mapper/scripts/route.py",
+        "research-ops/skills/interview-mapper/scripts/score_insights.py",
+        "research-ops/skills/interview-mapper/scripts/verify_quotes.py",
+        "research-ops/skills/interview-mapper/templates/brand-positioning.md",
+        "research-ops/skills/interview-mapper/templates/candidate.md",
+        "research-ops/skills/interview-mapper/templates/change-readiness.md",
+        "research-ops/skills/interview-mapper/templates/conflict-mediation.md",
+        "research-ops/skills/interview-mapper/templates/custdev.md",
+        "research-ops/skills/interview-mapper/templates/ethnographic.md",
+        "research-ops/skills/interview-mapper/templates/exit.md",
+        "research-ops/skills/interview-mapper/templates/expert.md",
+        "research-ops/skills/interview-mapper/templates/focus-group.md",
+        "research-ops/skills/interview-mapper/templates/intercept.md",
+        "research-ops/skills/interview-mapper/templates/jtbd.md",
+        "research-ops/skills/interview-mapper/templates/org-mapping-vmdi.md",
+        "research-ops/skills/interview-mapper/templates/team-retro.md",
+        "research-ops/skills/interview-mapper/templates/usability.md",
+        "research-ops/skills/interview-mapper/templates/visitor-experience.md",
+        "research-ops/skills/interview-mapper/templates/winloss.md"
+      ],
+      "filesReadFully": [
+        "research-ops/skills/interview-mapper/SKILL.md",
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "UX toolkit workflow/method and CLI sections",
+        "persona_generator.py: confidence thresholds and complete CLI main using bundled sample data"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "repositoryHead": "2574e29377c7173d0cecffef29a6ecbd7f8ccb5d",
+      "headCommitDate": "2026-10-28T00:13:08Z",
+      "starsObserved": 33695,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/anthropics/knowledge-work-plugins",
+      "sourceBase": "https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 1285,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "design/.claude-plugin/plugin.json",
+        "design/.mcp.json",
+        "design/CONNECTORS.md",
+        "design/README.md",
+        "design/skills/accessibility-review/SKILL.md",
+        "design/skills/design-critique/SKILL.md",
+        "design/skills/design-handoff/SKILL.md",
+        "design/skills/design-system/SKILL.md",
+        "design/skills/research-synthesis/SKILL.md",
+        "design/skills/user-research/SKILL.md",
+        "design/skills/ux-copy/SKILL.md",
+        "product-management/CONNECTORS.md",
+        "product-management/skills/synthesize-research/SKILL.md"
+      ],
+      "filesReadFully": [
+        "design/skills/user-research/SKILL.md",
+        "design/skills/research-synthesis/SKILL.md",
+        "design/skills/design-critique/SKILL.md",
+        "design/skills/accessibility-review/SKILL.md",
+        "design/CONNECTORS.md",
+        "design/.mcp.json",
+        "design/.claude-plugin/plugin.json",
+        "product-management/skills/synthesize-research/SKILL.md",
+        "product-management/CONNECTORS.md"
+      ],
+      "sectionsInspected": [
+        "design README via primary web source",
+        "design UX-copy patterns and output",
+        "root LICENSE Apache-2.0 text identification and unstructured tail; not a redistribution-rights opinion"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "ghaida/intent",
+      "repositoryHead": "7111cb85894feaeb7e98938b1ed34597d40e3b4c",
+      "headCommitDate": "2026-10-28T18:23:01Z",
+      "starsObserved": 229,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/ghaida/intent",
+      "sourceBase": "https://github.com/ghaida/intent/blob/7111cb85894feaeb7e98938b1ed34597d40e3b4c/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 186,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "skills/articulate/SKILL.md",
+        "skills/evaluate/SKILL.md",
+        "skills/intent/SKILL.md",
+        "skills/intent/references/accessibility-foundations.md",
+        "skills/intent/references/content-strategy.md",
+        "skills/intent/references/ethical-design.md",
+        "skills/intent/references/information-architecture.md",
+        "skills/intent/references/interaction-patterns.md",
+        "skills/intent/references/measurement-frameworks.md",
+        "skills/intent/references/research-methods.md",
+        "skills/intent/references/service-design.md",
+        "skills/investigate/SKILL.md",
+        "skills/journey/SKILL.md",
+        "skills/measure/SKILL.md",
+        "skills/organize/SKILL.md"
+      ],
+      "filesReadFully": [],
+      "sectionsInspected": [
+        "intent: overview, when not to use, work/record, context, routing, loop guards and reference index",
+        "investigate: planning, interview/usability protocols, synthesis, findings and ethics",
+        "evaluate: heuristic/walkthrough method, illustrative failure claims and current non-numeric output",
+        "journey: artifact/visualization path and CSS output",
+        "measure: funnel definitions, triangulation and ethical counter-metrics",
+        "root LICENSE CC0-1.0 identification; legal text not fully reviewed"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "sergiobuilds/ux-workflow-check",
+      "repositoryHead": "cd1c8fc016c31350ef3ef27f4e295abf6d81cea9",
+      "headCommitDate": "2026-08-15T15:48:44Z",
+      "starsObserved": 0,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/sergiobuilds/ux-workflow-check",
+      "sourceBase": "https://github.com/sergiobuilds/ux-workflow-check/blob/cd1c8fc016c31350ef3ef27f4e295abf6d81cea9/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 6,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "SKILL.md",
+        "reference/example-dealradar.md"
+      ],
+      "filesReadFully": [
+        "SKILL.md",
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "README author cross-agent gate-compliance claims via upstream web page",
+        "reference/example-dealradar.md example and later-round sections"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "simota/agent-skills",
+      "repositoryHead": "2e02cc9efb3852a45334495df3784d59b87b0e18",
+      "headCommitDate": "2026-10-26T13:05:56Z",
+      "starsObserved": 96,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/simota/agent-skills",
+      "sourceBase": "https://github.com/simota/agent-skills/blob/2e02cc9efb3852a45334495df3784d59b87b0e18/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 1916,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "echo/SKILL.md"
+      ],
+      "filesReadFully": [],
+      "sectionsInspected": [
+        "echo/SKILL.md description, synthetic evidence labels, cross-engine priorities and sibling routing"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    },
+    {
+      "repo": "wondelai/skills",
+      "repositoryHead": "c172996495bed0fcd26896a9416b2093fd7073f0",
+      "headCommitDate": "2026-09-10T21:47:58Z",
+      "starsObserved": 2531,
+      "archived": false,
+      "metadataSource": "https://api.github.com/repos/wondelai/skills",
+      "sourceBase": "https://github.com/wondelai/skills/blob/c172996495bed0fcd26896a9416b2093fd7073f0/",
+      "treeTruncated": false,
+      "inventoryBlobCount": 1636,
+      "downloadedFiles": [
+        "LICENSE",
+        "README.md",
+        "lean-ux/SKILL.md",
+        "lean-ux/references/agile-integration.md",
+        "lean-ux/references/case-studies.md",
+        "lean-ux/references/collaborative-design.md",
+        "lean-ux/references/experiment-patterns.md",
+        "lean-ux/references/hypothesis-canvas.md",
+        "lean-ux/references/outcome-metrics.md",
+        "ux-heuristics/SKILL.md",
+        "ux-heuristics/references/audit-template.md",
+        "ux-heuristics/references/cultural-ux.md",
+        "ux-heuristics/references/dark-patterns.md",
+        "ux-heuristics/references/heuristic-conflicts.md",
+        "ux-heuristics/references/krug-principles.md",
+        "ux-heuristics/references/nielsen-heuristics.md",
+        "ux-heuristics/references/wcag-checklist.md"
+      ],
+      "filesReadFully": [
+        "LICENSE"
+      ],
+      "sectionsInspected": [
+        "ux-heuristics: core principle, scoring and opening heuristic sections",
+        "lean-ux: assumptions, hypotheses, metrics and small experiments"
+      ],
+      "inspectionLimit": "Downloaded/inventoried does not mean fully read or audited. Only the listed full files and sections were inspected. No upstream payload, installer, script, hook, agent council, study or browser task executed."
+    }
+  ],
+  "artifactPathCommits": [
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "path": "product-management/skills/synthesize-research",
+      "sha": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "date": "2026-03-13T15:57:57Z"
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/user-research",
+      "sha": "4fa3cb92e2942d6594200fa8d2c800708e086072",
+      "date": "2026-02-24T00:08:12Z"
+    },
+    {
+      "repo": "ghaida/intent",
+      "path": "skills/intent",
+      "sha": "0c1afeb930eaa936d20e4d27f1df8ead4113dfb4",
+      "date": "2026-10-27T00:33:01Z"
+    },
+    {
+      "repo": "ghaida/intent",
+      "path": "skills/investigate",
+      "sha": "0c1afeb930eaa936d20e4d27f1df8ead4113dfb4",
+      "date": "2026-10-27T00:33:01Z"
+    },
+    {
+      "repo": "ghaida/intent",
+      "path": "skills/evaluate",
+      "sha": "0c1afeb930eaa936d20e4d27f1df8ead4113dfb4",
+      "date": "2026-10-27T00:33:01Z"
+    },
+    {
+      "repo": "JoaoMonteiro100/ux-design-skills",
+      "path": "skills/ux-usability-study",
+      "sha": "ef9596b06350cb6362716ac3acc6ea82681550ef",
+      "date": "2026-07-27T19:25:58Z"
+    },
+    {
+      "repo": "JoaoMonteiro100/ux-design-skills",
+      "path": "skills/heuristic-evaluation",
+      "sha": "e2711dc361e1e05007584cac3695d7cbbda5b4f5",
+      "date": "2026-07-27T18:29:20Z"
+    },
+    {
+      "repo": "sergiobuilds/ux-workflow-check",
+      "path": "SKILL.md",
+      "sha": "71d7ee5ccd728499e21c3ee792df51e9114b9a69",
+      "date": "2026-06-11T04:25:51Z"
+    },
+    {
+      "repo": "Rob7850/usability-test-skill",
+      "path": "SKILL.md",
+      "sha": "c232332a476d35b5ba6913396de5a8fa502ce0fe",
+      "date": "2026-07-19T08:25:34Z"
+    },
+    {
+      "repo": "wondelai/skills",
+      "path": "ux-heuristics",
+      "sha": "0dea03f507c913801c94516e352e6859116a02d5",
+      "date": "2026-06-30T22:17:46Z"
+    },
+    {
+      "repo": "alirezarezvani/claude-skills",
+      "path": "research-ops/skills/interview-mapper",
+      "sha": "2c7e4d41853eeee0d326cb82ea53a7eb3409c685",
+      "date": "2026-08-27T09:16:16Z"
+    }
+  ],
+  "registry": {
+    "metric": "rounded aggregate skills CLI installs; all-time unless explicitly stated",
+    "anthropicRepositoryTotal": "597.7K",
+    "anthropicUserResearch": "4.0K",
+    "anthropicDesignResearchSynthesis": "4.1K",
+    "anthropicProductSynthesizeResearch": "3.1K",
+    "intentRepositoryTotal": "45.8K",
+    "intentMainAndSeveralRelatedSkills": "2.7K each",
+    "wondelaiUxHeuristics": "9.6K",
+    "limits": "Collected during the research window. Intent page crawl was cached three days old. No unique-user, growth or outcome inference; failed detail requests for Thecsiz and Sergiobuilds remain unknown."
+  },
+  "technicalSources": [
+    "https://www.nngroup.com/articles/cognitive-walkthroughs/",
+    "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing",
+    "https://www.w3.org/WAI/test-evaluate/preliminary/",
+    "https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/",
+    "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html",
+    "https://www.nngroup.com/articles/quantitative-user-research-methods/"
+  ],
+  "accessLimits": [
+    "Leaderboard pages sampled only as rendered, with collapsed bundles.",
+    "No representative head-to-head or human study executed.",
+    "Original usability.gov SUS URL redirects to a generic Digital.gov topic page; it is not used as a recovered SUS scoring reference.",
+    "Current Intent body supersedes older indexed score descriptions; current canonical Rezvani license is separate from similarly named forks.",
+    "Foundation references, transitive resources and runtime chains remain unreviewed where the report says so."
+  ]
+}

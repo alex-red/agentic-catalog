@@ -1,0 +1,32 @@
+schemaVersion: 2
+id: evidence-to-flow-ux
+type: workflow
+title: Evidence-to-flow UX decision workflow
+summary: Connects a bounded product decision to task inspection, existing research or participant-study preparation, then a supported design change and proportionate retest. Keeps observations, hypotheses and human evidence distinct without requiring every stage.
+useWhen: Moving from a concrete task problem or research uncertainty to a design decision, authorized change and a retest that matches the claim.
+tags: [ux, research, interaction-design, workflow, verification]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Bounded, self-contained procedure with branching by evidence, task-state coverage, an evidence ledger and explicit stopping conditions. Browser success remains distinct from human usability; unavailable participants lead to preparation rather than invented results. No full lifecycle ceremony or mandatory tool. Source and structural review only; no measured outcome improvement.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written combination of decision framing, observed-versus-inferred task inspection, traceable synthesis and retest. No upstream scripts, forcing loops, numerical scores or source prose copied. Other catalog entries are optional alternatives, not required dependencies.
+inspiredBy:
+  - title: Intent research and evaluation routing
+    url: https://github.com/ghaida/intent/blob/7111cb85894feaeb7e98938b1ed34597d40e3b4c/skills/intent/SKILL.md
+  - title: UX Workflow Check task-order and observed/inferred lens
+    url: https://github.com/sergiobuilds/ux-workflow-check/blob/71d7ee5ccd728499e21c3ee792df51e9114b9a69/SKILL.md
+  - title: Anthropic product-management research synthesis
+    url: https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/synthesize-research/SKILL.md
+  - title: João Monteiro moderated study method
+    url: https://github.com/JoaoMonteiro100/ux-design-skills/blob/ef9596b06350cb6362716ac3acc6ea82681550ef/skills/ux-usability-study/SKILL.md
+overlap: Native planning and browser tools execute parts of this process. explore-plan-implement-review covers general code delivery; ux-critique examines interfaces; webapp-testing checks browser behavior; the study and synthesis skills provide deeper methods. This workflow supplies the evidence-dependent decision path and stopping boundary without installing those entries or a broad UX system.
+related: [moderated-usability-study, synthesize-research, ux-critique, webapp-testing, explore-plan-implement-review, intent]

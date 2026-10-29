@@ -33,4 +33,4 @@ inspiredBy:
 install:
   notes: Copy the complete skill directory, including its case-study reference and LICENSE.txt. Requires no other skill, script, game account or tool connection. Source verification uses whatever research tools the host provides.
 overlap: Host-native reasoning can already propose game mechanics and research sources. grilling challenges decisions; synthesize-research and moderated-usability-study address research methods; human-interface-design addresses interfaces. This adds domain-specific incentive tracing across persistent progression, social continuity, trade, variance and account growth. No MMORPG-specific built-in or existing catalog equivalent was found in this session's inventory; it requires none of the related entries.
-related: [grilling]
+related: [grilling, synthesize-research, moderated-usability-study, human-interface-design]

@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: interface-review
+type: skill
+title: Interface regression review (Jakub Krehel)
+summary: Reviews a branch, pull request or uncommitted change for introduced and regressed interface problems. Expands shared changes to consumers, checks removed accessibility and design signals, and delegates domain rules and verdicts to the required better-interface bundle.
+useWhen: Explicitly reviewing interface regressions in a change and accepting installation of the complete required domain-review bundle.
+tags:
+  - frontend
+  - code-review
+  - regression
+  - accessibility
+  - design
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Review entrypoint, scope/removal references and better-interface router read; not every transitive domain reference audited. Requires seven sibling skills. Change-scoped source review is useful, but rendered verification is opt-in and unverified domains must stay visible. No behavioral trial.
+source:
+  kind: linked
+  url: https://github.com/jakubkrehel/skills
+  path: skills/interface-review
+  revision: 1eb03d2b145df1c6cd84ab54a337600a2a379017
+  retrieved: 2026-10-28
+  license: MIT
+  author: Jakub Krehel
+  notes: Requires interface-review, better-interface, better-accessibility, better-layout, better-writing, better-typography, better-colors and better-ui, each complete with references/agents, at the same pin. Review is read-only; rendering and any worktree remain scoped to the user's request.
+install:
+  any: "Fetch https://github.com/jakubkrehel/skills at 1eb03d2b145df1c6cd84ab54a337600a2a379017. Select the complete eight-skill bundle: interface-review, better-interface, better-accessibility, better-layout, better-writing, better-typography, better-colors and better-ui. Copy each complete skills/<name> subtree as a sibling under .claude/skills/<name> or .agents/skills/<name>, preserving all references and agents metadata. Retain root LICENSE as LICENSE.txt in each installed skill. Check every destination first, preserve local versions and reconcile existing better-typography rather than duplicating or overwriting it. Do not copy the repository's unrelated skills or plugin configuration."
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: Native code review and ux-critique overlap general findings. This adds change attribution and affected-surface expansion, while react-component-composition covers implementation contracts. It is a review bundle, not a standalone one-file skill.
+related:
+  - better-typography
+  - ux-critique
+  - webapp-testing

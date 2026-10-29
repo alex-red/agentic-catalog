@@ -1,0 +1,2696 @@
+{
+  "asOf": "2026-10-29",
+  "timezone": "America/Edmonton",
+  "source": "Working-tree entries/**/entry.yaml; generated index not used",
+  "entryCount": 93,
+  "tagAssignmentCount": 416,
+  "distinctTagCount": 200,
+  "singleUseTagCount": 126,
+  "entries": [
+    {
+      "id": "agents-md-authoring",
+      "type": "skill",
+      "path": "entries/skills/agents-md-authoring/entry.yaml",
+      "tags": [
+        "project-instructions",
+        "agents-md",
+        "context-hygiene",
+        "monorepo"
+      ]
+    },
+    {
+      "id": "baseline-ui",
+      "type": "skill",
+      "path": "entries/skills/baseline-ui/entry.yaml",
+      "tags": [
+        "frontend",
+        "react",
+        "tailwind",
+        "design",
+        "conventions"
+      ]
+    },
+    {
+      "id": "better-typography",
+      "type": "skill",
+      "path": "entries/skills/better-typography/entry.yaml",
+      "tags": [
+        "typography",
+        "fonts",
+        "frontend",
+        "code-review",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "bun-migration-verification",
+      "type": "workflow",
+      "path": "entries/workflows/bun-migration-verification/entry.yaml",
+      "tags": [
+        "bun",
+        "javascript",
+        "typescript",
+        "migration",
+        "verification",
+        "package-management",
+        "testing"
+      ]
+    },
+    {
+      "id": "bun-workspaces",
+      "type": "skill",
+      "path": "entries/skills/bun-workspaces/entry.yaml",
+      "tags": [
+        "bun",
+        "monorepo",
+        "workspaces",
+        "dependencies",
+        "package-management",
+        "build-systems",
+        "testing"
+      ]
+    },
+    {
+      "id": "case-insensitive-guard",
+      "type": "hook",
+      "path": "entries/hooks/case-insensitive-guard/entry.yaml",
+      "tags": [
+        "filesystem",
+        "data-loss",
+        "pre-tool-use"
+      ]
+    },
+    {
+      "id": "cerberus-re",
+      "type": "mcp",
+      "path": "entries/mcps/cerberus-re/entry.yaml",
+      "tags": [
+        "reverse_engineering",
+        "apple",
+        "ghidra",
+        "lldb",
+        "frida"
+      ]
+    },
+    {
+      "id": "chrome-devtools-mcp",
+      "type": "mcp",
+      "path": "entries/mcps/chrome-devtools-mcp/entry.yaml",
+      "tags": [
+        "browser",
+        "verification",
+        "debugging",
+        "performance"
+      ]
+    },
+    {
+      "id": "claude-reflect",
+      "type": "plugin",
+      "path": "entries/plugins/claude-reflect/entry.yaml",
+      "tags": [
+        "self-improvement",
+        "memory",
+        "corrections",
+        "project-instructions"
+      ]
+    },
+    {
+      "id": "compact-context",
+      "type": "hook",
+      "path": "entries/hooks/compact-context/entry.yaml",
+      "tags": [
+        "context",
+        "compaction",
+        "session-start"
+      ]
+    },
+    {
+      "id": "compound-engineering",
+      "type": "plugin",
+      "path": "entries/plugins/compound-engineering/entry.yaml",
+      "tags": [
+        "self-improvement",
+        "planning",
+        "code-review",
+        "knowledge-capture",
+        "methodology"
+      ]
+    },
+    {
+      "id": "config-guard",
+      "type": "hook",
+      "path": "entries/hooks/config-guard/entry.yaml",
+      "tags": [
+        "security",
+        "configuration",
+        "pre-tool-use"
+      ]
+    },
+    {
+      "id": "config-watch",
+      "type": "hook",
+      "path": "entries/hooks/config-watch/entry.yaml",
+      "tags": [
+        "configuration",
+        "audit",
+        "config-change"
+      ]
+    },
+    {
+      "id": "context-hogs",
+      "type": "hook",
+      "path": "entries/hooks/context-hogs/entry.yaml",
+      "tags": [
+        "context",
+        "observability",
+        "post-tool-use"
+      ]
+    },
+    {
+      "id": "context7",
+      "type": "mcp",
+      "path": "entries/mcps/context7/entry.yaml",
+      "tags": [
+        "documentation",
+        "libraries",
+        "api-accuracy"
+      ]
+    },
+    {
+      "id": "create-adaptable-composable",
+      "type": "skill",
+      "path": "entries/skills/create-adaptable-composable/entry.yaml",
+      "tags": [
+        "vue",
+        "composables",
+        "reactivity",
+        "typescript",
+        "frontend"
+      ]
+    },
+    {
+      "id": "cynthion-reverse-engineer",
+      "type": "skill",
+      "path": "entries/skills/cynthion-reverse-engineer/entry.yaml",
+      "tags": [
+        "reverse_engineering",
+        "usb",
+        "protocol-analysis",
+        "hardware"
+      ]
+    },
+    {
+      "id": "design-taste-frontend",
+      "type": "skill",
+      "path": "entries/skills/design-taste-frontend/entry.yaml",
+      "tags": [
+        "design",
+        "frontend",
+        "art-direction",
+        "browser",
+        "experimental"
+      ]
+    },
+    {
+      "id": "desktop-attention",
+      "type": "hook",
+      "path": "entries/hooks/desktop-attention/entry.yaml",
+      "tags": [
+        "notifications",
+        "local",
+        "attention"
+      ]
+    },
+    {
+      "id": "diagnosing-bugs",
+      "type": "skill",
+      "path": "entries/skills/diagnosing-bugs/entry.yaml",
+      "tags": [
+        "debugging",
+        "feedback-loop",
+        "reproduction",
+        "performance",
+        "regression"
+      ]
+    },
+    {
+      "id": "domain-modeling",
+      "type": "skill",
+      "path": "entries/skills/domain-modeling/entry.yaml",
+      "tags": [
+        "domain-modeling",
+        "glossary",
+        "architecture",
+        "decisions",
+        "documentation"
+      ]
+    },
+    {
+      "id": "emil-design-eng",
+      "type": "skill",
+      "path": "entries/skills/emil-design-eng/entry.yaml",
+      "tags": [
+        "design",
+        "interaction",
+        "animation",
+        "components",
+        "frontend"
+      ]
+    },
+    {
+      "id": "evidence-to-flow-ux",
+      "type": "workflow",
+      "path": "entries/workflows/evidence-to-flow-ux/entry.yaml",
+      "tags": [
+        "ux",
+        "research",
+        "interaction-design",
+        "workflow",
+        "verification"
+      ]
+    },
+    {
+      "id": "explore-plan-implement-review",
+      "type": "workflow",
+      "path": "entries/workflows/explore-plan-implement-review/entry.yaml",
+      "tags": [
+        "planning",
+        "code-review",
+        "subagents",
+        "verification"
+      ]
+    },
+    {
+      "id": "find-skills",
+      "type": "skill",
+      "path": "entries/skills/find-skills/entry.yaml",
+      "tags": [
+        "discovery",
+        "skills-registry",
+        "tooling"
+      ]
+    },
+    {
+      "id": "fixing-accessibility",
+      "type": "skill",
+      "path": "entries/skills/fixing-accessibility/entry.yaml",
+      "tags": [
+        "accessibility",
+        "html",
+        "frontend",
+        "code-review",
+        "keyboard"
+      ]
+    },
+    {
+      "id": "fixing-motion-performance",
+      "type": "skill",
+      "path": "entries/skills/fixing-motion-performance/entry.yaml",
+      "tags": [
+        "animation",
+        "performance",
+        "frontend",
+        "browser",
+        "code-review"
+      ]
+    },
+    {
+      "id": "focused-changes",
+      "type": "rule",
+      "path": "entries/rules/focused-changes/entry.yaml",
+      "tags": [
+        "scope",
+        "conventions",
+        "diff-size"
+      ]
+    },
+    {
+      "id": "format-after-edit",
+      "type": "hook",
+      "path": "entries/hooks/format-after-edit/entry.yaml",
+      "tags": [
+        "formatting",
+        "automation",
+        "post-tool-use"
+      ]
+    },
+    {
+      "id": "frontend-design",
+      "type": "skill",
+      "path": "entries/skills/frontend-design/entry.yaml",
+      "tags": [
+        "design",
+        "frontend",
+        "typography",
+        "visual-design"
+      ]
+    },
+    {
+      "id": "game-balance-review",
+      "type": "workflow",
+      "path": "entries/workflows/game-balance-review/entry.yaml",
+      "tags": [
+        "game-design",
+        "balance",
+        "virtual-economies",
+        "progression",
+        "workflow"
+      ]
+    },
+    {
+      "id": "game-feel",
+      "type": "skill",
+      "path": "entries/skills/game-feel/entry.yaml",
+      "tags": [
+        "game-design",
+        "game-feel",
+        "feedback",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "gameplay-playtesting",
+      "type": "workflow",
+      "path": "entries/workflows/gameplay-playtesting/entry.yaml",
+      "tags": [
+        "game-design",
+        "playtesting",
+        "research",
+        "verification",
+        "workflow"
+      ]
+    },
+    {
+      "id": "gh-fix-ci",
+      "type": "skill",
+      "path": "entries/skills/gh-fix-ci/entry.yaml",
+      "tags": [
+        "ci",
+        "github-actions",
+        "gh-cli",
+        "debugging"
+      ]
+    },
+    {
+      "id": "git-safety",
+      "type": "hook",
+      "path": "entries/hooks/git-safety/entry.yaml",
+      "tags": [
+        "git",
+        "guardrails",
+        "pre-tool-use"
+      ]
+    },
+    {
+      "id": "grilling",
+      "type": "skill",
+      "path": "entries/skills/grilling/entry.yaml",
+      "tags": [
+        "requirements",
+        "planning",
+        "interviewing",
+        "design-review"
+      ]
+    },
+    {
+      "id": "handoff",
+      "type": "skill",
+      "path": "entries/skills/handoff/entry.yaml",
+      "tags": [
+        "handoff",
+        "context",
+        "session",
+        "continuity",
+        "memory"
+      ]
+    },
+    {
+      "id": "harness-experiment-loop",
+      "type": "workflow",
+      "path": "entries/workflows/harness-experiment-loop/entry.yaml",
+      "tags": [
+        "harness",
+        "self-improvement",
+        "evaluation",
+        "agent-guidance",
+        "verification"
+      ]
+    },
+    {
+      "id": "human-interface-design",
+      "type": "skill",
+      "path": "entries/skills/human-interface-design/entry.yaml",
+      "tags": [
+        "design",
+        "ux",
+        "interaction-design",
+        "accessibility",
+        "cross-platform"
+      ]
+    },
+    {
+      "id": "ida-mcp",
+      "type": "mcp",
+      "path": "entries/mcps/ida-mcp/entry.yaml",
+      "tags": [
+        "reverse_engineering",
+        "ida",
+        "binary-analysis",
+        "decompilation"
+      ]
+    },
+    {
+      "id": "impeccable",
+      "type": "skill",
+      "path": "entries/skills/impeccable/entry.yaml",
+      "tags": [
+        "design",
+        "frontend",
+        "design-review",
+        "iteration",
+        "experimental"
+      ]
+    },
+    {
+      "id": "improvement-loop",
+      "type": "skill",
+      "path": "entries/skills/improvement-loop/entry.yaml",
+      "tags": [
+        "self-improvement",
+        "retrospective",
+        "tooling",
+        "planning",
+        "root-cause"
+      ]
+    },
+    {
+      "id": "intent",
+      "type": "skill",
+      "path": "entries/skills/intent/entry.yaml",
+      "tags": [
+        "ux",
+        "research",
+        "interaction-design",
+        "information-architecture",
+        "design"
+      ]
+    },
+    {
+      "id": "interface-design",
+      "type": "skill",
+      "path": "entries/skills/interface-design/entry.yaml",
+      "tags": [
+        "design",
+        "frontend",
+        "dashboard",
+        "design-system",
+        "interaction"
+      ]
+    },
+    {
+      "id": "interface-review",
+      "type": "skill",
+      "path": "entries/skills/interface-review/entry.yaml",
+      "tags": [
+        "frontend",
+        "code-review",
+        "regression",
+        "accessibility",
+        "design"
+      ]
+    },
+    {
+      "id": "karpathy-coding-guidelines",
+      "type": "rule",
+      "path": "entries/rules/karpathy-coding-guidelines/entry.yaml",
+      "tags": [
+        "scope",
+        "simplicity",
+        "diff-size",
+        "assumptions"
+      ]
+    },
+    {
+      "id": "level-design",
+      "type": "skill",
+      "path": "entries/skills/level-design/entry.yaml",
+      "tags": [
+        "game-design",
+        "level-design",
+        "encounters",
+        "platformers"
+      ]
+    },
+    {
+      "id": "markdown-accessibility",
+      "type": "rule",
+      "path": "entries/rules/markdown-accessibility/entry.yaml",
+      "tags": [
+        "accessibility",
+        "markdown",
+        "documentation",
+        "code-review"
+      ]
+    },
+    {
+      "id": "mcp-builder",
+      "type": "skill",
+      "path": "entries/skills/mcp-builder/entry.yaml",
+      "tags": [
+        "mcp",
+        "tool-design",
+        "api-integration",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "mechanic-prototyping",
+      "type": "workflow",
+      "path": "entries/workflows/mechanic-prototyping/entry.yaml",
+      "tags": [
+        "game-design",
+        "prototyping",
+        "experimentation",
+        "workflow"
+      ]
+    },
+    {
+      "id": "mmorpg-design",
+      "type": "skill",
+      "path": "entries/skills/mmorpg-design/entry.yaml",
+      "tags": [
+        "game-design",
+        "mmorpg",
+        "progression",
+        "social-design",
+        "virtual-economies",
+        "research"
+      ]
+    },
+    {
+      "id": "moderated-usability-study",
+      "type": "skill",
+      "path": "entries/skills/moderated-usability-study/entry.yaml",
+      "tags": [
+        "ux",
+        "research",
+        "usability",
+        "study-planning",
+        "evidence"
+      ]
+    },
+    {
+      "id": "monorepo-change-verification",
+      "type": "workflow",
+      "path": "entries/workflows/monorepo-change-verification/entry.yaml",
+      "tags": [
+        "monorepo",
+        "architecture",
+        "verification",
+        "dependencies",
+        "build-systems",
+        "caching",
+        "testing"
+      ]
+    },
+    {
+      "id": "no-email-context",
+      "type": "hook",
+      "path": "entries/hooks/no-email-context/entry.yaml",
+      "tags": [
+        "privacy",
+        "context",
+        "mod"
+      ]
+    },
+    {
+      "id": "ponytail",
+      "type": "skill",
+      "path": "entries/skills/ponytail/entry.yaml",
+      "tags": [
+        "scope",
+        "diff-size",
+        "reuse",
+        "simplicity",
+        "conventions"
+      ]
+    },
+    {
+      "id": "post-edit-diagnostics",
+      "type": "hook",
+      "path": "entries/hooks/post-edit-diagnostics/entry.yaml",
+      "tags": [
+        "diagnostics",
+        "post-tool-use",
+        "verification"
+      ]
+    },
+    {
+      "id": "pr-review-code-reviewer",
+      "type": "subagent",
+      "path": "entries/subagents/pr-review-code-reviewer/entry.yaml",
+      "tags": [
+        "code-review",
+        "false-positives",
+        "project-instructions",
+        "quality"
+      ]
+    },
+    {
+      "id": "prompt-secret-check",
+      "type": "hook",
+      "path": "entries/hooks/prompt-secret-check/entry.yaml",
+      "tags": [
+        "privacy",
+        "credentials",
+        "user-prompt-submit"
+      ]
+    },
+    {
+      "id": "property-based-testing",
+      "type": "skill",
+      "path": "entries/skills/property-based-testing/entry.yaml",
+      "tags": [
+        "testing",
+        "property-based-testing",
+        "fuzzing",
+        "hypothesis",
+        "fast-check"
+      ]
+    },
+    {
+      "id": "protect-files-and-commands",
+      "type": "hook",
+      "path": "entries/hooks/protect-files-and-commands/entry.yaml",
+      "tags": [
+        "safety",
+        "guardrails",
+        "secrets",
+        "pre-tool-use"
+      ]
+    },
+    {
+      "id": "protect-tests",
+      "type": "hook",
+      "path": "entries/hooks/protect-tests/entry.yaml",
+      "tags": [
+        "testing",
+        "guardrails",
+        "pre-tool-use"
+      ]
+    },
+    {
+      "id": "ralph-loop",
+      "type": "workflow",
+      "path": "entries/workflows/ralph-loop/entry.yaml",
+      "tags": [
+        "autonomous-loop",
+        "long-running",
+        "planning",
+        "backpressure"
+      ]
+    },
+    {
+      "id": "react-best-practices",
+      "type": "skill",
+      "path": "entries/skills/react-best-practices/entry.yaml",
+      "tags": [
+        "react",
+        "nextjs",
+        "performance",
+        "frontend",
+        "code-review"
+      ]
+    },
+    {
+      "id": "react-component-composition",
+      "type": "skill",
+      "path": "entries/skills/react-component-composition/entry.yaml",
+      "tags": [
+        "react",
+        "frontend",
+        "architecture",
+        "components",
+        "state-management",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "remove-animations",
+      "type": "skill",
+      "path": "entries/skills/remove-animations/entry.yaml",
+      "tags": [
+        "animation",
+        "interaction",
+        "performance",
+        "frontend",
+        "refactoring"
+      ]
+    },
+    {
+      "id": "repo-research",
+      "type": "skill",
+      "path": "entries/skills/repo-research/entry.yaml",
+      "tags": [
+        "research",
+        "onboarding",
+        "project-setup",
+        "architecture",
+        "documentation"
+      ]
+    },
+    {
+      "id": "retrospective",
+      "type": "skill",
+      "path": "entries/skills/retrospective/entry.yaml",
+      "tags": [
+        "self-improvement",
+        "retrospective",
+        "project-instructions",
+        "skill-triggering",
+        "memory"
+      ]
+    },
+    {
+      "id": "reva",
+      "type": "mcp",
+      "path": "entries/mcps/reva/entry.yaml",
+      "tags": [
+        "reverse_engineering",
+        "ghidra",
+        "binary-analysis",
+        "decompilation"
+      ]
+    },
+    {
+      "id": "reverse-engineer-anything",
+      "type": "mcp",
+      "path": "entries/mcps/reverse-engineer-anything/entry.yaml",
+      "tags": [
+        "reverse_engineering",
+        "binary-analysis",
+        "application-analysis",
+        "evidence"
+      ]
+    },
+    {
+      "id": "reverse-engineering",
+      "type": "skill",
+      "path": "entries/skills/reverse-engineering/entry.yaml",
+      "tags": [
+        "reverse_engineering",
+        "binary-analysis",
+        "decompilation",
+        "triage"
+      ]
+    },
+    {
+      "id": "revise-claude-md",
+      "type": "workflow",
+      "path": "entries/workflows/revise-claude-md/entry.yaml",
+      "tags": [
+        "self-improvement",
+        "project-instructions",
+        "memory",
+        "retrospective"
+      ]
+    },
+    {
+      "id": "rust-verification-ladder",
+      "type": "workflow",
+      "path": "entries/workflows/rust-verification-ladder/entry.yaml",
+      "tags": [
+        "rust",
+        "verification",
+        "testing",
+        "unsafe-code",
+        "concurrency",
+        "fuzzing",
+        "api-compatibility"
+      ]
+    },
+    {
+      "id": "scope-and-authority",
+      "type": "rule",
+      "path": "entries/rules/scope-and-authority/entry.yaml",
+      "tags": [
+        "scope",
+        "safety",
+        "authorization"
+      ]
+    },
+    {
+      "id": "secret-serialization",
+      "type": "skill",
+      "path": "entries/skills/secret-serialization/entry.yaml",
+      "tags": [
+        "security",
+        "secrets",
+        "logging",
+        "telemetry",
+        "code-review",
+        "python",
+        "typescript"
+      ]
+    },
+    {
+      "id": "security-threat-model",
+      "type": "skill",
+      "path": "entries/skills/security-threat-model/entry.yaml",
+      "tags": [
+        "security",
+        "threat-modeling",
+        "appsec"
+      ]
+    },
+    {
+      "id": "self-improvement-loop",
+      "type": "workflow",
+      "path": "entries/workflows/self-improvement-loop/entry.yaml",
+      "tags": [
+        "self-improvement",
+        "retrospective",
+        "project-instructions",
+        "memory",
+        "context-hygiene"
+      ]
+    },
+    {
+      "id": "silent-failure-hunter",
+      "type": "subagent",
+      "path": "entries/subagents/silent-failure-hunter/entry.yaml",
+      "tags": [
+        "code-review",
+        "error-handling",
+        "reliability"
+      ]
+    },
+    {
+      "id": "skill-creator",
+      "type": "skill",
+      "path": "entries/skills/skill-creator/entry.yaml",
+      "tags": [
+        "skill-authoring",
+        "evaluation",
+        "meta"
+      ]
+    },
+    {
+      "id": "stop-gate-checks",
+      "type": "hook",
+      "path": "entries/hooks/stop-gate-checks/entry.yaml",
+      "tags": [
+        "verification",
+        "quality-gate",
+        "stop-hook",
+        "autonomous-loop"
+      ]
+    },
+    {
+      "id": "subagent-budget",
+      "type": "hook",
+      "path": "entries/hooks/subagent-budget/entry.yaml",
+      "tags": [
+        "subagents",
+        "budgets",
+        "pre-tool-use"
+      ]
+    },
+    {
+      "id": "superpowers",
+      "type": "plugin",
+      "path": "entries/plugins/superpowers/entry.yaml",
+      "tags": [
+        "workflow",
+        "planning",
+        "tdd",
+        "subagents",
+        "code-review",
+        "methodology"
+      ]
+    },
+    {
+      "id": "synthesize-research",
+      "type": "skill",
+      "path": "entries/skills/synthesize-research/entry.yaml",
+      "tags": [
+        "ux",
+        "research",
+        "synthesis",
+        "product-management",
+        "evidence"
+      ]
+    },
+    {
+      "id": "systematic-debugging",
+      "type": "skill",
+      "path": "entries/skills/systematic-debugging/entry.yaml",
+      "tags": [
+        "debugging",
+        "diagnosis",
+        "regression",
+        "testing"
+      ]
+    },
+    {
+      "id": "test-driven-development",
+      "type": "skill",
+      "path": "entries/skills/test-driven-development/entry.yaml",
+      "tags": [
+        "tdd",
+        "testing",
+        "discipline",
+        "test-quality"
+      ]
+    },
+    {
+      "id": "tokio-async-correctness",
+      "type": "skill",
+      "path": "entries/skills/tokio-async-correctness/entry.yaml",
+      "tags": [
+        "rust",
+        "tokio",
+        "async",
+        "concurrency",
+        "cancellation",
+        "backpressure",
+        "testing"
+      ]
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "type": "skill",
+      "path": "entries/skills/ui-ux-pro-max/entry.yaml",
+      "tags": [
+        "design",
+        "frontend",
+        "design-system",
+        "typography",
+        "search"
+      ]
+    },
+    {
+      "id": "ux-critique",
+      "type": "skill",
+      "path": "entries/skills/ux-critique/entry.yaml",
+      "tags": [
+        "ux",
+        "critique",
+        "usability",
+        "design-review",
+        "evidence"
+      ]
+    },
+    {
+      "id": "variant-analysis",
+      "type": "skill",
+      "path": "entries/skills/variant-analysis/entry.yaml",
+      "tags": [
+        "security",
+        "code-review",
+        "semgrep",
+        "codeql",
+        "bug-hunting"
+      ]
+    },
+    {
+      "id": "verification-before-completion",
+      "type": "skill",
+      "path": "entries/skills/verification-before-completion/entry.yaml",
+      "tags": [
+        "verification",
+        "evidence",
+        "completion-claims",
+        "testing",
+        "subagents"
+      ]
+    },
+    {
+      "id": "verification-evidence",
+      "type": "rule",
+      "path": "entries/rules/verification-evidence/entry.yaml",
+      "tags": [
+        "verification",
+        "ui",
+        "browser",
+        "honesty"
+      ]
+    },
+    {
+      "id": "vue-async-state",
+      "type": "skill",
+      "path": "entries/skills/vue-async-state/entry.yaml",
+      "tags": [
+        "vue",
+        "async",
+        "reactivity",
+        "cancellation",
+        "routing",
+        "testing"
+      ]
+    },
+    {
+      "id": "webapp-testing",
+      "type": "skill",
+      "path": "entries/skills/webapp-testing/entry.yaml",
+      "tags": [
+        "testing",
+        "playwright",
+        "frontend",
+        "browser",
+        "verification"
+      ]
+    },
+    {
+      "id": "workers-best-practices",
+      "type": "skill",
+      "path": "entries/skills/workers-best-practices/entry.yaml",
+      "tags": [
+        "cloudflare",
+        "workers",
+        "serverless",
+        "typescript",
+        "code-review",
+        "observability"
+      ]
+    }
+  ],
+  "terms": [
+    {
+      "id": "frontend",
+      "count": 16,
+      "entryIds": [
+        "baseline-ui",
+        "better-typography",
+        "create-adaptable-composable",
+        "design-taste-frontend",
+        "emil-design-eng",
+        "fixing-accessibility",
+        "fixing-motion-performance",
+        "frontend-design",
+        "impeccable",
+        "interface-design",
+        "interface-review",
+        "react-best-practices",
+        "react-component-composition",
+        "remove-animations",
+        "ui-ux-pro-max",
+        "webapp-testing"
+      ]
+    },
+    {
+      "id": "code-review",
+      "count": 14,
+      "entryIds": [
+        "better-typography",
+        "compound-engineering",
+        "explore-plan-implement-review",
+        "fixing-accessibility",
+        "fixing-motion-performance",
+        "interface-review",
+        "markdown-accessibility",
+        "pr-review-code-reviewer",
+        "react-best-practices",
+        "secret-serialization",
+        "silent-failure-hunter",
+        "superpowers",
+        "variant-analysis",
+        "workers-best-practices"
+      ]
+    },
+    {
+      "id": "verification",
+      "count": 13,
+      "entryIds": [
+        "bun-migration-verification",
+        "chrome-devtools-mcp",
+        "evidence-to-flow-ux",
+        "explore-plan-implement-review",
+        "gameplay-playtesting",
+        "harness-experiment-loop",
+        "monorepo-change-verification",
+        "post-edit-diagnostics",
+        "rust-verification-ladder",
+        "stop-gate-checks",
+        "verification-before-completion",
+        "verification-evidence",
+        "webapp-testing"
+      ]
+    },
+    {
+      "id": "testing",
+      "count": 12,
+      "entryIds": [
+        "bun-migration-verification",
+        "bun-workspaces",
+        "monorepo-change-verification",
+        "property-based-testing",
+        "protect-tests",
+        "rust-verification-ladder",
+        "systematic-debugging",
+        "test-driven-development",
+        "tokio-async-correctness",
+        "verification-before-completion",
+        "vue-async-state",
+        "webapp-testing"
+      ]
+    },
+    {
+      "id": "design",
+      "count": 10,
+      "entryIds": [
+        "baseline-ui",
+        "design-taste-frontend",
+        "emil-design-eng",
+        "frontend-design",
+        "human-interface-design",
+        "impeccable",
+        "intent",
+        "interface-design",
+        "interface-review",
+        "ui-ux-pro-max"
+      ]
+    },
+    {
+      "id": "research",
+      "count": 7,
+      "entryIds": [
+        "evidence-to-flow-ux",
+        "gameplay-playtesting",
+        "intent",
+        "mmorpg-design",
+        "moderated-usability-study",
+        "repo-research",
+        "synthesize-research"
+      ]
+    },
+    {
+      "id": "self-improvement",
+      "count": 7,
+      "entryIds": [
+        "claude-reflect",
+        "compound-engineering",
+        "harness-experiment-loop",
+        "improvement-loop",
+        "retrospective",
+        "revise-claude-md",
+        "self-improvement-loop"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "count": 6,
+      "entryIds": [
+        "better-typography",
+        "fixing-accessibility",
+        "game-feel",
+        "human-interface-design",
+        "interface-review",
+        "markdown-accessibility"
+      ]
+    },
+    {
+      "id": "game-design",
+      "count": 6,
+      "entryIds": [
+        "game-balance-review",
+        "game-feel",
+        "gameplay-playtesting",
+        "level-design",
+        "mechanic-prototyping",
+        "mmorpg-design"
+      ]
+    },
+    {
+      "id": "planning",
+      "count": 6,
+      "entryIds": [
+        "compound-engineering",
+        "explore-plan-implement-review",
+        "grilling",
+        "improvement-loop",
+        "ralph-loop",
+        "superpowers"
+      ]
+    },
+    {
+      "id": "pre-tool-use",
+      "count": 6,
+      "entryIds": [
+        "case-insensitive-guard",
+        "config-guard",
+        "git-safety",
+        "protect-files-and-commands",
+        "protect-tests",
+        "subagent-budget"
+      ]
+    },
+    {
+      "id": "project-instructions",
+      "count": 6,
+      "entryIds": [
+        "agents-md-authoring",
+        "claude-reflect",
+        "pr-review-code-reviewer",
+        "retrospective",
+        "revise-claude-md",
+        "self-improvement-loop"
+      ]
+    },
+    {
+      "id": "reverse_engineering",
+      "count": 6,
+      "entryIds": [
+        "cerberus-re",
+        "cynthion-reverse-engineer",
+        "ida-mcp",
+        "reva",
+        "reverse-engineer-anything",
+        "reverse-engineering"
+      ]
+    },
+    {
+      "id": "ux",
+      "count": 6,
+      "entryIds": [
+        "evidence-to-flow-ux",
+        "human-interface-design",
+        "intent",
+        "moderated-usability-study",
+        "synthesize-research",
+        "ux-critique"
+      ]
+    },
+    {
+      "id": "browser",
+      "count": 5,
+      "entryIds": [
+        "chrome-devtools-mcp",
+        "design-taste-frontend",
+        "fixing-motion-performance",
+        "verification-evidence",
+        "webapp-testing"
+      ]
+    },
+    {
+      "id": "evidence",
+      "count": 5,
+      "entryIds": [
+        "moderated-usability-study",
+        "reverse-engineer-anything",
+        "synthesize-research",
+        "ux-critique",
+        "verification-before-completion"
+      ]
+    },
+    {
+      "id": "memory",
+      "count": 5,
+      "entryIds": [
+        "claude-reflect",
+        "handoff",
+        "retrospective",
+        "revise-claude-md",
+        "self-improvement-loop"
+      ]
+    },
+    {
+      "id": "performance",
+      "count": 5,
+      "entryIds": [
+        "chrome-devtools-mcp",
+        "diagnosing-bugs",
+        "fixing-motion-performance",
+        "react-best-practices",
+        "remove-animations"
+      ]
+    },
+    {
+      "id": "workflow",
+      "count": 5,
+      "entryIds": [
+        "evidence-to-flow-ux",
+        "game-balance-review",
+        "gameplay-playtesting",
+        "mechanic-prototyping",
+        "superpowers"
+      ]
+    },
+    {
+      "id": "architecture",
+      "count": 4,
+      "entryIds": [
+        "domain-modeling",
+        "monorepo-change-verification",
+        "react-component-composition",
+        "repo-research"
+      ]
+    },
+    {
+      "id": "binary-analysis",
+      "count": 4,
+      "entryIds": [
+        "ida-mcp",
+        "reva",
+        "reverse-engineer-anything",
+        "reverse-engineering"
+      ]
+    },
+    {
+      "id": "context",
+      "count": 4,
+      "entryIds": [
+        "compact-context",
+        "context-hogs",
+        "handoff",
+        "no-email-context"
+      ]
+    },
+    {
+      "id": "debugging",
+      "count": 4,
+      "entryIds": [
+        "chrome-devtools-mcp",
+        "diagnosing-bugs",
+        "gh-fix-ci",
+        "systematic-debugging"
+      ]
+    },
+    {
+      "id": "documentation",
+      "count": 4,
+      "entryIds": [
+        "context7",
+        "domain-modeling",
+        "markdown-accessibility",
+        "repo-research"
+      ]
+    },
+    {
+      "id": "retrospective",
+      "count": 4,
+      "entryIds": [
+        "improvement-loop",
+        "retrospective",
+        "revise-claude-md",
+        "self-improvement-loop"
+      ]
+    },
+    {
+      "id": "scope",
+      "count": 4,
+      "entryIds": [
+        "focused-changes",
+        "karpathy-coding-guidelines",
+        "ponytail",
+        "scope-and-authority"
+      ]
+    },
+    {
+      "id": "security",
+      "count": 4,
+      "entryIds": [
+        "config-guard",
+        "secret-serialization",
+        "security-threat-model",
+        "variant-analysis"
+      ]
+    },
+    {
+      "id": "subagents",
+      "count": 4,
+      "entryIds": [
+        "explore-plan-implement-review",
+        "subagent-budget",
+        "superpowers",
+        "verification-before-completion"
+      ]
+    },
+    {
+      "id": "typescript",
+      "count": 4,
+      "entryIds": [
+        "bun-migration-verification",
+        "create-adaptable-composable",
+        "secret-serialization",
+        "workers-best-practices"
+      ]
+    },
+    {
+      "id": "animation",
+      "count": 3,
+      "entryIds": [
+        "emil-design-eng",
+        "fixing-motion-performance",
+        "remove-animations"
+      ]
+    },
+    {
+      "id": "conventions",
+      "count": 3,
+      "entryIds": [
+        "baseline-ui",
+        "focused-changes",
+        "ponytail"
+      ]
+    },
+    {
+      "id": "decompilation",
+      "count": 3,
+      "entryIds": [
+        "ida-mcp",
+        "reva",
+        "reverse-engineering"
+      ]
+    },
+    {
+      "id": "design-review",
+      "count": 3,
+      "entryIds": [
+        "grilling",
+        "impeccable",
+        "ux-critique"
+      ]
+    },
+    {
+      "id": "diff-size",
+      "count": 3,
+      "entryIds": [
+        "focused-changes",
+        "karpathy-coding-guidelines",
+        "ponytail"
+      ]
+    },
+    {
+      "id": "evaluation",
+      "count": 3,
+      "entryIds": [
+        "harness-experiment-loop",
+        "mcp-builder",
+        "skill-creator"
+      ]
+    },
+    {
+      "id": "guardrails",
+      "count": 3,
+      "entryIds": [
+        "git-safety",
+        "protect-files-and-commands",
+        "protect-tests"
+      ]
+    },
+    {
+      "id": "interaction",
+      "count": 3,
+      "entryIds": [
+        "emil-design-eng",
+        "interface-design",
+        "remove-animations"
+      ]
+    },
+    {
+      "id": "interaction-design",
+      "count": 3,
+      "entryIds": [
+        "evidence-to-flow-ux",
+        "human-interface-design",
+        "intent"
+      ]
+    },
+    {
+      "id": "monorepo",
+      "count": 3,
+      "entryIds": [
+        "agents-md-authoring",
+        "bun-workspaces",
+        "monorepo-change-verification"
+      ]
+    },
+    {
+      "id": "post-tool-use",
+      "count": 3,
+      "entryIds": [
+        "context-hogs",
+        "format-after-edit",
+        "post-edit-diagnostics"
+      ]
+    },
+    {
+      "id": "react",
+      "count": 3,
+      "entryIds": [
+        "baseline-ui",
+        "react-best-practices",
+        "react-component-composition"
+      ]
+    },
+    {
+      "id": "regression",
+      "count": 3,
+      "entryIds": [
+        "diagnosing-bugs",
+        "interface-review",
+        "systematic-debugging"
+      ]
+    },
+    {
+      "id": "typography",
+      "count": 3,
+      "entryIds": [
+        "better-typography",
+        "frontend-design",
+        "ui-ux-pro-max"
+      ]
+    },
+    {
+      "id": "async",
+      "count": 2,
+      "entryIds": [
+        "tokio-async-correctness",
+        "vue-async-state"
+      ]
+    },
+    {
+      "id": "autonomous-loop",
+      "count": 2,
+      "entryIds": [
+        "ralph-loop",
+        "stop-gate-checks"
+      ]
+    },
+    {
+      "id": "backpressure",
+      "count": 2,
+      "entryIds": [
+        "ralph-loop",
+        "tokio-async-correctness"
+      ]
+    },
+    {
+      "id": "build-systems",
+      "count": 2,
+      "entryIds": [
+        "bun-workspaces",
+        "monorepo-change-verification"
+      ]
+    },
+    {
+      "id": "bun",
+      "count": 2,
+      "entryIds": [
+        "bun-migration-verification",
+        "bun-workspaces"
+      ]
+    },
+    {
+      "id": "cancellation",
+      "count": 2,
+      "entryIds": [
+        "tokio-async-correctness",
+        "vue-async-state"
+      ]
+    },
+    {
+      "id": "components",
+      "count": 2,
+      "entryIds": [
+        "emil-design-eng",
+        "react-component-composition"
+      ]
+    },
+    {
+      "id": "concurrency",
+      "count": 2,
+      "entryIds": [
+        "rust-verification-ladder",
+        "tokio-async-correctness"
+      ]
+    },
+    {
+      "id": "configuration",
+      "count": 2,
+      "entryIds": [
+        "config-guard",
+        "config-watch"
+      ]
+    },
+    {
+      "id": "context-hygiene",
+      "count": 2,
+      "entryIds": [
+        "agents-md-authoring",
+        "self-improvement-loop"
+      ]
+    },
+    {
+      "id": "dependencies",
+      "count": 2,
+      "entryIds": [
+        "bun-workspaces",
+        "monorepo-change-verification"
+      ]
+    },
+    {
+      "id": "design-system",
+      "count": 2,
+      "entryIds": [
+        "interface-design",
+        "ui-ux-pro-max"
+      ]
+    },
+    {
+      "id": "experimental",
+      "count": 2,
+      "entryIds": [
+        "design-taste-frontend",
+        "impeccable"
+      ]
+    },
+    {
+      "id": "fuzzing",
+      "count": 2,
+      "entryIds": [
+        "property-based-testing",
+        "rust-verification-ladder"
+      ]
+    },
+    {
+      "id": "ghidra",
+      "count": 2,
+      "entryIds": [
+        "cerberus-re",
+        "reva"
+      ]
+    },
+    {
+      "id": "methodology",
+      "count": 2,
+      "entryIds": [
+        "compound-engineering",
+        "superpowers"
+      ]
+    },
+    {
+      "id": "observability",
+      "count": 2,
+      "entryIds": [
+        "context-hogs",
+        "workers-best-practices"
+      ]
+    },
+    {
+      "id": "package-management",
+      "count": 2,
+      "entryIds": [
+        "bun-migration-verification",
+        "bun-workspaces"
+      ]
+    },
+    {
+      "id": "privacy",
+      "count": 2,
+      "entryIds": [
+        "no-email-context",
+        "prompt-secret-check"
+      ]
+    },
+    {
+      "id": "progression",
+      "count": 2,
+      "entryIds": [
+        "game-balance-review",
+        "mmorpg-design"
+      ]
+    },
+    {
+      "id": "reactivity",
+      "count": 2,
+      "entryIds": [
+        "create-adaptable-composable",
+        "vue-async-state"
+      ]
+    },
+    {
+      "id": "refactoring",
+      "count": 2,
+      "entryIds": [
+        "react-component-composition",
+        "remove-animations"
+      ]
+    },
+    {
+      "id": "rust",
+      "count": 2,
+      "entryIds": [
+        "rust-verification-ladder",
+        "tokio-async-correctness"
+      ]
+    },
+    {
+      "id": "safety",
+      "count": 2,
+      "entryIds": [
+        "protect-files-and-commands",
+        "scope-and-authority"
+      ]
+    },
+    {
+      "id": "secrets",
+      "count": 2,
+      "entryIds": [
+        "protect-files-and-commands",
+        "secret-serialization"
+      ]
+    },
+    {
+      "id": "simplicity",
+      "count": 2,
+      "entryIds": [
+        "karpathy-coding-guidelines",
+        "ponytail"
+      ]
+    },
+    {
+      "id": "tdd",
+      "count": 2,
+      "entryIds": [
+        "superpowers",
+        "test-driven-development"
+      ]
+    },
+    {
+      "id": "tooling",
+      "count": 2,
+      "entryIds": [
+        "find-skills",
+        "improvement-loop"
+      ]
+    },
+    {
+      "id": "usability",
+      "count": 2,
+      "entryIds": [
+        "moderated-usability-study",
+        "ux-critique"
+      ]
+    },
+    {
+      "id": "virtual-economies",
+      "count": 2,
+      "entryIds": [
+        "game-balance-review",
+        "mmorpg-design"
+      ]
+    },
+    {
+      "id": "vue",
+      "count": 2,
+      "entryIds": [
+        "create-adaptable-composable",
+        "vue-async-state"
+      ]
+    },
+    {
+      "id": "agent-guidance",
+      "count": 1,
+      "entryIds": [
+        "harness-experiment-loop"
+      ]
+    },
+    {
+      "id": "agents-md",
+      "count": 1,
+      "entryIds": [
+        "agents-md-authoring"
+      ]
+    },
+    {
+      "id": "api-accuracy",
+      "count": 1,
+      "entryIds": [
+        "context7"
+      ]
+    },
+    {
+      "id": "api-compatibility",
+      "count": 1,
+      "entryIds": [
+        "rust-verification-ladder"
+      ]
+    },
+    {
+      "id": "api-integration",
+      "count": 1,
+      "entryIds": [
+        "mcp-builder"
+      ]
+    },
+    {
+      "id": "apple",
+      "count": 1,
+      "entryIds": [
+        "cerberus-re"
+      ]
+    },
+    {
+      "id": "application-analysis",
+      "count": 1,
+      "entryIds": [
+        "reverse-engineer-anything"
+      ]
+    },
+    {
+      "id": "appsec",
+      "count": 1,
+      "entryIds": [
+        "security-threat-model"
+      ]
+    },
+    {
+      "id": "art-direction",
+      "count": 1,
+      "entryIds": [
+        "design-taste-frontend"
+      ]
+    },
+    {
+      "id": "assumptions",
+      "count": 1,
+      "entryIds": [
+        "karpathy-coding-guidelines"
+      ]
+    },
+    {
+      "id": "attention",
+      "count": 1,
+      "entryIds": [
+        "desktop-attention"
+      ]
+    },
+    {
+      "id": "audit",
+      "count": 1,
+      "entryIds": [
+        "config-watch"
+      ]
+    },
+    {
+      "id": "authorization",
+      "count": 1,
+      "entryIds": [
+        "scope-and-authority"
+      ]
+    },
+    {
+      "id": "automation",
+      "count": 1,
+      "entryIds": [
+        "format-after-edit"
+      ]
+    },
+    {
+      "id": "balance",
+      "count": 1,
+      "entryIds": [
+        "game-balance-review"
+      ]
+    },
+    {
+      "id": "budgets",
+      "count": 1,
+      "entryIds": [
+        "subagent-budget"
+      ]
+    },
+    {
+      "id": "bug-hunting",
+      "count": 1,
+      "entryIds": [
+        "variant-analysis"
+      ]
+    },
+    {
+      "id": "caching",
+      "count": 1,
+      "entryIds": [
+        "monorepo-change-verification"
+      ]
+    },
+    {
+      "id": "ci",
+      "count": 1,
+      "entryIds": [
+        "gh-fix-ci"
+      ]
+    },
+    {
+      "id": "cloudflare",
+      "count": 1,
+      "entryIds": [
+        "workers-best-practices"
+      ]
+    },
+    {
+      "id": "codeql",
+      "count": 1,
+      "entryIds": [
+        "variant-analysis"
+      ]
+    },
+    {
+      "id": "compaction",
+      "count": 1,
+      "entryIds": [
+        "compact-context"
+      ]
+    },
+    {
+      "id": "completion-claims",
+      "count": 1,
+      "entryIds": [
+        "verification-before-completion"
+      ]
+    },
+    {
+      "id": "composables",
+      "count": 1,
+      "entryIds": [
+        "create-adaptable-composable"
+      ]
+    },
+    {
+      "id": "config-change",
+      "count": 1,
+      "entryIds": [
+        "config-watch"
+      ]
+    },
+    {
+      "id": "continuity",
+      "count": 1,
+      "entryIds": [
+        "handoff"
+      ]
+    },
+    {
+      "id": "corrections",
+      "count": 1,
+      "entryIds": [
+        "claude-reflect"
+      ]
+    },
+    {
+      "id": "credentials",
+      "count": 1,
+      "entryIds": [
+        "prompt-secret-check"
+      ]
+    },
+    {
+      "id": "critique",
+      "count": 1,
+      "entryIds": [
+        "ux-critique"
+      ]
+    },
+    {
+      "id": "cross-platform",
+      "count": 1,
+      "entryIds": [
+        "human-interface-design"
+      ]
+    },
+    {
+      "id": "dashboard",
+      "count": 1,
+      "entryIds": [
+        "interface-design"
+      ]
+    },
+    {
+      "id": "data-loss",
+      "count": 1,
+      "entryIds": [
+        "case-insensitive-guard"
+      ]
+    },
+    {
+      "id": "decisions",
+      "count": 1,
+      "entryIds": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "id": "diagnosis",
+      "count": 1,
+      "entryIds": [
+        "systematic-debugging"
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "count": 1,
+      "entryIds": [
+        "post-edit-diagnostics"
+      ]
+    },
+    {
+      "id": "discipline",
+      "count": 1,
+      "entryIds": [
+        "test-driven-development"
+      ]
+    },
+    {
+      "id": "discovery",
+      "count": 1,
+      "entryIds": [
+        "find-skills"
+      ]
+    },
+    {
+      "id": "domain-modeling",
+      "count": 1,
+      "entryIds": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "id": "encounters",
+      "count": 1,
+      "entryIds": [
+        "level-design"
+      ]
+    },
+    {
+      "id": "error-handling",
+      "count": 1,
+      "entryIds": [
+        "silent-failure-hunter"
+      ]
+    },
+    {
+      "id": "experimentation",
+      "count": 1,
+      "entryIds": [
+        "mechanic-prototyping"
+      ]
+    },
+    {
+      "id": "false-positives",
+      "count": 1,
+      "entryIds": [
+        "pr-review-code-reviewer"
+      ]
+    },
+    {
+      "id": "fast-check",
+      "count": 1,
+      "entryIds": [
+        "property-based-testing"
+      ]
+    },
+    {
+      "id": "feedback",
+      "count": 1,
+      "entryIds": [
+        "game-feel"
+      ]
+    },
+    {
+      "id": "feedback-loop",
+      "count": 1,
+      "entryIds": [
+        "diagnosing-bugs"
+      ]
+    },
+    {
+      "id": "filesystem",
+      "count": 1,
+      "entryIds": [
+        "case-insensitive-guard"
+      ]
+    },
+    {
+      "id": "fonts",
+      "count": 1,
+      "entryIds": [
+        "better-typography"
+      ]
+    },
+    {
+      "id": "formatting",
+      "count": 1,
+      "entryIds": [
+        "format-after-edit"
+      ]
+    },
+    {
+      "id": "frida",
+      "count": 1,
+      "entryIds": [
+        "cerberus-re"
+      ]
+    },
+    {
+      "id": "game-feel",
+      "count": 1,
+      "entryIds": [
+        "game-feel"
+      ]
+    },
+    {
+      "id": "gh-cli",
+      "count": 1,
+      "entryIds": [
+        "gh-fix-ci"
+      ]
+    },
+    {
+      "id": "git",
+      "count": 1,
+      "entryIds": [
+        "git-safety"
+      ]
+    },
+    {
+      "id": "github-actions",
+      "count": 1,
+      "entryIds": [
+        "gh-fix-ci"
+      ]
+    },
+    {
+      "id": "glossary",
+      "count": 1,
+      "entryIds": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "id": "handoff",
+      "count": 1,
+      "entryIds": [
+        "handoff"
+      ]
+    },
+    {
+      "id": "hardware",
+      "count": 1,
+      "entryIds": [
+        "cynthion-reverse-engineer"
+      ]
+    },
+    {
+      "id": "harness",
+      "count": 1,
+      "entryIds": [
+        "harness-experiment-loop"
+      ]
+    },
+    {
+      "id": "honesty",
+      "count": 1,
+      "entryIds": [
+        "verification-evidence"
+      ]
+    },
+    {
+      "id": "html",
+      "count": 1,
+      "entryIds": [
+        "fixing-accessibility"
+      ]
+    },
+    {
+      "id": "hypothesis",
+      "count": 1,
+      "entryIds": [
+        "property-based-testing"
+      ]
+    },
+    {
+      "id": "ida",
+      "count": 1,
+      "entryIds": [
+        "ida-mcp"
+      ]
+    },
+    {
+      "id": "information-architecture",
+      "count": 1,
+      "entryIds": [
+        "intent"
+      ]
+    },
+    {
+      "id": "interviewing",
+      "count": 1,
+      "entryIds": [
+        "grilling"
+      ]
+    },
+    {
+      "id": "iteration",
+      "count": 1,
+      "entryIds": [
+        "impeccable"
+      ]
+    },
+    {
+      "id": "javascript",
+      "count": 1,
+      "entryIds": [
+        "bun-migration-verification"
+      ]
+    },
+    {
+      "id": "keyboard",
+      "count": 1,
+      "entryIds": [
+        "fixing-accessibility"
+      ]
+    },
+    {
+      "id": "knowledge-capture",
+      "count": 1,
+      "entryIds": [
+        "compound-engineering"
+      ]
+    },
+    {
+      "id": "level-design",
+      "count": 1,
+      "entryIds": [
+        "level-design"
+      ]
+    },
+    {
+      "id": "libraries",
+      "count": 1,
+      "entryIds": [
+        "context7"
+      ]
+    },
+    {
+      "id": "lldb",
+      "count": 1,
+      "entryIds": [
+        "cerberus-re"
+      ]
+    },
+    {
+      "id": "local",
+      "count": 1,
+      "entryIds": [
+        "desktop-attention"
+      ]
+    },
+    {
+      "id": "logging",
+      "count": 1,
+      "entryIds": [
+        "secret-serialization"
+      ]
+    },
+    {
+      "id": "long-running",
+      "count": 1,
+      "entryIds": [
+        "ralph-loop"
+      ]
+    },
+    {
+      "id": "markdown",
+      "count": 1,
+      "entryIds": [
+        "markdown-accessibility"
+      ]
+    },
+    {
+      "id": "mcp",
+      "count": 1,
+      "entryIds": [
+        "mcp-builder"
+      ]
+    },
+    {
+      "id": "meta",
+      "count": 1,
+      "entryIds": [
+        "skill-creator"
+      ]
+    },
+    {
+      "id": "migration",
+      "count": 1,
+      "entryIds": [
+        "bun-migration-verification"
+      ]
+    },
+    {
+      "id": "mmorpg",
+      "count": 1,
+      "entryIds": [
+        "mmorpg-design"
+      ]
+    },
+    {
+      "id": "mod",
+      "count": 1,
+      "entryIds": [
+        "no-email-context"
+      ]
+    },
+    {
+      "id": "nextjs",
+      "count": 1,
+      "entryIds": [
+        "react-best-practices"
+      ]
+    },
+    {
+      "id": "notifications",
+      "count": 1,
+      "entryIds": [
+        "desktop-attention"
+      ]
+    },
+    {
+      "id": "onboarding",
+      "count": 1,
+      "entryIds": [
+        "repo-research"
+      ]
+    },
+    {
+      "id": "platformers",
+      "count": 1,
+      "entryIds": [
+        "level-design"
+      ]
+    },
+    {
+      "id": "playtesting",
+      "count": 1,
+      "entryIds": [
+        "gameplay-playtesting"
+      ]
+    },
+    {
+      "id": "playwright",
+      "count": 1,
+      "entryIds": [
+        "webapp-testing"
+      ]
+    },
+    {
+      "id": "product-management",
+      "count": 1,
+      "entryIds": [
+        "synthesize-research"
+      ]
+    },
+    {
+      "id": "project-setup",
+      "count": 1,
+      "entryIds": [
+        "repo-research"
+      ]
+    },
+    {
+      "id": "property-based-testing",
+      "count": 1,
+      "entryIds": [
+        "property-based-testing"
+      ]
+    },
+    {
+      "id": "protocol-analysis",
+      "count": 1,
+      "entryIds": [
+        "cynthion-reverse-engineer"
+      ]
+    },
+    {
+      "id": "prototyping",
+      "count": 1,
+      "entryIds": [
+        "mechanic-prototyping"
+      ]
+    },
+    {
+      "id": "python",
+      "count": 1,
+      "entryIds": [
+        "secret-serialization"
+      ]
+    },
+    {
+      "id": "quality",
+      "count": 1,
+      "entryIds": [
+        "pr-review-code-reviewer"
+      ]
+    },
+    {
+      "id": "quality-gate",
+      "count": 1,
+      "entryIds": [
+        "stop-gate-checks"
+      ]
+    },
+    {
+      "id": "reliability",
+      "count": 1,
+      "entryIds": [
+        "silent-failure-hunter"
+      ]
+    },
+    {
+      "id": "reproduction",
+      "count": 1,
+      "entryIds": [
+        "diagnosing-bugs"
+      ]
+    },
+    {
+      "id": "requirements",
+      "count": 1,
+      "entryIds": [
+        "grilling"
+      ]
+    },
+    {
+      "id": "reuse",
+      "count": 1,
+      "entryIds": [
+        "ponytail"
+      ]
+    },
+    {
+      "id": "root-cause",
+      "count": 1,
+      "entryIds": [
+        "improvement-loop"
+      ]
+    },
+    {
+      "id": "routing",
+      "count": 1,
+      "entryIds": [
+        "vue-async-state"
+      ]
+    },
+    {
+      "id": "search",
+      "count": 1,
+      "entryIds": [
+        "ui-ux-pro-max"
+      ]
+    },
+    {
+      "id": "semgrep",
+      "count": 1,
+      "entryIds": [
+        "variant-analysis"
+      ]
+    },
+    {
+      "id": "serverless",
+      "count": 1,
+      "entryIds": [
+        "workers-best-practices"
+      ]
+    },
+    {
+      "id": "session",
+      "count": 1,
+      "entryIds": [
+        "handoff"
+      ]
+    },
+    {
+      "id": "session-start",
+      "count": 1,
+      "entryIds": [
+        "compact-context"
+      ]
+    },
+    {
+      "id": "skill-authoring",
+      "count": 1,
+      "entryIds": [
+        "skill-creator"
+      ]
+    },
+    {
+      "id": "skill-triggering",
+      "count": 1,
+      "entryIds": [
+        "retrospective"
+      ]
+    },
+    {
+      "id": "skills-registry",
+      "count": 1,
+      "entryIds": [
+        "find-skills"
+      ]
+    },
+    {
+      "id": "social-design",
+      "count": 1,
+      "entryIds": [
+        "mmorpg-design"
+      ]
+    },
+    {
+      "id": "state-management",
+      "count": 1,
+      "entryIds": [
+        "react-component-composition"
+      ]
+    },
+    {
+      "id": "stop-hook",
+      "count": 1,
+      "entryIds": [
+        "stop-gate-checks"
+      ]
+    },
+    {
+      "id": "study-planning",
+      "count": 1,
+      "entryIds": [
+        "moderated-usability-study"
+      ]
+    },
+    {
+      "id": "synthesis",
+      "count": 1,
+      "entryIds": [
+        "synthesize-research"
+      ]
+    },
+    {
+      "id": "tailwind",
+      "count": 1,
+      "entryIds": [
+        "baseline-ui"
+      ]
+    },
+    {
+      "id": "telemetry",
+      "count": 1,
+      "entryIds": [
+        "secret-serialization"
+      ]
+    },
+    {
+      "id": "test-quality",
+      "count": 1,
+      "entryIds": [
+        "test-driven-development"
+      ]
+    },
+    {
+      "id": "threat-modeling",
+      "count": 1,
+      "entryIds": [
+        "security-threat-model"
+      ]
+    },
+    {
+      "id": "tokio",
+      "count": 1,
+      "entryIds": [
+        "tokio-async-correctness"
+      ]
+    },
+    {
+      "id": "tool-design",
+      "count": 1,
+      "entryIds": [
+        "mcp-builder"
+      ]
+    },
+    {
+      "id": "triage",
+      "count": 1,
+      "entryIds": [
+        "reverse-engineering"
+      ]
+    },
+    {
+      "id": "ui",
+      "count": 1,
+      "entryIds": [
+        "verification-evidence"
+      ]
+    },
+    {
+      "id": "unsafe-code",
+      "count": 1,
+      "entryIds": [
+        "rust-verification-ladder"
+      ]
+    },
+    {
+      "id": "usb",
+      "count": 1,
+      "entryIds": [
+        "cynthion-reverse-engineer"
+      ]
+    },
+    {
+      "id": "user-prompt-submit",
+      "count": 1,
+      "entryIds": [
+        "prompt-secret-check"
+      ]
+    },
+    {
+      "id": "visual-design",
+      "count": 1,
+      "entryIds": [
+        "frontend-design"
+      ]
+    },
+    {
+      "id": "workers",
+      "count": 1,
+      "entryIds": [
+        "workers-best-practices"
+      ]
+    },
+    {
+      "id": "workspaces",
+      "count": 1,
+      "entryIds": [
+        "bun-workspaces"
+      ]
+    }
+  ]
+}

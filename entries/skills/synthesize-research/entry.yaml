@@ -1,0 +1,30 @@
+schemaVersion: 2
+id: synthesize-research
+type: skill
+title: Synthesize supplied user research (Anthropic)
+summary: Turns existing interview notes, survey responses and feedback into attributed themes, contradictions, conditional behavioral segments and decision-linked recommendations. Selects the product-management skill rather than the similarly named design-plugin template.
+useWhen: Existing research records need analysis into supported findings and product decisions, rather than preparing a new study or inspecting an interface.
+tags: [ux, research, synthesis, product-management, evidence]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Complete entrypoint and connector reference reviewed. Attribution, contrary cases and conditional personas add useful discipline. Finding counts, impact arithmetic and NPS commentary remain heuristics. Deduplicate participants and reports; sample frequencies do not imply prevalence. Requires a documented local-link adapter. No behavioral trial. Scoped product-management license verified; preserve source and adapter provenance.
+source:
+  kind: linked
+  url: https://github.com/anthropics/knowledge-work-plugins
+  path: product-management/skills/synthesize-research
+  revision: 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d
+  retrieved: 2026-10-29
+  license: Apache-2.0
+  author: Anthropic
+  notes: Repository snapshot pins the selected skill, product-management/CONNECTORS.md and product-management/LICENSE together. Skill path last changed at 2d6f7e22dd25593f0f748010430ef86f19659735. The scoped product-management/LICENSE is clean Apache-2.0 text; the root license has an unrelated trailing anomaly, documented in the admission record. No upstream code is copied into the catalog.
+install:
+  any: "Fetch https://github.com/anthropics/knowledge-work-plugins at 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d. Copy product-management/skills/synthesize-research into .agents/skills/synthesize-research or .claude/skills/synthesize-research, checking and preserving any existing version first. Copy product-management/CONNECTORS.md into that installed skill directory and retain product-management/LICENSE as LICENSE.txt. Apply one explicit packaging adapter: change the SKILL.md connector link from ../../CONNECTORS.md to ./CONNECTORS.md so every reference stays inside the installed skill. Add a prominent packaging-change notice in the installed SKILL.md body and record the source pin with that notice. Preserve upstream attribution; no applicable NOTICE file appears in the pinned inventory. Do not install the surrounding plugin or its MCP configuration."
+  notes: Works from supplied records without connectors. Use connected sources only within existing access and task authorization; no implicit service connection or publication. Preserve contradictory cases and material limitations. See https://github.com/alex-red/agentic-catalog/blob/main/docs/ux-workflow-options.md.
+overlap: Native summarization already extracts themes. This adds source-by-source observation, contradictory cases and product-decision synthesis. ux-critique examines an interface; moderated-usability-study prepares participant sessions; evidence-to-flow-ux connects evidence to design and retest. None is a required runtime dependency.
+related: [moderated-usability-study, evidence-to-flow-ux, ux-critique, intent]

@@ -1,0 +1,20 @@
+schemaVersion: 1
+id: human-interface-design
+skill: human-interface-design
+triggers:
+  - expectation: activate
+    prompt: Design the navigation and editing flow for our web reporting app and its desktop companion. Preserve the existing brand and support keyboard-heavy work.
+  - expectation: activate
+    prompt: Improve this mobile capture flow so save status, interruptions and recovery are clear. Use the existing components.
+  - expectation: activate
+    prompt: Review this settings-screen screenshot for hierarchy, labels and task clarity. Do not edit the app or assume hidden interactions work.
+  - expectation: activate
+    prompt: Build an approachable landing page for our museum using the supplied type and colors, with a clear booking path and accessible mobile layout.
+  - expectation: activate
+    prompt: Design the command prompts, progress feedback and recovery interaction for our file-import CLI.
+  - expectation: ignore
+    prompt: Fix the server-side SQL query plan without changing the API or UI.
+  - expectation: ignore
+    prompt: Explain the difference between a React effect and an event handler.
+  - expectation: ignore
+    prompt: Synthesize these participant interview notes into supported themes and open research questions.

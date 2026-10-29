@@ -1,0 +1,39 @@
+schemaVersion: 2
+id: human-interface-design
+type: skill
+title: Human-centered interface design
+summary: Applies Apple-inspired human-interface principles to task structure, navigation, state, visual hierarchy and accessibility. Adapts to web, mobile, desktop and other surfaces while preserving product identity and established conventions.
+useWhen: Designing, implementing, refining or reviewing an interface where task clarity, interaction behavior, recovery or platform fit needs deliberate decisions.
+tags: [design, ux, interaction-design, accessibility, cross-platform]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Independently written core and three conditional references. Reviewed for proportionality, task and platform fit, state and recovery semantics, scoped accessibility criteria and evidence limits. General design knowledge overlaps substantially with host capabilities and existing skills. Structural checks are not proof of activation, accessibility conformance or improved UX outcomes.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Original prose and decision method inspired by Apple HIG and supporting platform standards, reviewed October 29, 2026. No Apple prose, artwork, fonts, symbols, code or resources are redistributed. Source pages are mutable; dated WWDC sessions anchor the conceptual basis. Not official or Apple-endorsed.
+inspiredBy:
+  - title: Apple Human Interface Guidelines — Design principles
+    url: https://developer.apple.com/design/human-interface-guidelines/design-principles
+  - title: Apple Principles of great design — WWDC26
+    url: https://developer.apple.com/videos/play/wwdc2026/250/
+  - title: Apple Design foundations from idea to interface — WWDC25
+    url: https://developer.apple.com/videos/play/wwdc2025/359/
+  - title: Apple Human Interface Guidelines — Accessibility
+    url: https://developer.apple.com/design/human-interface-guidelines/accessibility
+  - title: W3C Web Content Accessibility Guidelines 2.2
+    url: https://www.w3.org/TR/WCAG22/
+  - title: WAI-ARIA Authoring Practices Guide
+    url: https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/
+  - title: Android Compose accessibility API defaults
+    url: https://developer.android.com/develop/ui/compose/accessibility/api-defaults
+overlap: Native design reasoning and frontend-design cover visual execution; interface-design covers product hierarchy and tokens; emil-design-eng covers motion craft. ux-critique and evidence-to-flow-ux cover evidence and criticism; intent covers a broader lifecycle. This adds a compact cross-platform decision method centered on agency, honest states, recovery and platform adaptation. It requires no other entry, tool connection or persistence convention.
+related: [frontend-design, interface-design, emil-design-eng, ux-critique, evidence-to-flow-ux, moderated-usability-study]
+evaluationCases: [evals/cases/human-interface-design.yaml]

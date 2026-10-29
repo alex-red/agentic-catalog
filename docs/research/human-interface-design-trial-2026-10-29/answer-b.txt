@@ -1,0 +1,39 @@
+# Fieldnote: proposed layout and interaction specification
+
+All behavior below is proposed, not verified. The brief establishes the vocabulary, fields, approximate save duration, and operational risks; no implementation, API, or usability claims have been tested.
+
+## Direction and shared structure
+
+Use an editorial workbench: warm paper-like surfaces, crisp rules, restrained coral, serif page headings, and plain body text. Personality comes from fine typography and a small index-tab motif on the selected destination, not decorative motion. Preserve existing tokens and typography where usable; extend semantic tokens only for focus, selection, error, and warning states. Keep dense information surfaces quiet and high contrast.
+
+Separate destinations from actions. A 200–240 px left rail contains Library and Collections, with a clearly separate New record button. The content header carries the current destination title, search, and relevant filters. Maintain established labels and the comparison table: Title, Owner, Collection, Status, Last edited. Sorting controls expose direction and active column. Show filter results and a clear reset action.
+
+At widths above 1100 px, the table occupies the remaining space beside a 360–440 px detail pane. Use a sticky table header and independently scrolling detail content. Give Title the flexible column; keep metadata aligned for scanning. Truncate long titles visually with a two-line maximum; provide the full title through focus-accessible expansion and in the detail pane, never through hover alone. Rows have visible selection and hover states. Empty Library explains the next action with New record; filtered emptiness offers Clear filters.
+
+## Browser and desktop
+
+Both surfaces share information architecture and editing behavior. The native companion respects platform title bars, window controls, text editing commands, and menu conventions; avoid drawing a competing title bar. Persist window layout only within supported platform capabilities.
+
+Resize based on available content width, not device identity. Between 720 and 1100 px, collapse navigation to a labeled menu and open details as a full-width workspace with Back to Library, retaining filters, selection, and scroll position. Below 720 px, use the narrow layout. Native windows follow the same transitions. Keep comparison available through a horizontally scrollable labeled table rather than silently dropping columns; communicate additional columns and keep Title visible where practical.
+
+Pointer selection opens details; explicit Open controls support keyboard access without requiring row-click discovery. Tab follows navigation, toolbar, results, and editor order. Restore focus to the originating record on return. Use semantic tables, labeled controls, visible focus, accessible sort announcements, and no pointer-only actions. Respect reduced motion; restrict transitions to brief pane changes.
+
+## Editing and saving
+
+Detail order is Title, Notes, Owner, Collection, followed by Save and Cancel. Label required fields explicitly and place validation beside the field. Preserve entered values after errors. Warn before leaving an unsaved editor, offering Keep editing or Discard changes.
+
+On Save, retain the editor and show “Saving…” with an accessible status announcement. Prevent duplicate submission while pending; do not announce success or clear the draft before acknowledgement. After success, show “Saved” and update the library row. A definitive rejection permits correction and retry.
+
+A lost response may mean creation succeeded. Show “Save not confirmed. Your record may have been created,” preserve the draft, and do not automatically resubmit. Reliable recovery requires an agreed API contract, such as a stable operation identifier and reconciliation lookup; creation recovery is a shipping dependency. Avoid presenting manual title search as proof of absence.
+
+Collaborator changes must not silently overwrite edits. Require version-aware conflict detection; retain the local draft and offer review of the current server version before an explicit resolution. This is also an API dependency, not an assumed capability.
+
+## Narrow capture and destructive actions
+
+On narrow touch screens, New record opens a single-column form using the same labels, field order, and save states. Keep the primary action reachable without obscuring fields or the on-screen keyboard. Use at least 44 px touch targets. On confirmed creation, offer View record and New record; clear fields only after acknowledgement.
+
+Archive is reversible: explain the result and offer Undo. Permanent collection removal belongs in collection settings. Confirm the collection name, current affected record count, and irreversibility in a dedicated dialog; require deliberate name confirmation, with Cancel initially focused. Revalidate scope before execution and report failures accurately.
+
+## Before shipping
+
+Check prolonged table use, keyboard and screen-reader navigation, contrast, zoom, long titles, empty states, narrow touch capture, and native window resizing. Exercise slow saves, double activation, response loss after creation, reload during pending saves, conflicting edits, and changed deletion counts. Verify focus restoration and draft retention. Resolve reconciliation and concurrency contracts before declaring those flows safe to ship.

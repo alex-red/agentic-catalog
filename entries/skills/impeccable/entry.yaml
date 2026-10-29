@@ -1,0 +1,44 @@
+schemaVersion: 2
+id: impeccable
+type: skill
+title: Design refinement and variants (Impeccable)
+summary: Routes design work through Persuade, Operate, Read and Experience modes, with focused polish, critique, audit, typography and variant workflows. Uses a native engine, project context and optional browser, agent and hook integrations.
+useWhen: Explicitly trying a broad design-refinement workflow and accepting its engine setup, project artifacts and command-specific dependencies.
+tags:
+  - design
+  - frontend
+  - design-review
+  - iteration
+  - experimental
+hosts:
+  - claude-code
+  - codex
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Experimental linked option requested after scouting. Entrypoint, craft/polish and launcher/context/telemetry sections reviewed; full engine, live mutation and all references remain unaudited. Default-on roll/choice telemetry; opt-out is not offline mode. Manual copy omits hooks and agents. No runtime trial.
+source:
+  kind: linked
+  url: https://github.com/pbakaus/impeccable
+  path: .agents/skills/impeccable
+  revision: 7510e233b228864606888d252abacf5e7148bf87
+  retrieved: 2026-10-28
+  license: Apache-2.0 AND MIT
+  author: Paul Bakaus
+  notes: Keep the entire skill, root LICENSE and NOTICE.md together. Manual installation supports scoped refinement but omits named subagents and hooks; commands needing those require separately selected host setup. Engine downloads, project artifacts and remote rolls are disclosed effects.
+install:
+  any: Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations. The launcher may download a versioned native engine. Rolls contact an upstream API; IMPECCABLE_NO_TELEMETRY=1 disables telemetry but not roll requests. Manual context fallback exists. Full engine and live-edit security are not audited.
+  codex: Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow. Resolve command paths from the installed skill base. Do not copy .codex/hooks.json.
+  claude-code: Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow. Resolve command paths from the installed skill base. Do not copy repository settings or agent definitions implicitly.
+overlap: Overlaps frontend-design, ux-critique, webapp-testing and native browser tools. Adds coordinated refinement vocabulary and live variants. Prefer a focused command to loading several competing design systems. A clean detector is not proof of design quality.
+related:
+  - frontend-design
+  - interface-design
+  - ux-critique
+  - webapp-testing

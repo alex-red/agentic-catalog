@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: baseline-ui
+type: skill
+title: Opinionated React UI baseline (Ibelick)
+summary: Applies a concise UI house policy for Tailwind, accessible React primitives, class composition, hierarchy, state handling and restrained motion. Produces snippet-level findings with concrete fixes for fast interface cleanup.
+useWhen: Explicitly adopting a strict baseline in a compatible React and Tailwind project rather than seeking stack-neutral design guidance.
+tags:
+  - frontend
+  - react
+  - tailwind
+  - design
+  - conventions
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 2
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Complete entrypoint and MIT license reviewed. Mandates Tailwind, motion/react and cn; forbids unsolicited motion, custom easing and tracking. Blanket destructive-dialog and animation rules are house policy. Poor fit for other stacks or conflicting established conventions. No behavior evaluation.
+source:
+  kind: linked
+  url: https://github.com/ibelick/ui-skills
+  path: skills/baseline-ui
+  revision: edda651ce598c8b7735784178f94de61696ea854
+  retrieved: 2026-10-28
+  license: MIT
+  author: Julien Thibeaut
+  notes: Standalone prompt; dependencies mentioned by the policy are project choices, not installed by copying the skill. Do not implicitly add libraries, migrate a stack or replace existing primitives.
+install:
+  any: Fetch https://github.com/ibelick/ui-skills at edda651ce598c8b7735784178f94de61696ea854. Copy the entire skills/baseline-ui subtree into .claude/skills/baseline-ui for Claude Code or .agents/skills/baseline-ui for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: Overlaps frontend-design, emil-design-eng and project style guides. It conflicts with Emil's custom easing and Taste's marketing motion requirements. Existing project components and user choices retain authority; select this as an alternative policy.
+related:
+  - emil-design-eng
+  - fixing-accessibility
+  - fixing-motion-performance

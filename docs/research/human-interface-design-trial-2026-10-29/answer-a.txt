@@ -1,0 +1,37 @@
+Fieldnote — proposed specification
+
+This is a design proposal based only on the brief. No implementation, API behavior, accessibility conformance, or user outcomes have been verified. The desktop operating system is unspecified; use its established native window and command conventions.
+
+Workspace and visual hierarchy
+
+Keep Library and Collections as destinations in a persistent sidebar; move New record to a labeled primary toolbar button. Creation acts on the workspace rather than changing its destination. Show the current destination, collection scope, and record count above the established comparison table.
+
+Use a three-region layout: navigation, table, and detail pane. Initial proportions: 200px navigation, flexible table, 360px detail; allow pane resizing. Keep the table at least 560px wide when showing details alongside it. Below the combined minimum, collapse navigation to a labeled menu and open detail as a full workspace view with Back to Library. Preserve filters, sorting, selected record, scroll, and focus when returning. Use these content thresholds in browser and resizable native windows; do not infer input capability from width.
+
+Retain labeled Title, Owner, Collection, Status, and Last edited columns, sticky headers, and sortable column buttons with announced sort direction. Use approximately 40px rows for sustained pointer work and a roomier touch presentation. Title receives remaining width; other columns have stable widths. Permit two title lines, then ellipsis; expose the full title through an accessible record link and the detail heading, never only a hover tooltip. Keep all comparison fields available in a horizontally scrollable table at narrow widths, with a visible scroll affordance.
+
+Reuse existing surface, spacing, and typography tokens. Warm neutral content surfaces and restrained coral highlight the primary action and selection; pair status color with text. Use serif destination/detail headings and plain body text for controls, fields, and tabular data. Personality comes through careful typography and concise, friendly empty-state copy: “Your library starts here” with New record. Keep table context and collection scope visible in empty filtered results, with Clear filters instead of suggesting the library is empty.
+
+Editing and platform behavior
+
+The detail pane contains persistent labels for Title, Notes, Owner, and Collection, followed by Save and Cancel. Preserve drafts when changing selection; show an unsaved indicator and offer Save, Keep draft, or Discard before closing a window with pending edits. Cancel discards only after confirmation when edits exist. Validation identifies affected fields inline and moves focus to an error summary after submission.
+
+On web, record links and destination/filter state use meaningful URLs; Back restores prior context. Use a semantic table with ordinary links/buttons rather than inventing grid keyboard behavior. Tab reaches controls; Enter opens the focused record. Native desktop uses the platform toolbar, menus, standard text editing, and discoverable New record/Save commands. Map shortcuts to platform conventions without overriding browser commands. Both surfaces restore focus to the invoking record or action after closing details.
+
+Narrow capture
+
+New record opens a single-column capture form, with Title first and Notes, Owner, and Collection below. Reuse any existing required-field rules; add none. Keep labels visible, controls comfortably touchable with roughly 44px web hit areas, and Save reachable above the virtual keyboard without covering fields. Allow page scrolling and text enlargement. Back preserves the draft; abandoning it requires explicit Discard. Persist drafts across interruptions using available local storage, with a clear unsaved label; storage availability needs verification.
+
+Saving and consequential actions
+
+Immediately acknowledge Save, disable duplicate submission, and show persistent “Saving…” during the approximately five-second request. Retain entered values. Announce “Saved” only after confirmed success; update table data and last-edited time then. A definite rejection displays an inline reason and Retry while retaining the draft.
+
+A lost response after creation means “Save status unknown,” not “Failed.” Retain the draft and prevent automatic retry or a second creation. Provide Check status only once a reconciliation contract exists. Settling a durable request identifier/status lookup or equivalent deduplication contract is a release blocker for safe recovery; UI alone cannot establish whether creation occurred.
+
+For concurrent edits, require version-aware writes. On conflict, preserve local changes, show the latest remote values alongside them, and offer an explicit reviewed merge/reload path; never silently overwrite.
+
+Archive offers persistent Undo through the actual restore operation. Permanent collection deletion requires a confirmation naming the collection, record count, shared impact, and absence of recovery; require typing its name and label the final action “Permanently delete collection.” Never offer Undo.
+
+Before shipping
+
+Exercise keyboard and screen-reader flows, focus restoration, text scaling, contrast, reduced motion, long titles, empty states, narrow native windows, and touch keyboard occlusion. Inject slow saves, lost responses, rejection, reload/interruption, duplicate activation, concurrent writes, archive restoration, and permanent-deletion failures. Verify backend contracts and accessibility with working software; these are proposed checks, not completed findings.

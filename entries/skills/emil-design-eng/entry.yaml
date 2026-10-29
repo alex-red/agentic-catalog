@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: emil-design-eng
+type: skill
+title: Interaction craft (Emil Kowalski)
+summary: Opinionated design-engineering guidance for interaction frequency, motion purpose, easing, interruptibility, popover origins, gestures, component feedback and UI polish. Provides concrete code-review examples and a craft checklist.
+useWhen: Trying detailed interaction and motion guidance for product UI while checking its technical examples against the project's actual library versions.
+tags:
+  - design
+  - interaction
+  - animation
+  - components
+  - frontend
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Useful craft detail, with absolute frequency/keyboard rules and stale performance generalizations. Main sections and MIT license reviewed; no live UI trial. Do not assume every Motion shorthand runs on the main thread, or that scale replaces layout semantics. Preserve accepted project decisions.
+source:
+  kind: linked
+  url: https://github.com/emilkowalski/skills
+  path: skills/emil-design-eng
+  revision: 85e8e2363b713506e1d5b6e07a0eb2da66be1bc3
+  retrieved: 2026-10-28
+  license: MIT
+  author: Emil Kowalski
+  notes: Single skill subtree with root MIT LICENSE retained as LICENSE.txt. External articles are explanatory references, not required plugin setup.
+install:
+  any: Fetch https://github.com/emilkowalski/skills at 85e8e2363b713506e1d5b6e07a0eb2da66be1bc3. Copy the entire skills/emil-design-eng subtree into .claude/skills/emil-design-eng for Claude Code or .agents/skills/emil-design-eng for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: frontend-design supplies art direction; react-component-composition supplies component contracts. remove-animations focuses on subtraction. This is an alternative craft policy, not an additional global mandate; it conflicts with baseline-ui and Taste on motion and easing.
+related:
+  - remove-animations
+  - fixing-motion-performance
+  - react-component-composition

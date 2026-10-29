@@ -25,4 +25,4 @@ inspiredBy:
   - title: Feedback Recipes — reviewed reference
     url: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/references/feedback-recipes.md
 overlap: Native design reasoning covers audiovisual polish; emil-design-eng addresses interface motion; human-interface-design addresses general feedback and access. This targets gameplay event timing, simulation boundaries, repeated impact and effect ownership without requiring an engine or motion library.
-related: [mmorpg-design, level-design, mechanic-prototyping, gameplay-playtesting]
+related: [mmorpg-design, level-design, mechanic-prototyping, gameplay-playtesting, human-interface-design]

@@ -1,0 +1,32 @@
+schemaVersion: 2
+id: catalog-taxonomy
+type: skill
+title: Design catalog taxonomies and facets
+summary: Designs or audits catalog classification through stable concepts, scoped facets, conservative aliases, explicit retrieval semantics and compatible migrations. Keeps specialist keywords discoverable without turning every term into a navigation category.
+useWhen: Designing a catalog's tagging system, auditing vocabulary drift, defining discovery filters, or migrating established classification metadata.
+tags: [system-design, taxonomy, information-architecture, search, discovery]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Focused synthesis with concept boundaries, alias collision handling, multi-topic discovery, contextual counts and merge/split migration guidance. Native agents can propose tags and schemas; this adds explicit semantics and compatibility constraints. No trigger trial, retrieval benchmark, user study or matched outcome evaluation has been run.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently authored from the catalog tagging research and public primary-source principles. No upstream prose, scripts, runtime or external service required; all installable guidance is bundled here.
+inspiredBy:
+  - title: W3C SKOS Primer
+    url: https://www.w3.org/TR/2009/NOTE-skos-primer-20090818/
+  - title: GOV.UK taxonomy principles
+    url: https://www.gov.uk/government/publications/govuk-topic-taxonomy-principles/govuk-taxonomy-principles
+  - title: ONS Taxonomy Best Practice Framework
+    url: https://www.ons.gov.uk/methodology/classificationsandstandards/taxonomybestpracticeframework
+  - title: Algolia faceting
+    url: https://www.algolia.com/doc/guides/managing-results/refine-results/faceting
+overlap: Native model reasoning covers ordinary tags, schemas and search design. domain-modeling maintains domain terminology and ADRs; human-interface-design addresses navigation and interaction; neither specifies catalog concept identity, facet counts and vocabulary migrations together. No catalog-taxonomy equivalent appears in this session's host skill inventory. Reuse an existing project vocabulary instead of introducing a competing registry.
+related: [domain-modeling, human-interface-design]

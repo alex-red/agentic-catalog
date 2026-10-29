@@ -1,0 +1,41 @@
+schemaVersion: 2
+id: ui-ux-pro-max
+type: skill
+title: Searchable UI design guidance (UI UX Pro Max)
+summary: Searches local product patterns, styles, palettes, typography, charts and stack guidance using Python, with design-system generation and optional master/page persistence. Requires checking result relevance and preserves existing saved decisions by default.
+useWhen: Looking for product-specific design references or stack guidance and willing to verify the search results before applying or persisting them.
+tags:
+  - design
+  - frontend
+  - design-system
+  - typography
+  - search
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Entrypoint, CLI/template routing, core configuration and sample provenance reviewed; full dataset and generation chain not audited. Python 3 required. Confidence fields and retrieval ranks are not correctness evidence. Default installer copies sibling skills; use the bounded manual route. No outcome trial.
+source:
+  kind: linked
+  url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+  path: .claude/skills/ui-ux-pro-max
+  revision: 28b3b8dee8c976df4fa3e94aed4e092ad43fcb03
+  retrieved: 2026-10-28
+  license: MIT
+  author: Next Level Builder
+  notes: Use the complete self-contained .claude subtree, not a template or SKILL.md alone. Resolve search commands to the absolute installed scripts/search.py; CLAUDE_PLUGIN_ROOT is a Claude plugin variable, not a Codex facility. Avoid the broad installer for this single entry.
+install:
+  any: Fetch https://github.com/nextlevelbuilder/ui-ux-pro-max-skill at 28b3b8dee8c976df4fa3e94aed4e092ad43fcb03. Copy the entire .claude/skills/ui-ux-pro-max subtree into .claude/skills/ui-ux-pro-max for Claude Code or .agents/skills/ui-ux-pro-max for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Use the absolute installed scripts/search.py path for search commands instead of the Claude-plugin-specific CLAUDE_PLUGIN_ROOT variable. Keep data provenance and font/icon license metadata.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations. Python 3 is required for searches. Preserve root MIT license and dataset font/icon provenance files; generated/fetched asset licenses remain separate. Do not use the default broad CLI installer, which also copies sibling skills.
+  codex: Fetch https://github.com/nextlevelbuilder/ui-ux-pro-max-skill at 28b3b8dee8c976df4fa3e94aed4e092ad43fcb03. Copy the entire .claude/skills/ui-ux-pro-max subtree into .claude/skills/ui-ux-pro-max for Claude Code or .agents/skills/ui-ux-pro-max for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Use the absolute installed scripts/search.py path for search commands instead of the Claude-plugin-specific CLAUDE_PLUGIN_ROOT variable. Keep data provenance and font/icon license metadata. This path adapter does not assume Codex defines CLAUDE_PLUGIN_ROOT.
+overlap: frontend-design and Taste choose visual directions; this externalizes recommendations into searchable local data. react-best-practices overlaps its React guidance. It does not replace ux-critique or rendered verification.
+related:
+  - frontend-design
+  - better-typography
+  - react-best-practices

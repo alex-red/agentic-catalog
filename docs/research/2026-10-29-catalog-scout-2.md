@@ -8,7 +8,7 @@
 
 **Recommendation:** prepare three focused adaptations: mechanic prototyping, level blockout and encounter design, and readable gameplay feedback. Review data-backed balance analysis next. Large studio systems are useful research sources but have substantially more dependencies and prescribed process than these jobs require.
 
-Baseline: [PLAN.md](../../PLAN.md), [contribution policy](../../CONTRIBUTING.md), [decisions 39–41](../decisions.md), the prior UI/UX scout, and the existing [mmorpg-design](../../entries/skills/mmorpg-design/SKILL.md). There are 82 current entries and seven collections. MMORPG systems reasoning, human-interface design, research synthesis, moderated usability studies, general implementation planning and verification are existing coverage. There is no dedicated core-mechanic prototyping, level-design or game-feedback entry.
+Baseline: [PLAN.md](../../PLAN.md), [contribution policy](../../CONTRIBUTING.md), [decisions 39–41](../decisions.md), the [prior UI/UX scout](2026-10-29-catalog-scout.md), and the existing [mmorpg-design](../../entries/skills/mmorpg-design/SKILL.md). There are 82 current entries and seven collections. MMORPG systems reasoning, human-interface design, research synthesis, moderated usability studies, general implementation planning and verification are existing coverage. There is no dedicated core-mechanic prototyping, level-design or game-feedback entry.
 
 The [source snapshot](2026-10-29-game-design-scout-sources.json) records revisions, popularity observations, inspected files and incomplete review. Earlier uncommitted work is preserved. This run adds research only: no catalog admission, ratings, source-pin changes, generated-index changes, installs, hooks, agents or external participant contact.
 
@@ -149,7 +149,7 @@ Required sibling references, engine paths and scripts are not fully reviewed. Th
 
 Added a dedicated game-design research queue after admitting `mmorpg-design`; it is existing coverage, not a candidate awaiting addition. Identified three narrowly scoped adaptation proposals and dependency-heavy alternatives. Recorded the Sickn33 rename, content-license distinction, a missing analysis reference, browser-source availability gaps and concrete feedback-example risks.
 
-Earlier unrelated frontend, UI/UX, infrastructure and runtime holds remain unchanged. The prior scout, frontend admission record and [decisions](../decisions.md) retain their status. Source review and popularity do not resolve those findings. No game-specific prior hold was silently promoted.
+Earlier unrelated frontend, UI/UX, infrastructure and runtime holds remain unchanged. The [prior scout](2026-10-29-catalog-scout.md), [frontend admission record](2026-10-28-design-admission.md) and [decisions](../decisions.md) retain their status. Source review and popularity do not resolve those findings. No game-specific prior hold was silently promoted.
 
 ## Top priorities
 

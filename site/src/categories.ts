@@ -1,4 +1,7 @@
-export const catalogCategories = [{ id: "game-design", label: "Game design" }] as const;
+export const catalogCategories = [
+  { id: "game-design", label: "Game design" },
+  { id: "system-design", label: "System design" },
+] as const;
 
 interface CategorizedItem {
   kind: string;
@@ -11,8 +14,7 @@ export function categoryOf(item: Pick<CategorizedItem, "tags">): string | undefi
 }
 
 export function matchesCategories(item: Pick<CategorizedItem, "tags">, active: ReadonlySet<string>): boolean {
-  const category = categoryOf(item);
-  return active.size === 0 || (category !== undefined && active.has(category));
+  return active.size === 0 || catalogCategories.some((category) => active.has(category.id) && item.tags.includes(category.id));
 }
 
 export function primaryTreeGroup(item: CategorizedItem): string {

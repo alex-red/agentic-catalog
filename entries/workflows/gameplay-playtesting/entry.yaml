@@ -25,4 +25,4 @@ inspiredBy:
   - title: BMad — playtesting knowledge
     url: https://github.com/bmad-code-org/bmad-module-game-dev-studio/blob/ff8870955203e1665f4bf75a64049078e6d4080c/src/agents/gds-agent-game-dev/gametest/knowledge/playtesting.md
 overlap: moderated-usability-study handles general participant sessions, synthesize-research handles findings and webapp-testing handles browser checks. This is a game-specific route through the needed evidence, including mastery, fairness, repeat loops and controls; it requires none of those entries and does not claim automated play proves human enjoyment.
-related: [webapp-testing, mmorpg-design, game-balance-review, mechanic-prototyping]
+related: [moderated-usability-study, synthesize-research, webapp-testing, mmorpg-design, game-balance-review, mechanic-prototyping]

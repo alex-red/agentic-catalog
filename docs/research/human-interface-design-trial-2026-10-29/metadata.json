@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-29",
+  "kind": "qualitative design-specification smoke comparison",
+  "armA": "human-interface-design",
+  "armB": "locally installed frontend-design",
+  "runsPerArm": 1,
+  "context": "Two independent subagents, fork_turns none; same brief and word limit; no model override.",
+  "model": "Inherited parent model/settings; exact runtime model ID was not returned by the collaboration tool.",
+  "cost": null,
+  "tokenUsage": null,
+  "inputSha256": {
+    "entries/skills/human-interface-design/SKILL.md": "50a739e426b70ae55cf5b33c09e356a85ea6411915f5cb1b5891f50031d25dc1",
+    "entries/skills/human-interface-design/references/platform-adaptation.md": "bbb29435ac9f824bbbdfdcd6b32911f896162598f3bf2e36141e135cc61721b6",
+    "entries/skills/human-interface-design/references/principles-and-decisions.md": "85dc3b25a39326b17e45c0db779be60084318523dda273f0c1f575fb77a97fbe",
+    "entries/skills/human-interface-design/references/review-and-verification.md": "ebab5a923649b19b595d882e9ed21538a9ff41d817d263132eb4b965a6f1711e",
+    "/Users/red/.agents/skills/frontend-design/SKILL.md": "b81e2ff87ed8fa4d6c377ccb127a7254c9e6a77e3ae94f21e6b514f7bb2945a0"
+  },
+  "artifactSha256": {
+    "answer-a.txt": "8c9f22e98af42471f06dbe3aba17f651473a1d57df4d1e6661ae08f817fcc1ba",
+    "answer-b.txt": "8ce4a286215f727e7e58947bf830011640945600eabb425b9490794bb391c9c0",
+    "brief.md": "eff9a1a0c7c0ee4618e1fa13cebe6dd9b01aa34b6ab1e3e0d0d70c18bd62972e"
+  },
+  "armAReferencesRead": [
+    "principles-and-decisions.md",
+    "platform-adaptation.md"
+  ],
+  "armBReferencesRead": [],
+  "limitations": [
+    "One concept specification per arm; no implementation or participant evidence.",
+    "Parent author reviewed results with arm identities visible.",
+    "No no-skill control or comparison with the newer linked frontend-design version.",
+    "No implicit trigger, installation or runtime checks.",
+    "Detailed skill read traces, exact host/model version, usage and cost were not returned."
+  ]
+}

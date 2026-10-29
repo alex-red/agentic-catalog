@@ -44,3 +44,24 @@ test('category filtering handles unrelated items, clearing and existing status g
     assert.equal(belongsToTreeGroup(item, 'featured'), true);
   }
 });
+
+test('system design exposes the taxonomy skill without changing its install type', () => {
+  const design = items.filter((item) => matchesCategories(item, new Set(['system-design'])));
+  assert.ok(design.some((item) => item.entry.id === 'catalog-taxonomy'));
+  const taxonomy = design.find((item) => item.entry.id === 'catalog-taxonomy')!;
+  assert.equal(taxonomy.kind, 'skill');
+  assert.equal(primaryTreeGroup(taxonomy), 'system-design');
+  assert.equal(belongsToTreeGroup(taxonomy, 'system-design'), true);
+  assert.equal(belongsToTreeGroup(taxonomy, 'skill'), false);
+});
+
+test('cross-topic filters match either topic independently of unique tree placement', () => {
+  const item = { kind: 'workflow', tags: ['game-design', 'system-design'], entry: { featured: true } };
+  assert.equal(matchesCategories(item, new Set(['game-design'])), true);
+  assert.equal(matchesCategories(item, new Set(['system-design'])), true);
+  assert.equal(matchesCategories(item, new Set(['game-design', 'system-design'])), true);
+  assert.equal(matchesCategories(item, new Set(['unknown-topic'])), false);
+  assert.equal(primaryTreeGroup(item), 'game-design');
+  assert.equal(belongsToTreeGroup(item, 'system-design'), false);
+  assert.equal(belongsToTreeGroup(item, 'featured'), true);
+});

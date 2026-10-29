@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: design-taste-frontend
+type: skill
+title: Art direction and browser gates (Taste)
+summary: Deals art directions from a local library, develops a subject-specific concept and interactive element, and combines source linting, browser measurements and screenshot critique. Includes separate app-screen guidance and strict house-style checks.
+useWhen: Explicitly trying a strict art-direction system for a marketing page or app screen and accepting its style policy and browser-tool overhead.
+tags:
+  - design
+  - frontend
+  - art-direction
+  - browser
+  - experimental
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Experimental house style, not a universal design standard. Entrypoint, study/test sections and inspector paths reviewed; full browser/media chain not audited. Marketing motion quota and banned devices can conflict with a brand. Author's small model-judged tests do not establish general superiority.
+source:
+  kind: linked
+  url: https://github.com/Leonxlnx/taste-skill
+  path: skills/taste-skill
+  revision: af8a897996e159ccc89c9da535dff714d5dba62d
+  retrieved: 2026-10-28
+  license: MIT
+  author: Leonxlnx
+  notes: Install directory must be named design-taste-frontend, matching frontmatter rather than source folder. Keep scripts, libraries, references and assets together. Full inspection needs Node 22+ and Chrome-family tooling; .taste-skill artifacts and media fetching are part of use.
+install:
+  any: Fetch https://github.com/Leonxlnx/taste-skill at af8a897996e159ccc89c9da535dff714d5dba62d. Copy the entire skills/taste-skill subtree into .claude/skills/design-taste-frontend for Claude Code or .agents/skills/design-taste-frontend for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: Alternative to frontend-design and Impeccable, with stronger house-style enforcement. Native browser tools and webapp-testing cover screenshots and behavior. emil-design-eng, remove-animations and baseline-ui conflict with its marketing motion policy.
+related:
+  - frontend-design
+  - impeccable
+  - webapp-testing

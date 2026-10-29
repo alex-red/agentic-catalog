@@ -1,0 +1,226 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Edmonton",
+  "method": "Read-only retrieval of exact pinned prompts and applicable licenses; SHA-256 and byte comparison against the prior research snapshot. No upstream payload, installer, hook or evaluation executed.",
+  "pinComparisons": [
+    {
+      "id": "frontend-design",
+      "path": "skills/frontend-design/SKILL.md",
+      "sha": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/SKILL.md",
+      "sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "frontend-design",
+      "path": "skills/frontend-design/LICENSE.txt",
+      "sha": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/LICENSE.txt",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "impeccable",
+      "path": ".agents/skills/impeccable/SKILL.md",
+      "sha": "7510e233b228864606888d252abacf5e7148bf87",
+      "url": "https://raw.githubusercontent.com/pbakaus/impeccable/7510e233b228864606888d252abacf5e7148bf87/.agents/skills/impeccable/SKILL.md",
+      "sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "impeccable",
+      "path": "LICENSE",
+      "sha": "7510e233b228864606888d252abacf5e7148bf87",
+      "url": "https://raw.githubusercontent.com/pbakaus/impeccable/7510e233b228864606888d252abacf5e7148bf87/LICENSE",
+      "sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "emil-design-eng",
+      "path": "skills/emil-design-eng/SKILL.md",
+      "sha": "85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
+      "url": "https://raw.githubusercontent.com/emilkowalski/skills/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3/skills/emil-design-eng/SKILL.md",
+      "sha256": "ffbe68e6007fb42cb8149f089b400a1ca007d59ba23e8948e2be4476f3175939",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "emil-design-eng",
+      "path": "LICENSE",
+      "sha": "85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
+      "url": "https://raw.githubusercontent.com/emilkowalski/skills/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3/LICENSE",
+      "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "remove-animations",
+      "path": "skills/remove-animations/SKILL.md",
+      "sha": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "url": "https://raw.githubusercontent.com/emilkowalski/skills/a81dbca07f2217b7103e510c0f13f8d5b017afc9/skills/remove-animations/SKILL.md",
+      "sha256": "dea95b7a7ef81cba312c7f70a3c5c67d7e06a287cb16b16d2f90f2b1fb0afff9",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "remove-animations",
+      "path": "LICENSE",
+      "sha": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "url": "https://raw.githubusercontent.com/emilkowalski/skills/a81dbca07f2217b7103e510c0f13f8d5b017afc9/LICENSE",
+      "sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "design-taste-frontend",
+      "path": "skills/taste-skill/SKILL.md",
+      "sha": "af8a897996e159ccc89c9da535dff714d5dba62d",
+      "url": "https://raw.githubusercontent.com/Leonxlnx/taste-skill/af8a897996e159ccc89c9da535dff714d5dba62d/skills/taste-skill/SKILL.md",
+      "sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "design-taste-frontend",
+      "path": "LICENSE",
+      "sha": "af8a897996e159ccc89c9da535dff714d5dba62d",
+      "url": "https://raw.githubusercontent.com/Leonxlnx/taste-skill/af8a897996e159ccc89c9da535dff714d5dba62d/LICENSE",
+      "sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "sha": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/28b3b8dee8c976df4fa3e94aed4e092ad43fcb03/.claude/skills/ui-ux-pro-max/SKILL.md",
+      "sha256": "ea087c341bfb5b23195c7302027268ede86da802554c18a5c4896a6017b439f9",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "path": "LICENSE",
+      "sha": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/28b3b8dee8c976df4fa3e94aed4e092ad43fcb03/LICENSE",
+      "sha256": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "interface-design",
+      "path": ".claude/skills/interface-design/SKILL.md",
+      "sha": "890d9295acdaf57891a20dc2499abfb4b8529784",
+      "url": "https://raw.githubusercontent.com/Dammyjay93/interface-design/890d9295acdaf57891a20dc2499abfb4b8529784/.claude/skills/interface-design/SKILL.md",
+      "sha256": "720b31a31276e899fbe3006a33cbfeaceb77a73ba4c27b80d29afd38c8b7b208",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "interface-design",
+      "path": "LICENSE",
+      "sha": "890d9295acdaf57891a20dc2499abfb4b8529784",
+      "url": "https://raw.githubusercontent.com/Dammyjay93/interface-design/890d9295acdaf57891a20dc2499abfb4b8529784/LICENSE",
+      "sha256": "54c405ef24e71634b73c994133d028e7a96d1906f42615366296d6583dcaba8f",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "better-typography",
+      "path": "skills/better-typography/SKILL.md",
+      "sha": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+      "url": "https://raw.githubusercontent.com/jakubkrehel/skills/1eb03d2b145df1c6cd84ab54a337600a2a379017/skills/better-typography/SKILL.md",
+      "sha256": "8f00a576f6c8d2f8d72dfbffe765ce569982509d01533ea5881de6e1918d3a68",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "better-typography",
+      "path": "LICENSE",
+      "sha": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+      "url": "https://raw.githubusercontent.com/jakubkrehel/skills/1eb03d2b145df1c6cd84ab54a337600a2a379017/LICENSE",
+      "sha256": "ed1dfe988fc40511b4845ccd9050a143a2002fee3bedc8064c47fa342b5d8d4f",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "interface-review",
+      "path": "skills/interface-review/SKILL.md",
+      "sha": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+      "url": "https://raw.githubusercontent.com/jakubkrehel/skills/1eb03d2b145df1c6cd84ab54a337600a2a379017/skills/interface-review/SKILL.md",
+      "sha256": "976098555c7fe5dc0d082d70fd37b579f7513eb84a653d1abec8e347c80e32c1",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "interface-review",
+      "path": "LICENSE",
+      "sha": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+      "url": "https://raw.githubusercontent.com/jakubkrehel/skills/1eb03d2b145df1c6cd84ab54a337600a2a379017/LICENSE",
+      "sha256": "ed1dfe988fc40511b4845ccd9050a143a2002fee3bedc8064c47fa342b5d8d4f",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "baseline-ui",
+      "path": "skills/baseline-ui/SKILL.md",
+      "sha": "edda651ce598c8b7735784178f94de61696ea854",
+      "url": "https://raw.githubusercontent.com/ibelick/ui-skills/edda651ce598c8b7735784178f94de61696ea854/skills/baseline-ui/SKILL.md",
+      "sha256": "fea3322f36d58fdafafce2aef56e4556dd2ac7b20876b7dff7d8be7f25fa597f",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "baseline-ui",
+      "path": "LICENSE",
+      "sha": "edda651ce598c8b7735784178f94de61696ea854",
+      "url": "https://raw.githubusercontent.com/ibelick/ui-skills/edda651ce598c8b7735784178f94de61696ea854/LICENSE",
+      "sha256": "c615621c4cc1676ccde194e7a01b6469ba477780251bd71e007fc473a49c2c2b",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "fixing-accessibility",
+      "path": "skills/fixing-accessibility/SKILL.md",
+      "sha": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+      "url": "https://raw.githubusercontent.com/ibelick/ui-skills/df4eb34c5dee830e8e36490d6fde3451c187339b/skills/fixing-accessibility/SKILL.md",
+      "sha256": "549261e8a53b53a1a20c0ddbf736821e5fc0876ad82eee76e0efab8e9ee9dadf",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "fixing-accessibility",
+      "path": "LICENSE",
+      "sha": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+      "url": "https://raw.githubusercontent.com/ibelick/ui-skills/df4eb34c5dee830e8e36490d6fde3451c187339b/LICENSE",
+      "sha256": "c615621c4cc1676ccde194e7a01b6469ba477780251bd71e007fc473a49c2c2b",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "fixing-motion-performance",
+      "path": "skills/fixing-motion-performance/SKILL.md",
+      "sha": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+      "url": "https://raw.githubusercontent.com/ibelick/ui-skills/df4eb34c5dee830e8e36490d6fde3451c187339b/skills/fixing-motion-performance/SKILL.md",
+      "sha256": "0a2d654902bc04263ce68c8c02967ef03f17b482e855360a5463211d99d7baa9",
+      "matchesResearchSnapshot": true
+    },
+    {
+      "id": "fixing-motion-performance",
+      "path": "LICENSE",
+      "sha": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+      "url": "https://raw.githubusercontent.com/ibelick/ui-skills/df4eb34c5dee830e8e36490d6fde3451c187339b/LICENSE",
+      "sha256": "c615621c4cc1676ccde194e7a01b6469ba477780251bd71e007fc473a49c2c2b",
+      "matchesResearchSnapshot": true
+    }
+  ],
+  "additionalLastPathCommits": [
+    {
+      "repo": "jakubkrehel/skills",
+      "path": "skills/interface-review",
+      "sha": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+      "date": "2026-10-24T04:16:14Z"
+    },
+    {
+      "repo": "ibelick/ui-skills",
+      "path": "skills/fixing-accessibility",
+      "sha": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+      "date": "2026-02-19T01:55:46Z"
+    },
+    {
+      "repo": "ibelick/ui-skills",
+      "path": "skills/fixing-motion-performance",
+      "sha": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+      "date": "2026-02-19T01:55:46Z"
+    },
+    {
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "path": "src/ui-ux-pro-max",
+      "sha": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "date": "2026-10-26T10:07:27Z"
+    }
+  ],
+  "inspectionScope": "See 2026-10-28-design-admission.md for files read and unresolved runtime/reference-chain limits. Hash equality is source identity, not correctness or behavior evidence."
+}

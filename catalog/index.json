@@ -66,6 +66,110 @@
     },
     {
       "schemaVersion": 2,
+      "id": "baseline-ui",
+      "type": "skill",
+      "title": "Opinionated React UI baseline (Ibelick)",
+      "summary": "Applies a concise UI house policy for Tailwind, accessible React primitives, class composition, hierarchy, state handling and restrained motion. Produces snippet-level findings with concrete fixes for fast interface cleanup.",
+      "useWhen": "Explicitly adopting a strict baseline in a compatible React and Tailwind project rather than seeking stack-neutral design guidance.",
+      "tags": [
+        "frontend",
+        "react",
+        "tailwind",
+        "design",
+        "conventions"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 2,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Complete entrypoint and MIT license reviewed. Mandates Tailwind, motion/react and cn; forbids unsolicited motion, custom easing and tracking. Blanket destructive-dialog and animation rules are house policy. Poor fit for other stacks or conflicting established conventions. No behavior evaluation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/ibelick/ui-skills",
+        "path": "skills/baseline-ui",
+        "revision": "edda651ce598c8b7735784178f94de61696ea854",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Julien Thibeaut",
+        "notes": "Standalone prompt; dependencies mentioned by the policy are project choices, not installed by copying the skill. Do not implicitly add libraries, migrate a stack or replace existing primitives."
+      },
+      "install": {
+        "any": "Fetch https://github.com/ibelick/ui-skills at edda651ce598c8b7735784178f94de61696ea854. Copy the entire skills/baseline-ui subtree into .claude/skills/baseline-ui for Claude Code or .agents/skills/baseline-ui for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "Overlaps frontend-design, emil-design-eng and project style guides. It conflicts with Emil's custom easing and Taste's marketing motion requirements. Existing project components and user choices retain authority; select this as an alternative policy.",
+      "related": [
+        "emil-design-eng",
+        "fixing-accessibility",
+        "fixing-motion-performance"
+      ],
+      "score": 2.6,
+      "sourceUrl": "https://github.com/ibelick/ui-skills/tree/edda651ce598c8b7735784178f94de61696ea854/skills/baseline-ui",
+      "path": "entries/skills/baseline-ui",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "better-typography",
+      "type": "skill",
+      "title": "Typography implementation review (Jakub Krehel)",
+      "summary": "Reviews font loading and synthesis, semantic type scales, wrapping, truncation, numeric alignment, OpenType features and bidi behavior. Writes fixes in the existing styling system and distinguishes source checks from rendered verification.",
+      "useWhen": "Fixing or reviewing typography implementation while preserving the project's typeface, styling system and accepted design decisions.",
+      "tags": [
+        "typography",
+        "fonts",
+        "frontend",
+        "code-review",
+        "accessibility"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Entrypoint, all six local typography references and agent metadata reviewed. Detailed implementation guidance; numeric floors and some rendering advice remain opinionated or version-sensitive. Sibling domain ownership is disclosed. No font/browser matrix or matched outcome trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/jakubkrehel/skills",
+        "path": "skills/better-typography",
+        "revision": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Jakub Krehel",
+        "notes": "Copy the whole typography subtree, including six references and agents metadata. Sibling writing/accessibility/layout/color/UI skills own cross-domain work; install them only if selecting that broader review, otherwise report those domains outside this skill's scope."
+      },
+      "install": {
+        "any": "Fetch https://github.com/jakubkrehel/skills at 1eb03d2b145df1c6cd84ab54a337600a2a379017. Copy the entire skills/better-typography subtree into .claude/skills/better-typography for Claude Code or .agents/skills/better-typography for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "frontend-design chooses visual identity; this focuses on font and text-rendering implementation. ux-critique reviews broader usability. baseline-ui has brief typography rules but different constraints. Do not load both as competing global policies.",
+      "related": [
+        "interface-review",
+        "frontend-design",
+        "fixing-accessibility"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/jakubkrehel/skills/tree/1eb03d2b145df1c6cd84ab54a337600a2a379017/skills/better-typography",
+      "path": "entries/skills/better-typography",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "bun-workspaces",
       "type": "skill",
       "title": "Bun monorepo workspaces",
@@ -111,6 +215,70 @@
         "entries/skills/bun-workspaces/LICENSE.txt",
         "entries/skills/bun-workspaces/SKILL.md",
         "entries/skills/bun-workspaces/references/selection-and-packaging.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "catalog-taxonomy",
+      "type": "skill",
+      "title": "Design catalog taxonomies and facets",
+      "summary": "Designs or audits catalog classification through stable concepts, scoped facets, conservative aliases, explicit retrieval semantics and compatible migrations. Keeps specialist keywords discoverable without turning every term into a navigation category.",
+      "useWhen": "Designing a catalog's tagging system, auditing vocabulary drift, defining discovery filters, or migrating established classification metadata.",
+      "tags": [
+        "system-design",
+        "taxonomy",
+        "information-architecture",
+        "search",
+        "discovery"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Focused synthesis with concept boundaries, alias collision handling, multi-topic discovery, contextual counts and merge/split migration guidance. Native agents can propose tags and schemas; this adds explicit semantics and compatibility constraints. No trigger trial, retrieval benchmark, user study or matched outcome evaluation has been run."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independently authored from the catalog tagging research and public primary-source principles. No upstream prose, scripts, runtime or external service required; all installable guidance is bundled here."
+      },
+      "inspiredBy": [
+        {
+          "title": "W3C SKOS Primer",
+          "url": "https://www.w3.org/TR/2009/NOTE-skos-primer-20090818/"
+        },
+        {
+          "title": "GOV.UK taxonomy principles",
+          "url": "https://www.gov.uk/government/publications/govuk-topic-taxonomy-principles/govuk-taxonomy-principles"
+        },
+        {
+          "title": "ONS Taxonomy Best Practice Framework",
+          "url": "https://www.ons.gov.uk/methodology/classificationsandstandards/taxonomybestpracticeframework"
+        },
+        {
+          "title": "Algolia faceting",
+          "url": "https://www.algolia.com/doc/guides/managing-results/refine-results/faceting"
+        }
+      ],
+      "overlap": "Native model reasoning covers ordinary tags, schemas and search design. domain-modeling maintains domain terminology and ADRs; human-interface-design addresses navigation and interaction; neither specifies catalog concept identity, facet counts and vocabulary migrations together. No catalog-taxonomy equivalent appears in this session's host skill inventory. Reuse an existing project vocabulary instead of introducing a competing registry.",
+      "related": [
+        "domain-modeling",
+        "human-interface-design"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://www.w3.org/TR/2009/NOTE-skos-primer-20090818/",
+      "path": "entries/skills/catalog-taxonomy",
+      "files": [
+        "entries/skills/catalog-taxonomy/LICENSE.txt",
+        "entries/skills/catalog-taxonomy/SKILL.md",
+        "entries/skills/catalog-taxonomy/references/vocabulary-and-migration.md"
       ]
     },
     {
@@ -209,6 +377,58 @@
       "score": 2.6,
       "sourceUrl": "https://github.com/curtisgalloway/public-skills/tree/322192876442b066dd31690a190773c7f903d099/plugins/hardware-lab/skills/cynthion-reverse-engineer",
       "path": "entries/skills/cynthion-reverse-engineer",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "design-taste-frontend",
+      "type": "skill",
+      "title": "Art direction and browser gates (Taste)",
+      "summary": "Deals art directions from a local library, develops a subject-specific concept and interactive element, and combines source linting, browser measurements and screenshot critique. Includes separate app-screen guidance and strict house-style checks.",
+      "useWhen": "Explicitly trying a strict art-direction system for a marketing page or app screen and accepting its style policy and browser-tool overhead.",
+      "tags": [
+        "design",
+        "frontend",
+        "art-direction",
+        "browser",
+        "experimental"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Experimental house style, not a universal design standard. Entrypoint, study/test sections and inspector paths reviewed; full browser/media chain not audited. Marketing motion quota and banned devices can conflict with a brand. Author's small model-judged tests do not establish general superiority."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/Leonxlnx/taste-skill",
+        "path": "skills/taste-skill",
+        "revision": "af8a897996e159ccc89c9da535dff714d5dba62d",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Leonxlnx",
+        "notes": "Install directory must be named design-taste-frontend, matching frontmatter rather than source folder. Keep scripts, libraries, references and assets together. Full inspection needs Node 22+ and Chrome-family tooling; .taste-skill artifacts and media fetching are part of use."
+      },
+      "install": {
+        "any": "Fetch https://github.com/Leonxlnx/taste-skill at af8a897996e159ccc89c9da535dff714d5dba62d. Copy the entire skills/taste-skill subtree into .claude/skills/design-taste-frontend for Claude Code or .agents/skills/design-taste-frontend for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "Alternative to frontend-design and Impeccable, with stronger house-style enforcement. Native browser tools and webapp-testing cover screenshots and behavior. emil-design-eng, remove-animations and baseline-ui conflict with its marketing motion policy.",
+      "related": [
+        "frontend-design",
+        "impeccable",
+        "webapp-testing"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill/tree/af8a897996e159ccc89c9da535dff714d5dba62d/skills/taste-skill",
+      "path": "entries/skills/design-taste-frontend",
       "files": []
     },
     {
@@ -320,6 +540,58 @@
     },
     {
       "schemaVersion": 2,
+      "id": "emil-design-eng",
+      "type": "skill",
+      "title": "Interaction craft (Emil Kowalski)",
+      "summary": "Opinionated design-engineering guidance for interaction frequency, motion purpose, easing, interruptibility, popover origins, gestures, component feedback and UI polish. Provides concrete code-review examples and a craft checklist.",
+      "useWhen": "Trying detailed interaction and motion guidance for product UI while checking its technical examples against the project's actual library versions.",
+      "tags": [
+        "design",
+        "interaction",
+        "animation",
+        "components",
+        "frontend"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Useful craft detail, with absolute frequency/keyboard rules and stale performance generalizations. Main sections and MIT license reviewed; no live UI trial. Do not assume every Motion shorthand runs on the main thread, or that scale replaces layout semantics. Preserve accepted project decisions."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/emilkowalski/skills",
+        "path": "skills/emil-design-eng",
+        "revision": "85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Emil Kowalski",
+        "notes": "Single skill subtree with root MIT LICENSE retained as LICENSE.txt. External articles are explanatory references, not required plugin setup."
+      },
+      "install": {
+        "any": "Fetch https://github.com/emilkowalski/skills at 85e8e2363b713506e1d5b6e07a0eb2da66be1bc3. Copy the entire skills/emil-design-eng subtree into .claude/skills/emil-design-eng for Claude Code or .agents/skills/emil-design-eng for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "frontend-design supplies art direction; react-component-composition supplies component contracts. remove-animations focuses on subtraction. This is an alternative craft policy, not an additional global mandate; it conflicts with baseline-ui and Taste on motion and easing.",
+      "related": [
+        "remove-animations",
+        "fixing-motion-performance",
+        "react-component-composition"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/emilkowalski/skills/tree/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3/skills/emil-design-eng",
+      "path": "entries/skills/emil-design-eng",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "find-skills",
       "type": "skill",
       "title": "Find skills on skills.sh",
@@ -358,6 +630,161 @@
       "score": 3,
       "sourceUrl": "https://github.com/vercel-labs/skills/tree/773fb2c7bbf16781670a3520affc4abd0c6151ae/skills/find-skills",
       "path": "entries/skills/find-skills",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "fixing-accessibility",
+      "type": "skill",
+      "title": "Focused HTML accessibility review (Ibelick)",
+      "summary": "Checks accessible names, native semantics, keyboard access, modal focus, form errors, announcements, contrast and reduced motion. Reports exact snippets, user impact and small code-level fixes while avoiding unrelated refactoring.",
+      "useWhen": "Reviewing or fixing a focused HTML accessibility issue with native semantics and targeted changes.",
+      "tags": [
+        "accessibility",
+        "html",
+        "frontend",
+        "code-review",
+        "keyboard"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 5,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Complete entrypoint and MIT license reviewed. Broad Tab-reachability wording needs composite-widget exceptions; arrow-key and roving-tabindex patterns remain valid. Review checks do not certify WCAG conformance or replace assistive-technology testing. No behavioral evaluation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/ibelick/ui-skills",
+        "path": "skills/fixing-accessibility",
+        "revision": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Julien Thibeaut",
+        "notes": "Standalone prompt. Use native elements and existing accessible primitives. Interpret Tab guidance through the actual WAI-ARIA widget pattern rather than adding every item to the tab order."
+      },
+      "install": {
+        "any": "Fetch https://github.com/ibelick/ui-skills at df4eb34c5dee830e8e36490d6fde3451c187339b. Copy the entire skills/fixing-accessibility subtree into .claude/skills/fixing-accessibility for Claude Code or .agents/skills/fixing-accessibility for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "ux-critique, webapp-testing and native browser tools already cover some accessibility issues. This is a compact code-level checklist, with narrower scope and lower novelty. better-typography owns text rendering rather than complete accessibility.",
+      "related": [
+        "ux-critique",
+        "webapp-testing",
+        "better-typography"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/ibelick/ui-skills/tree/df4eb34c5dee830e8e36490d6fde3451c187339b/skills/fixing-accessibility",
+      "path": "entries/skills/fixing-accessibility",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "fixing-motion-performance",
+      "type": "skill",
+      "title": "Animation performance review (Ibelick)",
+      "summary": "Audits animation drivers, layout read/write batching, scroll-linked work, paint and layer costs, blur and offscreen loops. Prefers cheaper rendering work within the existing animation library and reports concrete code-level fixes.",
+      "useWhen": "Diagnosing janky web animation or reviewing animation performance without migrating libraries or changing visual intent.",
+      "tags": [
+        "animation",
+        "performance",
+        "frontend",
+        "browser",
+        "code-review"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Complete entrypoint and MIT license reviewed. Useful mechanism and measurement checks; width-to-transform example is not a semantics-preserving recipe, and property acceleration varies by browser. Profiling must confirm performance. No runtime or device evaluation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/ibelick/ui-skills",
+        "path": "skills/fixing-motion-performance",
+        "revision": "df4eb34c5dee830e8e36490d6fde3451c187339b",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Julien Thibeaut",
+        "notes": "Standalone prompt with no mandatory tool installation. Preserve layout, pointer and focus semantics when changing properties; confirm any acceleration claim on supported browsers/devices."
+      },
+      "install": {
+        "any": "Fetch https://github.com/ibelick/ui-skills at df4eb34c5dee830e8e36490d6fde3451c187339b. Copy the entire skills/fixing-motion-performance subtree into .claude/skills/fixing-motion-performance for Claude Code or .agents/skills/fixing-motion-performance for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "React performance guidance and browser profilers overlap measurement. emil-design-eng addresses interaction craft; remove-animations addresses whether motion should remain. This focuses on rendering cost within the existing system.",
+      "related": [
+        "remove-animations",
+        "emil-design-eng",
+        "webapp-testing"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/ibelick/ui-skills/tree/df4eb34c5dee830e8e36490d6fde3451c187339b/skills/fixing-motion-performance",
+      "path": "entries/skills/fixing-motion-performance",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "frontend-design",
+      "type": "skill",
+      "title": "Frontend design direction (Anthropic)",
+      "summary": "Plans a subject-specific visual identity, compact color and type tokens, composition and functional copy before building. Reviews against the brief and rendered result, with restraint, responsive layout, focus and reduced-motion expectations.",
+      "useWhen": "Building a new interface or changing its visual identity when the host does not already provide equivalent frontend-design guidance.",
+      "tags": [
+        "design",
+        "frontend",
+        "typography",
+        "visual-design"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Compact, brief-first baseline. Complete entrypoint and local Apache license read. The current version emphasizes restraint; older installed copies differ. Visual review depends on host browser support. Adds little when the host already supplies it. No activation or outcome comparison."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/anthropics/skills",
+        "path": "skills/frontend-design",
+        "revision": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+        "retrieved": "2026-10-28",
+        "license": "Apache-2.0",
+        "author": "Anthropic",
+        "notes": "Only the skill and its local LICENSE.txt are needed. Check the installed skill before copying; source versions can differ."
+      },
+      "install": {
+        "any": "Fetch https://github.com/anthropics/skills at 41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f. Copy the entire skills/frontend-design subtree into .claude/skills/frontend-design for Claude Code or .agents/skills/frontend-design for Codex, preserving all nested files. Retain the local LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "Installed frontend-design and ordinary model design guidance overlap directly. ux-critique reviews findings; webapp-testing gathers runtime evidence. This is a selectable upstream baseline for hosts without it, not another layer to load alongside an existing copy.",
+      "related": [
+        "impeccable",
+        "design-taste-frontend",
+        "ux-critique",
+        "webapp-testing"
+      ],
+      "score": 4.2,
+      "sourceUrl": "https://github.com/anthropics/skills/tree/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design",
+      "path": "entries/skills/frontend-design",
       "files": []
     },
     {
@@ -406,7 +833,8 @@
         "mmorpg-design",
         "level-design",
         "mechanic-prototyping",
-        "gameplay-playtesting"
+        "gameplay-playtesting",
+        "human-interface-design"
       ],
       "score": 3.2,
       "sourceUrl": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/SKILL.md",
@@ -563,6 +991,147 @@
     },
     {
       "schemaVersion": 2,
+      "id": "human-interface-design",
+      "type": "skill",
+      "title": "Human-centered interface design",
+      "summary": "Applies Apple-inspired human-interface principles to task structure, navigation, state, visual hierarchy and accessibility. Adapts to web, mobile, desktop and other surfaces while preserving product identity and established conventions.",
+      "useWhen": "Designing, implementing, refining or reviewing an interface where task clarity, interaction behavior, recovery or platform fit needs deliberate decisions.",
+      "tags": [
+        "design",
+        "ux",
+        "interaction-design",
+        "accessibility",
+        "cross-platform"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Independently written core and three conditional references. Reviewed for proportionality, task and platform fit, state and recovery semantics, scoped accessibility criteria and evidence limits. General design knowledge overlaps substantially with host capabilities and existing skills. Structural checks are not proof of activation, accessibility conformance or improved UX outcomes."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Original prose and decision method inspired by Apple HIG and supporting platform standards, reviewed October 29, 2026. No Apple prose, artwork, fonts, symbols, code or resources are redistributed. Source pages are mutable; dated WWDC sessions anchor the conceptual basis. Not official or Apple-endorsed."
+      },
+      "inspiredBy": [
+        {
+          "title": "Apple Human Interface Guidelines — Design principles",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/design-principles"
+        },
+        {
+          "title": "Apple Principles of great design — WWDC26",
+          "url": "https://developer.apple.com/videos/play/wwdc2026/250/"
+        },
+        {
+          "title": "Apple Design foundations from idea to interface — WWDC25",
+          "url": "https://developer.apple.com/videos/play/wwdc2025/359/"
+        },
+        {
+          "title": "Apple Human Interface Guidelines — Accessibility",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility"
+        },
+        {
+          "title": "W3C Web Content Accessibility Guidelines 2.2",
+          "url": "https://www.w3.org/TR/WCAG22/"
+        },
+        {
+          "title": "WAI-ARIA Authoring Practices Guide",
+          "url": "https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/"
+        },
+        {
+          "title": "Android Compose accessibility API defaults",
+          "url": "https://developer.android.com/develop/ui/compose/accessibility/api-defaults"
+        }
+      ],
+      "overlap": "Native design reasoning and frontend-design cover visual execution; interface-design covers product hierarchy and tokens; emil-design-eng covers motion craft. ux-critique and evidence-to-flow-ux cover evidence and criticism; intent covers a broader lifecycle. This adds a compact cross-platform decision method centered on agency, honest states, recovery and platform adaptation. It requires no other entry, tool connection or persistence convention.",
+      "related": [
+        "frontend-design",
+        "interface-design",
+        "emil-design-eng",
+        "ux-critique",
+        "evidence-to-flow-ux",
+        "moderated-usability-study"
+      ],
+      "evaluationCases": [
+        "evals/cases/human-interface-design.yaml"
+      ],
+      "score": 4,
+      "sourceUrl": "https://developer.apple.com/design/human-interface-guidelines/design-principles",
+      "path": "entries/skills/human-interface-design",
+      "files": [
+        "entries/skills/human-interface-design/LICENSE.txt",
+        "entries/skills/human-interface-design/SKILL.md",
+        "entries/skills/human-interface-design/references/platform-adaptation.md",
+        "entries/skills/human-interface-design/references/principles-and-decisions.md",
+        "entries/skills/human-interface-design/references/review-and-verification.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "impeccable",
+      "type": "skill",
+      "title": "Design refinement and variants (Impeccable)",
+      "summary": "Routes design work through Persuade, Operate, Read and Experience modes, with focused polish, critique, audit, typography and variant workflows. Uses a native engine, project context and optional browser, agent and hook integrations.",
+      "useWhen": "Explicitly trying a broad design-refinement workflow and accepting its engine setup, project artifacts and command-specific dependencies.",
+      "tags": [
+        "design",
+        "frontend",
+        "design-review",
+        "iteration",
+        "experimental"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Experimental linked option requested after scouting. Entrypoint, craft/polish and launcher/context/telemetry sections reviewed; full engine, live mutation and all references remain unaudited. Default-on roll/choice telemetry; opt-out is not offline mode. Manual copy omits hooks and agents. No runtime trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/pbakaus/impeccable",
+        "path": ".agents/skills/impeccable",
+        "revision": "7510e233b228864606888d252abacf5e7148bf87",
+        "retrieved": "2026-10-28",
+        "license": "Apache-2.0 AND MIT",
+        "author": "Paul Bakaus",
+        "notes": "Keep the entire skill, root LICENSE and NOTICE.md together. Manual installation supports scoped refinement but omits named subagents and hooks; commands needing those require separately selected host setup. Engine downloads, project artifacts and remote rolls are disclosed effects."
+      },
+      "install": {
+        "any": "Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations. The launcher may download a versioned native engine. Rolls contact an upstream API; IMPECCABLE_NO_TELEMETRY=1 disables telemetry but not roll requests. Manual context fallback exists. Full engine and live-edit security are not audited.",
+        "codex": "Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow. Resolve command paths from the installed skill base. Do not copy .codex/hooks.json.",
+        "claude-code": "Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow. Resolve command paths from the installed skill base. Do not copy repository settings or agent definitions implicitly."
+      },
+      "overlap": "Overlaps frontend-design, ux-critique, webapp-testing and native browser tools. Adds coordinated refinement vocabulary and live variants. Prefer a focused command to loading several competing design systems. A clean detector is not proof of design quality.",
+      "related": [
+        "frontend-design",
+        "interface-design",
+        "ux-critique",
+        "webapp-testing"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/pbakaus/impeccable/tree/7510e233b228864606888d252abacf5e7148bf87/.agents/skills/impeccable",
+      "path": "entries/skills/impeccable",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "improvement-loop",
       "type": "skill",
       "title": "Improvement loop (house prompt)",
@@ -605,6 +1174,165 @@
         "entries/skills/improvement-loop/LICENSE.txt",
         "entries/skills/improvement-loop/SKILL.md"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "intent",
+      "type": "skill",
+      "title": "Intent UX lifecycle router",
+      "summary": "Broad UX principles and context gathering with routing to research, journeys, information architecture, content, evaluation and handoff. The core includes eight foundational references; specialist skills are separately selectable siblings.",
+      "useWhen": "Explicitly choosing a broad UX design system across several stages and accepting its artifact conventions and experimental review limits.",
+      "tags": [
+        "ux",
+        "research",
+        "interaction-design",
+        "information-architecture",
+        "design"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Main routing, context and loop sections plus selected specialist methods reviewed; all eighteen skills and foundational reference bodies are not fully audited. Valuable lifecycle coverage, but large context cost, broad statistical heuristics and artifact conventions need judgment. No behavioral trial or superiority evidence. Explicitly selected linked experiment rather than a cleared full-bundle admission."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/ghaida/intent",
+        "path": "skills/intent",
+        "revision": "7111cb85894feaeb7e98938b1ed34597d40e3b4c",
+        "retrieved": "2026-10-29",
+        "license": "CC0-1.0",
+        "author": "Ghaida",
+        "notes": "Repository snapshot pins core, references and any selected sibling consistently. Main path last changed at 0c1afeb930eaa936d20e4d27f1df8ead4113dfb4. Six agents and platform/plugin packaging are outside this selection. Retain material evidence limitations in shared outputs despite terse upstream artifact conventions."
+      },
+      "install": {
+        "any": "Fetch https://github.com/ghaida/intent at 7111cb85894feaeb7e98938b1ed34597d40e3b4c. Copy the complete skills/intent subtree, including all eight references, into .agents/skills/intent or .claude/skills/intent. Retain root LICENSE as LICENSE.txt. Check the destination and preserve existing guidance. If the user selects a routed specialist, inspect and copy that complete skills/<name> subtree as a sibling at the same revision, with its resources and license; do not represent an absent sibling as available or install all eighteen merely because the router names them. Do not copy agents, hooks, plugin configuration or platform rules implicitly.",
+        "notes": "Catalog admission activates nothing. Context files, decision logs, specialist routing, design tools and iteration remain within the user's task and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/ux-workflow-options.md for scope and unresolved review limits."
+      },
+      "overlap": "Native planning and design reasoning cover parts of the process. ux-critique specializes in interface criticism; synthesize-research starts from existing records; moderated-usability-study prepares real sessions; evidence-to-flow-ux is a smaller decision procedure. Frontend design entries emphasize visual execution. Intent is an alternative broad system, not a prerequisite for these entries.",
+      "related": [
+        "ux-critique",
+        "synthesize-research",
+        "moderated-usability-study",
+        "evidence-to-flow-ux",
+        "interface-design",
+        "frontend-design"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/ghaida/intent/tree/7111cb85894feaeb7e98938b1ed34597d40e3b4c/skills/intent",
+      "path": "entries/skills/intent",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "interface-design",
+      "type": "skill",
+      "title": "Product interface craft (Damola Akinleye)",
+      "summary": "Designs dashboards and product tools through domain exploration, hierarchy, semantic tokens, component reuse, interaction states and visual checks. Can preserve accepted patterns in .interface-design/system.md; separates product UI from marketing work.",
+      "useWhen": "Trying an opinionated product-UI workflow for dashboards, settings or admin tools, with persistent design decisions and explicit technical caveats.",
+      "tags": [
+        "design",
+        "frontend",
+        "dashboard",
+        "design-system",
+        "interaction"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 2,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Experimental due known errors: 44px WCAG wording omits level/exceptions; native selects are not categorically unstyleable. Main skill and license reviewed; separate plugin commands not fully audited. Domain exploration and token continuity are useful. No runtime or outcome evaluation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/Dammyjay93/interface-design",
+        "path": ".claude/skills/interface-design",
+        "revision": "890d9295acdaf57891a20dc2499abfb4b8529784",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Damola Akinleye",
+        "notes": "Core skill only; plugin commands are separate, optional workflows. Do not replace native controls merely because the source claims they cannot be styled. system.md persistence follows explicit selection and existing project authority."
+      },
+      "install": {
+        "any": "Fetch https://github.com/Dammyjay93/interface-design at 890d9295acdaf57891a20dc2499abfb4b8529784. Copy the entire .claude/skills/interface-design subtree into .claude/skills/interface-design for Claude Code or .agents/skills/interface-design for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "Overlaps frontend-design, Impeccable Operate mode and existing component conventions. Adds product-domain exploration and a persistent system.md convention. Preserve native controls and established semantic tokens when they fit.",
+      "related": [
+        "frontend-design",
+        "impeccable",
+        "react-component-composition"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/Dammyjay93/interface-design/tree/890d9295acdaf57891a20dc2499abfb4b8529784/.claude/skills/interface-design",
+      "path": "entries/skills/interface-design",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "interface-review",
+      "type": "skill",
+      "title": "Interface regression review (Jakub Krehel)",
+      "summary": "Reviews a branch, pull request or uncommitted change for introduced and regressed interface problems. Expands shared changes to consumers, checks removed accessibility and design signals, and delegates domain rules and verdicts to the required better-interface bundle.",
+      "useWhen": "Explicitly reviewing interface regressions in a change and accepting installation of the complete required domain-review bundle.",
+      "tags": [
+        "frontend",
+        "code-review",
+        "regression",
+        "accessibility",
+        "design"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Review entrypoint, scope/removal references and better-interface router read; not every transitive domain reference audited. Requires seven sibling skills. Change-scoped source review is useful, but rendered verification is opt-in and unverified domains must stay visible. No behavioral trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/jakubkrehel/skills",
+        "path": "skills/interface-review",
+        "revision": "1eb03d2b145df1c6cd84ab54a337600a2a379017",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Jakub Krehel",
+        "notes": "Requires interface-review, better-interface, better-accessibility, better-layout, better-writing, better-typography, better-colors and better-ui, each complete with references/agents, at the same pin. Review is read-only; rendering and any worktree remain scoped to the user's request."
+      },
+      "install": {
+        "any": "Fetch https://github.com/jakubkrehel/skills at 1eb03d2b145df1c6cd84ab54a337600a2a379017. Select the complete eight-skill bundle: interface-review, better-interface, better-accessibility, better-layout, better-writing, better-typography, better-colors and better-ui. Copy each complete skills/<name> subtree as a sibling under .claude/skills/<name> or .agents/skills/<name>, preserving all references and agents metadata. Retain root LICENSE as LICENSE.txt in each installed skill. Check every destination first, preserve local versions and reconcile existing better-typography rather than duplicating or overwriting it. Do not copy the repository's unrelated skills or plugin configuration.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "Native code review and ux-critique overlap general findings. This adds change attribution and affected-surface expansion, while react-component-composition covers implementation contracts. It is a review bundle, not a standalone one-file skill.",
+      "related": [
+        "better-typography",
+        "ux-critique",
+        "webapp-testing"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/jakubkrehel/skills/tree/1eb03d2b145df1c6cd84ab54a337600a2a379017/skills/interface-review",
+      "path": "entries/skills/interface-review",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -765,7 +1493,10 @@
       },
       "overlap": "Host-native reasoning can already propose game mechanics and research sources. grilling challenges decisions; synthesize-research and moderated-usability-study address research methods; human-interface-design addresses interfaces. This adds domain-specific incentive tracing across persistent progression, social continuity, trade, variance and account growth. No MMORPG-specific built-in or existing catalog equivalent was found in this session's inventory; it requires none of the related entries.",
       "related": [
-        "grilling"
+        "grilling",
+        "synthesize-research",
+        "moderated-usability-study",
+        "human-interface-design"
       ],
       "score": 3.2,
       "sourceUrl": "https://support-maplestory.nexon.com/hc/en-us/articles/22984919392788-What-are-Heroic-Interactive-and-Seasonal-Worlds",
@@ -774,6 +1505,59 @@
         "entries/skills/mmorpg-design/LICENSE.txt",
         "entries/skills/mmorpg-design/SKILL.md",
         "entries/skills/mmorpg-design/references/maplestory-and-comparisons.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "moderated-usability-study",
+      "type": "skill",
+      "title": "Prepare and analyze moderated usability studies",
+      "summary": "Creates realistic task scenarios, participant criteria, moderator guides and observation records, or synthesizes actual session evidence. Separates study preparation and inspection hypotheses from findings about real participants.",
+      "useWhen": "Preparing a study with real participants or analyzing its session records, especially when comprehension, findability or task behavior is unresolved.",
+      "tags": [
+        "ux",
+        "research",
+        "usability",
+        "study-planning",
+        "evidence"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Self-contained prose adaptation with decision framing, neutral tasks, assistance logging, exposed-participant denominators and traceable findings. Does not execute recruitment or invent study observations. Omits upstream calculators and fixed sample guarantees. Reviewed for scope and packaging; not exercised with participants or behaviorally evaluated."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independently written from the reviewed study method. No upstream prose, scripts or sample data copied. Participant sizing is contextual; calculator helpers and absolute bans on interface terminology are not adopted."
+      },
+      "inspiredBy": [
+        {
+          "title": "João Monteiro moderated usability study method",
+          "url": "https://github.com/JoaoMonteiro100/ux-design-skills/blob/ef9596b06350cb6362716ac3acc6ea82681550ef/skills/ux-usability-study/SKILL.md"
+        }
+      ],
+      "overlap": "Native agents can draft interview questions and summarize notes. ux-critique supplies expert inspection rather than participant evidence; synthesize-research handles broader existing datasets. This skill adds a focused session protocol and observation contract. It requires no study platform, calculator or other catalog entry.",
+      "related": [
+        "synthesize-research",
+        "evidence-to-flow-ux",
+        "ux-critique",
+        "intent"
+      ],
+      "score": 4.2,
+      "sourceUrl": "https://github.com/JoaoMonteiro100/ux-design-skills/blob/ef9596b06350cb6362716ac3acc6ea82681550ef/skills/ux-usability-study/SKILL.md",
+      "path": "entries/skills/moderated-usability-study",
+      "files": [
+        "entries/skills/moderated-usability-study/LICENSE.txt",
+        "entries/skills/moderated-usability-study/SKILL.md"
       ]
     },
     {
@@ -964,6 +1748,58 @@
         "entries/skills/react-component-composition/LICENSE.txt",
         "entries/skills/react-component-composition/SKILL.md"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "remove-animations",
+      "type": "skill",
+      "title": "Reduce unnecessary motion (Emil Kowalski)",
+      "summary": "Audits existing motion by purpose and frequency, then removes or reduces unnecessary animation while checking hidden start states, callbacks, delayed unmounts, focus timing and orphaned code. Reports deliberate keep decisions and proposed dependency cleanup.",
+      "useWhen": "An interface feels slow or over-animated and you want a focused motion-reduction pass that preserves interaction behavior.",
+      "tags": [
+        "animation",
+        "interaction",
+        "performance",
+        "frontend",
+        "refactoring"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Complete entrypoint and MIT license reviewed. Dependency hazards are concrete; universal keyboard/frequency deletion rules and a fixed kept-animation quota are opinions. Apply the user's scope and accepted project decisions first. Dependency removal is separately proposed. No behavioral evaluation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/emilkowalski/skills",
+        "path": "skills/remove-animations",
+        "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Emil Kowalski",
+        "notes": "Standalone core procedure. Referenced improve/review animation siblings are optional handoffs, not included or implicitly installed. Verify focus, unmount and visibility after removal."
+      },
+      "install": {
+        "any": "Fetch https://github.com/emilkowalski/skills at a81dbca07f2217b7103e510c0f13f8d5b017afc9. Copy the entire skills/remove-animations subtree into .claude/skills/remove-animations for Claude Code or .agents/skills/remove-animations for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations."
+      },
+      "overlap": "emil-design-eng and baseline-ui address motion policy; ux-critique may identify excessive motion. This adds an explicit removal-hazard procedure. It opposes Taste's marketing motion quota, so choose according to the task rather than combining them.",
+      "related": [
+        "emil-design-eng",
+        "fixing-motion-performance",
+        "ux-critique"
+      ],
+      "score": 4,
+      "sourceUrl": "https://github.com/emilkowalski/skills/tree/a81dbca07f2217b7103e510c0f13f8d5b017afc9/skills/remove-animations",
+      "path": "entries/skills/remove-animations",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -1271,6 +2107,58 @@
     },
     {
       "schemaVersion": 2,
+      "id": "synthesize-research",
+      "type": "skill",
+      "title": "Synthesize supplied user research (Anthropic)",
+      "summary": "Turns existing interview notes, survey responses and feedback into attributed themes, contradictions, conditional behavioral segments and decision-linked recommendations. Selects the product-management skill rather than the similarly named design-plugin template.",
+      "useWhen": "Existing research records need analysis into supported findings and product decisions, rather than preparing a new study or inspecting an interface.",
+      "tags": [
+        "ux",
+        "research",
+        "synthesis",
+        "product-management",
+        "evidence"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Complete entrypoint and connector reference reviewed. Attribution, contrary cases and conditional personas add useful discipline. Finding counts, impact arithmetic and NPS commentary remain heuristics. Deduplicate participants and reports; sample frequencies do not imply prevalence. Requires a documented local-link adapter. No behavioral trial. Scoped product-management license verified; preserve source and adapter provenance."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/anthropics/knowledge-work-plugins",
+        "path": "product-management/skills/synthesize-research",
+        "revision": "2574e29377c7173d0cecffef29a6ecbd7f8ccb5d",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0",
+        "author": "Anthropic",
+        "notes": "Repository snapshot pins the selected skill, product-management/CONNECTORS.md and product-management/LICENSE together. Skill path last changed at 2d6f7e22dd25593f0f748010430ef86f19659735. The scoped product-management/LICENSE is clean Apache-2.0 text; the root license has an unrelated trailing anomaly, documented in the admission record. No upstream code is copied into the catalog."
+      },
+      "install": {
+        "any": "Fetch https://github.com/anthropics/knowledge-work-plugins at 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d. Copy product-management/skills/synthesize-research into .agents/skills/synthesize-research or .claude/skills/synthesize-research, checking and preserving any existing version first. Copy product-management/CONNECTORS.md into that installed skill directory and retain product-management/LICENSE as LICENSE.txt. Apply one explicit packaging adapter: change the SKILL.md connector link from ../../CONNECTORS.md to ./CONNECTORS.md so every reference stays inside the installed skill. Add a prominent packaging-change notice in the installed SKILL.md body and record the source pin with that notice. Preserve upstream attribution; no applicable NOTICE file appears in the pinned inventory. Do not install the surrounding plugin or its MCP configuration.",
+        "notes": "Works from supplied records without connectors. Use connected sources only within existing access and task authorization; no implicit service connection or publication. Preserve contradictory cases and material limitations. See https://github.com/alex-red/agentic-catalog/blob/main/docs/ux-workflow-options.md."
+      },
+      "overlap": "Native summarization already extracts themes. This adds source-by-source observation, contradictory cases and product-decision synthesis. ux-critique examines an interface; moderated-usability-study prepares participant sessions; evidence-to-flow-ux connects evidence to design and retest. None is a required runtime dependency.",
+      "related": [
+        "moderated-usability-study",
+        "evidence-to-flow-ux",
+        "ux-critique",
+        "intent"
+      ],
+      "score": 4,
+      "sourceUrl": "https://github.com/anthropics/knowledge-work-plugins/tree/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/synthesize-research",
+      "path": "entries/skills/synthesize-research",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "systematic-debugging",
       "type": "skill",
       "title": "Systematic debugging",
@@ -1417,6 +2305,59 @@
         "entries/skills/tokio-async-correctness/SKILL.md",
         "entries/skills/tokio-async-correctness/references/task-lifecycle.md"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ui-ux-pro-max",
+      "type": "skill",
+      "title": "Searchable UI design guidance (UI UX Pro Max)",
+      "summary": "Searches local product patterns, styles, palettes, typography, charts and stack guidance using Python, with design-system generation and optional master/page persistence. Requires checking result relevance and preserves existing saved decisions by default.",
+      "useWhen": "Looking for product-specific design references or stack guidance and willing to verify the search results before applying or persisting them.",
+      "tags": [
+        "design",
+        "frontend",
+        "design-system",
+        "typography",
+        "search"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-28",
+        "notes": "Entrypoint, CLI/template routing, core configuration and sample provenance reviewed; full dataset and generation chain not audited. Python 3 required. Confidence fields and retrieval ranks are not correctness evidence. Default installer copies sibling skills; use the bounded manual route. No outcome trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+        "path": ".claude/skills/ui-ux-pro-max",
+        "revision": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+        "retrieved": "2026-10-28",
+        "license": "MIT",
+        "author": "Next Level Builder",
+        "notes": "Use the complete self-contained .claude subtree, not a template or SKILL.md alone. Resolve search commands to the absolute installed scripts/search.py; CLAUDE_PLUGIN_ROOT is a Claude plugin variable, not a Codex facility. Avoid the broad installer for this single entry."
+      },
+      "install": {
+        "any": "Fetch https://github.com/nextlevelbuilder/ui-ux-pro-max-skill at 28b3b8dee8c976df4fa3e94aed4e092ad43fcb03. Copy the entire .claude/skills/ui-ux-pro-max subtree into .claude/skills/ui-ux-pro-max for Claude Code or .agents/skills/ui-ux-pro-max for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Use the absolute installed scripts/search.py path for search commands instead of the Claude-plugin-specific CLAUDE_PLUGIN_ROOT variable. Keep data provenance and font/icon license metadata.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations. Python 3 is required for searches. Preserve root MIT license and dataset font/icon provenance files; generated/fetched asset licenses remain separate. Do not use the default broad CLI installer, which also copies sibling skills.",
+        "codex": "Fetch https://github.com/nextlevelbuilder/ui-ux-pro-max-skill at 28b3b8dee8c976df4fa3e94aed4e092ad43fcb03. Copy the entire .claude/skills/ui-ux-pro-max subtree into .claude/skills/ui-ux-pro-max for Claude Code or .agents/skills/ui-ux-pro-max for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Use the absolute installed scripts/search.py path for search commands instead of the Claude-plugin-specific CLAUDE_PLUGIN_ROOT variable. Keep data provenance and font/icon license metadata. This path adapter does not assume Codex defines CLAUDE_PLUGIN_ROOT."
+      },
+      "overlap": "frontend-design and Taste choose visual directions; this externalizes recommendations into searchable local data. react-best-practices overlaps its React guidance. It does not replace ux-critique or rendered verification.",
+      "related": [
+        "frontend-design",
+        "better-typography",
+        "react-best-practices"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/28b3b8dee8c976df4fa3e94aed4e092ad43fcb03/.claude/skills/ui-ux-pro-max",
+      "path": "entries/skills/ui-ux-pro-max",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -1999,6 +2940,73 @@
     },
     {
       "schemaVersion": 2,
+      "id": "evidence-to-flow-ux",
+      "type": "workflow",
+      "title": "Evidence-to-flow UX decision workflow",
+      "summary": "Connects a bounded product decision to task inspection, existing research or participant-study preparation, then a supported design change and proportionate retest. Keeps observations, hypotheses and human evidence distinct without requiring every stage.",
+      "useWhen": "Moving from a concrete task problem or research uncertainty to a design decision, authorized change and a retest that matches the claim.",
+      "tags": [
+        "ux",
+        "research",
+        "interaction-design",
+        "workflow",
+        "verification"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Bounded, self-contained procedure with branching by evidence, task-state coverage, an evidence ledger and explicit stopping conditions. Browser success remains distinct from human usability; unavailable participants lead to preparation rather than invented results. No full lifecycle ceremony or mandatory tool. Source and structural review only; no measured outcome improvement."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independently written combination of decision framing, observed-versus-inferred task inspection, traceable synthesis and retest. No upstream scripts, forcing loops, numerical scores or source prose copied. Other catalog entries are optional alternatives, not required dependencies."
+      },
+      "inspiredBy": [
+        {
+          "title": "Intent research and evaluation routing",
+          "url": "https://github.com/ghaida/intent/blob/7111cb85894feaeb7e98938b1ed34597d40e3b4c/skills/intent/SKILL.md"
+        },
+        {
+          "title": "UX Workflow Check task-order and observed/inferred lens",
+          "url": "https://github.com/sergiobuilds/ux-workflow-check/blob/71d7ee5ccd728499e21c3ee792df51e9114b9a69/SKILL.md"
+        },
+        {
+          "title": "Anthropic product-management research synthesis",
+          "url": "https://github.com/anthropics/knowledge-work-plugins/blob/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/synthesize-research/SKILL.md"
+        },
+        {
+          "title": "João Monteiro moderated study method",
+          "url": "https://github.com/JoaoMonteiro100/ux-design-skills/blob/ef9596b06350cb6362716ac3acc6ea82681550ef/skills/ux-usability-study/SKILL.md"
+        }
+      ],
+      "overlap": "Native planning and browser tools execute parts of this process. explore-plan-implement-review covers general code delivery; ux-critique examines interfaces; webapp-testing checks browser behavior; the study and synthesis skills provide deeper methods. This workflow supplies the evidence-dependent decision path and stopping boundary without installing those entries or a broad UX system.",
+      "related": [
+        "moderated-usability-study",
+        "synthesize-research",
+        "ux-critique",
+        "webapp-testing",
+        "explore-plan-implement-review",
+        "intent"
+      ],
+      "score": 4.2,
+      "sourceUrl": "https://github.com/ghaida/intent/blob/7111cb85894feaeb7e98938b1ed34597d40e3b4c/skills/intent/SKILL.md",
+      "path": "entries/workflows/evidence-to-flow-ux",
+      "files": [
+        "entries/workflows/evidence-to-flow-ux/LICENSE.txt",
+        "entries/workflows/evidence-to-flow-ux/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "explore-plan-implement-review",
       "type": "workflow",
       "title": "Explore, plan, implement, review",
@@ -2088,7 +3096,8 @@
       "related": [
         "mmorpg-design",
         "mechanic-prototyping",
-        "gameplay-playtesting"
+        "gameplay-playtesting",
+        "synthesize-research"
       ],
       "score": 3.4,
       "sourceUrl": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/balance-check/SKILL.md",
@@ -2142,6 +3151,8 @@
       ],
       "overlap": "moderated-usability-study handles general participant sessions, synthesize-research handles findings and webapp-testing handles browser checks. This is a game-specific route through the needed evidence, including mastery, fairness, repeat loops and controls; it requires none of those entries and does not claim automated play proves human enjoyment.",
       "related": [
+        "moderated-usability-study",
+        "synthesize-research",
         "webapp-testing",
         "mmorpg-design",
         "game-balance-review",

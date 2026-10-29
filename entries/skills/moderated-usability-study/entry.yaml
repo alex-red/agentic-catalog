@@ -1,0 +1,26 @@
+schemaVersion: 2
+id: moderated-usability-study
+type: skill
+title: Prepare and analyze moderated usability studies
+summary: Creates realistic task scenarios, participant criteria, moderator guides and observation records, or synthesizes actual session evidence. Separates study preparation and inspection hypotheses from findings about real participants.
+useWhen: Preparing a study with real participants or analyzing its session records, especially when comprehension, findability or task behavior is unresolved.
+tags: [ux, research, usability, study-planning, evidence]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Self-contained prose adaptation with decision framing, neutral tasks, assistance logging, exposed-participant denominators and traceable findings. Does not execute recruitment or invent study observations. Omits upstream calculators and fixed sample guarantees. Reviewed for scope and packaging; not exercised with participants or behaviorally evaluated.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written from the reviewed study method. No upstream prose, scripts or sample data copied. Participant sizing is contextual; calculator helpers and absolute bans on interface terminology are not adopted.
+inspiredBy:
+  - title: João Monteiro moderated usability study method
+    url: https://github.com/JoaoMonteiro100/ux-design-skills/blob/ef9596b06350cb6362716ac3acc6ea82681550ef/skills/ux-usability-study/SKILL.md
+overlap: Native agents can draft interview questions and summarize notes. ux-critique supplies expert inspection rather than participant evidence; synthesize-research handles broader existing datasets. This skill adds a focused session protocol and observation contract. It requires no study platform, calculator or other catalog entry.
+related: [synthesize-research, evidence-to-flow-ux, ux-critique, intent]

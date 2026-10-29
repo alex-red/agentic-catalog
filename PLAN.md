@@ -1,7 +1,7 @@
 # Plan
 
 Updated: October 29, 2026
-Status: experimental. The catalog has 76 entries across seven types and seven collections, including seven experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Status: experimental. The catalog has 94 entries across seven types and seven collections, including nineteen experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -40,9 +40,9 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 
 | Type | Entries |
 | --- | --- |
-| Skills (34) | bun-workspaces, react-component-composition, vue-async-state, tokio-async-correctness, repo-research, diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked), mmorpg-design, level-design, game-feel, reverse-engineering, cynthion-reverse-engineer (last two linked and experimental) |
+| Skills (51) | bun-workspaces, react-component-composition, vue-async-state, tokio-async-correctness, repo-research, diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked), frontend-design (linked), impeccable, emil-design-eng, remove-animations, design-taste-frontend, ui-ux-pro-max, interface-design, better-typography, interface-review, baseline-ui, fixing-accessibility, fixing-motion-performance (last eleven linked and experimental), intent (linked and experimental), synthesize-research (linked), moderated-usability-study, human-interface-design, mmorpg-design, level-design, game-feel, reverse-engineering, cynthion-reverse-engineer (last two linked and experimental), catalog-taxonomy |
 | Rules (5) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority, markdown-accessibility |
-| Workflows (11) | monorepo-change-verification, harness-experiment-loop, bun-migration-verification, rust-verification-ladder, self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked), mechanic-prototyping, game-balance-review, gameplay-playtesting |
+| Workflows (12) | monorepo-change-verification, harness-experiment-loop, bun-migration-verification, rust-verification-ladder, self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked), evidence-to-flow-ux, mechanic-prototyping, game-balance-review, gameplay-playtesting |
 | Hooks (15) | format-after-edit, protect-files-and-commands, stop-gate-checks, no-email-context, config-guard, config-watch, git-safety, protect-tests, case-insensitive-guard, context-hogs, desktop-attention, compact-context, post-edit-diagnostics, subagent-budget, prompt-secret-check |
 | Subagents (2) | silent-failure-hunter, pr-review-code-reviewer |
 | MCP servers (6) | chrome-devtools-mcp, context7, reva, ida-mcp, reverse-engineer-anything, cerberus-re (last four experimental) |
@@ -50,11 +50,19 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 
 Collections: starter, self-improvement, debugging, project-upkeep, project-initialization, frontend-quality, security-review.
 
+The [frontend design options](docs/frontend-design-options.md) are separately selectable alternatives. Their [admission record](docs/research/2026-10-28-design-admission.md) retains known technical defects and runtime-review limits; linked experimental admission is not a claim that those blockers were resolved.
+
+The [UI/UX workflow options](docs/ux-workflow-options.md) add study preparation, research synthesis and a bounded evidence-to-flow procedure, with Intent as an experimental broad alternative. The [admission record](docs/research/2026-10-29-ux-admission.md) preserves review boundaries and source packaging. Existing `ux-critique` is reused.
+
+The adapted [human-interface-design](entries/skills/human-interface-design/SKILL.md) skill translates Apple-inspired principles into cross-platform structure, interaction, visual hierarchy and verification decisions. It preserves product identity and target-platform conventions; see its [research](docs/research/2026-10-29-apple-inspired-interface-skill.md).
+
 The adapted [mmorpg-design](entries/skills/mmorpg-design/SKILL.md) skill connects persistent-world progression, social continuity, trade and account growth to testable design decisions. Its optional case-study reference preserves the MapleStory research and distinguishes documented mechanics from causal hypotheses.
 
 The [game-design methods](docs/game-design-options.md) add mechanic experiments, playable spaces, gameplay feedback, balance analysis and playtesting. The catalog UI groups these and MMORPG design under a dedicated Game design category, while preserving their Skill and Workflow types.
 
 The [reverse-engineering options](docs/reverse-engineering-options.md) add six explicitly selected linked experiments, tagged `reverse_engineering`. Their [admission record](docs/research/2026-10-29-reverse-engineering-admission.md) preserves source-review, licensing and runtime limits; admission does not install or connect them.
+
+The adapted [catalog-taxonomy](entries/skills/catalog-taxonomy/SKILL.md) skill turns the [tagging research](docs/research/2026-10-29-catalog-tagging-research.md) into a portable method for vocabulary, facets, aliases, retrieval semantics and migrations. It is listed under the browser's System design topic category while retaining its Skill type. This admission does not implement the report's proposed vocabulary registry or full faceted-search redesign.
 
 Candidates that were considered and left out, with reasons, are in the research notes summarized in [decision 16](docs/decisions.md). Examples: skills that fetch unpinned remote instructions at runtime, unlicensed repositories, and generic reviewer personas.
 

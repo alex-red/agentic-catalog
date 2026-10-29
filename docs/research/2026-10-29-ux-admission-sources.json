@@ -1,0 +1,52 @@
+{
+  "asOf": "2026-10-29",
+  "researchRecord": "2026-10-29-ux-scout-sources.json",
+  "note": "Locally downloaded bytes verified against pinned Git tree blobs. Hash agreement is source integrity, not behavioral evidence. Intent reference bodies and all specialists remain incompletely reviewed.",
+  "records": [
+    {
+      "repo": "ghaida/intent",
+      "revision": "7111cb85894feaeb7e98938b1ed34597d40e3b4c",
+      "path": "skills/intent/SKILL.md",
+      "gitBlobSha": "3f8d24ee9d546a7a92e622a0b24bdc69d432a3b2",
+      "sha256": "69b6bc5270ad93785eb560d65fb4f550e763a74387db8bbfba2ff0bb1ab9a9f6",
+      "inspection": "Research review depth unchanged; see scout source record"
+    },
+    {
+      "repo": "ghaida/intent",
+      "revision": "7111cb85894feaeb7e98938b1ed34597d40e3b4c",
+      "path": "LICENSE",
+      "gitBlobSha": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "inspection": "Research review depth unchanged; see scout source record"
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "revision": "2574e29377c7173d0cecffef29a6ecbd7f8ccb5d",
+      "path": "product-management/skills/synthesize-research/SKILL.md",
+      "gitBlobSha": "37920edef38ed91481547e426dbd1505bbd0a105",
+      "sha256": "ae98c11102545c911a1ea5d8527be0e08a3db8e53327f2865f0db19bbb2d7e9c",
+      "inspection": "Research review depth unchanged; see scout source record"
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "revision": "2574e29377c7173d0cecffef29a6ecbd7f8ccb5d",
+      "path": "product-management/CONNECTORS.md",
+      "gitBlobSha": "aa15b5ccfb4cd0a5d8ea668632634c25061bb40b",
+      "sha256": "f52733eb0cd1b46f96cbf15bd9d8dd5215c9341d9323f42da076bcddccda2f5e",
+      "inspection": "Research review depth unchanged; see scout source record"
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "revision": "2574e29377c7173d0cecffef29a6ecbd7f8ccb5d",
+      "path": "product-management/LICENSE",
+      "gitBlobSha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "inspection": "Complete scoped license read during admission"
+    }
+  ],
+  "packaging": {
+    "intent": "Complete core plus eight references; routed siblings separately selected.",
+    "synthesize-research": "Selected skill, local connector explanation and scoped product-management license. Document connector-link-only adapter prominently in installed SKILL.md. No applicable NOTICE in pinned inventory.",
+    "adaptedPayloads": "Independently written, MIT; no upstream files copied."
+  }
+}

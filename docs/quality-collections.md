@@ -15,6 +15,8 @@ The [frontend-quality collection](../collections/frontend-quality.yaml) contains
 
 Start with the requested screen, flow and acceptance criteria. Apply relevant performance guidance during implementation, observe the rendered behavior at the sizes and states that matter, critique concrete findings, then fix and verify the result. Skip procedures that do not affect the task; do not add a second frontend-design skill if the host already supplies one.
 
+For visual direction and focused design engineering, select from the separate [frontend design options](frontend-design-options.md). They are alternatives with explicit experimental and dependency limits; the collection does not install or activate them together.
+
 For UX critique, begin with the documented Standard review in chat. The entry discloses local citation-count recording and its disable switch. Figma writes require a separately authorized connection; experimental Apply Mode and the incomplete HTML output are not implied by this collection. Prefer the documented serial option when additional workers are not wanted.
 
 Example after selecting the appropriate entries:

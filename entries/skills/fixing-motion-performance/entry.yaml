@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: fixing-motion-performance
+type: skill
+title: Animation performance review (Ibelick)
+summary: Audits animation drivers, layout read/write batching, scroll-linked work, paint and layer costs, blur and offscreen loops. Prefers cheaper rendering work within the existing animation library and reports concrete code-level fixes.
+useWhen: Diagnosing janky web animation or reviewing animation performance without migrating libraries or changing visual intent.
+tags:
+  - animation
+  - performance
+  - frontend
+  - browser
+  - code-review
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Complete entrypoint and MIT license reviewed. Useful mechanism and measurement checks; width-to-transform example is not a semantics-preserving recipe, and property acceleration varies by browser. Profiling must confirm performance. No runtime or device evaluation.
+source:
+  kind: linked
+  url: https://github.com/ibelick/ui-skills
+  path: skills/fixing-motion-performance
+  revision: df4eb34c5dee830e8e36490d6fde3451c187339b
+  retrieved: 2026-10-28
+  license: MIT
+  author: Julien Thibeaut
+  notes: Standalone prompt with no mandatory tool installation. Preserve layout, pointer and focus semantics when changing properties; confirm any acceleration claim on supported browsers/devices.
+install:
+  any: Fetch https://github.com/ibelick/ui-skills at df4eb34c5dee830e8e36490d6fde3451c187339b. Copy the entire skills/fixing-motion-performance subtree into .claude/skills/fixing-motion-performance for Claude Code or .agents/skills/fixing-motion-performance for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: React performance guidance and browser profilers overlap measurement. emil-design-eng addresses interaction craft; remove-animations addresses whether motion should remain. This focuses on rendering cost within the existing system.
+related:
+  - remove-animations
+  - emil-design-eng
+  - webapp-testing

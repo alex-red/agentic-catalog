@@ -6,7 +6,7 @@
 
 A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
-**Status: experimental.** 70 entries across seven types, plus seven collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
+**Status: experimental.** 87 entries across seven types, plus seven collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
 
 **[Browse the catalog online](https://alex-red.github.io/agentic-catalog/)**: search, filter, and read every entry's rating, provenance, and source files.
 
@@ -50,6 +50,10 @@ Each entry lives in `entries/<type>s/<id>/` with an `entry.yaml` and, unless it 
 [Collections](collections/) group entries that work together: `starter`, `self-improvement`, `debugging`, `project-upkeep`, `project-initialization`, `frontend-quality`, and `security-review`. The [lightweight project initialization guide](docs/project-initialization.md) explains its research-to-verification sequence and optional companions. The [frontend and security guide](docs/quality-collections.md) describes when to use each quality method and its installation prerequisites.
 
 For Rust, the [verification ladder](entries/workflows/rust-verification-ladder/WORKFLOW.md) selects checks for the change, while [Tokio async correctness](entries/skills/tokio-async-correctness/SKILL.md) targets cancellation, capacity and task shutdown.
+
+For visual design, the [frontend design options](docs/frontend-design-options.md) compare twelve selectable entries from eight sources, including experimental alternatives and their complete installation requirements.
+
+For research and task usability, the [UI/UX workflow options](docs/ux-workflow-options.md) distinguish participant studies, existing-research synthesis, interface critique, a bounded decision workflow and the experimental Intent system.
 
 ## Browse
 

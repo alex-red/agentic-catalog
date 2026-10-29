@@ -249,6 +249,36 @@ The general workflow separates package, task and release graphs, conservative af
 
 Ten disposable fixture checks passed on Bun 1.4.3, including current filtered-add support, consumer-scoped imports, dependency order, catalog resolution, clean frozen installation and local packing. They do not establish agent outcomes, cross-platform behavior, lifecycle readiness, cache correctness or deployment success. The catalog now has 64 entries, including 29 skills and eight workflows, with seven collections. No upstream skill expression or executable is copied, and all prior research holds remain unless explicitly resolved in the new report.
 
+## 38. Admit explicitly selected frontend design alternatives (2026-10-28)
+
+Following the user's request to add all eight ranked sources from the [frontend design research](research/2026-10-28-catalog-scout-9.md), added twelve linked entries: `frontend-design`, `impeccable`, `emil-design-eng`, `remove-animations`, `design-taste-frontend`, `ui-ux-pro-max`, `interface-design`, `better-typography`, `interface-review`, `baseline-ui`, `fixing-accessibility` and `fixing-motion-performance`. All start at `reviewed`. Eleven are experimental; Anthropic is a normal upstream baseline alternative for hosts without an existing equivalent. The [admission record](research/2026-10-28-design-admission.md) and [selection guide](frontend-design-options.md) describe their distinct jobs and limitations.
+
+This explicit selection changes the prior admission disposition for these named candidates, not the underlying technical findings. Link them as choices with conservative ratings instead of implying that full runtime, reference-chain or outcome reviews have passed. Interface Design's incorrect target-size/control wording, stale animation generalizations, competing house policies and the larger systems' unaudited runtime scope remain disclosed. The proposed independent motion-reduction adaptation is not silently substituted for the original linked skill. Vercel remote-instruction loading, Uizze provenance and the other unranked holds remain unchanged.
+
+Pins identify the last commit affecting each artifact; all twelve entrypoints and license files were checked against those exact pins. Linked installation retains complete subtrees and licenses. UI/UX Pro Max uses an installed-script-path adapter, avoiding a plugin-only variable and the broad sibling-installing CLI. Interface review explicitly requires its eight-skill bundle; manual Impeccable setup is scoped refinement and does not claim to provide named agents, hooks or the full command suite. No upstream file is vendored or edited.
+
+These alternatives do not become an install-all collection. Existing project conventions, accepted design systems and authorization retain authority. No consumer skill, dependency, engine, external connection, hook or additional worker is activated by catalog admission. Generated indexes are rebuilt from source; checks do not raise evidence levels. The catalog now has 76 entries, including 41 skills, twelve experimental entries in total, one custom entry and seven collections.
+
+## 39. Add evidence-focused UI/UX methods and a bounded workflow (2026-10-29)
+
+Following the user's request to add the [UI/UX research selections](research/2026-10-29-catalog-scout.md), added linked `intent` and `synthesize-research`, adapted `moderated-usability-study`, and adapted workflow `evidence-to-flow-ux`. Reuse the existing `ux-critique` without changing its pin, rating or payload requirements. The [selection guide](ux-workflow-options.md) distinguishes each job; the [admission record](research/2026-10-29-ux-admission.md) retains review and evidence limits.
+
+Intent enters as an explicitly selected linked experiment, with incomplete wider resource review disclosed. Its complete core includes eight references; specialists require separate selection and review. Do not install the whole eighteen-skill system, six agents or platform configuration merely because the router mentions them. Anthropic synthesis uses the product-management source, its complete connector reference and its verified scoped Apache-2.0 license. Standalone installation explicitly rebases the connector link and records that packaging modification; the anomalous root license remains a research observation rather than being substituted for the scoped license.
+
+The study method is independently written instead of patching or adopting the upstream helpers. It keeps task neutrality, real participant evidence and traceable observations while omitting fixed sample guarantees and calculators. The workflow branches by available evidence, preserves observation/hypothesis boundaries and stops at a supported decision or named evidence gap. Both adapted payloads are self-contained and require no other catalog entry.
+
+All four start at `reviewed`. Structural checks do not establish better UX outcomes. No consumer skill, collection, participant contact, recording, publication, tool connection, hook or additional worker is activated. The catalog now has 80 entries, including 44 skills, nine workflows, thirteen experimental entries in total, one custom entry and seven collections.
+
+## 40. Adapt Apple's interface principles into a portable design method (2026-10-29)
+
+Following the user's approval of the [research proposal](research/2026-10-29-apple-inspired-interface-skill.md), admitted adapted `human-interface-design`, titled Human-centered interface design, at `reviewed`. Its concise core and three conditional references connect task structure, navigation, state, recovery, visual hierarchy, accessibility and verification. Web, handheld and desktop adaptations preserve product identity and target-platform conventions; other interactive surfaces reuse the core questions and consult specialized platform guidance when needed.
+
+The method is independently written MIT prose with Apple and supporting standards recorded as inspiration. No Apple wording, assets, fonts, symbols, code or remote instruction loader is shipped. Familiar controls, system typography, expressive branding and appropriate density remain legitimate choices. References are self-contained; related catalog entries are optional. The skill introduces no persistent project-file convention, runtime dependency or consumer integration.
+
+The [admission record](research/2026-10-29-human-interface-design-admission.md) retains a small independent design-specification comparison with installed frontend-design. Both answers addressed the major task and recovery risks; no superiority was demonstrated. That one-run qualitative exercise does not establish activation, implementation quality, user outcomes or matched host performance. Eight trigger cases are prepared but unrun. Evidence remains `reviewed`, and ratings are curator judgments.
+
+Indexes are regenerated from source. No existing entry or collection is replaced, and no consumer skill is installed or workflow activated. The catalog now has 81 entries, including 45 skills, nine workflows, thirteen experimental entries, one custom entry and seven collections.
+
 ## 41. Distill MMORPG research into a focused design skill (2026-10-29)
 
 Following the user's request to turn the session's MMORPG and MapleStory investigation into a skill, added adapted `mmorpg-design`, titled Persistent-world systems design. Its core traces mechanics through incentives, behavior, effects on other players and long-term consequences. A conditional reference retains primary sources, historical pacing, trade restrictions, account investment and comparison questions for Ragnarok Online, Dungeon Fighter Online and Guild Wars 2.
@@ -257,7 +287,7 @@ The skill uses independently written MIT prose. It distinguishes documented mech
 
 Overlap was checked against the available host skills and catalog metadata. Native reasoning, grilling and research methods cover adjacent work; no MMORPG-specific equivalent was present. The entry adds domain-specific decision criteria without requiring another skill, runtime, tool connection or persistence convention. It is admitted at `reviewed`, with conservative usefulness for typical software projects; no activation trial, gameplay experiment or matched agent-outcome improvement is claimed.
 
-All installable files, the research reference and license live inside the entry directory. Admission does not install the skill into a consumer project or personal skill directory. The catalog now contains 65 entries, including 30 skills, and seven collections; no collection or plugin manifest changes.
+All installable files, the research reference and license live inside the entry directory. Admission does not install the skill into a consumer project or personal skill directory. The catalog now contains 82 entries, including 46 skills, and seven collections; no collection or plugin manifest changes.
 
 ## 42. Copy installation handoffs from every catalog page (2026-10-29)
 
@@ -273,7 +303,7 @@ The methods are self-contained MIT prose with immutable inspiration and explicit
 
 The browser now supports a Game design topic category derived from the existing `game-design` tag. It has a dedicated primary tree group and a Category filter that composes with existing filters. Entry types and installation routes remain unchanged. Featured remains an additional listing; Custom and Experimental keep their existing placement priority. A topic category is not a new entry type or an install-all collection.
 
-Generated indexes are rebuilt from source, and the [selection guide](game-design-options.md) explains each method. The catalog now has 70 entries, including 32 skills and 11 workflows, with seven collections. Category tests, a site build and local browser verification assess implementation; they do not establish improved gameplay or agent outcomes.
+Generated indexes are rebuilt from source, and the [selection guide](game-design-options.md) explains each method. The catalog now has 87 entries, including 48 skills and 12 workflows, with seven collections. Category tests, a site build and local browser verification assess implementation; they do not establish improved gameplay or agent outcomes.
 
 ## 44. Admit explicitly selected reverse-engineering alternatives (2026-10-29)
 
@@ -283,10 +313,46 @@ Explicit selection permits listing these alternatives without claiming their pri
 
 The exact requested `reverse_engineering` tag uses a separate tag schema accepting single hyphen or underscore separators. Entry and relation IDs keep their hyphen-only convention. Tests preserve that distinction and reject malformed tags. This is a searchable tag, not a new entry type, topic category or install-all collection.
 
-The recovered RE report now uses a descriptive filename after a shared-workspace dated-filename collision; the existing game-design report and its links are preserved. Generated indexes are rebuilt from source. The catalog now contains 76 entries, including 34 skills, six MCP servers, seven experimental entries, one custom entry and seven collections. No plugin manifest or version changes.
+The recovered RE report now uses a descriptive filename after a shared-workspace dated-filename collision; the existing game-design report and its links are preserved. Generated indexes are rebuilt from source. The catalog now contains 93 entries, including 50 skills, six MCP servers, nineteen experimental entries, one custom entry and seven collections. No plugin manifest or version changes.
 
 ## 45. Add a global catalog command palette (2026-10-29)
 
 The catalog browser exposes a Commands button and Cmd/Ctrl+K shortcut. An empty query offers overview navigation, filter reset, Codex and Claude Code browsing, About, installation review when a selection exists, the starter collection and up to four featured non-experimental entries. Installation review only opens the existing preview; palette actions do not select or install entries.
 
 Search covers all entries and collections independently of sidebar filters, matching every query word across titles, IDs, summaries, use cases, tags and hosts. Title matches rank first, with curator score as an entry tie-breaker. Results are capped at thirty with an accessible count and narrowing hint. The native modal contains a combobox/listbox with arrow navigation, Enter activation, Escape dismissal and focus restoration; page shortcuts ignore the palette. The existing slash shortcut still focuses sidebar search.
+
+## 46. Refine catalog browsing and entry inspection across window sizes (2026-10-29)
+
+Applied the supplied Human-centered interface design method to the existing catalog workbench. At the initial 950 CSS-pixel window, the header squeezed search to about 51 pixels and overflowed its width; fixed minimum inspector columns also caused horizontal scrolling. The header now reflows before crowding, inspector cards adapt to available space, long source controls remain contained, and light-theme badge text and subtle labels use darker colors. The existing typography, source action, metadata and navigation categories remain in place.
+
+On narrow screens, Browse catalog exposes the list while entry selection collapses it and focuses the details. Search reopens browsing. Entry shortcuts reach installation, source files and review details without changing the route. Skip navigation, consistent focus outlines, native pressed-button groups, selection focus retention and preserved visible folder folds support keyboard use. Filter reset restores search focus without rebuilding the current entry; Escape retains the entry route, and arrow-key entry navigation is scoped to the catalog list or page background so reading controls keep their normal scrolling behavior. Reduced-motion preferences suppress decorative transitions.
+
+File changes clear stale content and disable copying until the selected file loads. Missing files explain how to recover; rejected loads expose Retry; clipboard rejection offers manual copying. A scoped status announces file feedback instead of treating the entire detail pane as a live region. Explicit hidden styling prevents flex controls from accidentally displaying hidden recovery actions.
+
+Browser checks exercised desktop and narrow layouts, disclosure and entry focus, keyboard selection, folded groups, empty-search reset, skip navigation, section shortcuts, host switching, file switching, browser Back, successful copying, missing-file recovery and command-palette dismissal. No browser console errors were recorded. Repository checks pass 104 tests; the production build passes. The initial sandboxed check failed on localhost fixture binding and passed with test-server permissions. Rejected network loads, denied clipboard permissions, a rendered light theme, screen-reader compatibility and participant comprehension were not tested; this pass makes no accessibility-conformance or measured-usability claim. The shared workspace's existing command-palette and catalog-content changes were preserved.
+
+## 47. Distill tagging research into a System design skill (2026-10-29)
+
+Following the user's request, admitted adapted `catalog-taxonomy` from the [tagging research](research/2026-10-29-catalog-tagging-research.md). It supplies a reusable method for concept identity, scoped facets, aliases, retrieval semantics and compatible vocabulary migrations. A conditional reference provides registry examples and migration detail; both it and the license live inside the skill directory. The method is independently authored from primary-source principles and requires no runtime, service or sibling skill.
+
+Overlap with native reasoning, the available host skill inventory, domain-modeling and human-interface-design is recorded in the entry. Evidence starts at `reviewed`: packaging and category checks do not establish activation, better retrieval or user outcomes. No independent behavioral trial was run.
+
+Added a System design browser topic from the `system-design` tag, preserving the underlying Skill type and install route. Topic filters and counts recognize every applicable category, independently of the existing single primary tree placement and Custom/Experimental priority. Existing entries were not retagged. This is a focused category addition, not adoption of the proposed registry, taxonomy migration or full discovery redesign.
+
+The catalog now has 94 entries, including 51 skills and seven collections. Generated indexes are rebuilt from source. No plugin manifest, version or consumer installation changes.
+
+## 48. Give native scrollbars a consistent workbench treatment (2026-10-29)
+
+Added a dedicated scrollbar stylesheet for the catalog's scroll surfaces. Fine-pointer environments use rounded inset handles inside fixed 14-pixel rails, a wider visible grip on hover, an accent while dragging, transparent resting tracks and distinct light-theme colors. Standards-based colors cover engines without the detailed WebKit selectors; touch-only and forced-color environments keep native styling. Standard colors are reset inside the detailed-style branch because they otherwise override it in Chromium; see the [browser styling guidance](https://developer.chrome.com/docs/css-ui/scrollbar-styling).
+
+Vertical panes reserve stable gutters and contain vertical overscroll; horizontal file and command strips contain horizontal overscroll and leave room for focus rings. Installation commands are focusable and labelled so keyboard users can scroll long lines. No replacement scrollbar widgets, wheel handlers, scroll animation or dependencies are introduced. Stable gutters follow [the browser's classic/overlay behavior](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-gutter).
+
+Local browser verification confirmed independent dragging of both main handles, horizontal arrow-key scrolling of installation commands and unchanged pane widths when filtering between overflowing results and an empty state. The sidebar retained 325 pixels of content width in both states. Dark-theme rendering and narrow layout are inspected in the in-app browser; other browser engines, rendered light/forced-color modes and physical touch input are not claimed as tested.
+
+## 49. Highlight Markdown and YAML source without a runtime dependency (2026-10-29)
+
+The file viewer applies a small lexical highlighter to `.md`, `.yaml` and `.yml` sources. Markdown headings, list/quote markers, strong text, links, inline code and fences get theme-aware colors; YAML keys, quoted strings, comments, literals and block scalars are distinguished. Markdown frontmatter and YAML fences use the YAML path. This remains a source viewer: links and embedded HTML are displayed as text, not rendered or activated.
+
+The highlighter escapes all source before generating a fixed set of span classes. Token text preserves original whitespace and line endings, while Copy file still uses the unmodified loaded string. Unsupported extensions, files above 200,000 characters and lines above 2,000 characters remain plain text. These bounds keep malformed and generated content inexpensive; the lexer is intentionally not a full Markdown or YAML parser. No grammar bundles, CDN requests or package dependencies are added; its standalone minified module measures about 2.4 KB before compression.
+
+Tests cover lossless text, frontmatter and fence context, quoted hashes, block scalar content, HTML injection escaping and size fallbacks. Browser checks cover Markdown/YAML switching and exact clipboard-to-source comparison. Dark/light palette rules and a forced-color fallback are included; only dark-theme rendering was visually inspected in the in-app browser.

@@ -1,11 +1,13 @@
 import data from "../../catalog/index.json";
 import "./styles.css";
+import "./scrollbars.css";
+import { highlightSource } from "./highlight";
 import { createCombobox, type ComboOption } from "./combobox";
 import { createCommandPalette } from "./command-palette";
 import type { SearchCommand } from "./command-search";
 import { canInstallHook, hookInstallCommand } from "./hook-install";
 import { installPrompt } from "./llm-prompt";
-import { belongsToTreeGroup, catalogCategories, categoryOf, matchesCategories } from "./categories";
+import { belongsToTreeGroup, catalogCategories, matchesCategories } from "./categories";
 import {
   CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
   type BulkHost, type BulkScope, type InstallConfig, type StepKind,
@@ -180,6 +182,30 @@ const introDialog = $<HTMLDialogElement>("#intro-dialog");
 const introToggle = $<HTMLButtonElement>("#intro-toggle");
 const introClose = $<HTMLButtonElement>("#intro-close");
 const treeToggleAllBtn = $<HTMLButtonElement>("#tree-toggle-all");
+const sidebar = $("#catalog-sidebar");
+const browseToggle = $<HTMLButtonElement>("#browse-toggle");
+const narrowLayout = matchMedia("(max-width: 700px)");
+
+function setCatalogExpanded(expanded: boolean) {
+  sidebar.classList.toggle("is-collapsed", !expanded);
+  browseToggle.setAttribute("aria-expanded", String(expanded));
+  browseToggle.textContent = expanded ? "Hide catalog" : "Browse catalog";
+}
+
+browseToggle.addEventListener("click", () => setCatalogExpanded(browseToggle.getAttribute("aria-expanded") !== "true"));
+// A deep link opens directly on the entry on small screens; browsing stays one press away.
+setCatalogExpanded(!narrowLayout.matches || !location.hash.startsWith("#/"));
+narrowLayout.addEventListener("change", () => setCatalogExpanded(!narrowLayout.matches || !route().item));
+list.addEventListener("click", (event) => {
+  if (narrowLayout.matches && (event.target as Element).closest("a.tree-item")) {
+    setCatalogExpanded(false);
+    viewer.focus({ preventScroll: true });
+  }
+});
+$(".skip-link").addEventListener("click", (event) => {
+  event.preventDefault();
+  viewer.focus();
+});
 
 const activeHosts = new Set<string>();
 const activeEvidence = new Set<string>();
@@ -264,7 +290,7 @@ function clearFilters() {
   clearInputBtn.hidden = true;
   renderControls();
   renderList();
-  renderViewer();
+  input.focus();
 }
 
 function visible(): Item[] {
@@ -373,7 +399,7 @@ const filterCombo = createCombobox({
   placeholder: "Filter by category, type or source…",
   host: sidebarControls,
   options: (): ComboOption[] => [
-    ...catalogCategories.map((category) => ({ value: `category:${category.id}`, label: category.label, group: "Category", count: countBy(categoryOf, category.id) })),
+    ...catalogCategories.map((category) => ({ value: `category:${category.id}`, label: category.label, group: "Category", count: items.filter((item) => matchesCategories(item, new Set([category.id]))).length })),
     ...typeOptions.map((t) => ({ value: `type:${t}`, label: kindLabels[t], group: "Type", count: countBy((i) => i.kind, t) })),
     ...sourceKinds.map((k) => ({ value: `source:${k}`, label: cap(k), group: "Source", count: countBy((i) => i.sourceKind, k) })),
     { value: HIDE_EXPERIMENTAL, label: "Hide experimental", group: "Show" },
@@ -438,6 +464,8 @@ function renderTokens() {
 
 function renderList() {
   const { item: current } = route();
+  const openGroups = new Map([...list.querySelectorAll<HTMLDetailsElement>("details.tree-group")]
+    .map((group) => [group.dataset.kind, group.open]));
   list.replaceChildren();
   const shown = visible();
 
@@ -447,9 +475,8 @@ function renderList() {
     if (group.length === 0) continue;
 
     const details = el("details", undefined, "tree-group");
-    // Keep groups open by default or if containing the active item
-    const hasActive = group.some((e) => e === current);
-    details.open = true;
+    details.dataset.kind = kind;
+    details.open = openGroups.get(kind) ?? true;
 
     const summary = el("summary", undefined, "tree-group-summary");
     const chevron = el("span", "▸", "tree-chevron");
@@ -497,9 +524,6 @@ function renderList() {
     details.append(treeItems);
     list.append(details);
 
-    if (hasActive) {
-      details.open = true;
-    }
   }
 
   if (shown.length === 0) {
@@ -531,6 +555,8 @@ function selectBox(item: Item): HTMLInputElement {
 }
 
 function selectionChanged() {
+  const focusedLabel = document.activeElement?.matches(".tree-check")
+    ? document.activeElement.getAttribute("aria-label") : null;
   // A collection stays recorded only while all of its members are selected.
   for (const id of selectedCollections) {
     const c = catalog.collections.find((c) => c.id === id);
@@ -539,6 +565,8 @@ function selectionChanged() {
   saveSelection();
   renderList();
   renderSelectionBar();
+  if (focusedLabel) [...list.querySelectorAll<HTMLInputElement>(".tree-check")]
+    .find((box) => box.getAttribute("aria-label") === focusedLabel)?.focus({ preventScroll: true });
 }
 
 const selectionBar = $("#selection-bar");
@@ -683,13 +711,13 @@ function renderBulkDialog(error?: string) {
   const out = el("div", undefined, "bulk-output");
   const bar = el("div", undefined, "bulk-output-bar");
   const tabs = el("div", undefined, "install-tabs");
-  tabs.setAttribute("role", "tablist");
+  tabs.setAttribute("role", "group");
+  tabs.setAttribute("aria-label", "Installation output format");
   const pre = el("pre", bulkTab === "script" ? script : yaml, "code-view bulk-code");
   for (const [tab, label] of [["script", SCRIPT_FILE], ["config", configPath(bulkScope)]] as const) {
     const b = el("button", label, "install-tab-btn");
     b.type = "button";
-    b.setAttribute("role", "tab");
-    b.setAttribute("aria-selected", String(bulkTab === tab));
+    b.setAttribute("aria-pressed", String(bulkTab === tab));
     b.onclick = () => {
       bulkTab = tab;
       renderBulkDialog();
@@ -985,8 +1013,12 @@ function retrievalNote(entry: CatalogEntry, className: string): HTMLElement | un
 
 function renderSourceViewer(title: string, files: string[], activeFile: string, caption?: HTMLElement) {
   const fileSection = el("div", undefined, "file-viewer-section");
+  fileSection.id = "entry-files";
+  fileSection.tabIndex = -1;
   const tabsBar = el("div", undefined, "file-tabs-bar");
   const tabsList = el("div", undefined, "file-tabs-list");
+  tabsList.setAttribute("role", "group");
+  tabsList.setAttribute("aria-label", "Source files");
   const tabButtons = new Map<string, HTMLButtonElement>();
 
   for (const f of files) {
@@ -1007,28 +1039,56 @@ function renderSourceViewer(title: string, files: string[], activeFile: string, 
   if (caption) fileSection.append(caption);
 
   const codeView = el("pre", "Loading…", "code-view");
-  fileSection.append(tabsBar, codeView);
+  codeView.tabIndex = 0;
+  codeView.setAttribute("aria-label", `${title} source content`);
+  const fileStatus = el("p", undefined, "file-status");
+  fileStatus.setAttribute("role", "status");
+  const retryBtn = el("button", "Retry loading file", "btn-action");
+  retryBtn.type = "button";
+  retryBtn.hidden = true;
+  fileSection.append(tabsBar, fileStatus, retryBtn, codeView);
   viewer.append(fileSection);
 
   let token = 0;
   showFile = (file) => {
     const mine = ++token;
-    for (const [f, btn] of tabButtons) btn.setAttribute("aria-selected", String(f === file));
+    for (const [f, btn] of tabButtons) btn.setAttribute("aria-pressed", String(f === file));
+    copyBtn.disabled = true;
+    copyBtn.onclick = null;
+    copyBtn.textContent = "Copy file";
+    fileStatus.textContent = "Loading file…";
+    codeView.textContent = "Loading…";
+    codeView.setAttribute("aria-busy", "true");
+    retryBtn.hidden = true;
     codeView.scrollTop = 0;
     const load = sources[file];
     if (!load) {
       codeView.textContent = `File content not found: ${file}`;
-      copyBtn.onclick = null;
+      codeView.setAttribute("aria-busy", "false");
+      fileStatus.textContent = "This file is unavailable. Choose another source file above.";
       return;
     }
     void load().then((text) => {
       if (mine !== token) return;
-      codeView.textContent = text;
+      codeView.innerHTML = highlightSource(text, file);
+      codeView.setAttribute("aria-busy", "false");
+      copyBtn.disabled = false;
+      fileStatus.textContent = "";
       copyBtn.onclick = async () => {
-        await navigator.clipboard.writeText(text);
-        copyBtn.textContent = "✓ Copied";
-        setTimeout(() => (copyBtn.textContent = "📋 Copy to Clipboard"), 1200);
+        try {
+          await navigator.clipboard.writeText(text);
+          if (mine === token) fileStatus.textContent = "File copied to clipboard.";
+        } catch {
+          if (mine === token) fileStatus.textContent = "Clipboard unavailable. Select the source text below and copy it manually.";
+        }
       };
+    }).catch(() => {
+      if (mine !== token) return;
+      codeView.textContent = "File could not be loaded.";
+      codeView.setAttribute("aria-busy", "false");
+      fileStatus.textContent = "Check your connection and retry, or choose another file.";
+      retryBtn.hidden = false;
+      retryBtn.onclick = () => showFile?.(file);
     });
   };
   showFile(activeFile);
@@ -1102,6 +1162,20 @@ async function renderViewer() {
   }
   titleRow.append(actions);
   header.append(titleRow);
+  const sections = el("div", undefined, "section-shortcuts");
+  sections.setAttribute("role", "group");
+  sections.setAttribute("aria-label", "Jump to entry section");
+  for (const [id, label] of [["entry-install", "Installation"], ["entry-files", "Source files"], ["entry-review", "Ratings & provenance"]]) {
+    const jump = el("button", `${label} ↓`, "btn-subtle");
+    jump.type = "button";
+    jump.onclick = () => {
+      const target = document.getElementById(id);
+      target?.scrollIntoView({ block: "start" });
+      target?.focus({ preventScroll: true });
+    };
+    sections.append(jump);
+  }
+  header.append(sections);
   viewer.append(header);
 
   // When to Use Callout
@@ -1113,6 +1187,8 @@ async function renderViewer() {
 
   // Curation & Rubric Grid
   const grid = el("div", undefined, "inspector-grid");
+  grid.id = "entry-review";
+  grid.tabIndex = -1;
 
   // Rubric Card
   const rubricCard = el("div", undefined, "inspector-card");
@@ -1192,21 +1268,25 @@ async function renderViewer() {
 
   // How to Install & Use Snippet Card
   const installCard = el("div", undefined, "install-card");
+  installCard.id = "entry-install";
+  installCard.tabIndex = -1;
   const installHead = el("div", undefined, "install-header");
   installHead.append(el("h4", "How to Install / Use"));
 
   const installTabs = el("div", undefined, "install-tabs");
+  installTabs.setAttribute("role", "group");
+  installTabs.setAttribute("aria-label", "Installation host");
   let selectedHost = (entry.hosts.includes("codex") && !entry.hosts.includes("claude-code") ? "codex" : "claude") as InstallHost;
 
   const claudeTab = el("button", "Claude Code", "install-tab-btn");
-  claudeTab.setAttribute("aria-selected", String(selectedHost === "claude"));
+  claudeTab.setAttribute("aria-pressed", String(selectedHost === "claude"));
   const codexTab = el("button", "Codex", "install-tab-btn");
-  codexTab.setAttribute("aria-selected", String(selectedHost === "codex"));
+  codexTab.setAttribute("aria-pressed", String(selectedHost === "codex"));
   const portableTab = el("button", "Portable", "install-tab-btn");
-  portableTab.setAttribute("aria-selected", String(selectedHost === "portable"));
+  portableTab.setAttribute("aria-pressed", String(selectedHost === "portable"));
 
   const skillsTab = el("button", "skills.sh", "install-tab-btn");
-  skillsTab.setAttribute("aria-selected", "false");
+  skillsTab.setAttribute("aria-pressed", "false");
   installTabs.append(claudeTab, codexTab, portableTab);
   if (entry.type === "skill") installTabs.append(skillsTab);
   installHead.append(installTabs);
@@ -1215,6 +1295,9 @@ async function renderViewer() {
   const initialSnippet = installSnippet(entry, selectedHost);
   const snippetBox = el("div", undefined, "code-snippet-box");
   const snippetText = el("code", initialSnippet.text, "code-snippet-text");
+  snippetText.tabIndex = 0;
+  snippetText.setAttribute("role", "region");
+  snippetText.setAttribute("aria-label", "Installation commands, scroll horizontally for long lines");
   const copySnippetBtn = el("button", "Copy", "btn-snippet-copy");
 
   copySnippetBtn.onclick = async () => {
@@ -1230,10 +1313,10 @@ async function renderViewer() {
 
   const updateSnippet = (host: InstallHost) => {
     selectedHost = host;
-    claudeTab.setAttribute("aria-selected", String(host === "claude"));
-    codexTab.setAttribute("aria-selected", String(host === "codex"));
-    portableTab.setAttribute("aria-selected", String(host === "portable"));
-    skillsTab.setAttribute("aria-selected", String(host === "skills"));
+    claudeTab.setAttribute("aria-pressed", String(host === "claude"));
+    codexTab.setAttribute("aria-pressed", String(host === "codex"));
+    portableTab.setAttribute("aria-pressed", String(host === "portable"));
+    skillsTab.setAttribute("aria-pressed", String(host === "skills"));
     const updated = installSnippet(entry, host);
     snippetText.textContent = updated.text;
     if (updated.note) {
@@ -1277,6 +1360,7 @@ function sync() {
 
 // Search and clear handling
 input.addEventListener("input", () => {
+  if (narrowLayout.matches) setCatalogExpanded(true);
   clearInputBtn.hidden = input.value.length === 0;
   renderControls();
   renderList();
@@ -1312,9 +1396,9 @@ window.addEventListener("keydown", (e) => {
       input.blur();
     } else {
       clearFilters();
-      location.hash = "";
     }
-  } else if ((e.key === "ArrowDown" || e.key === "ArrowUp") && !typing) {
+  } else if ((e.key === "ArrowDown" || e.key === "ArrowUp") && !typing &&
+    (e.target === document.body || list.contains(e.target as Node))) {
     const shown = [...list.querySelectorAll<HTMLAnchorElement>("a.tree-item")];
     const i = shown.findIndex((a) => a.getAttribute("aria-current") === "true");
     const next = shown[Math.min(shown.length - 1, Math.max(0, i + (e.key === "ArrowDown" ? 1 : -1)))];

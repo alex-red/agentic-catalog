@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: interface-design
+type: skill
+title: Product interface craft (Damola Akinleye)
+summary: Designs dashboards and product tools through domain exploration, hierarchy, semantic tokens, component reuse, interaction states and visual checks. Can preserve accepted patterns in .interface-design/system.md; separates product UI from marketing work.
+useWhen: Trying an opinionated product-UI workflow for dashboards, settings or admin tools, with persistent design decisions and explicit technical caveats.
+tags:
+  - design
+  - frontend
+  - dashboard
+  - design-system
+  - interaction
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 2
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: "Experimental due known errors: 44px WCAG wording omits level/exceptions; native selects are not categorically unstyleable. Main skill and license reviewed; separate plugin commands not fully audited. Domain exploration and token continuity are useful. No runtime or outcome evaluation."
+source:
+  kind: linked
+  url: https://github.com/Dammyjay93/interface-design
+  path: .claude/skills/interface-design
+  revision: 890d9295acdaf57891a20dc2499abfb4b8529784
+  retrieved: 2026-10-28
+  license: MIT
+  author: Damola Akinleye
+  notes: Core skill only; plugin commands are separate, optional workflows. Do not replace native controls merely because the source claims they cannot be styled. system.md persistence follows explicit selection and existing project authority.
+install:
+  any: Fetch https://github.com/Dammyjay93/interface-design at 890d9295acdaf57891a20dc2499abfb4b8529784. Copy the entire .claude/skills/interface-design subtree into .claude/skills/interface-design for Claude Code or .agents/skills/interface-design for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: Overlaps frontend-design, Impeccable Operate mode and existing component conventions. Adds product-domain exploration and a persistent system.md convention. Preserve native controls and established semantic tokens when they fit.
+related:
+  - frontend-design
+  - impeccable
+  - react-component-composition

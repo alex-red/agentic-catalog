@@ -1,0 +1,39 @@
+schemaVersion: 2
+id: frontend-design
+type: skill
+title: Frontend design direction (Anthropic)
+summary: Plans a subject-specific visual identity, compact color and type tokens, composition and functional copy before building. Reviews against the brief and rendered result, with restraint, responsive layout, focus and reduced-motion expectations.
+useWhen: Building a new interface or changing its visual identity when the host does not already provide equivalent frontend-design guidance.
+tags:
+  - design
+  - frontend
+  - typography
+  - visual-design
+hosts:
+  - any
+rating:
+  usefulness: 5
+  quality: 4
+  portability: 5
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Compact, brief-first baseline. Complete entrypoint and local Apache license read. The current version emphasizes restraint; older installed copies differ. Visual review depends on host browser support. Adds little when the host already supplies it. No activation or outcome comparison.
+source:
+  kind: linked
+  url: https://github.com/anthropics/skills
+  path: skills/frontend-design
+  revision: 41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f
+  retrieved: 2026-10-28
+  license: Apache-2.0
+  author: Anthropic
+  notes: Only the skill and its local LICENSE.txt are needed. Check the installed skill before copying; source versions can differ.
+install:
+  any: Fetch https://github.com/anthropics/skills at 41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f. Copy the entire skills/frontend-design subtree into .claude/skills/frontend-design for Claude Code or .agents/skills/frontend-design for Codex, preserving all nested files. Retain the local LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: Installed frontend-design and ordinary model design guidance overlap directly. ux-critique reviews findings; webapp-testing gathers runtime evidence. This is a selectable upstream baseline for hosts without it, not another layer to load alongside an existing copy.
+related:
+  - impeccable
+  - design-taste-frontend
+  - ux-critique
+  - webapp-testing

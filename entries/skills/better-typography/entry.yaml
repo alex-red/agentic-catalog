@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: better-typography
+type: skill
+title: Typography implementation review (Jakub Krehel)
+summary: Reviews font loading and synthesis, semantic type scales, wrapping, truncation, numeric alignment, OpenType features and bidi behavior. Writes fixes in the existing styling system and distinguishes source checks from rendered verification.
+useWhen: Fixing or reviewing typography implementation while preserving the project's typeface, styling system and accepted design decisions.
+tags:
+  - typography
+  - fonts
+  - frontend
+  - code-review
+  - accessibility
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Entrypoint, all six local typography references and agent metadata reviewed. Detailed implementation guidance; numeric floors and some rendering advice remain opinionated or version-sensitive. Sibling domain ownership is disclosed. No font/browser matrix or matched outcome trial.
+source:
+  kind: linked
+  url: https://github.com/jakubkrehel/skills
+  path: skills/better-typography
+  revision: 1eb03d2b145df1c6cd84ab54a337600a2a379017
+  retrieved: 2026-10-28
+  license: MIT
+  author: Jakub Krehel
+  notes: Copy the whole typography subtree, including six references and agents metadata. Sibling writing/accessibility/layout/color/UI skills own cross-domain work; install them only if selecting that broader review, otherwise report those domains outside this skill's scope.
+install:
+  any: Fetch https://github.com/jakubkrehel/skills at 1eb03d2b145df1c6cd84ab54a337600a2a379017. Copy the entire skills/better-typography subtree into .claude/skills/better-typography for Claude Code or .agents/skills/better-typography for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it.
+  notes: Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations.
+overlap: frontend-design chooses visual identity; this focuses on font and text-rendering implementation. ux-critique reviews broader usability. baseline-ui has brief typography rules but different constraints. Do not load both as competing global policies.
+related:
+  - interface-review
+  - frontend-design
+  - fixing-accessibility
