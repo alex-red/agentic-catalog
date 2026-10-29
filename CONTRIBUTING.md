@@ -12,7 +12,7 @@ $catalog-scout Survey the current skills and rules ecosystem, refresh our review
 
 It saves dated reports under `docs/research/`, building on prior research and admission decisions. Reports separate source-reviewed recommendations from candidates needing further inspection, preserve holds and exclusions, and identify existing entries worth revisiting. Scouting does not add or install entries. The maintainer skill is separate from the consumer-facing `agentic-catalog` plugin skill.
 
-1. Create `entries/<type>s/<id>/entry.yaml` following the [entry schema](catalog/schema/entry.schema.json). The ID must match the directory, and the type must match the parent folder.
+1. Create `entries/<type>s/<id>/entry.yaml` following the [entry schema](catalog/schema/entry.schema.json). The ID must match the directory, and the type must match the parent folder. Choose tags from the [tag vocabulary](catalog/tags.yaml); register a new term there, with a facet and definition, only when no existing term or alias fits.
 2. Add the payload unless the entry is linked:
 
    | Type | Primary file |

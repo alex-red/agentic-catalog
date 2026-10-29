@@ -4,7 +4,7 @@ type: skill
 title: Synthesize supplied user research (Anthropic)
 summary: Turns existing interview notes, survey responses and feedback into attributed themes, contradictions, conditional behavioral segments and decision-linked recommendations. Selects the product-management skill rather than the similarly named design-plugin template.
 useWhen: Existing research records need analysis into supported findings and product decisions, rather than preparing a new study or inspecting an interface.
-tags: [ux, research, synthesis, product-management, evidence]
+tags: [ux, user-research, synthesis, product-management]
 hosts: [any]
 rating:
   usefulness: 4

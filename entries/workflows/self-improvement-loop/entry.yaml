@@ -4,7 +4,7 @@ type: workflow
 title: Self-improvement loop
 summary: Capture what slowed a session down, place each lesson where it will take effect (hook, always-loaded line, skill, or script), check that it loads, and prune always-loaded instructions regularly. It composes the retrospective, hook, and AGENTS.md entries in this catalog.
 useWhen: You want the agent to learn from each session and write the lessons back into the project without bloating its instructions.
-tags: [self-improvement, retrospective, project-instructions, memory, context-hygiene]
+tags: [self-improvement, retrospective, project-instructions, memory, context]
 hosts: [any]
 rating:
   usefulness: 4

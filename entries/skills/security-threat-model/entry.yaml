@@ -4,7 +4,7 @@ type: skill
 title: Repository threat model
 summary: Write a repository-grounded threat model covering trust boundaries, assets, attacker capabilities, abuse paths, and prioritized mitigations. It checks key assumptions with the user before writing the report, and fires only when asked explicitly.
 useWhen: Someone explicitly asks for a threat model or abuse-path analysis of a codebase or service.
-tags: [security, threat-modeling, appsec]
+tags: [security, threat-modeling, architecture]
 hosts: [any]
 rating:
   usefulness: 3

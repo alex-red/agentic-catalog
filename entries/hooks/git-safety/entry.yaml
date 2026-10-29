@@ -6,6 +6,7 @@ summary: Heuristic pre-tool checks for direct main/master mutations, protected-b
 useWhen: A project forbids agents from modifying main/master or merging and closing GitHub items.
 tags:
   - git
+  - github
   - guardrails
   - pre-tool-use
 hosts:

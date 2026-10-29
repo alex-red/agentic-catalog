@@ -6,9 +6,9 @@ summary: Ghidra MCP integration for triage, focused code navigation and iterativ
 useWhen: Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration.
 tags:
   - reverse_engineering
-  - ghidra
   - binary-analysis
   - decompilation
+  - ghidra
 hosts:
   - any
 experimental: true

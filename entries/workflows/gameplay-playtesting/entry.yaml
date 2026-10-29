@@ -4,7 +4,7 @@ type: workflow
 title: Gameplay studies and observation workflow
 summary: Prepares and interprets focused gameplay tests, keeping implementation checks, design inspection and real-player evidence separate. Connects traceable observations to decisions and comparable retests without a studio runtime.
 useWhen: Planning gameplay studies, analyzing playtest notes or recordings, or exercising a playable build to investigate controls, learning, fairness, pacing or cooperation.
-tags: [game-design, playtesting, research, verification, workflow]
+tags: [game-design, playtesting, user-research, verification]
 hosts: [any]
 rating:
   usefulness: 2

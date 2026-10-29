@@ -7,6 +7,7 @@ useWhen: Agents delete or overwrite similarly capitalized paths on macOS, Window
 tags:
   - filesystem
   - data-loss
+  - guardrails
   - pre-tool-use
 hosts:
   - claude-code

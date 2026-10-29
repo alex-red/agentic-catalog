@@ -4,7 +4,7 @@ type: skill
 title: Prepare and analyze moderated usability studies
 summary: Creates realistic task scenarios, participant criteria, moderator guides and observation records, or synthesizes actual session evidence. Separates study preparation and inspection hypotheses from findings about real participants.
 useWhen: Preparing a study with real participants or analyzing its session records, especially when comprehension, findability or task behavior is unresolved.
-tags: [ux, research, usability, study-planning, evidence]
+tags: [ux, user-research, usability, study-planning]
 hosts: [any]
 rating:
   usefulness: 4

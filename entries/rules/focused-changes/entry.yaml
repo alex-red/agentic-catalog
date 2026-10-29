@@ -4,7 +4,7 @@ type: rule
 title: Focused changes
 summary: Make the smallest coherent change that satisfies the request, follow existing project patterns, and avoid unrelated cleanup or new dependencies without a concrete need.
 useWhen: Agents in your project tend to over-reach with refactors, new dependencies, or drive-by cleanup.
-tags: [scope, conventions, diff-size]
+tags: [scope, diff-size, conventions]
 hosts: [any]
 rating:
   usefulness: 3

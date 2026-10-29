@@ -4,7 +4,7 @@ type: skill
 title: Domain vocabulary and decision records
 summary: Sharpen business-domain terminology against the code, record resolved terms in a glossary, and offer short architecture decision records for consequential tradeoffs. Includes glossary and ADR formats, with a glossary map for projects with multiple contexts.
 useWhen: Discussing ambiguous codebase terminology, maintaining a domain glossary, or recording the reasoning behind a consequential architecture decision.
-tags: [domain-modeling, glossary, architecture, decisions, documentation]
+tags: [system-design, domain-modeling, glossary, architecture, decisions, documentation]
 hosts: [any]
 rating:
   usefulness: 3

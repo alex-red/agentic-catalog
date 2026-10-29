@@ -4,7 +4,7 @@ type: workflow
 title: Explore, plan, implement, review
 summary: Explore read-only and write a plan with a check for each step before editing. Implement against the plan, then have a fresh-context reviewer compare the diff with the plan and report only gaps in correctness or requirements.
 useWhen: A change spans several files, the approach is uncertain, or the agent will run long enough unattended that it should not grade its own work.
-tags: [planning, code-review, subagents, verification]
+tags: [planning, code-review, verification, subagents]
 hosts: [any]
 rating:
   usefulness: 5

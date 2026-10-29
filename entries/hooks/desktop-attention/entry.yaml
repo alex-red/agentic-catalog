@@ -6,7 +6,6 @@ summary: Sends a fixed local desktop notification when Claude Code needs permiss
 useWhen: You switch applications while agents work and miss permission or input prompts.
 tags:
   - notifications
-  - local
   - attention
 hosts:
   - claude-code

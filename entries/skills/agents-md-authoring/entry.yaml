@@ -4,7 +4,7 @@ type: skill
 title: Write and prune AGENTS.md
 summary: An on-demand guide for creating or auditing AGENTS.md and CLAUDE.md. It says what to include and exclude, how to structure nested and path-scoped files, and gives an approval-gated audit procedure that removes lines which do not change behavior.
 useWhen: Creating project instructions, or when they have grown long or the agent ignores them.
-tags: [project-instructions, agents-md, context-hygiene, monorepo]
+tags: [project-instructions, agents-md, context, monorepo]
 hosts: [any]
 rating:
   usefulness: 5

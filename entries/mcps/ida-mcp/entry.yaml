@@ -6,9 +6,9 @@ summary: Vendor-maintained MCP access to IDA databases through reference lookup,
 useWhen: Selecting an IDA analysis backend for compiled artifacts, particularly when starting a new integration or migrating from mrexodia-specific recipes.
 tags:
   - reverse_engineering
-  - ida
   - binary-analysis
   - decompilation
+  - ida
 hosts:
   - any
 experimental: true

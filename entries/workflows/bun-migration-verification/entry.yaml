@@ -4,7 +4,7 @@ type: workflow
 title: Bun migration and verification
 summary: Select package-manager, runtime, bundler and test-runner changes independently. Preserve lockfile inputs and local work, review lifecycle trust, verify clean installation and target behavior, and report scoped evidence with a recoverable rollback.
 useWhen: Initializing a Bun project or planning, implementing or reviewing a migration to Bun package management, runtime, bundling or testing.
-tags: [bun, javascript, typescript, migration, verification, package-management, testing]
+tags: [bun, javascript, typescript, migration, package-management, verification, testing]
 hosts: [any]
 rating:
   usefulness: 4

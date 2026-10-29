@@ -5,9 +5,9 @@ title: Animation performance review (Ibelick)
 summary: Audits animation drivers, layout read/write batching, scroll-linked work, paint and layer costs, blur and offscreen loops. Prefers cheaper rendering work within the existing animation library and reports concrete code-level fixes.
 useWhen: Diagnosing janky web animation or reviewing animation performance without migrating libraries or changing visual intent.
 tags:
+  - frontend
   - animation
   - performance
-  - frontend
   - browser
   - code-review
 hosts:

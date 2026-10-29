@@ -7,8 +7,8 @@ useWhen: Agents end turns with failing checks, or unattended sessions must not f
 tags:
   - verification
   - quality-gate
-  - stop-hook
   - autonomous-loop
+  - stop-hook
 hosts:
   - claude-code
   - codex

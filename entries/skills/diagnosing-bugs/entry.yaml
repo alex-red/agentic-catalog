@@ -4,7 +4,7 @@ type: skill
 title: Diagnosing bugs with a tight feedback loop
 summary: A six-phase loop for hard bugs. Build a fast, deterministic command that goes red on this exact bug, minimise the repro, rank falsifiable hypotheses, instrument with tagged logs, fix behind a regression test at a real seam, and clean up. Includes secret redaction and a performance branch.
 useWhen: Hard, flaky, or performance bugs where the cause is not obvious and guessing has already failed.
-tags: [debugging, feedback-loop, reproduction, performance, regression]
+tags: [debugging, reproduction, regression, performance]
 hosts: [any]
 rating:
   usefulness: 5

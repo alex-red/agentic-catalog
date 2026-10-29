@@ -4,7 +4,7 @@ type: workflow
 title: Evidence-backed game balance analysis
 summary: Reviews combat, economy, progression and loot against explicit rules, targets and available evidence. Separates missing inputs, structural defects, uncertain acquisition distributions and observed player outcomes.
 useWhen: Assessing game balance from formulas, content data, progression requirements, loot rules or telemetry, and proposing bounded tuning experiments.
-tags: [game-design, balance, virtual-economies, progression, workflow]
+tags: [game-design, balance, virtual-economies, progression]
 hosts: [any]
 rating:
   usefulness: 2

@@ -5,11 +5,11 @@ title: Design refinement and variants (Impeccable)
 summary: Routes design work through Persuade, Operate, Read and Experience modes, with focused polish, critique, audit, typography and variant workflows. Uses a native engine, project context and optional browser, agent and hook integrations.
 useWhen: Explicitly trying a broad design-refinement workflow and accepting its engine setup, project artifacts and command-specific dependencies.
 tags:
-  - design
   - frontend
+  - design
+  - visual-design
   - design-review
-  - iteration
-  - experimental
+  - typography
 hosts:
   - claude-code
   - codex

@@ -4,7 +4,7 @@ type: skill
 title: Systematic debugging
 summary: Reproduce a failure, test a falsifiable hypothesis about its cause, apply a focused correction, and verify it, with a reference for intermittent and environment-specific failures.
 useWhen: A bug, failing test, crash, or regression needs a diagnosed fix rather than a symptom patch.
-tags: [debugging, diagnosis, regression, testing]
+tags: [debugging, reproduction, regression, testing]
 hosts: [any]
 rating:
   usefulness: 4

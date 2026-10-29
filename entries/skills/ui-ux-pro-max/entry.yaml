@@ -5,8 +5,8 @@ title: Searchable UI design guidance (UI UX Pro Max)
 summary: Searches local product patterns, styles, palettes, typography, charts and stack guidance using Python, with design-system generation and optional master/page persistence. Requires checking result relevance and preserves existing saved decisions by default.
 useWhen: Looking for product-specific design references or stack guidance and willing to verify the search results before applying or persisting them.
 tags:
-  - design
   - frontend
+  - design
   - design-system
   - typography
   - search

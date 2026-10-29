@@ -4,7 +4,7 @@ type: skill
 title: Retrospective to durable project guidance
 summary: After finished work, turn what slowed the session down into instructions, skills, scripts, or checks, each placed where a future session will actually load or run it, and verify that new skills trigger.
 useWhen: You want a self-improvement loop where an agent learns from a session and writes the lessons back into the project.
-tags: [self-improvement, retrospective, project-instructions, skill-triggering, memory]
+tags: [self-improvement, retrospective, project-instructions, skill-authoring, memory]
 hosts: [any]
 rating:
   usefulness: 4

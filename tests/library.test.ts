@@ -42,7 +42,7 @@ function addLinkedEntry(root: string, overrides: Record<string, unknown> = {}): 
   mkdirSync(directory, { recursive: true });
   writeFileSync(join(directory, 'entry.yaml'), stringify({
     schemaVersion: 2, id: 'example-plugin', type: 'plugin', title: 'Example plugin',
-    summary: 'An upstream plugin.', useWhen: 'Testing.', tags: ['example'], hosts: ['claude-code'],
+    summary: 'An upstream plugin.', useWhen: 'Testing.', tags: ['planning'], hosts: ['claude-code'],
     rating: { usefulness: 3, quality: 3, portability: 2, novelty: 3, evidence: 'reviewed', reviewed: '2026-10-20', notes: 'Test entry.' },
     source: { kind: 'linked', url: 'https://github.com/example/plugin', license: 'MIT', author: 'Example', retrieved: '2026-10-20' },
     ...overrides,
@@ -158,6 +158,40 @@ test('tags accept underscore separators without relaxing entry IDs or malformed 
   }
   updateYaml(root, metadataPath, (entry) => { entry.tags = ['reverse_engineering']; entry.id = 'systematic_debugging'; });
   assert.throws(() => loadCatalog(root), /must match pattern/u);
+});
+
+test('entry tags must come from the vocabulary, and every term must be in use', (context) => {
+  const root = sandbox(context);
+  updateYaml(root, metadataPath, (entry) => { entry.tags = ['debugging', 'debuging']; });
+  assert.throws(() => loadCatalog(root), /tag debuging is not registered/u);
+
+  const root2 = sandbox(context);
+  updateYaml(root2, 'catalog/tags.yaml', (vocabulary) => {
+    (vocabulary.terms as unknown[]).push({ id: 'placeholder', label: 'Placeholder', facet: 'keyword', definition: 'Nothing uses it.' });
+  });
+  assert.throws(() => loadCatalog(root2), /tag placeholder is not used by any entry/u);
+});
+
+test('tag vocabulary rejects names that resolve to two terms and malformed terms', (context) => {
+  const root = sandbox(context);
+  const terms = (data: Record<string, unknown>) => data.terms as Record<string, unknown>[];
+  // "Test Driven_Development" normalizes to the existing tdd alias.
+  updateYaml(root, 'catalog/tags.yaml', (vocabulary) => { terms(vocabulary).find((term) => term.id === 'testing')!.aliases = ['Test Driven_Development']; });
+  assert.throws(() => loadCatalog(root), /"test driven development" names both/u);
+
+  for (const [label, update] of [
+    ['missing definition', (term: Record<string, unknown>) => { delete term.definition; }],
+    ['unknown facet', (term: Record<string, unknown>) => { term.facet = 'category'; }],
+    ['empty aliases', (term: Record<string, unknown>) => { term.aliases = []; }],
+  ] as const) {
+    const other = sandbox(context);
+    updateYaml(other, 'catalog/tags.yaml', (vocabulary) => update(terms(vocabulary).find((term) => term.id === 'testing')!));
+    assert.throws(() => loadCatalog(other), /catalog\/tags\.yaml: /u, label);
+  }
+
+  const duplicate = sandbox(context);
+  updateYaml(duplicate, 'catalog/tags.yaml', (vocabulary) => { terms(vocabulary).push({ ...terms(vocabulary)[0] }); });
+  assert.throws(() => loadCatalog(duplicate), /Duplicate tag ID/u);
 });
 
 test('unknown entry folders are rejected', (context) => {

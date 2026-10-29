@@ -4,7 +4,7 @@ type: skill
 title: Test-driven development (red-green-refactor)
 summary: Strict red-green-refactor. Write one failing test, watch it fail for the right reason, write the minimum code to pass, and run the whole suite. A companion reference covers tests that name the break they catch and avoid testing mocks.
 useWhen: Projects with a runnable test suite where agents write tests after the fact, write tautological tests, or test mocks instead of behavior.
-tags: [tdd, testing, discipline, test-quality]
+tags: [testing, tdd, test-quality]
 hosts: [any]
 rating:
   usefulness: 4

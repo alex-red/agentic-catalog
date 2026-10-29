@@ -4,7 +4,7 @@ type: workflow
 title: Evidence-to-flow UX decision workflow
 summary: Connects a bounded product decision to task inspection, existing research or participant-study preparation, then a supported design change and proportionate retest. Keeps observations, hypotheses and human evidence distinct without requiring every stage.
 useWhen: Moving from a concrete task problem or research uncertainty to a design decision, authorized change and a retest that matches the claim.
-tags: [ux, research, interaction-design, workflow, verification]
+tags: [ux, user-research, usability, interaction-design, verification]
 hosts: [any]
 rating:
   usefulness: 4

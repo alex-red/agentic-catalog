@@ -7,7 +7,7 @@ useWhen: You want Claude Code's injected account-email context removed before a 
 tags:
   - privacy
   - context
-  - mod
+  - session-start
 hosts:
   - claude-code
 rating:

@@ -4,7 +4,7 @@ type: skill
 title: Persistent-world systems design
 summary: Turns MMORPG progression, combat, social and economy ideas into explicit incentives, tradeoffs and testable decisions. Includes a conditional MapleStory case-study reference with primary sources and evidence limits.
 useWhen: Designing or reviewing MMORPG mechanics, especially progression milestones, cooperative play, trading, account growth and recurring activities in MapleStory-like games.
-tags: [game-design, mmorpg, progression, social-design, virtual-economies, research]
+tags: [game-design, mmorpg, progression, social-design, virtual-economies]
 hosts: [any]
 rating:
   usefulness: 2

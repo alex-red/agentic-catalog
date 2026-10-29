@@ -4,7 +4,7 @@ type: skill
 title: Variant analysis (Trail of Bits)
 summary: Finds the other instances of a bug already found. It extracts the root cause, writes a pattern that matches only the known instance, generalizes one element at a time, and stops when more than half the matches are noise. Triage and a report template follow, with CodeQL and Semgrep starters for five languages.
 useWhen: A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs.
-tags: [security, code-review, semgrep, codeql, bug-hunting]
+tags: [security, code-review, bug-hunting, semgrep, codeql]
 hosts: [any]
 rating:
   usefulness: 3

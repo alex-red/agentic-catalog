@@ -4,7 +4,7 @@ type: plugin
 title: Compound Engineering
 summary: A cross-host plugin of about 36 skills built around brainstorm, plan, work, simplify, review, and compound. Its compound step writes each verified, non-obvious lesson to docs/solutions/, where later planning runs read it.
 useWhen: You want a complete, opinionated plan, review, and learn loop where every change leaves searchable lessons for the next task.
-tags: [self-improvement, planning, code-review, knowledge-capture, methodology]
+tags: [self-improvement, planning, code-review, memory, methodology]
 hosts: [claude-code, codex]
 rating:
   usefulness: 4

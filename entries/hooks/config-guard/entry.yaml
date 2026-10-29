@@ -7,6 +7,7 @@ useWhen: The agent must leave its own guardrail configuration to a human.
 tags:
   - security
   - configuration
+  - guardrails
   - pre-tool-use
 hosts:
   - claude-code

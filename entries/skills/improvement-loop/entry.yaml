@@ -4,7 +4,7 @@ type: skill
 title: Improvement loop (house prompt)
 summary: An explicitly invoked end-of-work loop. It gathers concrete stumbling blocks blamelessly, traces each to a root cause, writes prioritized improvement items with a done-when check, agrees on a short plan with the user, then improves the project's tooling in small reversible steps and verifies each change against the original stumbling block.
 useWhen: You want a deliberate, plan-first improvement pass after a piece of work, ending in tooling changes you approve and can verify.
-tags: [self-improvement, retrospective, tooling, planning, root-cause]
+tags: [self-improvement, retrospective, root-cause, tooling, planning]
 hosts: [any]
 custom: true
 featured: true

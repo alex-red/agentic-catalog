@@ -6,10 +6,11 @@ summary: Reviews a branch, pull request or uncommitted change for introduced and
 useWhen: Explicitly reviewing interface regressions in a change and accepting installation of the complete required domain-review bundle.
 tags:
   - frontend
-  - code-review
-  - regression
-  - accessibility
   - design
+  - design-review
+  - code-review
+  - accessibility
+  - regression
 hosts:
   - any
 experimental: true

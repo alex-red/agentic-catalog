@@ -4,7 +4,7 @@ type: skill
 title: Ponytail minimal-change mode
 summary: A session-wide "lazy senior developer" mode. Before writing code it checks whether the code needs to exist, then reuses the codebase, the standard library, the platform, and installed dependencies before adding anything new. It keeps validation and error handling, finishes every caller and test the change touches, and ends each reply with what was skipped. It has lite, full, and ultra levels.
 useWhen: You want to try a stronger push toward small diffs and reuse than a focused-changes rule gives, and are willing to compare the results yourself.
-tags: [scope, diff-size, reuse, simplicity, conventions]
+tags: [scope, diff-size, simplicity, reuse, conventions]
 hosts: [any]
 experimental: true
 rating:

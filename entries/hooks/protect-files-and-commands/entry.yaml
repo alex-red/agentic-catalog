@@ -5,9 +5,9 @@ title: Protect files and block destructive commands
 summary: A PreToolUse hook that blocks edits to protected paths (.env, lockfiles, .git/) and recursive force deletes, with a reason the agent can act on.
 useWhen: Agents run with broad edit or auto-approve permissions and you want a cheap extra guardrail against a few known-bad actions.
 tags:
-  - safety
   - guardrails
   - secrets
+  - data-loss
   - pre-tool-use
 hosts:
   - claude-code

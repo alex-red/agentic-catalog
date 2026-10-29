@@ -4,7 +4,7 @@ type: skill
 title: Grilling (design-tree interview)
 summary: Stress-test a plan by interviewing the user in rounds over a design tree. Each round asks every question that can be answered now, each with a recommended answer. The agent looks up facts itself, and nothing is acted on until shared understanding is confirmed.
 useWhen: Before building something ambiguous, when you want the agent to surface every open decision instead of silently assuming.
-tags: [requirements, planning, interviewing, design-review]
+tags: [requirements, planning, interviewing]
 hosts: [any]
 rating:
   usefulness: 4

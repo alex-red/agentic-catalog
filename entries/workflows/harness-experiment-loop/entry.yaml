@@ -4,7 +4,7 @@ type: workflow
 title: Harness experiment loop
 summary: Test changes to agent instructions, skills or helpers on repeatable tasks. Preserve an unchanged baseline, probe focused alternatives, compare execution evidence, rerun a selective composition and retain only supported lessons, with transfer checked separately.
 useWhen: Deciding whether a change to agent guidance addresses an observed recurring failure before making that guidance persistent.
-tags: [harness, self-improvement, evaluation, agent-guidance, verification]
+tags: [self-improvement, evaluation, project-instructions, skill-authoring, verification]
 hosts: [any]
 rating:
   usefulness: 3

@@ -5,10 +5,10 @@ title: Reduce unnecessary motion (Emil Kowalski)
 summary: Audits existing motion by purpose and frequency, then removes or reduces unnecessary animation while checking hidden start states, callbacks, delayed unmounts, focus timing and orphaned code. Reports deliberate keep decisions and proposed dependency cleanup.
 useWhen: An interface feels slow or over-animated and you want a focused motion-reduction pass that preserves interaction behavior.
 tags:
-  - animation
-  - interaction
-  - performance
   - frontend
+  - animation
+  - interaction-design
+  - performance
   - refactoring
 hosts:
   - any

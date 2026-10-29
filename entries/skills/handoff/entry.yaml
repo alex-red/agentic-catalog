@@ -4,7 +4,7 @@ type: skill
 title: Handoff document for a fresh session
 summary: An explicitly invoked skill that writes a handoff document for a fresh agent to continue the current work. It saves the document to the OS temporary directory, references existing specs, plans, ADRs, and commits instead of copying them, redacts secrets and personal data, suggests skills for the next session, and tailors the document to the next session's stated focus.
 useWhen: You are ending a long session and want a new session or another agent to continue the work without replaying the conversation.
-tags: [handoff, context, session, continuity, memory]
+tags: [handoff, context, memory]
 hosts: [any]
 rating:
   usefulness: 3

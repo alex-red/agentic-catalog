@@ -1,0 +1,739 @@
+# Controlled tag vocabulary. Every entry tag must be registered here; every term must be used.
+# Facets: topic (what area?), task (what job?), technology (what specific tool or stack?),
+# keyword (search-only specialist or hook-event term). Aliases are equivalent wording for lookup;
+# they never rename stored IDs. Type, hosts, provenance and evidence stay in their own entry fields.
+schemaVersion: 1
+terms:
+  # Topics
+  - id: accessibility
+    label: Accessibility
+    facet: topic
+    aliases: [a11y]
+    definition: Making interfaces, documents or games usable with assistive technology, keyboard input and varied perception.
+  - id: architecture
+    label: Software architecture
+    facet: topic
+    definition: Structure of code, components, packages or systems and the boundaries between them.
+  - id: context
+    label: Agent context
+    facet: topic
+    aliases: [context-hygiene, context window]
+    definition: What enters the agent's context window, its cost and what survives compaction or session boundaries.
+  - id: design
+    label: Design
+    facet: topic
+    definition: Visual and interface design of products and screens. Broader than visual-design; distinct from ux and frontend implementation.
+  - id: frontend
+    label: Frontend
+    facet: topic
+    definition: Building or reviewing web user interfaces in code. Distinct from design and ux, which may not involve implementation.
+  - id: game-design
+    label: Game design
+    facet: topic
+    definition: Designing, prototyping and evaluating gameplay, levels, systems and player experience. Drives the Game design browser category.
+  - id: memory
+    label: Persistent memory
+    facet: topic
+    aliases: [knowledge-capture]
+    definition: Persisting lessons, corrections or session state so later sessions can use them.
+  - id: privacy
+    label: Privacy
+    facet: topic
+    definition: Keeping personal data out of prompts, context or outputs.
+  - id: project-instructions
+    label: Project instructions
+    facet: topic
+    aliases: [claude-md]
+    definition: Always-loaded agent guidance such as AGENTS.md and CLAUDE.md, and the rules for writing or revising it.
+  - id: reverse_engineering
+    label: Reverse engineering
+    facet: topic
+    aliases: [reverse-engineering, reverse engineering]
+    definition: Recovering behavior and structure from existing software or hardware artifacts. Underscore spelling preserved per decision 44.
+  - id: security
+    label: Security
+    facet: topic
+    aliases: [appsec]
+    definition: Protecting systems, credentials and agent configuration from misuse or exposure.
+  - id: self-improvement
+    label: Self-improvement
+    facet: topic
+    definition: Turning session experience into durable changes to instructions, skills, tooling or checks.
+  - id: system-design
+    label: System design
+    facet: topic
+    definition: Designing models, vocabularies and structures that a system is built on. Drives the System design browser category.
+  - id: ux
+    label: User experience
+    facet: topic
+    aliases: [user experience]
+    definition: How people accomplish tasks through a product, studied through flows, evidence and usability. Distinct from visual design.
+
+  # Tasks
+  - id: code-review
+    label: Code review
+    facet: task
+    aliases: [code review]
+    definition: Inspecting code or a diff for actionable defects and maintainability concerns.
+  - id: debugging
+    label: Debugging
+    facet: task
+    aliases: [diagnosis]
+    definition: Finding and fixing the cause of a failure.
+  - id: design-review
+    label: Design review
+    facet: task
+    aliases: [critique, design critique]
+    definition: Critiquing an interface or flow against design and usability expectations. Not plan or architecture review.
+  - id: documentation
+    label: Documentation
+    facet: task
+    definition: Writing, maintaining or retrieving documentation.
+  - id: evaluation
+    label: Agent evaluation
+    facet: task
+    aliases: [evals]
+    definition: Measuring agent, skill or tool behavior on repeatable cases. Distinct from software testing.
+  - id: guardrails
+    label: Guardrails
+    facet: task
+    aliases: [safety]
+    definition: Blocking or gating risky agent actions before they take effect.
+  - id: planning
+    label: Planning
+    facet: task
+    definition: Producing or stress-testing a plan before implementation.
+  - id: refactoring
+    label: Refactoring
+    facet: task
+    definition: Restructuring existing code without changing its intended behavior.
+  - id: research
+    label: Technical research
+    facet: task
+    definition: Investigating a codebase, its sources and technical options. Studies of people use user-research.
+  - id: retrospective
+    label: Retrospective
+    facet: task
+    definition: Reviewing finished work to find what slowed it down.
+  - id: scope
+    label: Scope control
+    facet: task
+    definition: Keeping changes and actions within what the request and authorization cover.
+  - id: testing
+    label: Testing
+    facet: task
+    definition: Writing, running or protecting automated tests. Broader than tdd; narrower than verification.
+  - id: user-research
+    label: User research
+    facet: task
+    aliases: [user research, ux research]
+    definition: Studying real people through interviews, usability sessions, playtests or feedback synthesis.
+  - id: verification
+    label: Verification
+    facet: task
+    definition: Producing evidence that a change works where its effect appears, including tests, checks and running the app.
+
+  # Technologies
+  - id: agents-md
+    label: AGENTS.md
+    facet: technology
+    definition: The AGENTS.md project-instruction file format.
+  - id: apple
+    label: Apple platforms
+    facet: technology
+    definition: macOS and iOS binaries and tooling.
+  - id: browser
+    label: Browser
+    facet: technology
+    definition: Driving or measuring a real web browser.
+  - id: bun
+    label: Bun
+    facet: technology
+    definition: The Bun JavaScript runtime, package manager and test runner.
+  - id: cloudflare
+    label: Cloudflare
+    facet: technology
+    definition: Cloudflare's developer platform.
+  - id: codeql
+    label: CodeQL
+    facet: technology
+    definition: GitHub's CodeQL query language and analyzer.
+  - id: fast-check
+    label: fast-check
+    facet: technology
+    definition: The fast-check property-based testing library for JavaScript.
+  - id: frida
+    label: Frida
+    facet: technology
+    definition: The Frida dynamic instrumentation toolkit.
+  - id: ghidra
+    label: Ghidra
+    facet: technology
+    definition: The Ghidra reverse-engineering framework.
+  - id: git
+    label: Git
+    facet: technology
+    definition: Git version control operations.
+  - id: github
+    label: GitHub
+    facet: technology
+    aliases: [gh-cli, gh cli]
+    definition: GitHub and its gh command-line client.
+  - id: github-actions
+    label: GitHub Actions
+    facet: technology
+    definition: GitHub's CI service and its workflow logs.
+  - id: html
+    label: HTML
+    facet: technology
+    definition: HTML semantics and markup.
+  - id: hypothesis
+    label: Hypothesis
+    facet: technology
+    definition: The Hypothesis property-based testing library for Python.
+  - id: ida
+    label: IDA Pro
+    facet: technology
+    definition: Hex-Rays IDA disassembler and its databases.
+  - id: javascript
+    label: JavaScript
+    facet: technology
+    definition: The JavaScript language and ecosystem.
+  - id: lldb
+    label: LLDB
+    facet: technology
+    definition: The LLDB debugger.
+  - id: markdown
+    label: Markdown
+    facet: technology
+    definition: Markdown documents.
+  - id: mcp
+    label: Model Context Protocol
+    facet: technology
+    definition: Building or designing MCP servers. MCP entries are identified by their type, not this tag.
+  - id: nextjs
+    label: Next.js
+    facet: technology
+    definition: The Next.js React framework.
+  - id: playwright
+    label: Playwright
+    facet: technology
+    definition: The Playwright browser automation library.
+  - id: python
+    label: Python
+    facet: technology
+    definition: The Python language and ecosystem.
+  - id: react
+    label: React
+    facet: technology
+    definition: The React UI library.
+  - id: rust
+    label: Rust
+    facet: technology
+    definition: The Rust language and Cargo ecosystem.
+  - id: semgrep
+    label: Semgrep
+    facet: technology
+    definition: The Semgrep pattern-based static analyzer.
+  - id: tailwind
+    label: Tailwind CSS
+    facet: technology
+    definition: The Tailwind CSS utility framework.
+  - id: tokio
+    label: Tokio
+    facet: technology
+    definition: The Tokio asynchronous Rust runtime.
+  - id: typescript
+    label: TypeScript
+    facet: technology
+    definition: The TypeScript language.
+  - id: usb
+    label: USB
+    facet: technology
+    definition: USB devices and protocol captures.
+  - id: vue
+    label: Vue
+    facet: technology
+    definition: The Vue UI framework.
+  - id: workers
+    label: Cloudflare Workers
+    facet: technology
+    definition: Cloudflare's serverless Workers runtime.
+
+  # Search-only keywords
+  - id: animation
+    label: Animation
+    facet: keyword
+    aliases: [motion]
+    definition: Interface motion, its purpose, cost and removal.
+  - id: api-accuracy
+    label: API accuracy
+    facet: keyword
+    definition: Using current, version-correct library APIs.
+  - id: api-compatibility
+    label: API compatibility
+    facet: keyword
+    definition: Preserving public API and semver compatibility.
+  - id: api-integration
+    label: API integration
+    facet: keyword
+    definition: Wrapping external APIs for agent use.
+  - id: application-analysis
+    label: Application analysis
+    facet: keyword
+    definition: Investigating packaged applications across formats.
+  - id: assumptions
+    label: Surfacing assumptions
+    facet: keyword
+    definition: Stating assumptions explicitly before acting on them.
+  - id: async
+    label: Async correctness
+    facet: keyword
+    definition: Ownership and lifetimes of asynchronous work.
+  - id: attention
+    label: Attention alerts
+    facet: keyword
+    definition: Telling the user when the agent is waiting for them.
+  - id: authorization
+    label: Authorization
+    facet: keyword
+    definition: Acting only within the permission the user has granted.
+  - id: audit
+    label: Change auditing
+    facet: keyword
+    definition: Making configuration changes visible after the fact for review.
+  - id: autonomous-loop
+    label: Autonomous loop
+    facet: keyword
+    definition: Agents running repeatedly without a human prompt between iterations.
+  - id: backpressure
+    label: Backpressure
+    facet: keyword
+    definition: Bounding work in flight, in queues or across loop iterations.
+  - id: balance
+    label: Game balance
+    facet: keyword
+    definition: Tuning combat, economy and progression numbers against targets.
+  - id: binary-analysis
+    label: Binary analysis
+    facet: keyword
+    definition: Inspecting compiled executables and libraries.
+  - id: budgets
+    label: Budgets
+    facet: keyword
+    definition: Capping how much an agent can spend or spawn.
+  - id: bug-hunting
+    label: Bug hunting
+    facet: keyword
+    definition: Searching code for undiscovered defects.
+  - id: build-systems
+    label: Build systems
+    facet: keyword
+    definition: Task graphs, build ordering and tooling.
+  - id: caching
+    label: Caching
+    facet: keyword
+    definition: Build or task cache restoration and invalidation.
+  - id: cancellation
+    label: Cancellation
+    facet: keyword
+    definition: Stopping obsolete or abandoned work safely.
+  - id: ci
+    label: Continuous integration
+    facet: keyword
+    definition: Automated checks run on pushes and pull requests.
+  - id: compaction
+    label: Compaction
+    facet: keyword
+    definition: Context summarization when a session grows long.
+  - id: completion-claims
+    label: Completion claims
+    facet: keyword
+    aliases: [honesty]
+    definition: Reporting done, fixed or passing only with evidence, and naming what remains unchecked.
+  - id: components
+    label: UI components
+    facet: keyword
+    definition: Component contracts, variants and feedback.
+  - id: composables
+    label: Composables
+    facet: keyword
+    definition: Vue composition functions.
+  - id: concurrency
+    label: Concurrency
+    facet: keyword
+    definition: Correctness of concurrent or parallel execution.
+  - id: config-change
+    label: ConfigChange event
+    facet: keyword
+    definition: The hook event fired when settings or skills change.
+  - id: configuration
+    label: Agent configuration
+    facet: keyword
+    definition: Agent settings, hooks, MCP and plugin configuration.
+  - id: conventions
+    label: Project conventions
+    facet: keyword
+    definition: Following or setting a project's established patterns.
+  - id: corrections
+    label: User corrections
+    facet: keyword
+    definition: Capturing when the user corrects the agent.
+  - id: cross-platform
+    label: Cross-platform
+    facet: keyword
+    definition: Adapting one design across web, mobile and desktop.
+  - id: dashboard
+    label: Dashboards
+    facet: keyword
+    definition: Data-dense product tools and dashboards.
+  - id: data-loss
+    label: Data loss prevention
+    facet: keyword
+    definition: Preventing destructive deletes and overwrites.
+  - id: decisions
+    label: Decision records
+    facet: keyword
+    aliases: [adr]
+    definition: Architecture decision records.
+  - id: decompilation
+    label: Decompilation
+    facet: keyword
+    definition: Recovering source-like code from binaries.
+  - id: dependencies
+    label: Dependencies
+    facet: keyword
+    definition: Declaring and resolving package dependencies.
+  - id: design-system
+    label: Design systems
+    facet: keyword
+    definition: Tokens, components and saved design decisions reused across screens.
+  - id: diagnostics
+    label: Diagnostics
+    facet: keyword
+    definition: Fast typecheck or lint feedback after edits.
+  - id: diff-size
+    label: Diff size
+    facet: keyword
+    definition: Keeping changes small and surgical.
+  - id: discovery
+    label: Discovery
+    facet: keyword
+    definition: Finding resources in a catalog or registry.
+  - id: domain-modeling
+    label: Domain modeling
+    facet: keyword
+    definition: Business-domain terminology reflected in code.
+  - id: encounters
+    label: Encounter design
+    facet: keyword
+    definition: Placing challenges within playable spaces.
+  - id: error-handling
+    label: Error handling
+    facet: keyword
+    definition: Surfacing rather than swallowing failures.
+  - id: experimentation
+    label: Experimentation
+    facet: keyword
+    definition: Scoped experiments with keep, revise or stop decisions.
+  - id: false-positives
+    label: False positives
+    facet: keyword
+    definition: Filtering low-confidence review findings.
+  - id: feedback
+    label: Gameplay feedback
+    facet: keyword
+    definition: Audiovisual response to player actions. Not feedback loops in debugging.
+  - id: filesystem
+    label: Filesystem
+    facet: keyword
+    definition: Filesystem behavior such as case sensitivity.
+  - id: formatting
+    label: Code formatting
+    facet: keyword
+    definition: Running formatters on edited files.
+  - id: fuzzing
+    label: Fuzzing
+    facet: keyword
+    definition: Generated-input testing for crashes and invariants.
+  - id: game-feel
+    label: Game feel
+    facet: keyword
+    definition: Responsiveness and readability of player actions.
+  - id: glossary
+    label: Glossary
+    facet: keyword
+    definition: Recorded definitions of resolved terms.
+  - id: handoff
+    label: Session handoff
+    facet: keyword
+    aliases: [continuity]
+    definition: Passing current work to a fresh session.
+  - id: hardware
+    label: Hardware
+    facet: keyword
+    definition: Physical devices and capture equipment.
+  - id: information-architecture
+    label: Information architecture
+    facet: keyword
+    definition: Organizing and labeling content for navigation and findability.
+  - id: interaction-design
+    label: Interaction design
+    facet: keyword
+    aliases: [interaction]
+    definition: How interface controls, states and transitions respond to people.
+  - id: interviewing
+    label: Interviewing
+    facet: keyword
+    definition: Asking structured questions to resolve requirements.
+  - id: keyboard
+    label: Keyboard access
+    facet: keyword
+    definition: Keyboard operation and focus management.
+  - id: level-design
+    label: Level design
+    facet: keyword
+    definition: Maps, traversal and playable space layout.
+  - id: libraries
+    label: Library documentation
+    facet: keyword
+    definition: Third-party library references and examples.
+  - id: logging
+    label: Logging
+    facet: keyword
+    definition: Log output and what it serializes.
+  - id: long-running
+    label: Long-running work
+    facet: keyword
+    definition: Work that spans many sessions or iterations.
+  - id: methodology
+    label: Development methodology
+    facet: keyword
+    definition: An end-to-end opinionated development process.
+  - id: migration
+    label: Migration
+    facet: keyword
+    definition: Moving a project between tools or versions.
+  - id: mmorpg
+    label: MMORPG
+    facet: keyword
+    definition: Persistent online multiplayer worlds.
+  - id: monorepo
+    label: Monorepo
+    facet: keyword
+    definition: Repositories containing several packages.
+  - id: notifications
+    label: Notifications
+    facet: keyword
+    definition: Desktop or system notifications.
+  - id: observability
+    label: Observability
+    facet: keyword
+    definition: Measuring and exposing runtime or agent behavior.
+  - id: onboarding
+    label: Onboarding
+    facet: keyword
+    definition: Getting oriented in an unfamiliar repository.
+  - id: package-management
+    label: Package management
+    facet: keyword
+    definition: Installing packages and maintaining lockfiles.
+  - id: performance
+    label: Performance
+    facet: keyword
+    definition: Speed, rendering cost and resource use.
+  - id: platformers
+    label: Platformers
+    facet: keyword
+    definition: Platform-based games and traversal.
+  - id: playtesting
+    label: Playtesting
+    facet: keyword
+    definition: Observing players with a game build.
+  - id: post-tool-use
+    label: PostToolUse event
+    facet: keyword
+    definition: The hook event fired after a tool call completes.
+  - id: pre-tool-use
+    label: PreToolUse event
+    facet: keyword
+    definition: The hook event fired before a tool call runs.
+  - id: product-management
+    label: Product management
+    facet: keyword
+    definition: Turning evidence into product decisions.
+  - id: progression
+    label: Progression
+    facet: keyword
+    definition: Player advancement systems.
+  - id: project-setup
+    label: Project setup
+    facet: keyword
+    definition: Choosing the technical foundation for a new project.
+  - id: property-based-testing
+    label: Property-based testing
+    facet: keyword
+    aliases: [pbt]
+    definition: Tests that assert properties over generated inputs.
+  - id: protocol-analysis
+    label: Protocol analysis
+    facet: keyword
+    definition: Inferring message formats from captured traffic.
+  - id: prototyping
+    label: Prototyping
+    facet: keyword
+    definition: Building throwaway playable or working experiments.
+  - id: quality-gate
+    label: Quality gate
+    facet: keyword
+    definition: Checks that must pass before work is reported as done.
+  - id: reactivity
+    label: Reactivity
+    facet: keyword
+    definition: Reactive state and dependency tracking.
+  - id: regression
+    label: Regressions
+    facet: keyword
+    definition: Behavior that previously worked and broke.
+  - id: reliability
+    label: Reliability
+    facet: keyword
+    definition: Failures that are hidden or degrade silently.
+  - id: reproduction
+    label: Reproduction
+    facet: keyword
+    aliases: [repro]
+    definition: Building a reliable way to make a failure happen.
+  - id: requirements
+    label: Requirements
+    facet: keyword
+    definition: Clarifying what is actually needed.
+  - id: reuse
+    label: Reuse
+    facet: keyword
+    definition: Using existing code and dependencies before writing new code.
+  - id: root-cause
+    label: Root cause
+    facet: keyword
+    definition: Tracing a problem to its underlying cause.
+  - id: routing
+    label: Routing
+    facet: keyword
+    definition: Client-side route changes and their lifetimes.
+  - id: search
+    label: Search
+    facet: keyword
+    definition: Search behavior or searchable reference data.
+  - id: secrets
+    label: Secrets
+    facet: keyword
+    aliases: [credentials]
+    definition: Credentials, tokens and keys, and where they leak.
+  - id: serverless
+    label: Serverless
+    facet: keyword
+    definition: Serverless function runtimes.
+  - id: session-start
+    label: Session start
+    facet: keyword
+    definition: What the agent sees when a session begins or resumes.
+  - id: simplicity
+    label: Simplicity
+    facet: keyword
+    definition: Preferring the least code that meets the need.
+  - id: skill-authoring
+    label: Skill authoring
+    facet: keyword
+    aliases: [skill-triggering]
+    definition: Writing skills and checking that they trigger.
+  - id: skills-registry
+    label: Skills registry
+    facet: keyword
+    definition: Public registries of installable skills.
+  - id: social-design
+    label: Social design
+    facet: keyword
+    definition: Multiplayer social systems and incentives.
+  - id: state-management
+    label: State management
+    facet: keyword
+    definition: Where UI state lives and who owns it.
+  - id: stop-hook
+    label: Stop event
+    facet: keyword
+    definition: The hook event fired when the agent tries to finish.
+  - id: study-planning
+    label: Study planning
+    facet: keyword
+    definition: Preparing tasks, criteria and guides for research sessions.
+  - id: subagents
+    label: Subagents
+    facet: keyword
+    definition: Delegating work to separate agent instances.
+  - id: synthesis
+    label: Research synthesis
+    facet: keyword
+    definition: Turning raw research notes into themes and findings.
+  - id: taxonomy
+    label: Taxonomy
+    facet: keyword
+    definition: Controlled vocabularies, facets and classification.
+  - id: tdd
+    label: Test-driven development
+    facet: keyword
+    aliases: [test driven development, test-driven development]
+    definition: Developing through repeated failing-test, implementation and refactoring steps. Narrower than testing.
+  - id: telemetry
+    label: Telemetry
+    facet: keyword
+    definition: Spans, traces and error-reporting payloads.
+  - id: test-quality
+    label: Test quality
+    facet: keyword
+    definition: Whether tests catch real breakage.
+  - id: threat-modeling
+    label: Threat modeling
+    facet: keyword
+    definition: Trust boundaries, attackers and abuse paths.
+  - id: tool-design
+    label: Tool design
+    facet: keyword
+    definition: Designing tools for agents to call.
+  - id: tooling
+    label: Developer tooling
+    facet: keyword
+    definition: Scripts and tools that support development work.
+  - id: triage
+    label: Triage
+    facet: keyword
+    definition: First-pass assessment of an unfamiliar artifact.
+  - id: typography
+    label: Typography
+    facet: keyword
+    aliases: [fonts]
+    definition: Type scales, font loading and text rendering.
+  - id: unsafe-code
+    label: Unsafe code
+    facet: keyword
+    definition: Rust unsafe blocks and their soundness.
+  - id: usability
+    label: Usability
+    facet: keyword
+    definition: Whether people can complete tasks with an interface.
+  - id: user-prompt-submit
+    label: UserPromptSubmit event
+    facet: keyword
+    definition: The hook event fired when the user submits a prompt.
+  - id: virtual-economies
+    label: Virtual economies
+    facet: keyword
+    definition: In-game currencies, sinks and sources.
+  - id: visual-design
+    label: Visual design
+    facet: keyword
+    aliases: [art-direction, art direction]
+    definition: Visual identity, color, type and composition. Narrower than design.
+  - id: workspaces
+    label: Workspaces
+    facet: keyword
+    definition: Package-manager workspace configuration.

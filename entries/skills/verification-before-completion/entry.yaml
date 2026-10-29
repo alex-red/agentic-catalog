@@ -4,7 +4,7 @@ type: skill
 title: Verification before completion
 summary: A gate before any claim that work is done, fixed, or passing. Name the command that proves the claim, run it fresh, read the output, and only then report, with a table of claims and the evidence each one needs.
 useWhen: Agents claim success, commit, or open PRs without running the checks that prove it, or trust subagent reports without checking the diff.
-tags: [verification, evidence, completion-claims, testing, subagents]
+tags: [verification, completion-claims, testing, subagents]
 hosts: [any]
 rating:
   usefulness: 5

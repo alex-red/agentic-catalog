@@ -5,11 +5,11 @@ title: Focused HTML accessibility review (Ibelick)
 summary: Checks accessible names, native semantics, keyboard access, modal focus, form errors, announcements, contrast and reduced motion. Reports exact snippets, user impact and small code-level fixes while avoiding unrelated refactoring.
 useWhen: Reviewing or fixing a focused HTML accessibility issue with native semantics and targeted changes.
 tags:
+  - frontend
   - accessibility
   - html
-  - frontend
-  - code-review
   - keyboard
+  - code-review
 hosts:
   - any
 experimental: true

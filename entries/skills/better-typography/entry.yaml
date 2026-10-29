@@ -5,11 +5,10 @@ title: Typography implementation review (Jakub Krehel)
 summary: Reviews font loading and synthesis, semantic type scales, wrapping, truncation, numeric alignment, OpenType features and bidi behavior. Writes fixes in the existing styling system and distinguishes source checks from rendered verification.
 useWhen: Fixing or reviewing typography implementation while preserving the project's typeface, styling system and accepted design decisions.
 tags:
-  - typography
-  - fonts
   - frontend
-  - code-review
+  - typography
   - accessibility
+  - code-review
 hosts:
   - any
 experimental: true

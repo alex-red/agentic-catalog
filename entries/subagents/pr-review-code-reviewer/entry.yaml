@@ -4,7 +4,7 @@ type: subagent
 title: Code reviewer with confidence filtering
 summary: A review subagent that checks the current diff against the project's written rules and for real bugs. It scores each issue from 0 to 100 and reports only those at 80 or above, with the file, line, and a fix.
 useWhen: You want a fresh-context review before commit or PR that enforces your CLAUDE.md or AGENTS.md rules while keeping false positives low.
-tags: [code-review, false-positives, project-instructions, quality]
+tags: [code-review, false-positives, project-instructions]
 hosts: [claude-code]
 rating:
   usefulness: 4

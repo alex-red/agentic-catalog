@@ -96,7 +96,7 @@ export interface Catalog {
 
 const ajv = new Ajv({ allErrors: true, strict: true });
 const validators = new Map(
-  ['skill', 'entry', 'collection', 'evaluation-case', 'trigger-suite'].map((name) => [
+  ['skill', 'entry', 'collection', 'evaluation-case', 'trigger-suite', 'tags'].map((name) => [
     name,
     ajv.compile(JSON.parse(readFileSync(join(repositoryRoot, 'catalog/schema', `${name}.schema.json`), 'utf8'))),
   ]),
@@ -221,6 +221,34 @@ function assertUnique(values: string[], label: string): void {
   }
 }
 
+interface TagTerm {
+  id: string;
+  label: string;
+  facet: 'topic' | 'task' | 'technology' | 'keyword';
+  definition: string;
+  aliases?: string[];
+}
+
+// Lookup form shared by IDs, labels and aliases: case, spaces, hyphens and underscores do not distinguish terms.
+export function normalizeTag(value: string): string {
+  return value.trim().toLowerCase().replace(/[\s_-]+/gu, ' ');
+}
+
+export function loadTagVocabulary(root = repositoryRoot): TagTerm[] {
+  const path = 'catalog/tags.yaml';
+  const { terms } = validate<{ terms: TagTerm[] }>('tags', readYaml(readFileSync(repoFile(root, path), 'utf8'), path), path);
+  assertUnique(terms.map((term) => term.id), 'tag ID');
+  const owners = new Map<string, string>();
+  for (const term of terms) {
+    for (const name of new Set([term.id, term.label, ...(term.aliases ?? [])].map(normalizeTag))) {
+      const owner = owners.get(name);
+      if (owner) throw new Error(`${path}: "${name}" names both ${owner} and ${term.id}`);
+      owners.set(name, term.id);
+    }
+  }
+  return terms;
+}
+
 interface LoadedEvaluationCase {
   path: string;
   evaluation: EvaluationCase;
@@ -320,6 +348,18 @@ export function loadCatalog(root = repositoryRoot): Catalog {
   assertUnique(entries.map((entry) => entry.id), 'entry ID');
   assertUnique(entries.map((entry) => entry.title.toLowerCase()), 'entry title');
   const ids = new Set(entries.map((entry) => entry.id));
+
+  const vocabulary = loadTagVocabulary(root);
+  const registered = new Set(vocabulary.map((term) => term.id));
+  for (const entry of entries) {
+    for (const tag of entry.tags) {
+      if (!registered.has(tag)) throw new Error(`${entry.path}: tag ${tag} is not registered in catalog/tags.yaml`);
+    }
+  }
+  const used = new Set(entries.flatMap((entry) => entry.tags));
+  for (const term of vocabulary) {
+    if (!used.has(term.id)) throw new Error(`catalog/tags.yaml: tag ${term.id} is not used by any entry`);
+  }
 
   const evaluations = loadEvaluationCaseFiles(root, {
     skill: [...entries.filter((entry) => entry.type === 'skill' && entry.source.kind !== 'linked').map((entry) => entry.id), ...pluginSkills(root)],

@@ -6,7 +6,6 @@ summary: A PostToolUse formatter for explicit edited paths in Claude Code and Co
 useWhen: The project has a formatter, and agents leave style drift or spend turns fixing formatting.
 tags:
   - formatting
-  - automation
   - post-tool-use
 hosts:
   - claude-code

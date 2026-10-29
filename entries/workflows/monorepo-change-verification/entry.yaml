@@ -4,7 +4,7 @@ type: workflow
 title: Monorepo change verification
 summary: Map package, task and release graphs; verify package boundaries and affected consumers; and check prerequisite ordering, cache restoration and invalidation without replacing existing monorepo tooling.
 useWhen: Planning or verifying cross-package changes, shared build configuration, affected-task selection or package boundaries in a monorepo.
-tags: [monorepo, architecture, verification, dependencies, build-systems, caching, testing]
+tags: [monorepo, architecture, dependencies, build-systems, caching, verification, testing]
 hosts: [any]
 rating:
   usefulness: 4

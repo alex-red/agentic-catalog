@@ -4,7 +4,7 @@ type: skill
 title: Web app testing with Playwright
 summary: Drive a local web app with Python Playwright, following a reconnaissance-then-action pattern. Includes a helper that starts and stops dev servers around a test script, and examples for element discovery and console logs.
 useWhen: Verifying or debugging frontend behavior headlessly, especially on hosts without a built-in browser.
-tags: [testing, playwright, frontend, browser, verification]
+tags: [frontend, testing, browser, verification, playwright]
 hosts: [any]
 rating:
   usefulness: 4

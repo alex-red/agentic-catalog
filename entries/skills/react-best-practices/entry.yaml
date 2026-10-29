@@ -4,7 +4,7 @@ type: skill
 title: React and Next.js performance practices (Vercel)
 summary: A prioritized set of about 70 React and Next.js performance rules covering request waterfalls, bundle size, server and client boundaries, re-renders, and JavaScript micro-optimizations. SKILL.md is the index, and each rule loads on demand.
 useWhen: Writing, reviewing, or refactoring React or Next.js code where performance matters.
-tags: [react, nextjs, performance, frontend, code-review]
+tags: [frontend, react, nextjs, performance, code-review]
 hosts: [any]
 rating:
   usefulness: 4

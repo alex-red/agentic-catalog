@@ -62,7 +62,7 @@ The [game-design methods](docs/game-design-options.md) add mechanic experiments,
 
 The [reverse-engineering options](docs/reverse-engineering-options.md) add six explicitly selected linked experiments, tagged `reverse_engineering`. Their [admission record](docs/research/2026-10-29-reverse-engineering-admission.md) preserves source-review, licensing and runtime limits; admission does not install or connect them.
 
-The adapted [catalog-taxonomy](entries/skills/catalog-taxonomy/SKILL.md) skill turns the [tagging research](docs/research/2026-10-29-catalog-tagging-research.md) into a portable method for vocabulary, facets, aliases, retrieval semantics and migrations. It is listed under the browser's System design topic category while retaining its Skill type. This admission does not implement the report's proposed vocabulary registry or full faceted-search redesign.
+The adapted [catalog-taxonomy](entries/skills/catalog-taxonomy/SKILL.md) skill turns the [tagging research](docs/research/2026-10-29-catalog-tagging-research.md) into a portable method for vocabulary, facets, aliases, retrieval semantics and migrations. It is listed under the browser's System design topic category while retaining its Skill type. Entry tags now come from a controlled [tag vocabulary](catalog/tags.yaml) with facets, definitions and aliases ([decision 50](docs/decisions.md)); faceted search in the browser is not yet implemented.
 
 Candidates that were considered and left out, with reasons, are in the research notes summarized in [decision 16](docs/decisions.md). Examples: skills that fetch unpinned remote instructions at runtime, unlicensed repositories, and generic reviewer personas.
 

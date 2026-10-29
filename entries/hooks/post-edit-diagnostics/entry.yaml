@@ -6,8 +6,8 @@ summary: Runs one project-selected fast checker after Claude source edits or Cod
 useWhen: Type errors or lint diagnostics should reach the agent immediately after source edits, and the project has a fast read-only check.
 tags:
   - diagnostics
-  - post-tool-use
   - verification
+  - post-tool-use
 hosts:
   - claude-code
   - codex

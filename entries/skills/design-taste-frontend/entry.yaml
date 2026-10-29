@@ -5,11 +5,10 @@ title: Art direction and browser gates (Taste)
 summary: Deals art directions from a local library, develops a subject-specific concept and interactive element, and combines source linting, browser measurements and screenshot critique. Includes separate app-screen guidance and strict house-style checks.
 useWhen: Explicitly trying a strict art-direction system for a marketing page or app screen and accepting its style policy and browser-tool overhead.
 tags:
-  - design
   - frontend
-  - art-direction
+  - design
+  - visual-design
   - browser
-  - experimental
 hosts:
   - any
 experimental: true

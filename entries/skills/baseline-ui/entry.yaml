@@ -6,9 +6,9 @@ summary: Applies a concise UI house policy for Tailwind, accessible React primit
 useWhen: Explicitly adopting a strict baseline in a compatible React and Tailwind project rather than seeking stack-neutral design guidance.
 tags:
   - frontend
+  - design
   - react
   - tailwind
-  - design
   - conventions
 hosts:
   - any

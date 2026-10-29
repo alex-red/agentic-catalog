@@ -6,6 +6,7 @@ summary: Apple-focused CLI and MCP workbench joining Ghidra static exports with 
 useWhen: Correlating Mach-O, Objective-C, Swift or XPC static findings with explicitly requested Apple runtime observations.
 tags:
   - reverse_engineering
+  - binary-analysis
   - apple
   - ghidra
   - lldb

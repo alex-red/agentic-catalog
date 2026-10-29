@@ -6,7 +6,8 @@ summary: Rejects newly submitted prompts containing private-key headers, AWS acc
 useWhen: Accidental credential pastes are a recurring risk before prompts reach the model.
 tags:
   - privacy
-  - credentials
+  - secrets
+  - security
   - user-prompt-submit
 hosts:
   - claude-code

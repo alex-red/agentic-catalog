@@ -5,11 +5,11 @@ title: Product interface craft (Damola Akinleye)
 summary: Designs dashboards and product tools through domain exploration, hierarchy, semantic tokens, component reuse, interaction states and visual checks. Can preserve accepted patterns in .interface-design/system.md; separates product UI from marketing work.
 useWhen: Trying an opinionated product-UI workflow for dashboards, settings or admin tools, with persistent design decisions and explicit technical caveats.
 tags:
-  - design
   - frontend
-  - dashboard
+  - design
   - design-system
-  - interaction
+  - interaction-design
+  - dashboard
 hosts:
   - any
 experimental: true

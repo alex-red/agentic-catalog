@@ -4,7 +4,7 @@ type: skill
 title: Fix failing GitHub Actions checks
 summary: Use gh to find failing PR checks, pull the Actions logs, and summarize the failure. Draft a fix plan, implement it only after explicit approval, and recheck. A bundled script handles changes in gh output fields and fallbacks for job logs.
 useWhen: A pull request's GitHub Actions checks are failing and you want them diagnosed, with a plan before any edits.
-tags: [ci, github-actions, gh-cli, debugging]
+tags: [ci, github, github-actions, debugging]
 hosts: [any]
 rating:
   usefulness: 4

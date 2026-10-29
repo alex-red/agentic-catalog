@@ -5,10 +5,10 @@ title: Frontend design direction (Anthropic)
 summary: Plans a subject-specific visual identity, compact color and type tokens, composition and functional copy before building. Reviews against the brief and rendered result, with restraint, responsive layout, focus and reduced-motion expectations.
 useWhen: Building a new interface or changing its visual identity when the host does not already provide equivalent frontend-design guidance.
 tags:
-  - design
   - frontend
-  - typography
+  - design
   - visual-design
+  - typography
 hosts:
   - any
 rating:

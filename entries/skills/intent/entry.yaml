@@ -4,7 +4,7 @@ type: skill
 title: Intent UX lifecycle router
 summary: Broad UX principles and context gathering with routing to research, journeys, information architecture, content, evaluation and handoff. The core includes eight foundational references; specialist skills are separately selectable siblings.
 useWhen: Explicitly choosing a broad UX design system across several stages and accepting its artifact conventions and experimental review limits.
-tags: [ux, research, interaction-design, information-architecture, design]
+tags: [ux, user-research, interaction-design, information-architecture, design]
 hosts: [any]
 experimental: true
 rating:

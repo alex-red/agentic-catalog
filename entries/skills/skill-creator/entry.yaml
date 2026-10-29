@@ -4,7 +4,7 @@ type: skill
 title: Skill creator with evaluations
 summary: A complete skill-authoring workflow with test cases, blind comparison, benchmark aggregation, and optimization of a description for trigger accuracy.
 useWhen: Authoring or tuning a skill and measuring whether it triggers and helps; use it as a methodology reference.
-tags: [skill-authoring, evaluation, meta]
+tags: [skill-authoring, evaluation]
 hosts: [claude-code]
 rating:
   usefulness: 4

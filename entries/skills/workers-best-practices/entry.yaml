@@ -4,7 +4,7 @@ type: skill
 title: Cloudflare Workers best practices
 summary: Cloudflare's guidance for writing and reviewing Workers. It treats the project's compatibility date, flags, generated binding types, and Wrangler schema as the baseline, and flags buffered unbounded bodies, floating promises, request state at module scope, unbound ctx methods, hand-written Env types, and mismatched serialization at Queue, Workflow, storage, and WebSocket boundaries.
 useWhen: Writing, reviewing, or configuring Cloudflare Workers code or Wrangler configuration.
-tags: [cloudflare, workers, serverless, typescript, code-review, observability]
+tags: [cloudflare, workers, serverless, typescript, observability, code-review]
 hosts: [any]
 rating:
   usefulness: 3

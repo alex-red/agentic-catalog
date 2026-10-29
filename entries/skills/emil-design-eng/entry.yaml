@@ -5,11 +5,11 @@ title: Interaction craft (Emil Kowalski)
 summary: Opinionated design-engineering guidance for interaction frequency, motion purpose, easing, interruptibility, popover origins, gestures, component feedback and UI polish. Provides concrete code-review examples and a craft checklist.
 useWhen: Trying detailed interaction and motion guidance for product UI while checking its technical examples against the project's actual library versions.
 tags:
+  - frontend
   - design
-  - interaction
+  - interaction-design
   - animation
   - components
-  - frontend
 hosts:
   - any
 experimental: true

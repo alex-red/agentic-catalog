@@ -4,7 +4,7 @@ type: skill
 title: Evidence-grounded UX critique (Thecsiz)
 summary: Reviews interfaces and product flows by observing first, checking missing states, comparing relevant local UX references, verifying citation support, and challenging each finding with a skeptic pass. Reports concrete fixes with separate confidence labels and structural, behavioral, or visual classifications; chat is the default output.
 useWhen: You want direct, evidence-grounded criticism of an app screen, prototype, screenshot, or connected user flow, with unsupported findings challenged before reporting.
-tags: [ux, critique, usability, design-review, evidence]
+tags: [ux, usability, design-review]
 hosts: [any]
 rating:
   usefulness: 4

@@ -8,7 +8,6 @@ tags:
   - reverse_engineering
   - binary-analysis
   - application-analysis
-  - evidence
 hosts:
   - any
 experimental: true

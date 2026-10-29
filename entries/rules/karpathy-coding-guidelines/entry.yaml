@@ -4,7 +4,7 @@ type: rule
 title: Karpathy-style coding guidelines
 summary: A widely shared CLAUDE.md with four principles drawn from Andrej Karpathy's observations of LLM coding failures. Surface assumptions, write minimal code, make surgical diffs, and execute toward a goal with verification steps.
 useWhen: You want a recognized, drop-in baseline against over-engineering and drive-by edits.
-tags: [scope, simplicity, diff-size, assumptions]
+tags: [scope, diff-size, simplicity, assumptions]
 hosts: [any]
 rating:
   usefulness: 4
