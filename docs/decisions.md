@@ -397,3 +397,40 @@ Unpinned installer commands are replaced with pinned ones where upstream allows 
 Also recorded the verified `webapp-testing` server-helper defect in that entry's rating notes. The vendored payload is unchanged. Added `worktrees` to `superpowers` and `compound-engineering`, which already ship worktree skills, and registered the keywords `dev-servers`, `local-urls`, `worktrees`, `toolchains`, `status-line` and `usage-tracking`.
 
 dev3000, next-devtools-mcp, the sentimony fork, cli-for-agents and the other review-next items remain unadmitted, and agent-browser stays held. No hook, MCP connection, plugin or tool is installed or activated by admission. Generated indexes are rebuilt from source. The catalog now has 100 entries: 52 skills, 12 workflows, 15 hooks, eight MCP servers, five plugins, five rules, two subagents and one tool, with twenty experimental entries and seven collections. No plugin manifest or version changes.
+
+## 53. Admit commit and open-source repository practices (2026-10-29)
+
+Following the user's request to research and add catalog items for open-source repository practices and Git commit practices, admitted six skills at `reviewed` from the [research report](research/2026-10-29-catalog-scout-4.md). The [selection guide](repository-practices-options.md) distinguishes them.
+
+- **Vendored**, unchanged with their root licenses:
+  - `git-commit` and `github-actions-hardening` from github/awesome-copilot (MIT)
+  - `committing-with-commitlint` from the commitlint maintainers (MIT)
+
+  Each pin is the last commit touching its path, and every file matched repository HEAD byte for byte.
+- **Linked:** `open-sourcing` from trailofbits/skills, because the repository is CC-BY-SA-4.0.
+- **Adapted:** two new skills, `commit-history-hygiene` and `oss-repo-health`, fill the gaps no candidate covered:
+  - commit series that agents can produce without interactive staging or rebasing, with per-commit verification and fixups
+  - ongoing repository upkeep, rather than a one-time launch
+
+  Both keep history rewriting, pushes, license choice and repository settings behind an explicit user decision.
+
+Known defects are recorded instead of patched. The hardening skill's trust matrix overstates fixed token scopes, and its `workflow_run` artifact example omits cross-run inputs. The commit skill relies on Git 2.56 for `git add --resolved`. The Git and `gh` behaviors the adapted skills prescribe were exercised read-only or in a scratch repository. That is not behavioral evaluation.
+
+The October 27 Actions security queue item now has an admitted alternative. getsentry `gha-security-review` remains in review as a deeper exploit-tracing option. Registered tags `open-source` (topic), `commits` (task), and `conventional-commits`, `licensing`, `releases` and `supply-chain` (keywords). Added the `open-source-maintenance` collection.
+
+The catalog now has 106 entries, 58 of them skills, and eight collections. No plugin manifest, version, hook or consumer installation changes. Generated indexes are rebuilt from source.
+
+## 54. Decide the commit and Actions review-next candidates (2026-10-29)
+
+At the user's direction ("review the rest, decide for us"), read the four review-next candidates from the [commit and repository research](research/2026-10-29-catalog-scout-4.md) in full at their path pins and decided each. Reviewers verified the technical claims, and the curator confirmed the decisive defects directly in the source.
+
+- **Linked:**
+  - trailofbits `agentic-actions-auditor`, marked experimental. Its AI-output remediation example is itself injectable and its Gemini defaults are inconsistent. The entry states both and warns against copying the example.
+  - conventional-changelog `conventional-commit-message`. Its frontmatter says MIT while the repository is ISC. Linking avoids relying on either grant.
+- **Held:**
+  - getsentry `gha-security-review`. Its do-not-flag rules exempt `with:` inputs, which hides `actions/github-script` injections, and it presents a bypassable `head_branch` guard as safe.
+  - basecamp `harden-github-actions`. It commits without asking, passes the user's `gh` token to zizmor, edits its own files, suppresses cache poisoning by default, and assumes all repositories are public.
+
+  Both remain reconsiderable at upstream pins that fix these.
+
+Both new entries start at `reviewed`. The catalog now has 108 entries, 60 of them skills, twenty-one experimental and eight collections. No plugin manifest, version, hook or consumer installation changes. Generated indexes are rebuilt from source.

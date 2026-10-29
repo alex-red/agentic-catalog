@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: git-commit
+type: skill
+title: Git commits with Conventional Commits
+summary: Reads the repository's commit rules, examines the diff, stages one logical change by explicit path, writes a Conventional Commits message and commits. It avoids interactive staging, checks staged names for secrets, retries hook failures without amending, and never pushes or rewrites history.
+useWhen: Asking the agent to commit work in a repository that uses, or should use, Conventional Commits, especially on hosts without a built-in commit procedure.
+tags: [commits, git, conventional-commits, conventions]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 2
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Complete one-file skill read at the pin. Repository rules take precedence over the skill's own format; Git trailer syntax and the hook-failure rule are stated correctly. `git add --resolved` exists only from Git 2.56, and `git history` is experimental; both were checked against upstream Git documentation and release notes. Splitting is file-level only. It commits once invoked, which fits its explicit trigger. Claude Code's built-in commit procedure covers most of the safety rules, so the main gain there is the message format; Codex has no format guidance.
+source:
+  kind: vendored
+  url: https://github.com/github/awesome-copilot
+  path: skills/git-commit
+  revision: 5406429999c924586c02d4799d465a914a12c28e
+  retrieved: 2026-10-29
+  license: MIT
+  author: GitHub awesome-copilot contributors
+  notes: The single SKILL.md is copied unchanged and matches repository HEAD b6483db44fb602654bca6a097185fcaddb305f97. LICENSE.txt is the repository root MIT license; no folder-level license applies. Frontmatter declares allowed-tools shell(git:*), which some hosts ignore.
+install:
+  notes: Copy the directory, including LICENSE.txt. Use one commit skill at a time; prefer committing-with-commitlint when the repository enforces commitlint and commit-history-hygiene for multi-commit series and fixups.
+overlap: Claude Code's built-in git commit instructions already cover commit-only-when-asked, explicit staging, secrets, hooks, no amend after a hook failure and no push. Codex prompts forbid unrequested commits but give no message format. This adds the Conventional Commits format and type table.
+related: [committing-with-commitlint, conventional-commit-message, commit-history-hygiene, git-safety]

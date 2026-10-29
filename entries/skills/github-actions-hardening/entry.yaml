@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: github-actions-hardening
+type: skill
+title: GitHub Actions hardening review
+summary: A report-only security review of workflow files covering trigger trust levels, script injection through expression interpolation, privileged triggers running fork code, least-privilege token permissions, SHA-pinning of actions, GITHUB_ENV and output injection, secrets, OIDC and self-hosted runners. Findings come with severity, exact lines and before/after fixes.
+useWhen: Reviewing, writing or hardening .github/workflows files, especially ones using pull_request_target, workflow_run or issue_comment.
+tags: [security, github-actions, ci, supply-chain, audit]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: All six files read at the pin. The core insight (expressions are pasted into the script before the shell runs) and the two-workflow pattern are correct and well taught. It never applies changes. Its trust matrix presents token scopes as fixed, but they follow repository default permissions. The workflow_run example downloads an artifact without the run-id and github-token inputs that a cross-run download needs. It reasons only, without running zizmor or actionlint. No trigger or outcome evaluation has been run.
+source:
+  kind: vendored
+  url: https://github.com/github/awesome-copilot
+  path: skills/github-actions-hardening
+  revision: df566343b3a685e821f8ebe8ea70a2a8eb8b857b
+  retrieved: 2026-10-29
+  license: MIT
+  author: GitHub awesome-copilot contributors
+  notes: The complete six-file subtree (SKILL.md and five references) is copied unchanged and matches repository HEAD b6483db44fb602654bca6a097185fcaddb305f97. LICENSE.txt is the repository root MIT license. No scripts, network access or sibling skills are required.
+install:
+  notes: Copy the directory with its references/ and LICENSE.txt. Run zizmor or actionlint alongside it if the project uses them.
+overlap: Claude Code /security-review targets application code changes, not workflow configuration; gh-fix-ci repairs failing checks; security-threat-model covers system design. agentic-actions-auditor adds AI-agent workflow vectors. getsentry gha-security-review was held because its do-not-flag rules exempt inputs passed through with, including github-script scripts.
+related: [oss-repo-health, open-sourcing, agentic-actions-auditor, security-threat-model, gh-fix-ci]

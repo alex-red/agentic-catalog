@@ -41,6 +41,11 @@ terms:
     facet: topic
     aliases: [knowledge-capture]
     definition: Persisting lessons, corrections or session state so later sessions can use them.
+  - id: open-source
+    label: Open source
+    facet: topic
+    aliases: [oss, open source]
+    definition: Publishing and maintaining public repositories - licensing, contributor experience, security policy, versioning and releases.
   - id: privacy
     label: Privacy
     facet: topic
@@ -80,6 +85,11 @@ terms:
     facet: task
     aliases: [code review]
     definition: Inspecting code or a diff for actionable defects and maintainability concerns.
+  - id: commits
+    label: Commits
+    facet: task
+    aliases: [commit messages, git history]
+    definition: Composing commits and their messages, and shaping a branch's history for review.
   - id: debugging
     label: Debugging
     facet: task
@@ -376,6 +386,11 @@ terms:
     label: Agent configuration
     facet: keyword
     definition: Agent settings, hooks, MCP and plugin configuration.
+  - id: conventional-commits
+    label: Conventional Commits
+    facet: keyword
+    aliases: [commitlint]
+    definition: The Conventional Commits message specification and tools that enforce it.
   - id: conventions
     label: Project conventions
     facet: keyword
@@ -508,6 +523,11 @@ terms:
     label: Library documentation
     facet: keyword
     definition: Third-party library references and examples.
+  - id: licensing
+    label: Licensing
+    facet: keyword
+    aliases: [license, spdx]
+    definition: Choosing, applying and keeping consistent the license of a project or its files.
   - id: local-urls
     label: Local URLs
     facet: keyword
@@ -610,6 +630,11 @@ terms:
     label: Regressions
     facet: keyword
     definition: Behavior that previously worked and broke.
+  - id: releases
+    label: Releases
+    facet: keyword
+    aliases: [versioning, changelog, semver]
+    definition: Versioning, changelogs, tagging and publishing releases.
   - id: reliability
     label: Reliability
     facet: keyword
@@ -690,6 +715,10 @@ terms:
     label: Subagents
     facet: keyword
     definition: Delegating work to separate agent instances.
+  - id: supply-chain
+    label: Supply chain
+    facet: keyword
+    definition: Integrity of third-party code a project pulls in, such as pinned actions and dependencies.
   - id: synthesis
     label: Research synthesis
     facet: keyword

@@ -1,0 +1,30 @@
+schemaVersion: 2
+id: open-sourcing
+type: skill
+title: Open-source release readiness (Trail of Bits)
+summary: Prepares a repository for going public, secrets audit first. It recommends a fresh repository over history rewriting when secrets ever existed, then covers README essentials, SECURITY.md, licensing with consistent SPDX metadata, CI and workflow hardening, branch rules, dependency cooldowns, semver tags, CI-driven releases with trusted publishing, and per-language packaging.
+useWhen: Making a private repository public, choosing a license, or setting up packaging and release automation ahead of a public launch.
+tags: [open-source, security, secrets, licensing, releases, github]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Read SKILL.md, licensing reference, both scripts and manifest; scanned the language references. Scripts are read-only presence checks and a remote/email grep, with no network or writes. The secrets-first ordering and rationalizations to reject are the distinctive part. A Trail of Bits overlay loads only when detected; the Python reference defers to a sibling modern-python skill. Launch-focused, so ongoing upkeep (changelog, templates, CODEOWNERS) is thin. Linked because the repository is CC-BY-SA-4.0.
+source:
+  kind: linked
+  url: https://github.com/trailofbits/skills
+  path: plugins/open-sourcing/skills/open-sourcing
+  revision: 123037ec8aed26f0d86327cc39137ee5043e5deb
+  retrieved: 2026-10-29
+  license: CC-BY-SA-4.0
+  author: Trail of Bits
+install:
+  claude-code: /plugin marketplace add trailofbits/skills, then /plugin install open-sourcing@trailofbits
+  codex: codex plugin marketplace add trailofbits/skills, then codex plugin add open-sourcing@trailofbits
+  notes: The marketplace install tracks upstream rather than this pin. Other hosts can copy plugins/open-sourcing/skills/open-sourcing, including references/ and scripts/, from the pinned revision and keep the CC-BY-SA-4.0 attribution. The scripts need bash and git. gitleaks or trufflehog are optional for the history scan.
+overlap: oss-repo-health audits an already-public repository's ongoing practices and hands the pre-release secrets audit to this entry. github-actions-hardening reviews workflows in more depth. Hosts have no built-in release-readiness workflow.
+related: [oss-repo-health, github-actions-hardening, variant-analysis]

@@ -7,10 +7,13 @@
   "ignores": [
     "node_modules/**",
     "eval-build/**",
+    "entries/skills/committing-with-commitlint/**",
     "entries/skills/create-adaptable-composable/**",
     "entries/skills/diagnosing-bugs/**",
     "entries/skills/domain-modeling/**",
     "entries/skills/gh-fix-ci/**",
+    "entries/skills/git-commit/**",
+    "entries/skills/github-actions-hardening/**",
     "entries/skills/grilling/**",
     "entries/skills/handoff/**",
     "entries/skills/ponytail/**",

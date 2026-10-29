@@ -1,0 +1,10 @@
+schemaVersion: 2
+id: open-source-maintenance
+title: Open-source maintenance
+description: Keep a public repository healthy - audit its documentation, licensing, contributor and release practices, review its workflows, and keep a reviewable commit history. Add open-sourcing only before taking a private repository public.
+entries:
+  - oss-repo-health
+  - github-actions-hardening
+  - commit-history-hygiene
+  - git-commit
+  - open-sourcing

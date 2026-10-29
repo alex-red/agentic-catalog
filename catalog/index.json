@@ -5,6 +5,58 @@
   "entries": [
     {
       "schemaVersion": 2,
+      "id": "agentic-actions-auditor",
+      "type": "skill",
+      "title": "Audit AI agents in GitHub Actions (Trail of Bits)",
+      "summary": "A read-only audit of workflows that run AI coding agents (claude-code-action, Codex, Gemini CLI, ai-inference). It traces attacker-controlled input into agent prompts through nine vectors, including environment-variable intermediaries, runtime gh fetches, error-log injection and eval of model output, and treats permissive sandbox or tool settings as amplifiers. Findings come with data-flow traces.",
+      "useWhen": "Reviewing workflows that invoke an AI agent action, especially ones triggered by issues, comments or pull_request_target.",
+      "tags": [
+        "security",
+        "github-actions",
+        "ci",
+        "audit"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "All 17 files read at the pin. Covers agent-specific sinks a general reviewer misses. Defects verified at the pin. The AI-output remediation labelled SAFE puts model output in single quotes inside run:, which is still injectable, and names a wrong output (result, not response). Gemini sandbox defaults contradict across files. Vector H omits bypass-permission flags. Action input names will drift. Experimental for these reasons."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/trailofbits/skills",
+        "path": "plugins/agentic-actions-auditor/skills/agentic-actions-auditor",
+        "revision": "123037ec8aed26f0d86327cc39137ee5043e5deb",
+        "retrieved": "2026-10-29",
+        "license": "CC-BY-SA-4.0",
+        "author": "Trail of Bits",
+        "notes": "Plugin 1.3.2. Read-only and needs no sibling skills. Remote mode and cross-file resolution fetch workflows and local actions with gh api at whatever ref the caller wrote, treating them as data. Third-party actions are skipped without being listed as a coverage gap."
+      },
+      "install": {
+        "claude-code": "/plugin marketplace add trailofbits/skills, then /plugin install agentic-actions-auditor@trailofbits",
+        "codex": "codex plugin marketplace add trailofbits/skills, then codex plugin add agentic-actions-auditor@trailofbits",
+        "notes": "The marketplace install tracks upstream rather than this pin. Other hosts can copy the skill directory with references/ from the pinned revision and keep the CC-BY-SA-4.0 attribution. Remote mode needs an authenticated gh CLI. Do not copy the AI-output remediation in references/action-profiles.md; pass model output through env and quote the shell variable instead."
+      },
+      "overlap": "github-actions-hardening covers general workflow hardening, including direct expression injection and pull_request_target checkout, which this also checks. This adds the agent-specific vectors and action settings. Host security review does not cover workflow configuration.",
+      "related": [
+        "github-actions-hardening",
+        "oss-repo-health",
+        "security-threat-model"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/agentic-actions-auditor/skills/agentic-actions-auditor",
+      "path": "entries/skills/agentic-actions-auditor",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "agents-md-authoring",
       "type": "skill",
       "title": "Write and prune AGENTS.md",
@@ -279,6 +331,183 @@
         "entries/skills/catalog-taxonomy/SKILL.md",
         "entries/skills/catalog-taxonomy/references/vocabulary-and-migration.md"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "commit-history-hygiene",
+      "type": "skill",
+      "title": "Reviewable commit history",
+      "summary": "Plans a series of self-contained commits, splits mixed edits without interactive staging, writes why-focused messages in the long-standing Git style when the repository has no convention, verifies every commit with rebase --exec, folds review fixes in with fixup commits and non-interactive autosquash, and handles trailers and signing without overreach.",
+      "useWhen": "Committing a body of work as several commits, tidying a branch before review, squashing fixups, or adding co-author or sign-off trailers.",
+      "tags": [
+        "commits",
+        "git",
+        "code-review",
+        "conventions"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Written for agents, which cannot drive git add -p or rebase -i. Non-interactive autosquash, rebase --exec stopping at the first failing commit, and the fixup forms that need an editor were exercised in a scratch repository on Git 2.51; the Git 2.44 autosquash change was checked against release notes. History rewriting and force pushes stay behind explicit user requests, and Signed-off-by is treated as the user's certification. No trigger or outcome evaluation has been run."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Original prose distilled from Git documentation and established commit-message guides, written after reviewing the agent skills listed in the October 29 commit and open-source research. No upstream skill text is copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "Chris Beams, How to Write a Git Commit Message",
+          "url": "https://cbea.ms/git-commit/"
+        },
+        {
+          "title": "Tim Pope, A Note About Git Commit Messages",
+          "url": "https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html"
+        },
+        {
+          "title": "Linux kernel, Submitting patches (separate your changes, describe them)",
+          "url": "https://docs.kernel.org/process/submitting-patches.html"
+        },
+        {
+          "title": "git-rebase documentation (--autosquash, --exec)",
+          "url": "https://git-scm.com/docs/git-rebase"
+        },
+        {
+          "title": "git-interpret-trailers documentation",
+          "url": "https://git-scm.com/docs/git-interpret-trailers"
+        },
+        {
+          "title": "GitHub, Creating a commit with multiple authors",
+          "url": "https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors"
+        },
+        {
+          "title": "Compound Engineering ce-commit (explicit pathspec staging, co-author email rule)",
+          "url": "https://github.com/EveryInc/compound-engineering-plugin/blob/c27add907c3a4e59713075e76049a8b0c8b4ec01/skills/ce-commit/SKILL.md"
+        }
+      ],
+      "overlap": "Host commit procedures cover single commits, explicit staging and no hook skipping. git-commit and committing-with-commitlint cover message format and validation and defer to this for series and fixups. No host or catalog entry covers commit planning, non-interactive splitting, per-commit verification or autosquash.",
+      "related": [
+        "git-commit",
+        "committing-with-commitlint",
+        "git-safety",
+        "focused-changes"
+      ],
+      "score": 4.2,
+      "sourceUrl": "https://github.com/EveryInc/compound-engineering-plugin/blob/c27add907c3a4e59713075e76049a8b0c8b4ec01/skills/ce-commit/SKILL.md",
+      "path": "entries/skills/commit-history-hygiene",
+      "files": [
+        "entries/skills/commit-history-hygiene/LICENSE.txt",
+        "entries/skills/commit-history-hygiene/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "committing-with-commitlint",
+      "type": "skill",
+      "title": "Commit in commitlint repositories",
+      "summary": "Detects commitlint, reads the enforced rules with --print-config, explains the severity/applicability/value rule format, validates the full message through stdin before committing, and corrects only the rules named in a hook rejection instead of bypassing the hook.",
+      "useWhen": "A repository enforces commit messages with commitlint, through husky, lefthook or a commit-msg hook, and agent commits keep getting rejected.",
+      "tags": [
+        "commits",
+        "conventional-commits",
+        "git",
+        "quality-gate"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 5,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Written by the commitlint maintainers; complete one-file skill read at the pin. Narrow and precise, with a concrete self-correction loop from hook output. `npx commitlint` can download the package when it is not installed locally, so it is not offline-safe; prefer the project's local binary. Only useful in repositories that already use commitlint."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/conventional-changelog/commitlint",
+        "path": "skills/committing-with-commitlint",
+        "revision": "36dc150fc3c0ef5f0860e9f2ef7729a6d9c7db72",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "commitlint contributors",
+        "notes": "SKILL.md copied unchanged; it matches repository HEAD 4467ec47655f4236ed1b7d3e50b511baa8d45b91. LICENSE.txt is the repository root license.md (MIT, Mario Nebl). The frontmatter has no license field."
+      },
+      "install": {
+        "notes": "Copy the directory, including LICENSE.txt. It runs npx commitlint, which uses the project's installed commitlint when present and otherwise may fetch it from the npm registry."
+      },
+      "overlap": "git-commit covers Conventional Commits generally and also reads commitlint configuration, but does not validate before committing or interpret rejections. Host commit procedures say not to skip hooks but give no recovery method.",
+      "related": [
+        "git-commit",
+        "commit-history-hygiene"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/conventional-changelog/commitlint/tree/36dc150fc3c0ef5f0860e9f2ef7729a6d9c7db72/skills/committing-with-commitlint",
+      "path": "entries/skills/committing-with-commitlint",
+      "files": [
+        "entries/skills/committing-with-commitlint/LICENSE.txt",
+        "entries/skills/committing-with-commitlint/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "conventional-commit-message",
+      "type": "skill",
+      "title": "Release-aware Conventional Commit messages",
+      "summary": "Chooses a Conventional Commits type by release impact rather than file path, distinguishing changelog-visible types from hidden ones and flagging contract changes that are breaking, such as raised engine minimums or narrowed exports. It derives monorepo scopes from workspace packages, validates with the local commitlint binary, and outputs a message without committing.",
+      "useWhen": "Writing commit messages in a repository whose releases and changelog are generated from commits, such as with conventional-changelog, release-please or semantic-release.",
+      "tags": [
+        "commits",
+        "conventional-commits",
+        "releases",
+        "monorepo"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Complete 264-line file read at the pin; spec rules on footers, BREAKING CHANGE casing and token hyphens are accurate. The release-impact red flags are the distinctive part. Tuned to the conventionalcommits preset; whether hidden types bump depends on the release tool. One example puts an issue reference in the subject, contradicting its own footer rule. Message-only, so it does not commit."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/conventional-changelog/conventional-changelog",
+        "path": "skills/conventional-commit-message",
+        "revision": "74a977a970f0eb5cdf317538baec8290eb909a05",
+        "retrieved": "2026-10-29",
+        "license": "ISC",
+        "author": "conventional-changelog team",
+        "notes": "The SKILL.md frontmatter declares MIT, while the repository root LICENSE.md and package.json are ISC. Both are permissive, but linked rather than vendored until upstream reconciles them. It runs rg and the local commitlint binary, falling back to npx or pnpm only when acceptable."
+      },
+      "install": {
+        "any": "Fetch https://github.com/conventional-changelog/conventional-changelog at 74a977a970f0eb5cdf317538baec8290eb909a05 and copy skills/conventional-commit-message into .claude/skills/ for Claude Code or .agents/skills/ for Codex. Keep the repository LICENSE.md with it.",
+        "notes": "Pair it with git-commit or commit-history-hygiene when the agent should also commit; this skill only proposes messages."
+      },
+      "overlap": "git-commit covers the Conventional Commits format with a basic type table and commits. committing-with-commitlint validates against enforced rules. This adds release-impact typing and monorepo scope rules for commit-driven release tooling.",
+      "related": [
+        "git-commit",
+        "committing-with-commitlint",
+        "commit-history-hygiene"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/conventional-changelog/conventional-changelog/tree/74a977a970f0eb5cdf317538baec8290eb909a05/skills/conventional-commit-message",
+      "path": "entries/skills/conventional-commit-message",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -890,6 +1119,119 @@
         "entries/skills/gh-fix-ci/assets/github-small.svg",
         "entries/skills/gh-fix-ci/assets/github.png",
         "entries/skills/gh-fix-ci/scripts/inspect_pr_checks.py"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "git-commit",
+      "type": "skill",
+      "title": "Git commits with Conventional Commits",
+      "summary": "Reads the repository's commit rules, examines the diff, stages one logical change by explicit path, writes a Conventional Commits message and commits. It avoids interactive staging, checks staged names for secrets, retries hook failures without amending, and never pushes or rewrites history.",
+      "useWhen": "Asking the agent to commit work in a repository that uses, or should use, Conventional Commits, especially on hosts without a built-in commit procedure.",
+      "tags": [
+        "commits",
+        "git",
+        "conventional-commits",
+        "conventions"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 2,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Complete one-file skill read at the pin. Repository rules take precedence over the skill's own format; Git trailer syntax and the hook-failure rule are stated correctly. `git add --resolved` exists only from Git 2.56, and `git history` is experimental; both were checked against upstream Git documentation and release notes. Splitting is file-level only. It commits once invoked, which fits its explicit trigger. Claude Code's built-in commit procedure covers most of the safety rules, so the main gain there is the message format; Codex has no format guidance."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/github/awesome-copilot",
+        "path": "skills/git-commit",
+        "revision": "5406429999c924586c02d4799d465a914a12c28e",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "GitHub awesome-copilot contributors",
+        "notes": "The single SKILL.md is copied unchanged and matches repository HEAD b6483db44fb602654bca6a097185fcaddb305f97. LICENSE.txt is the repository root MIT license; no folder-level license applies. Frontmatter declares allowed-tools shell(git:*), which some hosts ignore."
+      },
+      "install": {
+        "notes": "Copy the directory, including LICENSE.txt. Use one commit skill at a time; prefer committing-with-commitlint when the repository enforces commitlint and commit-history-hygiene for multi-commit series and fixups."
+      },
+      "overlap": "Claude Code's built-in git commit instructions already cover commit-only-when-asked, explicit staging, secrets, hooks, no amend after a hook failure and no push. Codex prompts forbid unrequested commits but give no message format. This adds the Conventional Commits format and type table.",
+      "related": [
+        "committing-with-commitlint",
+        "conventional-commit-message",
+        "commit-history-hygiene",
+        "git-safety"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/github/awesome-copilot/tree/5406429999c924586c02d4799d465a914a12c28e/skills/git-commit",
+      "path": "entries/skills/git-commit",
+      "files": [
+        "entries/skills/git-commit/LICENSE.txt",
+        "entries/skills/git-commit/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "github-actions-hardening",
+      "type": "skill",
+      "title": "GitHub Actions hardening review",
+      "summary": "A report-only security review of workflow files covering trigger trust levels, script injection through expression interpolation, privileged triggers running fork code, least-privilege token permissions, SHA-pinning of actions, GITHUB_ENV and output injection, secrets, OIDC and self-hosted runners. Findings come with severity, exact lines and before/after fixes.",
+      "useWhen": "Reviewing, writing or hardening .github/workflows files, especially ones using pull_request_target, workflow_run or issue_comment.",
+      "tags": [
+        "security",
+        "github-actions",
+        "ci",
+        "supply-chain",
+        "audit"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "All six files read at the pin. The core insight (expressions are pasted into the script before the shell runs) and the two-workflow pattern are correct and well taught. It never applies changes. Its trust matrix presents token scopes as fixed, but they follow repository default permissions. The workflow_run example downloads an artifact without the run-id and github-token inputs that a cross-run download needs. It reasons only, without running zizmor or actionlint. No trigger or outcome evaluation has been run."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/github/awesome-copilot",
+        "path": "skills/github-actions-hardening",
+        "revision": "df566343b3a685e821f8ebe8ea70a2a8eb8b857b",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "GitHub awesome-copilot contributors",
+        "notes": "The complete six-file subtree (SKILL.md and five references) is copied unchanged and matches repository HEAD b6483db44fb602654bca6a097185fcaddb305f97. LICENSE.txt is the repository root MIT license. No scripts, network access or sibling skills are required."
+      },
+      "install": {
+        "notes": "Copy the directory with its references/ and LICENSE.txt. Run zizmor or actionlint alongside it if the project uses them."
+      },
+      "overlap": "Claude Code /security-review targets application code changes, not workflow configuration; gh-fix-ci repairs failing checks; security-threat-model covers system design. agentic-actions-auditor adds AI-agent workflow vectors. getsentry gha-security-review was held because its do-not-flag rules exempt inputs passed through with, including github-script scripts.",
+      "related": [
+        "oss-repo-health",
+        "open-sourcing",
+        "agentic-actions-auditor",
+        "security-threat-model",
+        "gh-fix-ci"
+      ],
+      "score": 4.2,
+      "sourceUrl": "https://github.com/github/awesome-copilot/tree/df566343b3a685e821f8ebe8ea70a2a8eb8b857b/skills/github-actions-hardening",
+      "path": "entries/skills/github-actions-hardening",
+      "files": [
+        "entries/skills/github-actions-hardening/LICENSE.txt",
+        "entries/skills/github-actions-hardening/SKILL.md",
+        "entries/skills/github-actions-hardening/references/injection.md",
+        "entries/skills/github-actions-hardening/references/permissions-and-tokens.md",
+        "entries/skills/github-actions-hardening/references/report-format.md",
+        "entries/skills/github-actions-hardening/references/supply-chain.md",
+        "entries/skills/github-actions-hardening/references/triggers-and-privilege.md"
       ]
     },
     {
@@ -1552,6 +1894,136 @@
       "files": [
         "entries/skills/moderated-usability-study/LICENSE.txt",
         "entries/skills/moderated-usability-study/SKILL.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "open-sourcing",
+      "type": "skill",
+      "title": "Open-source release readiness (Trail of Bits)",
+      "summary": "Prepares a repository for going public, secrets audit first. It recommends a fresh repository over history rewriting when secrets ever existed, then covers README essentials, SECURITY.md, licensing with consistent SPDX metadata, CI and workflow hardening, branch rules, dependency cooldowns, semver tags, CI-driven releases with trusted publishing, and per-language packaging.",
+      "useWhen": "Making a private repository public, choosing a license, or setting up packaging and release automation ahead of a public launch.",
+      "tags": [
+        "open-source",
+        "security",
+        "secrets",
+        "licensing",
+        "releases",
+        "github"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Read SKILL.md, licensing reference, both scripts and manifest; scanned the language references. Scripts are read-only presence checks and a remote/email grep, with no network or writes. The secrets-first ordering and rationalizations to reject are the distinctive part. A Trail of Bits overlay loads only when detected; the Python reference defers to a sibling modern-python skill. Launch-focused, so ongoing upkeep (changelog, templates, CODEOWNERS) is thin. Linked because the repository is CC-BY-SA-4.0."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/trailofbits/skills",
+        "path": "plugins/open-sourcing/skills/open-sourcing",
+        "revision": "123037ec8aed26f0d86327cc39137ee5043e5deb",
+        "retrieved": "2026-10-29",
+        "license": "CC-BY-SA-4.0",
+        "author": "Trail of Bits"
+      },
+      "install": {
+        "claude-code": "/plugin marketplace add trailofbits/skills, then /plugin install open-sourcing@trailofbits",
+        "codex": "codex plugin marketplace add trailofbits/skills, then codex plugin add open-sourcing@trailofbits",
+        "notes": "The marketplace install tracks upstream rather than this pin. Other hosts can copy plugins/open-sourcing/skills/open-sourcing, including references/ and scripts/, from the pinned revision and keep the CC-BY-SA-4.0 attribution. The scripts need bash and git. gitleaks or trufflehog are optional for the history scan."
+      },
+      "overlap": "oss-repo-health audits an already-public repository's ongoing practices and hands the pre-release secrets audit to this entry. github-actions-hardening reviews workflows in more depth. Hosts have no built-in release-readiness workflow.",
+      "related": [
+        "oss-repo-health",
+        "github-actions-hardening",
+        "variant-analysis"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/open-sourcing/skills/open-sourcing",
+      "path": "entries/skills/open-sourcing",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "oss-repo-health",
+      "type": "skill",
+      "title": "Open-source repository health audit",
+      "summary": "A read-only audit of a public repository, calibrated to project kind, covering the README, license consistency, contribution and community files, SECURITY.md and private reporting, dependency updates, branch rules, Semantic Versioning, Keep a Changelog and the release process. It reports prioritized findings with evidence, marks unreadable settings as unknown, and applies only approved changes.",
+      "useWhen": "Reviewing or improving a public repository's practices, preparing it for outside contributors, or setting up versioning, a changelog or releases.",
+      "tags": [
+        "open-source",
+        "documentation",
+        "licensing",
+        "releases",
+        "github",
+        "audit"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Fills the ongoing-maintenance gap that launch-focused skills leave. It calibrates checks to project kind, leaves license choice and repository settings to the owner, and distinguishes unknown from missing when API access is limited. The four gh queries were run read-only against a public repository. It is GitHub-first with stated mappings for other forges, and it hands workflow security and the pre-release secrets audit to the specialist entries. No trigger or outcome evaluation has been run."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Original prose distilled from the sources below. No upstream skill text is copied; Trail of Bits open-sourcing (CC-BY-SA-4.0) was reviewed for scope only."
+      },
+      "inspiredBy": [
+        {
+          "title": "GitHub Open Source Guides",
+          "url": "https://opensource.guide/"
+        },
+        {
+          "title": "GitHub Docs, Setting up your project for healthy contributions",
+          "url": "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions"
+        },
+        {
+          "title": "OpenSSF Scorecard checks",
+          "url": "https://github.com/ossf/scorecard/blob/main/docs/checks.md"
+        },
+        {
+          "title": "OpenSSF Best Practices badge criteria",
+          "url": "https://www.bestpractices.dev/en/criteria"
+        },
+        {
+          "title": "Semantic Versioning 2.0.0",
+          "url": "https://semver.org/spec/v2.0.0.html"
+        },
+        {
+          "title": "Keep a Changelog 1.1.0",
+          "url": "https://keepachangelog.com/en/1.1.0/"
+        },
+        {
+          "title": "Choose an open source license",
+          "url": "https://choosealicense.com/"
+        }
+      ],
+      "overlap": "open-sourcing covers the go-public event and secrets history; github-actions-hardening covers workflow security; GitHub's community profile shows file presence only. The OpenSSF Scorecard tool scores security practices automatically but not documentation or contributor experience.",
+      "related": [
+        "open-sourcing",
+        "github-actions-hardening",
+        "git-commit",
+        "agents-md-authoring"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/ossf/scorecard/blob/main/docs/checks.md",
+      "path": "entries/skills/oss-repo-health",
+      "files": [
+        "entries/skills/oss-repo-health/LICENSE.txt",
+        "entries/skills/oss-repo-health/SKILL.md"
       ]
     },
     {
@@ -5223,6 +5695,20 @@
         "verification-before-completion"
       ],
       "path": "collections/frontend-quality.yaml"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "open-source-maintenance",
+      "title": "Open-source maintenance",
+      "description": "Keep a public repository healthy - audit its documentation, licensing, contributor and release practices, review its workflows, and keep a reviewable commit history. Add open-sourcing only before taking a private repository public.",
+      "entries": [
+        "oss-repo-health",
+        "github-actions-hardening",
+        "commit-history-hygiene",
+        "git-commit",
+        "open-sourcing"
+      ],
+      "path": "collections/open-source-maintenance.yaml"
     },
     {
       "schemaVersion": 2,

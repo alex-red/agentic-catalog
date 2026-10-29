@@ -1,0 +1,32 @@
+schemaVersion: 2
+id: agentic-actions-auditor
+type: skill
+title: Audit AI agents in GitHub Actions (Trail of Bits)
+summary: A read-only audit of workflows that run AI coding agents (claude-code-action, Codex, Gemini CLI, ai-inference). It traces attacker-controlled input into agent prompts through nine vectors, including environment-variable intermediaries, runtime gh fetches, error-log injection and eval of model output, and treats permissive sandbox or tool settings as amplifiers. Findings come with data-flow traces.
+useWhen: Reviewing workflows that invoke an AI agent action, especially ones triggered by issues, comments or pull_request_target.
+tags: [security, github-actions, ci, audit]
+hosts: [any]
+experimental: true
+rating:
+  usefulness: 4
+  quality: 3
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: All 17 files read at the pin. Covers agent-specific sinks a general reviewer misses. Defects verified at the pin. The AI-output remediation labelled SAFE puts model output in single quotes inside run:, which is still injectable, and names a wrong output (result, not response). Gemini sandbox defaults contradict across files. Vector H omits bypass-permission flags. Action input names will drift. Experimental for these reasons.
+source:
+  kind: linked
+  url: https://github.com/trailofbits/skills
+  path: plugins/agentic-actions-auditor/skills/agentic-actions-auditor
+  revision: 123037ec8aed26f0d86327cc39137ee5043e5deb
+  retrieved: 2026-10-29
+  license: CC-BY-SA-4.0
+  author: Trail of Bits
+  notes: Plugin 1.3.2. Read-only and needs no sibling skills. Remote mode and cross-file resolution fetch workflows and local actions with gh api at whatever ref the caller wrote, treating them as data. Third-party actions are skipped without being listed as a coverage gap.
+install:
+  claude-code: /plugin marketplace add trailofbits/skills, then /plugin install agentic-actions-auditor@trailofbits
+  codex: codex plugin marketplace add trailofbits/skills, then codex plugin add agentic-actions-auditor@trailofbits
+  notes: The marketplace install tracks upstream rather than this pin. Other hosts can copy the skill directory with references/ from the pinned revision and keep the CC-BY-SA-4.0 attribution. Remote mode needs an authenticated gh CLI. Do not copy the AI-output remediation in references/action-profiles.md; pass model output through env and quote the shell variable instead.
+overlap: github-actions-hardening covers general workflow hardening, including direct expression injection and pull_request_target checkout, which this also checks. This adds the agent-specific vectors and action settings. Host security review does not cover workflow configuration.
+related: [github-actions-hardening, oss-repo-health, security-threat-model]

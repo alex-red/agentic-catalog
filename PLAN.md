@@ -1,7 +1,7 @@
 # Plan
 
 Updated: October 29, 2026
-Status: experimental. The catalog has 94 entries across seven types and seven collections, including nineteen experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Status: experimental. The catalog has 108 entries across eight types and eight collections, including twenty-one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -40,7 +40,7 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 
 | Type | Entries |
 | --- | --- |
-| Skills (51) | bun-workspaces, react-component-composition, vue-async-state, tokio-async-correctness, repo-research, diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked), frontend-design (linked), impeccable, emil-design-eng, remove-animations, design-taste-frontend, ui-ux-pro-max, interface-design, better-typography, interface-review, baseline-ui, fixing-accessibility, fixing-motion-performance (last eleven linked and experimental), intent (linked and experimental), synthesize-research (linked), moderated-usability-study, human-interface-design, mmorpg-design, level-design, game-feel, reverse-engineering, cynthion-reverse-engineer (last two linked and experimental), catalog-taxonomy |
+| Skills (60) | bun-workspaces, react-component-composition, vue-async-state, tokio-async-correctness, repo-research, diagnosing-bugs, agents-md-authoring, verification-before-completion, grilling, handoff, domain-modeling, react-best-practices (linked), retrospective, gh-fix-ci, security-threat-model, secret-serialization, systematic-debugging, test-driven-development, property-based-testing (linked), variant-analysis (linked), webapp-testing, workers-best-practices, create-adaptable-composable, ponytail (experimental), improvement-loop (custom), mcp-builder (linked), find-skills (linked), skill-creator (linked), ux-critique (linked), frontend-design (linked), impeccable, emil-design-eng, remove-animations, design-taste-frontend, ui-ux-pro-max, interface-design, better-typography, interface-review, baseline-ui, fixing-accessibility, fixing-motion-performance (last eleven linked and experimental), intent (linked and experimental), synthesize-research (linked), moderated-usability-study, human-interface-design, mmorpg-design, level-design, game-feel, reverse-engineering, cynthion-reverse-engineer (last two linked and experimental), catalog-taxonomy, portless (linked, experimental), git-commit, committing-with-commitlint, commit-history-hygiene, github-actions-hardening, oss-repo-health, open-sourcing (linked), conventional-commit-message (linked), agentic-actions-auditor (linked and experimental) |
 | Rules (5) | verification-evidence, karpathy-coding-guidelines (linked), focused-changes, scope-and-authority, markdown-accessibility |
 | Workflows (12) | monorepo-change-verification, harness-experiment-loop, bun-migration-verification, rust-verification-ladder, self-improvement-loop, explore-plan-implement-review, ralph-loop, revise-claude-md (linked), evidence-to-flow-ux, mechanic-prototyping, game-balance-review, gameplay-playtesting |
 | Hooks (15) | format-after-edit, protect-files-and-commands, stop-gate-checks, no-email-context, config-guard, config-watch, git-safety, protect-tests, case-insensitive-guard, context-hogs, desktop-attention, compact-context, post-edit-diagnostics, subagent-budget, prompt-secret-check |
@@ -48,7 +48,7 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 | MCP servers (6) | chrome-devtools-mcp, context7, reva, ida-mcp, reverse-engineer-anything, cerberus-re (last four experimental) |
 | Plugins (3) | superpowers, compound-engineering, claude-reflect |
 
-Collections: starter, self-improvement, debugging, project-upkeep, project-initialization, frontend-quality, security-review.
+Collections: starter, self-improvement, debugging, project-upkeep, project-initialization, frontend-quality, security-review, open-source-maintenance.
 
 The [frontend design options](docs/frontend-design-options.md) are separately selectable alternatives. Their [admission record](docs/research/2026-10-28-design-admission.md) retains known technical defects and runtime-review limits; linked experimental admission is not a claim that those blockers were resolved.
 
@@ -65,6 +65,8 @@ The [reverse-engineering options](docs/reverse-engineering-options.md) add six e
 The adapted [catalog-taxonomy](entries/skills/catalog-taxonomy/SKILL.md) skill turns the [tagging research](docs/research/2026-10-29-catalog-tagging-research.md) into a portable method for vocabulary, facets, aliases, retrieval semantics and migrations. It is listed under the browser's System design topic category while retaining its Skill type. Entry tags now come from a controlled [tag vocabulary](catalog/tags.yaml) with facets, definitions and aliases ([decision 50](docs/decisions.md)); faceted search in the browser is not yet implemented.
 
 The [Dev UX research](docs/research/2026-10-29-catalog-scout-3.md) covers the local development loop: running, finding and observing apps, toolchains, worktrees and session visibility. The browser's Dev UX category, from the `dev-ux` tag, currently groups existing browser, diagnostics and attention entries. Dev UX admits user-facing tools as well as agent guidance ([decision 51](docs/decisions.md)); Six linked Dev UX entries are now admitted, including a new `tool` type for user-facing tools ([decision 52](docs/decisions.md), [selection guide](docs/dev-ux-options.md)).
+
+The [commit and repository practices](docs/repository-practices-options.md) add message-format, commitlint and commit-series skills, a repository health audit, a GitHub Actions hardening review and a launch-readiness skill (decisions [53](docs/decisions.md) and [54](docs/decisions.md), [research](docs/research/2026-10-29-catalog-scout-4.md)). History rewriting, pushes, license choice and repository settings remain user decisions.
 
 Candidates that were considered and left out, with reasons, are in the research notes summarized in [decision 16](docs/decisions.md). Examples: skills that fetch unpinned remote instructions at runtime, unlicensed repositories, and generic reviewer personas.
 

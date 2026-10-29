@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: oss-repo-health
+type: skill
+title: Open-source repository health audit
+summary: A read-only audit of a public repository, calibrated to project kind, covering the README, license consistency, contribution and community files, SECURITY.md and private reporting, dependency updates, branch rules, Semantic Versioning, Keep a Changelog and the release process. It reports prioritized findings with evidence, marks unreadable settings as unknown, and applies only approved changes.
+useWhen: Reviewing or improving a public repository's practices, preparing it for outside contributors, or setting up versioning, a changelog or releases.
+tags: [open-source, documentation, licensing, releases, github, audit]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Fills the ongoing-maintenance gap that launch-focused skills leave. It calibrates checks to project kind, leaves license choice and repository settings to the owner, and distinguishes unknown from missing when API access is limited. The four gh queries were run read-only against a public repository. It is GitHub-first with stated mappings for other forges, and it hands workflow security and the pre-release secrets audit to the specialist entries. No trigger or outcome evaluation has been run.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Original prose distilled from the sources below. No upstream skill text is copied; Trail of Bits open-sourcing (CC-BY-SA-4.0) was reviewed for scope only.
+inspiredBy:
+  - title: GitHub Open Source Guides
+    url: https://opensource.guide/
+  - title: GitHub Docs, Setting up your project for healthy contributions
+    url: https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions
+  - title: OpenSSF Scorecard checks
+    url: https://github.com/ossf/scorecard/blob/main/docs/checks.md
+  - title: OpenSSF Best Practices badge criteria
+    url: https://www.bestpractices.dev/en/criteria
+  - title: Semantic Versioning 2.0.0
+    url: https://semver.org/spec/v2.0.0.html
+  - title: Keep a Changelog 1.1.0
+    url: https://keepachangelog.com/en/1.1.0/
+  - title: Choose an open source license
+    url: https://choosealicense.com/
+overlap: open-sourcing covers the go-public event and secrets history; github-actions-hardening covers workflow security; GitHub's community profile shows file presence only. The OpenSSF Scorecard tool scores security practices automatically but not documentation or contributor experience.
+related: [open-sourcing, github-actions-hardening, git-commit, agents-md-authoring]

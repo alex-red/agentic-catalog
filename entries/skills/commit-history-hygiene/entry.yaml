@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: commit-history-hygiene
+type: skill
+title: Reviewable commit history
+summary: Plans a series of self-contained commits, splits mixed edits without interactive staging, writes why-focused messages in the long-standing Git style when the repository has no convention, verifies every commit with rebase --exec, folds review fixes in with fixup commits and non-interactive autosquash, and handles trailers and signing without overreach.
+useWhen: Committing a body of work as several commits, tidying a branch before review, squashing fixups, or adding co-author or sign-off trailers.
+tags: [commits, git, code-review, conventions]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 5
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Written for agents, which cannot drive git add -p or rebase -i. Non-interactive autosquash, rebase --exec stopping at the first failing commit, and the fixup forms that need an editor were exercised in a scratch repository on Git 2.51; the Git 2.44 autosquash change was checked against release notes. History rewriting and force pushes stay behind explicit user requests, and Signed-off-by is treated as the user's certification. No trigger or outcome evaluation has been run.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Original prose distilled from Git documentation and established commit-message guides, written after reviewing the agent skills listed in the October 29 commit and open-source research. No upstream skill text is copied.
+inspiredBy:
+  - title: Chris Beams, How to Write a Git Commit Message
+    url: https://cbea.ms/git-commit/
+  - title: Tim Pope, A Note About Git Commit Messages
+    url: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+  - title: Linux kernel, Submitting patches (separate your changes, describe them)
+    url: https://docs.kernel.org/process/submitting-patches.html
+  - title: git-rebase documentation (--autosquash, --exec)
+    url: https://git-scm.com/docs/git-rebase
+  - title: git-interpret-trailers documentation
+    url: https://git-scm.com/docs/git-interpret-trailers
+  - title: GitHub, Creating a commit with multiple authors
+    url: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors
+  - title: Compound Engineering ce-commit (explicit pathspec staging, co-author email rule)
+    url: https://github.com/EveryInc/compound-engineering-plugin/blob/c27add907c3a4e59713075e76049a8b0c8b4ec01/skills/ce-commit/SKILL.md
+overlap: Host commit procedures cover single commits, explicit staging and no hook skipping. git-commit and committing-with-commitlint cover message format and validation and defer to this for series and fixups. No host or catalog entry covers commit planning, non-interactive splitting, per-commit verification or autosquash.
+related: [git-commit, committing-with-commitlint, git-safety, focused-changes]

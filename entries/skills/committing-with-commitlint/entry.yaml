@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: committing-with-commitlint
+type: skill
+title: Commit in commitlint repositories
+summary: Detects commitlint, reads the enforced rules with --print-config, explains the severity/applicability/value rule format, validates the full message through stdin before committing, and corrects only the rules named in a hook rejection instead of bypassing the hook.
+useWhen: A repository enforces commit messages with commitlint, through husky, lefthook or a commit-msg hook, and agent commits keep getting rejected.
+tags: [commits, conventional-commits, git, quality-gate]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 5
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Written by the commitlint maintainers; complete one-file skill read at the pin. Narrow and precise, with a concrete self-correction loop from hook output. `npx commitlint` can download the package when it is not installed locally, so it is not offline-safe; prefer the project's local binary. Only useful in repositories that already use commitlint.
+source:
+  kind: vendored
+  url: https://github.com/conventional-changelog/commitlint
+  path: skills/committing-with-commitlint
+  revision: 36dc150fc3c0ef5f0860e9f2ef7729a6d9c7db72
+  retrieved: 2026-10-29
+  license: MIT
+  author: commitlint contributors
+  notes: SKILL.md copied unchanged; it matches repository HEAD 4467ec47655f4236ed1b7d3e50b511baa8d45b91. LICENSE.txt is the repository root license.md (MIT, Mario Nebl). The frontmatter has no license field.
+install:
+  notes: Copy the directory, including LICENSE.txt. It runs npx commitlint, which uses the project's installed commitlint when present and otherwise may fetch it from the npm registry.
+overlap: git-commit covers Conventional Commits generally and also reads commitlint configuration, but does not validate before committing or interpret rejections. Host commit procedures say not to skip hooks but give no recovery method.
+related: [git-commit, commit-history-hygiene]
