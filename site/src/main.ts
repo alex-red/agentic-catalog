@@ -3,6 +3,7 @@ import "./styles.css";
 import "./scrollbars.css";
 import { catalogIcon } from "./icons";
 import { highlightSource } from "./highlight";
+import { createLandingPage } from "./landing";
 import { createCombobox, type ComboOption } from "./combobox";
 import { createCommandPalette } from "./command-palette";
 import type { SearchCommand } from "./command-search";
@@ -195,9 +196,9 @@ function setCatalogExpanded(expanded: boolean) {
 }
 
 browseToggle.addEventListener("click", () => setCatalogExpanded(browseToggle.getAttribute("aria-expanded") !== "true"));
-// A deep link opens directly on the entry on small screens; browsing stays one press away.
-setCatalogExpanded(!narrowLayout.matches || !location.hash.startsWith("#/"));
-narrowLayout.addEventListener("change", () => setCatalogExpanded(!narrowLayout.matches || !route().item));
+// Keep reading space on small screens; browsing stays one press away.
+setCatalogExpanded(!narrowLayout.matches);
+narrowLayout.addEventListener("change", () => setCatalogExpanded(!narrowLayout.matches));
 list.addEventListener("click", (event) => {
   if (narrowLayout.matches && (event.target as Element).closest("a.tree-item")) {
     setCatalogExpanded(false);
@@ -915,8 +916,8 @@ function rubricMeter(r: Rating) {
   return box;
 }
 
-function copyForLlm(entry?: CatalogEntry, collection?: Collection) {
-  const button = el("button", "Copy for LLM", "btn-action");
+function copyForLlm(entry?: CatalogEntry, collection?: Collection, label = "Copy for LLM") {
+  const button = el("button", label, "btn-action");
   button.type = "button";
   button.title = "Copy installation instructions to paste into your coding agent";
   button.onclick = async () => {
@@ -924,7 +925,7 @@ function copyForLlm(entry?: CatalogEntry, collection?: Collection) {
     try {
       await navigator.clipboard.writeText(text);
       button.textContent = "✓ Copied for LLM";
-      setTimeout(() => (button.textContent = "Copy for LLM"), 1800);
+      setTimeout(() => (button.textContent = label), 1800);
     } catch {
       // Clipboard access can be denied or unavailable outside a secure context.
       const dialog = el("dialog", undefined, "dialog-modal");
@@ -1105,17 +1106,22 @@ function renderSourceViewer(title: string, files: string[], activeFile: string, 
 async function renderViewer() {
   const { item, file } = route();
   viewer.replaceChildren();
+  viewer.setAttribute("aria-label", item ? "Entry details" : "Catalog overview");
+  $(".skip-link").textContent = item ? "Skip to entry details" : "Skip to catalog overview";
 
   if (!item) {
-    const empty = el("div", undefined, "empty-state");
-    const logo = el("img", undefined, "empty-logo");
-    logo.src = `${import.meta.env.BASE_URL}logo-192.png`;
-    logo.alt = "";
-    logo.width = 64;
-    logo.height = 64;
-    empty.append(logo, el("p", "Select an item from the list to inspect ratings, rubric, and files."));
-    empty.append(copyForLlm());
-    viewer.append(empty);
+    viewer.scrollTop = 0;
+    viewer.append(createLandingPage({
+      entryCount: catalog.entries.length,
+      collectionCount: catalog.collections.length,
+      copyAction: copyForLlm(undefined, undefined, "Copy a prompt for your agent"),
+      search: (query) => {
+        clearFilters();
+        input.value = query;
+        input.dispatchEvent(new Event("input"));
+      },
+      openCommands: () => $("#command-toggle").click(),
+    }));
     return;
   }
 

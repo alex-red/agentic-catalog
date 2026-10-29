@@ -446,3 +446,11 @@ Icons inherit theme colors, remain decorative beside text labels and add no asse
 Replaced the compass emoji branding with an original blue layered-card mark and a compass-arrow cutout, generated with the built-in image generation tool. The transparent master lives in `site/public/logo.png`; local PNG sizes and a multi-size ICO serve the header, empty state, browser favicon and Apple touch icon. Image resizing preserves the generated alpha. Base-aware asset paths support the GitHub Pages subdirectory. No new runtime dependency is introduced.
 
 The generation brief and asset map live in [logo notes](design/logo.md).
+
+## 58. Make the unselected catalog view an orientation page (2026-10-29)
+
+Replaced the empty viewer with a responsive catalog home page explaining the project and a Find, Compare, Use path. Its guide reflects actual search behavior: the top search matches a text substring in the current list, while Commands searches globally regardless of filters. Example search buttons explicitly clear filters, enter a short query and focus search. The page explains host compatibility, overlap, collections, curator ratings, evidence scope and type-specific use without claiming measured benefits or implicitly adopting entries.
+
+The starter collection and agent-assisted shortlist are the primary next steps. The latter reuses the existing overview Copy for LLM prompt, including manual-copy recovery. Other links reach debugging/frontend collections, the repository and the agent-readable index. Inventory counts come from current metadata. The catalog name is now a native home link; the existing routes, browser history, filters and bulk selection remain available. Small screens initially keep browsing collapsed to give the introduction or selected entry reading space; search reopens it.
+
+The page uses existing typography, theme tokens, focus and scrolling behavior, with a simple numbered reading guide rather than a separate navigation surface or dependency. Browser checks cover home navigation, filter-reset examples, collection navigation without selection and command-palette focus restoration. This is implementation verification, not participant comprehension evidence.

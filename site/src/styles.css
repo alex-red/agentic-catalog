@@ -161,7 +161,11 @@ body {
   align-items: center;
   gap: 0.45rem;
   flex-shrink: 0;
+  color: inherit;
+  text-decoration: none;
 }
+
+.brand:hover h1 { color: var(--accent-text); }
 
 .brand-icon { display: block; width: 26px; height: 26px; object-fit: contain; flex: none; }
 .empty-logo { width: 64px; height: 64px; object-fit: contain; }
@@ -867,6 +871,47 @@ kbd {
 }
 
 .empty-icon { font-size: 2.5rem; }
+
+/* Catalog home: a readable field guide within the existing workbench. */
+.catalog-landing { width: 100%; max-width: 76rem; margin-inline: auto; padding-block: 1.25rem 2.5rem; }
+.landing-hero { padding-bottom: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.landing-eyebrow { margin: 0 0 1.1rem; color: var(--accent-text); font: 0.75rem var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; }
+.landing-hero h2 { margin: 0; font-size: clamp(2rem, 3.2vw, 3.25rem); line-height: 1.12; letter-spacing: -0.035em; font-weight: 700; text-wrap: balance; }
+.landing-lead { max-width: 65ch; margin: 1.25rem 0 1rem; font-size: 1.05rem; color: var(--text-muted); line-height: 1.65; }
+.landing-inventory { margin: 0 0 1.5rem; font: 0.76rem/1.6 var(--font-mono); color: var(--text-subtle); }
+.landing-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.landing-actions .btn-action { min-height: 38px; }
+.catalog-landing .landing-caption { font-size: 0.82rem; line-height: 1.65; color: var(--text-muted); margin: 0.75rem 0 0; }
+.landing-section-title { font-size: 0.8rem; letter-spacing: 0.055em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 1.25rem; }
+.landing-steps { margin: 0; padding: 0; list-style: none; }
+.landing-steps > li { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1rem; padding: 1.5rem 0; border-top: 1px solid var(--border-subtle); }
+.landing-steps > li:first-child { border-top: none; padding-top: 0; }
+.landing-step-label > span { color: var(--accent-text); font: 0.75rem var(--font-mono); }
+.landing-step-label h4 { margin: 0.25rem 0 0; font-size: 1.15rem; font-weight: 650; }
+.landing-steps p { margin: 0 0 0.85rem; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
+.landing-steps p:last-child { margin-bottom: 0; }
+.landing-steps strong { color: var(--text); font-weight: 600; }
+.landing-searches { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.landing-search { padding: 0.35rem 0.65rem; min-height: 32px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); color: var(--accent-text); font: 0.82rem var(--font-mono); cursor: pointer; }
+.landing-search:hover { background: var(--accent-subtle); border-color: var(--accent); }
+.landing-steps .landing-caption { margin-bottom: 0.85rem; }
+.landing-inline-button { padding: 0; border: 0; background: none; color: var(--accent-text); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.landing-reference { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 2rem; margin-top: 1rem; padding-top: 1.75rem; border-top: 1px solid var(--border); }
+.landing-evidence { margin: 0; }
+.landing-evidence > div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 0.5rem; margin-bottom: 0.65rem; font-size: 0.86rem; }
+.landing-evidence dt { font-weight: 600; color: var(--text); }
+.landing-evidence dd { margin: 0; color: var(--text-muted); }
+.landing-links { list-style: none; padding: 0; margin: 0; }
+.landing-links li { margin-bottom: 0.8rem; }
+.catalog-landing a:not(.btn-source) { color: var(--accent-text); text-underline-offset: 3px; }
+.landing-links a { font-size: 0.9rem; }
+@media (max-width: 700px) {
+  .catalog-landing { padding-top: 0.5rem; }
+  .landing-hero h2 { font-size: 2.15rem; }
+  .landing-steps > li { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+  .landing-step-label { display: flex; gap: 0.6rem; align-items: baseline; }
+  .landing-step-label h4 { margin: 0; }
+}
 
 /* Badges */
 .card-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
