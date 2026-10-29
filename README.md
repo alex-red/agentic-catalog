@@ -4,7 +4,7 @@
 [![Browse](https://img.shields.io/badge/browse-live%20catalog-58a6ff.svg)](https://alex-red.github.io/agentic-catalog/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, and plugins. Claude Code and Codex are the primary hosts, and portable formats are preferred.
+A curated, rated catalog of agent guidance for coding agents: skills, rules, workflows and loops, hooks, subagents, MCP servers, plugins, and user-facing developer tools. Claude Code and Codex are the primary hosts, and portable formats are preferred.
 
 **Status: experimental.** 87 entries across seven types, plus seven collections. Ratings are curator reviews unless an entry's evidence level says otherwise. See [the plan](PLAN.md).
 

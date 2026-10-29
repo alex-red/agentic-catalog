@@ -13,13 +13,13 @@ interface Frontmatter {
   license?: string;
 }
 
-export const entryTypes = ['skill', 'rule', 'workflow', 'hook', 'subagent', 'mcp', 'plugin'] as const;
+export const entryTypes = ['skill', 'rule', 'workflow', 'hook', 'subagent', 'mcp', 'plugin', 'tool'] as const;
 export type EntryType = (typeof entryTypes)[number];
 export type Evidence = 'reviewed' | 'used' | 'tested' | 'evaluated';
 
-// The installable file each non-linked entry must carry; plugins are always linked.
+// The installable file each non-linked entry must carry; plugins and tools are always linked.
 export const primaryFiles: Record<EntryType, string | undefined> = {
-  skill: 'SKILL.md', rule: 'RULE.md', workflow: 'WORKFLOW.md', hook: 'HOOK.md', subagent: 'AGENT.md', mcp: 'MCP.md', plugin: undefined,
+  skill: 'SKILL.md', rule: 'RULE.md', workflow: 'WORKFLOW.md', hook: 'HOOK.md', subagent: 'AGENT.md', mcp: 'MCP.md', plugin: undefined, tool: undefined,
 };
 
 export interface EntryMetadata {
@@ -418,7 +418,7 @@ export function renderCatalog(catalog: Catalog): string {
 }
 
 const sectionTitles: Record<EntryType, string> = {
-  skill: 'Skills', rule: 'Rules', workflow: 'Workflows and loops', hook: 'Hooks', subagent: 'Subagents', mcp: 'MCP servers', plugin: 'Plugins',
+  skill: 'Skills', rule: 'Rules', workflow: 'Workflows and loops', hook: 'Hooks', subagent: 'Subagents', mcp: 'MCP servers', plugin: 'Plugins', tool: 'User-facing tools',
 };
 
 // llms.txt (https://llmstxt.org): a compact, ranked index an agent can read in one fetch.
@@ -427,7 +427,7 @@ export function renderLlmsText(catalog: Catalog): string {
   const lines = [
     '# Agentic Catalog',
     '',
-    '> A curated, rated catalog of rules, skills, workflows, hooks, subagents, MCP servers, and plugins for coding agents, focused on Claude Code and Codex. Every entry records where it came from, its license, tags, and a curator rating.',
+    '> A curated, rated catalog of rules, skills, workflows, hooks, subagents, MCP servers, plugins, and user-facing developer tools for coding agents, focused on Claude Code and Codex. Every entry records where it came from, its license, tags, and a curator rating.',
     '',
     `Full metadata for every entry is in [catalog/index.json](${url('catalog/index.json')}). Install steps by entry type are in the [install guide](${url('skills/agentic-catalog/references/install.md')}). Repository: ${catalog.repository}`,
     '',

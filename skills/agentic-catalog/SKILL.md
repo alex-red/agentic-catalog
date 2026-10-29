@@ -44,7 +44,7 @@ Follow [the install guide](references/install.md) for each type and host. In sho
 
 - `original`, `adapted`, and `vendored` entries: copy the entry's `files` (everything except `entry.yaml`) to the target location. Keep license files with vendored content.
 - `linked` entries: use the entry's `install` steps, or the upstream instructions at `source.url`. Pin to `source.revision` when one is given. Read the upstream content before installing it, and stop if it differs materially from the catalog summary.
-- Hooks, MCP servers, subagents with broad tool access, and plugins can run code or reach external services. Show the exact configuration and get explicit approval for each one. Never enable them as a side effect of installing something else.
+- Hooks, MCP servers, subagents with broad tool access, plugins, and user-facing tools can run code or reach external services. Show the exact configuration and get explicit approval for each one. Never enable them as a side effect of installing something else.
 - Merge with existing project instructions; do not overwrite them. If a rule conflicts with project guidance, ask which one wins.
 - Record provenance next to what you install: for rules, wrap the text in `<!-- agentic-catalog:begin id=ID source=REVISION -->` and `<!-- agentic-catalog:end -->`; for other files, keep the upstream license and mention the entry ID in the project's usual place for such notes.
 

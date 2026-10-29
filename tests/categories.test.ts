@@ -65,3 +65,15 @@ test('cross-topic filters match either topic independently of unique tree placem
   assert.equal(belongsToTreeGroup(item, 'system-design'), false);
   assert.equal(belongsToTreeGroup(item, 'featured'), true);
 });
+
+test('dev UX groups local-loop entries across types without changing their install types', () => {
+  const devUx = items.filter((item) => matchesCategories(item, new Set(['dev-ux'])));
+  const ids = devUx.map((item) => item.entry.id).sort();
+  for (const id of ['chrome-devtools-mcp', 'desktop-attention', 'post-edit-diagnostics', 'verification-evidence', 'webapp-testing']) {
+    assert.ok(ids.includes(id), id);
+  }
+  assert.deepEqual(new Set(devUx.map((item) => item.kind)), new Set(['mcp', 'hook', 'rule', 'skill', 'plugin', 'tool']));
+  for (const item of devUx.filter((candidate) => !candidate.entry.experimental && !candidate.entry.custom)) {
+    assert.equal(primaryTreeGroup(item), categoryOf(item));
+  }
+});

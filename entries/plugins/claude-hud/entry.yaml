@@ -1,0 +1,29 @@
+schemaVersion: 2
+id: claude-hud
+type: plugin
+title: Claude HUD status line
+summary: A Claude Code status line showing context use, active tools, running subagents, todo progress, rate limits and session cost, read from the session transcript and the JSON Claude Code passes to the status line. Setup backs up settings and asks before replacing an existing status line.
+useWhen: You run long or parallel Claude Code sessions and want context pressure, tool and subagent activity, and limits visible without running /context, /cost or /usage.
+tags: [dev-ux, status-line, context, observability]
+hosts: [claude-code]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 2
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Setup, launcher and main readers reviewed at the pin; no network requests or telemetry found. Reads the transcript, ~/.claude.json (plan tier, optional email local part, MCP counts) and settings files; writes caches under ~/.claude/plugins/claude-hud/. The launcher runs the highest-version claude-hud in any marketplace cache, not a pinned copy, and Node runs CI-built dist/ not compared with src. Claude Code only. A user-facing tool; no agent outcome claim.
+source:
+  kind: linked
+  url: https://github.com/jarrodwatts/claude-hud
+  revision: ce2ceff9d67a34e9e6a7889336cf2911254800ff
+  retrieved: 2026-10-29
+  license: MIT
+  author: Jarrod Watts
+  notes: Version 0.13.1. The pin is CI's dist/ build of the last source commit aace8949efbd6d1d065197ee4873c9e348c09fa6.
+install:
+  claude-code: claude plugin marketplace add jarrodwatts/claude-hud, then claude plugin install claude-hud@claude-hud. In a session, run /reload-plugins and then /claude-hud:setup, which writes statusLine to settings.json after backing it up to settings.json.bak.<timestamp>.
+  notes: 'Requires Node 18+ or Bun. To revert, restore the settings backup (or remove statusLine), uninstall the plugin, and delete ~/.claude/plugins/claude-hud/. The optional --extra-cmd segment runs a shell command only when CLAUDE_HUD_ALLOW_EXTRA_CMD=1 is set; leave it off unless you need it.'
+overlap: Claude Code's statusLine setting, which this fills, and the built-in status line setup agent; /context, /cost and /usage report the same numbers on demand. ccusage statusline is a lighter cost-only alternative. context-hogs attributes context cost to files rather than showing live use.
+related: [ccusage, context-hogs, desktop-attention]

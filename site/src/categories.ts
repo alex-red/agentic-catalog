@@ -1,6 +1,7 @@
 export const catalogCategories = [
   { id: "game-design", label: "Game design" },
   { id: "system-design", label: "System design" },
+  { id: "dev-ux", label: "Dev UX" },
 ] as const;
 
 interface CategorizedItem {

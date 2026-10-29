@@ -23,6 +23,11 @@ terms:
     label: Design
     facet: topic
     definition: Visual and interface design of products and screens. Broader than visual-design; distinct from ux and frontend implementation.
+  - id: dev-ux
+    label: Dev UX
+    facet: topic
+    aliases: [developer experience, devex, dx]
+    definition: The local development loop around agents, for the agent or the person - running, finding and observing apps (dev servers, ports, logs, browser checks), toolchains, worktrees and session visibility. Drives the Dev UX browser category.
   - id: frontend
     label: Frontend
     facet: topic
@@ -408,6 +413,11 @@ terms:
     label: Design systems
     facet: keyword
     definition: Tokens, components and saved design decisions reused across screens.
+  - id: dev-servers
+    label: Dev servers
+    facet: keyword
+    aliases: [dev server, development server]
+    definition: Starting, reusing, addressing and stopping local development servers.
   - id: diagnostics
     label: Diagnostics
     facet: keyword
@@ -498,6 +508,11 @@ terms:
     label: Library documentation
     facet: keyword
     definition: Third-party library references and examples.
+  - id: local-urls
+    label: Local URLs
+    facet: keyword
+    aliases: [localhost, local domains]
+    definition: Stable names and HTTPS for apps running on the local machine.
   - id: logging
     label: Logging
     facet: keyword
@@ -658,6 +673,11 @@ terms:
     label: State management
     facet: keyword
     definition: Where UI state lives and who owns it.
+  - id: status-line
+    label: Status line
+    facet: keyword
+    aliases: [statusline]
+    definition: The persistent session status display in the host's terminal UI.
   - id: stop-hook
     label: Stop event
     facet: keyword
@@ -695,6 +715,11 @@ terms:
     label: Threat modeling
     facet: keyword
     definition: Trust boundaries, attackers and abuse paths.
+  - id: toolchains
+    label: Toolchains
+    facet: keyword
+    aliases: [tool versions, runtime versions]
+    definition: Which language runtimes and tool versions a project declares and uses.
   - id: tool-design
     label: Tool design
     facet: keyword
@@ -720,6 +745,11 @@ terms:
     label: Usability
     facet: keyword
     definition: Whether people can complete tasks with an interface.
+  - id: usage-tracking
+    label: Usage and cost tracking
+    facet: keyword
+    aliases: [cost tracking, token usage]
+    definition: Reporting agent token use and estimated cost over time.
   - id: user-prompt-submit
     label: UserPromptSubmit event
     facet: keyword
@@ -733,6 +763,11 @@ terms:
     facet: keyword
     aliases: [art-direction, art direction]
     definition: Visual identity, color, type and composition. Narrower than design.
+  - id: worktrees
+    label: Git worktrees
+    facet: keyword
+    aliases: [git worktree, worktree]
+    definition: Separate working directories per branch, typically one per parallel agent session.
   - id: workspaces
     label: Workspaces
     facet: keyword

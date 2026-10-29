@@ -4,7 +4,7 @@ type: rule
 title: Verify in the running app
 summary: Check a change where its effect appears, including in an app the user already has running, even when the agent may not start a server; otherwise name what remains unchecked.
 useWhen: Agents in your project hand back visible UI changes without looking at them.
-tags: [verification, browser, completion-claims]
+tags: [dev-ux, verification, browser, completion-claims]
 hosts: [any]
 rating:
   usefulness: 4

@@ -64,6 +64,8 @@ The [reverse-engineering options](docs/reverse-engineering-options.md) add six e
 
 The adapted [catalog-taxonomy](entries/skills/catalog-taxonomy/SKILL.md) skill turns the [tagging research](docs/research/2026-10-29-catalog-tagging-research.md) into a portable method for vocabulary, facets, aliases, retrieval semantics and migrations. It is listed under the browser's System design topic category while retaining its Skill type. Entry tags now come from a controlled [tag vocabulary](catalog/tags.yaml) with facets, definitions and aliases ([decision 50](docs/decisions.md)); faceted search in the browser is not yet implemented.
 
+The [Dev UX research](docs/research/2026-10-29-catalog-scout-3.md) covers the local development loop: running, finding and observing apps, toolchains, worktrees and session visibility. The browser's Dev UX category, from the `dev-ux` tag, currently groups existing browser, diagnostics and attention entries. Dev UX admits user-facing tools as well as agent guidance ([decision 51](docs/decisions.md)); Six linked Dev UX entries are now admitted, including a new `tool` type for user-facing tools ([decision 52](docs/decisions.md), [selection guide](docs/dev-ux-options.md)).
+
 Candidates that were considered and left out, with reasons, are in the research notes summarized in [decision 16](docs/decisions.md). Examples: skills that fetch unpinned remote instructions at runtime, unlicensed repositories, and generic reviewer personas.
 
 ## Next steps

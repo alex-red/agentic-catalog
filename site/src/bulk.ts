@@ -153,7 +153,7 @@ function installStep(e: BulkEntry, config: InstallConfig, opts: BulkOptions): St
       `python3 "$STAGE/hook-installer.py" ${sh(e.id)} --host ${sh(host)} --revision ${sh(revision)} --raw-base "$BASE"`,
     ]);
   }
-  // Unsupported/global hooks, MCP servers, workflows, plugins and prose installers stay manual.
+  // Unsupported/global hooks, MCP servers, workflows, plugins, tools and prose installers stay manual.
   return { id: e.id, type: e.type, kind: "manual", summary: e.type === "hook" || e.type === "mcp" ? "review and configure by hand" : "follow the steps by hand", lines: [head, ...comment(`manual: ${guidance(e, host, opts, revision)}`)] };
 }
 
@@ -277,7 +277,7 @@ export function configToScript(catalog: BulkEntry[], config: InstallConfig, opts
     "",
     ...section("remove", "Remove entries dropped from the config"),
     ...section("install", "Install"),
-    ...section("manual", "Manual steps (unsupported/global hooks, MCP servers, workflows, plugins, and prose installers)"),
+    ...section("manual", "Manual steps (unsupported/global hooks, MCP servers, workflows, plugins, tools, and prose installers)"),
     "# --- Record the selection ---",
     "",
     `mkdir -p ${at(config.scope, ".agents").sh}`,
@@ -308,7 +308,7 @@ export function configToYaml(config: InstallConfig, opts: BulkOptions): string {
   ].join("\n");
 }
 
-const TYPE_ORDER = ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin"];
+const TYPE_ORDER = ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "tool"];
 
 export function makeConfig(catalog: BulkEntry[], ids: Iterable<string>, settings: { revision: string; host: BulkHost; scope: BulkScope; skillsCli: boolean; collections?: Iterable<string> }): InstallConfig {
   const wanted = new Set(ids);

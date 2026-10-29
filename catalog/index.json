@@ -1606,6 +1606,60 @@
     },
     {
       "schemaVersion": 2,
+      "id": "portless",
+      "type": "skill",
+      "title": "Portless named local URLs (Vercel)",
+      "summary": "Replaces port numbers with stable https://<name>.localhost URLs through a local reverse proxy, with a subdomain per git worktree, so agents stop guessing ports or colliding on them. Ships a skill and an MCP server whose default tools only look up and alias routes.",
+      "useWhen": "Agents run several dev servers, worktrees or monorepo apps at once and keep testing the wrong port, hitting EADDRINUSE, or mixing cookies across localhost apps.",
+      "tags": [
+        "dev-ux",
+        "dev-servers",
+        "local-urls",
+        "worktrees"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 4,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Skill, MCP, hosts sync and elevation paths reviewed at the pin; proxy and certificate code only searched. Careful code, but the skill tells the agent to start the proxy on 443 with sudo, trust a local CA, sync /etc/hosts, edit package.json scripts and install globally, without asking first. Without a TTY no password prompt appears, though cached sudo or a macOS keychain dialog can still apply changes. Pre-1.0 and changing weekly. No telemetry found. No agent outcome trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/vercel-labs/portless",
+        "path": "skills/portless",
+        "revision": "3a67ed12fb9175e2bb2a237af5d14831e052a1aa",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0",
+        "author": "Vercel Labs",
+        "notes": "CLI 0.15.12; requires Node 24+ (and openssl on Windows). The skill is one self-contained file. The MCP server (portless mcp) is part of the CLI. Repository HEAD at review was a9561dcb891a10c37a9695c3f938007b8ba09f32."
+      },
+      "install": {
+        "any": "npx skills add vercel-labs/portless --skill portless (follows the skills.sh layout; upstream documents no skill installer). The skill needs the CLI, which the user installs: npm install -D portless or npm install -g portless.",
+        "claude-code": "Optional MCP, default core profile (list, get, alias): claude mcp add portless --scope project -- portless mcp",
+        "codex": "Optional MCP: codex mcp add portless -- portless mcp, or [mcp_servers.portless] with command = \"portless\" and args = [\"mcp\"] in .codex/config.toml.",
+        "notes": "Least-privilege setup: run the proxy on a high port (-p 1355) or with --no-tls, pass --skip-trust, and set PORTLESS_SYNC_HOSTS=0. Ask the user before starting the proxy on 443, running portless trust, hosts sync or service install, enabling --lan, or any tunnel (--tailscale, --funnel, --ngrok, --cloudflare publish the app). Keep the MCP on the core profile; the proxy and all profiles can start the daemon. The MCP command runs whatever portless is on PATH. portless clean removes the CA, hosts block and service."
+      },
+      "overlap": "No host built-in or catalog entry gives agents stable named local URLs. Host background processes and webapp-testing still choose ports themselves; portless can sit underneath them. dev3000 (not admitted) now requires it. Worktree-aware names complement worktrunk.",
+      "related": [
+        "worktrunk",
+        "process-compose-mcp",
+        "webapp-testing",
+        "chrome-devtools-mcp"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/vercel-labs/portless/tree/3a67ed12fb9175e2bb2a237af5d14831e052a1aa/skills/portless",
+      "path": "entries/skills/portless",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "property-based-testing",
       "type": "skill",
       "title": "Property-based testing (Trail of Bits)",
@@ -2558,6 +2612,7 @@
       "summary": "Drive a local web app with Python Playwright, following a reconnaissance-then-action pattern. Includes a helper that starts and stops dev servers around a test script, and examples for element discovery and console logs.",
       "useWhen": "Verifying or debugging frontend behavior headlessly, especially on hosts without a built-in browser.",
       "tags": [
+        "dev-ux",
         "frontend",
         "testing",
         "browser",
@@ -2574,7 +2629,7 @@
         "novelty": 3,
         "evidence": "reviewed",
         "reviewed": "2026-10-20",
-        "notes": "Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path."
+        "notes": "Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path. with_server.py pipes server output it never reads, so a chatty server can stall and its errors stay hidden; networkidle may never settle with hot reload."
       },
       "source": {
         "kind": "vendored",
@@ -2844,6 +2899,7 @@
       "summary": "Check a change where its effect appears, including in an app the user already has running, even when the agent may not start a server; otherwise name what remains unchecked.",
       "useWhen": "Agents in your project hand back visible UI changes without looking at them.",
       "tags": [
+        "dev-ux",
         "verification",
         "browser",
         "completion-claims"
@@ -3785,6 +3841,7 @@
       "summary": "Sends a fixed local desktop notification when Claude Code needs permission, input, or an MCP answer, without forwarding prompts or tool contents.",
       "useWhen": "You switch applications while agents work and miss permission or input prompts.",
       "tags": [
+        "dev-ux",
         "notifications",
         "attention"
       ],
@@ -3988,6 +4045,7 @@
       "summary": "Runs one project-selected fast checker after Claude source edits or Codex apply_patch edits, using a deadline and bounded feedback. Does not install tools or undo edits.",
       "useWhen": "Type errors or lint diagnostics should reach the agent immediately after source edits, and the project has a fast read-only check.",
       "tags": [
+        "dev-ux",
         "diagnostics",
         "verification",
         "post-tool-use"
@@ -4494,6 +4552,7 @@
       "summary": "The Chrome team's MCP server, which drives Chrome through DevTools to navigate, click, take screenshots, read the console and network activity, and record performance traces, so agents can verify and debug web changes.",
       "useWhen": "Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups.",
       "tags": [
+        "dev-ux",
         "browser",
         "verification",
         "debugging",
@@ -4630,6 +4689,110 @@
     },
     {
       "schemaVersion": 2,
+      "id": "mise-mcp",
+      "type": "mcp",
+      "title": "Mise toolchain and task MCP",
+      "summary": "Mise's built-in MCP server exposes a project's tool versions, tasks, environment and config, and can run tasks or install tools. Agents use the project's declared toolchain and task commands instead of guessing. Every command it lists is labeled read, write or destructive.",
+      "useWhen": "A project pins tools or tasks with mise and agents keep using the wrong runtime version, assuming a tool is missing, or inventing build and test commands.",
+      "tags": [
+        "dev-ux",
+        "toolchains",
+        "project-setup",
+        "secrets"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 5,
+        "portability": 4,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "The full MCP implementation, docs and trust checks reviewed at the pin. run_task and install_tool refuse untrusted configs and run children that never trust implicitly. Tasks run as the user with confirmation prompts answered yes, so rely on host tool approval. mise://env returns resolved values, secrets included, unredacted. If CI is set, mise trusts every config outside paranoid mode, removing the gate. Linked worktrees inherit trust. MISE_SAFE=1 blocks task runs and hides env values but is not fully read-only. No agent outcome trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/jdx/mise",
+        "path": "src/cli/mcp.rs",
+        "revision": "b71ae7cfd663e8eb2f88ed95086638db170543f6",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "jdx",
+        "notes": "docs/mcp.md last changed at 71529e4deea2af4cc71856d7b14c2fa5847191c2. No experimental setting is required. Stdio transport only. Repository HEAD at review was 56efe3a5298af7e11bad7749449d9f38a02da38b."
+      },
+      "install": {
+        "claude-code": "claude mcp add mise -- mise --cd /absolute/path/to/project mcp",
+        "codex": "codex mcp add mise -- mise --cd /absolute/path/to/project mcp, or [mcp_servers.mise] with command = \"mise\" and args = [\"--cd\", \"/absolute/path/to/project\", \"mcp\"] in .codex/config.toml.",
+        "notes": "Pass --cd with an absolute path; otherwise it uses the client's working directory. In unreviewed repositories set MISE_SAFE=1 in the server's env. Treat the mise://env resource as sensitive, and do not run it with CI set unless every config is trusted. Resources are cached until the server restarts."
+      },
+      "overlap": "The agent can run mise commands in a shell already; this adds effect-labeled commands, trust enforcement and structured resources. repo-research covers discovering commands by reading the repository. process-compose-mcp manages long-running processes, which run_task does not.",
+      "related": [
+        "process-compose-mcp",
+        "repo-research",
+        "bun-workspaces"
+      ],
+      "score": 4,
+      "sourceUrl": "https://github.com/jdx/mise/blob/b71ae7cfd663e8eb2f88ed95086638db170543f6/src/cli/mcp.rs",
+      "path": "entries/mcps/mise-mcp",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "process-compose-mcp",
+      "type": "mcp",
+      "title": "Process-compose dev stack control",
+      "summary": "Process-compose's built-in MCP server. It lets agents list, start, stop and restart a project's processes, read their ports and readiness, and tail or search their logs, all against one shared running instance instead of duplicate background servers.",
+      "useWhen": "A project's dev stack runs under process-compose and agents keep starting duplicate servers, losing background logs, or guessing whether a service is ready.",
+      "tags": [
+        "dev-ux",
+        "dev-servers",
+        "logging",
+        "observability"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "MCP server, transports, argument handling and SSE security reviewed at the pin. Nothing is exposed without an mcp_server block; control tools need expose_control_tools. SSE attaches to the running instance; stdio starts a separate copy of the whole project and exits on a port 8080 clash unless --no-server is passed. Process-as-tool substitutes @{arg} into shell commands, and a placeholder inside quotes, as in the docs' psql example, allows injection. SSE without PC_API_TOKEN is open to any local process. No agent outcome trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/F1bonacc1/process-compose",
+        "path": "src/mcp",
+        "revision": "6ffa74f462cd2fa4f8dc1ee63c70b793b298c858",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0",
+        "author": "Eugene Berger (F1bonacc1)",
+        "notes": "The pin is the July 2026 SSE trust-boundary fix (GHSA-5gm3-9crp-6g3v), the last change to src/mcp and its docs. Repository HEAD at review was f471d83a5dfa4779d589d0a73182b6d6e22736b2 (v1.124.0)."
+      },
+      "install": {
+        "any": "Add to process-compose.yaml: mcp_server with host: localhost and a port (for example 3000). Add expose_control_tools: true only if agents should start, stop, restart or scale processes. Set PC_API_TOKEN (or --token-file) so other local processes cannot drive it. Start process-compose yourself, then connect clients to that instance.",
+        "claude-code": "claude mcp add --transport sse process-compose http://localhost:3000/sse",
+        "codex": "Codex is unverified against this legacy SSE server and may need an SSE bridge. The stdio alternative (codex mcp add process-compose -- process-compose -f /absolute/path/process-compose.yaml --no-server) runs a dedicated copy of the project, not the one you started.",
+        "notes": "Avoid quoting @{arg} placeholders inside command templates, and keep processes exposed as tools disabled by default, as upstream advises. Log output is bounded by log_length and returned in chunks, not streamed."
+      },
+      "overlap": "Host background shells (Claude Code run_in_background, Monitor, task lists) run commands within one session; this persists one named stack across sessions and agents, with readiness and searchable logs. portless gives the same apps stable URLs. Third-party process-compose MCP wrappers are superseded by this built-in server.",
+      "related": [
+        "portless",
+        "mise-mcp",
+        "webapp-testing",
+        "chrome-devtools-mcp"
+      ],
+      "score": 3.8,
+      "sourceUrl": "https://github.com/F1bonacc1/process-compose/tree/6ffa74f462cd2fa4f8dc1ee63c70b793b298c858/src/mcp",
+      "path": "entries/mcps/process-compose-mcp",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "reva",
       "type": "mcp",
       "title": "ReVa Ghidra investigation",
@@ -4732,6 +4895,55 @@
     },
     {
       "schemaVersion": 2,
+      "id": "claude-hud",
+      "type": "plugin",
+      "title": "Claude HUD status line",
+      "summary": "A Claude Code status line showing context use, active tools, running subagents, todo progress, rate limits and session cost, read from the session transcript and the JSON Claude Code passes to the status line. Setup backs up settings and asks before replacing an existing status line.",
+      "useWhen": "You run long or parallel Claude Code sessions and want context pressure, tool and subagent activity, and limits visible without running /context, /cost or /usage.",
+      "tags": [
+        "dev-ux",
+        "status-line",
+        "context",
+        "observability"
+      ],
+      "hosts": [
+        "claude-code"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 2,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Setup, launcher and main readers reviewed at the pin; no network requests or telemetry found. Reads the transcript, ~/.claude.json (plan tier, optional email local part, MCP counts) and settings files; writes caches under ~/.claude/plugins/claude-hud/. The launcher runs the highest-version claude-hud in any marketplace cache, not a pinned copy, and Node runs CI-built dist/ not compared with src. Claude Code only. A user-facing tool; no agent outcome claim."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/jarrodwatts/claude-hud",
+        "revision": "ce2ceff9d67a34e9e6a7889336cf2911254800ff",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "Jarrod Watts",
+        "notes": "Version 0.13.1. The pin is CI's dist/ build of the last source commit aace8949efbd6d1d065197ee4873c9e348c09fa6."
+      },
+      "install": {
+        "claude-code": "claude plugin marketplace add jarrodwatts/claude-hud, then claude plugin install claude-hud@claude-hud. In a session, run /reload-plugins and then /claude-hud:setup, which writes statusLine to settings.json after backing it up to settings.json.bak.<timestamp>.",
+        "notes": "Requires Node 18+ or Bun. To revert, restore the settings backup (or remove statusLine), uninstall the plugin, and delete ~/.claude/plugins/claude-hud/. The optional --extra-cmd segment runs a shell command only when CLAUDE_HUD_ALLOW_EXTRA_CMD=1 is set; leave it off unless you need it."
+      },
+      "overlap": "Claude Code's statusLine setting, which this fills, and the built-in status line setup agent; /context, /cost and /usage report the same numbers on demand. ccusage statusline is a lighter cost-only alternative. context-hogs attributes context cost to files rather than showing live use.",
+      "related": [
+        "ccusage",
+        "context-hogs",
+        "desktop-attention"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/jarrodwatts/claude-hud/tree/ce2ceff9d67a34e9e6a7889336cf2911254800ff",
+      "path": "entries/plugins/claude-hud",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "claude-reflect",
       "type": "plugin",
       "title": "claude-reflect",
@@ -4789,7 +5001,8 @@
         "planning",
         "code-review",
         "memory",
-        "methodology"
+        "methodology",
+        "worktrees"
       ],
       "hosts": [
         "claude-code",
@@ -4842,7 +5055,8 @@
         "debugging",
         "code-review",
         "verification",
-        "subagents"
+        "subagents",
+        "worktrees"
       ],
       "hosts": [
         "claude-code",
@@ -4878,6 +5092,110 @@
       "score": 4.4,
       "sourceUrl": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3",
       "path": "entries/plugins/superpowers",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "worktrunk",
+      "type": "plugin",
+      "title": "Worktrunk parallel worktrees",
+      "summary": "A git worktree CLI (wt) with Claude Code and Codex plugins for running agents in parallel. It creates, merges and removes worktrees, shows each session's activity in wt list, and replaces Claude Code's built-in worktree creation and removal with its own.",
+      "useWhen": "You run several agent sessions on separate branches and want consistent worktree creation, cleanup and a view of which session is working or waiting.",
+      "tags": [
+        "dev-ux",
+        "worktrees",
+        "git",
+        "subagents"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 4,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Skills, plugin manifests, hook script and the Rust hook handler reviewed at the pin; large reference files only searched. No telemetry. Hooks write status markers to .git/config. In Claude Code, WorktreeCreate and WorktreeRemove take over built-in worktrees (sibling <repo>.<branch> layout, also for worktree-isolated subagents), and the PermissionRequest hook auto-approves EnterWorktree into existing worktrees. Removal never forces, but deletes merged branches. Project hooks need approval and fail closed without a TTY."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/max-sixty/worktrunk",
+        "path": "plugins/worktrunk",
+        "revision": "bc8ad63e232b28445474dd03ab1ac9641bdd4f31",
+        "retrieved": "2026-10-29",
+        "license": "MIT OR Apache-2.0",
+        "author": "Maximilian Roos",
+        "notes": "Requires wt 0.81.0 or later. plugins/worktrunk/skills mirrors the root skills/ directory. The Codex plugin only sets activity markers; it has no worktree lifecycle hooks."
+      },
+      "install": {
+        "any": "Install the CLI first: brew install worktrunk or cargo install worktrunk, then wt config shell install (winget install max-sixty.worktrunk on Windows).",
+        "claude-code": "claude plugin marketplace add max-sixty/worktrunk, then claude plugin install worktrunk@worktrunk. This activates eight hooks, including the worktree lifecycle takeover.",
+        "codex": "codex plugin marketplace add max-sixty/worktrunk, then codex plugin add worktrunk@worktrunk. Markers only; the bundled wt-switch-create skill works only in Claude Code.",
+        "notes": "Skills without hooks (not documented upstream): npx skills add max-sixty/worktrunk --skill worktrunk. Always pass --skill, because the repository also exposes maintainer skills. wt-switch-create depends on the plugin hooks, so install it only with the plugin."
+      },
+      "overlap": "Claude Code has built-in worktrees (--worktree, EnterWorktree, worktree-isolated subagents under .claude/worktrees/); Codex has its own. Worktrunk adds merge and cleanup, project lifecycle hooks with approval, and per-session status. The superpowers and compound-engineering worktree skills are guidance only. desktop-attention covers waiting-for-input alerts.",
+      "related": [
+        "portless",
+        "subagent-budget",
+        "desktop-attention",
+        "superpowers"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/max-sixty/worktrunk/tree/bc8ad63e232b28445474dd03ab1ac9641bdd4f31/plugins/worktrunk",
+      "path": "entries/plugins/worktrunk",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ccusage",
+      "type": "tool",
+      "title": "ccusage usage and cost reports",
+      "summary": "A local CLI that reads agent session logs and reports token use and estimated cost by day, week, month, session or five-hour block, for Claude Code, Codex and sixteen other agents. Includes a beta Claude Code status line command.",
+      "useWhen": "You want to know what agent sessions cost over time or across projects and agents, beyond the current session's /cost or /usage.",
+      "tags": [
+        "dev-ux",
+        "usage-tracking",
+        "observability",
+        "budgets"
+      ],
+      "hosts": [
+        "claude-code",
+        "codex"
+      ],
+      "rating": {
+        "usefulness": 5,
+        "quality": 4,
+        "portability": 5,
+        "novelty": 3,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Wrapper, docs and data paths reviewed at the release pin; the prebuilt native binary that v20 spawns was not. Reads ~/.claude/projects, ~/.config/claude/projects and $CODEX_HOME, writing only caches. By default it fetches model prices from LiteLLM's and models.dev's default branches; --offline uses embedded snapshots. Costs are estimates. No telemetry found. A user-facing tool; no agent outcome claim."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/ccusage/ccusage",
+        "revision": "154e13bb6658778e774821bc5d0f6a92dcc9ae36",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "ryoppippi",
+        "notes": "Release tag v20.0.45 (npm ccusage 20.0.45). ryoppippi/ccusage redirects to this repository. The @ccusage/codex and @ccusage/mcp packages are deprecated in favor of ccusage 20."
+      },
+      "install": {
+        "any": "Run a pinned version instead of @latest: npx ccusage@20.0.45 daily (Claude Code) or npx ccusage@20.0.45 codex daily (Codex). bunx ccusage@20.0.45 also works. Add --offline to skip the price download.",
+        "claude-code": "Optional status line: set statusLine in settings.json to {\"type\": \"command\", \"command\": \"npx -y ccusage@20.0.45 statusline\"}. ccusage never edits settings itself. An unpinned npx or bunx command here would fetch new code on every render, so keep the version.",
+        "notes": "The npm package downloads a native binary for your platform. Nothing is installed globally unless you choose npm install -g."
+      },
+      "overlap": "Claude Code's /cost and /usage cover the current session and plan limits; this adds history across sessions, projects and agents. Codex has no built-in historical report. claude-hud shows live session cost in the status line.",
+      "related": [
+        "claude-hud",
+        "subagent-budget"
+      ],
+      "score": 4.4,
+      "sourceUrl": "https://github.com/ccusage/ccusage/tree/154e13bb6658778e774821bc5d0f6a92dcc9ae36",
+      "path": "entries/tools/ccusage",
       "files": []
     }
   ],

@@ -1,0 +1,31 @@
+schemaVersion: 2
+id: mise-mcp
+type: mcp
+title: Mise toolchain and task MCP
+summary: Mise's built-in MCP server exposes a project's tool versions, tasks, environment and config, and can run tasks or install tools. Agents use the project's declared toolchain and task commands instead of guessing. Every command it lists is labeled read, write or destructive.
+useWhen: A project pins tools or tasks with mise and agents keep using the wrong runtime version, assuming a tool is missing, or inventing build and test commands.
+tags: [dev-ux, toolchains, project-setup, secrets]
+hosts: [any]
+rating:
+  usefulness: 4
+  quality: 5
+  portability: 4
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: The full MCP implementation, docs and trust checks reviewed at the pin. run_task and install_tool refuse untrusted configs and run children that never trust implicitly. Tasks run as the user with confirmation prompts answered yes, so rely on host tool approval. mise://env returns resolved values, secrets included, unredacted. If CI is set, mise trusts every config outside paranoid mode, removing the gate. Linked worktrees inherit trust. MISE_SAFE=1 blocks task runs and hides env values but is not fully read-only. No agent outcome trial.
+source:
+  kind: linked
+  url: https://github.com/jdx/mise
+  path: src/cli/mcp.rs
+  revision: b71ae7cfd663e8eb2f88ed95086638db170543f6
+  retrieved: 2026-10-29
+  license: MIT
+  author: jdx
+  notes: docs/mcp.md last changed at 71529e4deea2af4cc71856d7b14c2fa5847191c2. No experimental setting is required. Stdio transport only. Repository HEAD at review was 56efe3a5298af7e11bad7749449d9f38a02da38b.
+install:
+  claude-code: claude mcp add mise -- mise --cd /absolute/path/to/project mcp
+  codex: 'codex mcp add mise -- mise --cd /absolute/path/to/project mcp, or [mcp_servers.mise] with command = "mise" and args = ["--cd", "/absolute/path/to/project", "mcp"] in .codex/config.toml.'
+  notes: Pass --cd with an absolute path; otherwise it uses the client's working directory. In unreviewed repositories set MISE_SAFE=1 in the server's env. Treat the mise://env resource as sensitive, and do not run it with CI set unless every config is trusted. Resources are cached until the server restarts.
+overlap: The agent can run mise commands in a shell already; this adds effect-labeled commands, trust enforcement and structured resources. repo-research covers discovering commands by reading the repository. process-compose-mcp manages long-running processes, which run_task does not.
+related: [process-compose-mcp, repo-research, bun-workspaces]

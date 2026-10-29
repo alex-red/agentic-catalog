@@ -5,6 +5,7 @@ title: Run fast diagnostics after source edits
 summary: Runs one project-selected fast checker after Claude source edits or Codex apply_patch edits, using a deadline and bounded feedback. Does not install tools or undo edits.
 useWhen: Type errors or lint diagnostics should reach the agent immediately after source edits, and the project has a fast read-only check.
 tags:
+  - dev-ux
   - diagnostics
   - verification
   - post-tool-use

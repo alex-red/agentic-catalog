@@ -21,7 +21,7 @@ test('every entry type has a scoped prompt with complete files, provenance and i
     assert.ok(prompt.includes('do not execute a workflow'));
     assert.ok(!prompt.includes('https://raw.githubusercontent.com/alex-red/agentic-catalog/main/'));
   }
-  assert.equal(types.size, 7);
+  assert.equal(types.size, 8);
 });
 
 test('collections include exactly their members and reject missing IDs rather than silently omitting them', () => {

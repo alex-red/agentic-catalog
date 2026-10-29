@@ -194,6 +194,18 @@ test('tag vocabulary rejects names that resolve to two terms and malformed terms
   assert.throws(() => loadCatalog(duplicate), /Duplicate tag ID/u);
 });
 
+test('user-facing tools are linked-only entries under entries/tools', (context) => {
+  const root = sandbox(context);
+  const directory = addLinkedEntry(root, { id: 'example-tool', type: 'tool', title: 'Example tool' });
+  cpSync(directory, join(root, 'entries/tools/example-tool'), { recursive: true });
+  rmSync(directory, { recursive: true });
+  assert.equal(loadCatalog(root).entries.find((entry) => entry.id === 'example-tool')!.type, 'tool');
+
+  updateYaml(root, 'entries/tools/example-tool/entry.yaml', (entry) => { entry.source = { kind: 'original', license: 'MIT' }; });
+  writeFileSync(join(root, 'entries/tools/example-tool/TOOL.md'), 'A local copy.\n');
+  assert.throws(() => loadCatalog(root), /must be equal to constant|tool entries must be linked/u);
+});
+
 test('unknown entry folders are rejected', (context) => {
   const root = sandbox(context);
   mkdirSync(join(root, 'entries/prompts'));

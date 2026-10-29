@@ -107,7 +107,7 @@ const sources = Object.fromEntries(
 );
 
 // Topic categories preserve each entry's underlying type for routing and installation.
-const kinds: Kind[] = ["featured", ...catalogCategories.map((category) => category.id), "skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "custom", "experimental", "collection"];
+const kinds: Kind[] = ["featured", ...catalogCategories.map((category) => category.id), "skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "tool", "custom", "experimental", "collection"];
 const kindLabels: Record<Kind, string> = {
   ...Object.fromEntries(catalogCategories.map((category) => [category.id, category.label])),
   skill: "Skills",
@@ -117,6 +117,7 @@ const kindLabels: Record<Kind, string> = {
   subagent: "Subagents",
   mcp: "MCP Servers",
   plugin: "Plugins",
+  tool: "Tools",
   featured: "Featured",
   custom: "Custom",
   experimental: "Experimental",
@@ -125,7 +126,7 @@ const kindLabels: Record<Kind, string> = {
 
 const hostOptions = ["any", "claude-code", "codex"];
 const evidenceTiers = ["evaluated", "tested", "used", "reviewed"];
-const typeOptions = ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "collection"];
+const typeOptions = ["skill", "rule", "workflow", "hook", "subagent", "mcp", "plugin", "tool", "collection"];
 const sourceKinds = ["original", "adapted", "vendored", "linked"];
 
 type SortKey = "score" | "name" | "evidence" | "reviewed";

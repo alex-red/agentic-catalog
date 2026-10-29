@@ -1,0 +1,30 @@
+schemaVersion: 2
+id: ccusage
+type: tool
+title: ccusage usage and cost reports
+summary: A local CLI that reads agent session logs and reports token use and estimated cost by day, week, month, session or five-hour block, for Claude Code, Codex and sixteen other agents. Includes a beta Claude Code status line command.
+useWhen: You want to know what agent sessions cost over time or across projects and agents, beyond the current session's /cost or /usage.
+tags: [dev-ux, usage-tracking, observability, budgets]
+hosts: [claude-code, codex]
+rating:
+  usefulness: 5
+  quality: 4
+  portability: 5
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Wrapper, docs and data paths reviewed at the release pin; the prebuilt native binary that v20 spawns was not. Reads ~/.claude/projects, ~/.config/claude/projects and $CODEX_HOME, writing only caches. By default it fetches model prices from LiteLLM's and models.dev's default branches; --offline uses embedded snapshots. Costs are estimates. No telemetry found. A user-facing tool; no agent outcome claim.
+source:
+  kind: linked
+  url: https://github.com/ccusage/ccusage
+  revision: 154e13bb6658778e774821bc5d0f6a92dcc9ae36
+  retrieved: 2026-10-29
+  license: MIT
+  author: ryoppippi
+  notes: Release tag v20.0.45 (npm ccusage 20.0.45). ryoppippi/ccusage redirects to this repository. The @ccusage/codex and @ccusage/mcp packages are deprecated in favor of ccusage 20.
+install:
+  any: 'Run a pinned version instead of @latest: npx ccusage@20.0.45 daily (Claude Code) or npx ccusage@20.0.45 codex daily (Codex). bunx ccusage@20.0.45 also works. Add --offline to skip the price download.'
+  claude-code: 'Optional status line: set statusLine in settings.json to {"type": "command", "command": "npx -y ccusage@20.0.45 statusline"}. ccusage never edits settings itself. An unpinned npx or bunx command here would fetch new code on every render, so keep the version.'
+  notes: The npm package downloads a native binary for your platform. Nothing is installed globally unless you choose npm install -g.
+overlap: Claude Code's /cost and /usage cover the current session and plan limits; this adds history across sessions, projects and agents. Codex has no built-in historical report. claude-hud shows live session cost in the status line.
+related: [claude-hud, subagent-budget]

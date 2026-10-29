@@ -72,7 +72,8 @@
         "hook",
         "subagent",
         "mcp",
-        "plugin"
+        "plugin",
+        "tool"
       ]
     },
     "title": {
@@ -421,7 +422,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "const": "plugin"
+            "enum": ["plugin", "tool"]
           }
         },
         "required": [

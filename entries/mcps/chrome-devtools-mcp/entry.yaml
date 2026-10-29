@@ -4,7 +4,7 @@ type: mcp
 title: Chrome DevTools MCP
 summary: The Chrome team's MCP server, which drives Chrome through DevTools to navigate, click, take screenshots, read the console and network activity, and record performance traces, so agents can verify and debug web changes.
 useWhen: Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups.
-tags: [browser, verification, debugging, performance]
+tags: [dev-ux, browser, verification, debugging, performance]
 hosts: [any]
 rating:
   usefulness: 4

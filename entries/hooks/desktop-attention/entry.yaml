@@ -5,6 +5,7 @@ title: Local desktop attention alerts
 summary: Sends a fixed local desktop notification when Claude Code needs permission, input, or an MCP answer, without forwarding prompts or tool contents.
 useWhen: You switch applications while agents work and miss permission or input prompts.
 tags:
+  - dev-ux
   - notifications
   - attention
 hosts:

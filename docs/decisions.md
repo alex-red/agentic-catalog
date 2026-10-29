@@ -366,3 +366,34 @@ Retagging reduced 200 distinct tags and 416 assignments to 175 and 406. Tags tha
 `reverse_engineering` keeps its underscore spelling under decision 44. `domain-modeling` gains `system-design`, so it now appears in the System design browser category alongside catalog-taxonomy; no other category membership changed. Tag edits to vendored entries touch only catalog metadata in `entry.yaml`, not vendored payloads.
 
 The vocabulary is validated but is not yet published in the generated index or used by browser search. Aliases do not currently expand queries, and faceted filters remain future work under the tagging research. Ratings, evidence levels, entry types, hosts and installation routes are unchanged. No retrieval benchmark or curator-agreement trial was run, so improved discovery is a hypothesis.
+
+## 51. Add a Dev UX topic that admits user-facing tools (2026-10-29)
+
+Following the user's review of the [Dev UX research](research/2026-10-29-catalog-scout-3.md), registered the `dev-ux` topic in the tag vocabulary. It covers the local development loop around agents: running, finding and observing apps (dev servers, ports, logs, browser checks), toolchains, worktrees and session visibility. The browser derives a Dev UX category from the tag, alongside Game design and System design, with the same multi-category filter and single primary tree placement rules.
+
+Five existing entries fit the definition and are tagged now: `webapp-testing`, `chrome-devtools-mcp`, `verification-evidence`, `post-edit-diagnostics` and `desktop-attention`. Non-experimental, non-custom entries whose first recognized category is Dev UX move into that tree group; their types and installation routes are unchanged.
+
+At the user's direction, Dev UX includes tools whose primary user is the person rather than the agent, such as usage reports and status lines. This widens the catalog's scope from agent guidance alone for this area. Such entries still need an applicable entry type, honest ratings starting at `reviewed`, stated side effects and explicit opt-in; reading credentials or rewriting settings counts as a side effect to disclose. The current entry types have no home for a standalone CLI that is neither a plugin nor an MCP server, so admitting one such as ccusage needs a schema decision first.
+
+No candidate from the research is admitted by this decision. Ratings, evidence levels, pins and the `webapp-testing` payload are unchanged; the report's server-helper finding remains a follow-up. Generated indexes are rebuilt from source.
+
+## 52. Admit Dev UX tools and a user-facing tool type (2026-10-29)
+
+Following the user's request to proceed with the [Dev UX research](research/2026-10-29-catalog-scout-3.md), admitted six linked entries at `reviewed`: skill `portless` (experimental), MCP servers `process-compose-mcp` and `mise-mcp`, plugins `worktrunk` and `claude-hud`, and tool `ccusage`. The [selection guide](dev-ux-options.md) distinguishes their jobs. Each was source-reviewed again at its pin before admission. Pins follow the last commit affecting the reviewed path, except claude-hud, which pins the CI commit that ships the reviewed source's built output, and ccusage, which pins release tag v20.0.45.
+
+Added a `tool` entry type for user-facing developer tools that are neither plugins nor MCP servers, following decision 51. Tools live under `entries/tools/`, are always linked, have no primary payload file, and are installed manually like plugins. The schema, loader, install-config schema, bulk installer ordering and browser type filter recognize the type; a test rejects a non-linked tool.
+
+Side effects are stated in each entry instead of being treated as blockers:
+
+- Portless's skill directs elevation (port 443 with sudo), local CA trust, `/etc/hosts` sync, package.json edits and global installs without asking. Its entry leads with the least-privilege setup and lists what to ask about. It is experimental because it is pre-1.0 and changes weekly.
+- Process-compose's stdio mode starts a duplicate project, so SSE attachment is the documented route. Its shell substitution of tool arguments is injectable when placeholders are quoted.
+- Mise's environment resource returns unredacted secrets, and setting `CI` disables its trust gate.
+- Worktrunk's Claude Code plugin replaces built-in worktree creation and removal and auto-approves entering existing worktrees.
+- Claude HUD's launcher runs the highest cached version from any marketplace.
+- ccusage spawns an unreviewed native binary and downloads prices unless `--offline` is passed.
+
+Unpinned installer commands are replaced with pinned ones where upstream allows it.
+
+Also recorded the verified `webapp-testing` server-helper defect in that entry's rating notes. The vendored payload is unchanged. Added `worktrees` to `superpowers` and `compound-engineering`, which already ship worktree skills, and registered the keywords `dev-servers`, `local-urls`, `worktrees`, `toolchains`, `status-line` and `usage-tracking`.
+
+dev3000, next-devtools-mcp, the sentimony fork, cli-for-agents and the other review-next items remain unadmitted, and agent-browser stays held. No hook, MCP connection, plugin or tool is installed or activated by admission. Generated indexes are rebuilt from source. The catalog now has 100 entries: 52 skills, 12 workflows, 15 hooks, eight MCP servers, five plugins, five rules, two subagents and one tool, with twenty experimental entries and seven collections. No plugin manifest or version changes.

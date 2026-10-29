@@ -4,7 +4,7 @@ type: skill
 title: Web app testing with Playwright
 summary: Drive a local web app with Python Playwright, following a reconnaissance-then-action pattern. Includes a helper that starts and stops dev servers around a test script, and examples for element discovery and console logs.
 useWhen: Verifying or debugging frontend behavior headlessly, especially on hosts without a built-in browser.
-tags: [frontend, testing, browser, verification, playwright]
+tags: [dev-ux, frontend, testing, browser, verification, playwright]
 hosts: [any]
 rating:
   usefulness: 4
@@ -13,7 +13,7 @@ rating:
   novelty: 3
   evidence: reviewed
   reviewed: 2026-10-20
-  notes: Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path.
+  notes: Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path. with_server.py pipes server output it never reads, so a chatty server can stall and its errors stay hidden; networkidle may never settle with hot reload.
 source:
   kind: vendored
   url: https://github.com/anthropics/skills

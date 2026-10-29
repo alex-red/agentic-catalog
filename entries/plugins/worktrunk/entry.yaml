@@ -1,0 +1,32 @@
+schemaVersion: 2
+id: worktrunk
+type: plugin
+title: Worktrunk parallel worktrees
+summary: A git worktree CLI (wt) with Claude Code and Codex plugins for running agents in parallel. It creates, merges and removes worktrees, shows each session's activity in wt list, and replaces Claude Code's built-in worktree creation and removal with its own.
+useWhen: You run several agent sessions on separate branches and want consistent worktree creation, cleanup and a view of which session is working or waiting.
+tags: [dev-ux, worktrees, git, subagents]
+hosts: [claude-code, codex]
+rating:
+  usefulness: 4
+  quality: 4
+  portability: 3
+  novelty: 3
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Skills, plugin manifests, hook script and the Rust hook handler reviewed at the pin; large reference files only searched. No telemetry. Hooks write status markers to .git/config. In Claude Code, WorktreeCreate and WorktreeRemove take over built-in worktrees (sibling <repo>.<branch> layout, also for worktree-isolated subagents), and the PermissionRequest hook auto-approves EnterWorktree into existing worktrees. Removal never forces, but deletes merged branches. Project hooks need approval and fail closed without a TTY.
+source:
+  kind: linked
+  url: https://github.com/max-sixty/worktrunk
+  path: plugins/worktrunk
+  revision: bc8ad63e232b28445474dd03ab1ac9641bdd4f31
+  retrieved: 2026-10-29
+  license: MIT OR Apache-2.0
+  author: Maximilian Roos
+  notes: Requires wt 0.81.0 or later. plugins/worktrunk/skills mirrors the root skills/ directory. The Codex plugin only sets activity markers; it has no worktree lifecycle hooks.
+install:
+  any: 'Install the CLI first: brew install worktrunk or cargo install worktrunk, then wt config shell install (winget install max-sixty.worktrunk on Windows).'
+  claude-code: claude plugin marketplace add max-sixty/worktrunk, then claude plugin install worktrunk@worktrunk. This activates eight hooks, including the worktree lifecycle takeover.
+  codex: codex plugin marketplace add max-sixty/worktrunk, then codex plugin add worktrunk@worktrunk. Markers only; the bundled wt-switch-create skill works only in Claude Code.
+  notes: 'Skills without hooks (not documented upstream): npx skills add max-sixty/worktrunk --skill worktrunk. Always pass --skill, because the repository also exposes maintainer skills. wt-switch-create depends on the plugin hooks, so install it only with the plugin.'
+overlap: Claude Code has built-in worktrees (--worktree, EnterWorktree, worktree-isolated subagents under .claude/worktrees/); Codex has its own. Worktrunk adds merge and cleanup, project lifecycle hooks with approval, and per-session status. The superpowers and compound-engineering worktree skills are guidance only. desktop-attention covers waiting-for-input alerts.
+related: [portless, subagent-budget, desktop-attention, superpowers]

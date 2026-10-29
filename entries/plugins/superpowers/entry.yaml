@@ -4,7 +4,7 @@ type: plugin
 title: Superpowers
 summary: An opinionated end-to-end development method packaged as interlocking skills for brainstorming, planning, subagent execution with review, TDD, debugging, verification, git worktrees, and finishing a branch. It ships manifests for Claude Code, Codex, Cursor, and other hosts.
 useWhen: A team wants a complete, enforced spec-to-merge workflow rather than individual techniques.
-tags: [methodology, planning, tdd, debugging, code-review, verification, subagents]
+tags: [methodology, planning, tdd, debugging, code-review, verification, subagents, worktrees]
 hosts: [claude-code, codex]
 rating:
   usefulness: 5
