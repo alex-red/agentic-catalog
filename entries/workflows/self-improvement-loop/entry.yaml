@@ -24,4 +24,4 @@ inspiredBy:
   - title: Every, Compound Engineering
     url: https://github.com/EveryInc/compound-engineering-plugin
 overlap: Claude Code auto memory captures corrections, but it does not decide where a lesson belongs or prune.
-related: [retrospective, revise-claude-md, agents-md-authoring, compound-engineering, format-after-edit, stop-gate-checks]
+related: [retrospective, revise-claude-md, agents-md-authoring, compound-engineering, format-after-edit, stop-gate-checks, harness-experiment-loop]

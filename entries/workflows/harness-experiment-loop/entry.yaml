@@ -1,0 +1,30 @@
+schemaVersion: 2
+id: harness-experiment-loop
+type: workflow
+title: Harness experiment loop
+summary: Test changes to agent instructions, skills or helpers on repeatable tasks. Preserve an unchanged baseline, probe focused alternatives, compare execution evidence, rerun a selective composition and retain only supported lessons, with transfer checked separately.
+useWhen: Deciding whether a change to agent guidance addresses an observed recurring failure before making that guidance persistent.
+tags: [harness, self-improvement, evaluation, agent-guidance, verification]
+hosts: [any]
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-28
+  notes: Focused procedure for guidance maintainers rather than routine feature work. Preserves baseline fallback, isolates solver context, records confounders and separates adoption from transfer. Requires replayable inputs and fresh sessions; a full round costs four solver runs plus editing and reflection. Source review and repository checks do not establish behavioral benefit. No matched outcome evaluation performed.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written procedure inspired by Google's Apache-2.0 Harness² method. No upstream prose, code, scripts or runtime files are copied. Baseline-output fallback and a separate transfer gate are catalog adaptations.
+inspiredBy:
+  - title: Google Research Harness² — proposal, composition and reflection prompts
+    url: https://github.com/google-research/harness2/blob/1cfe254e8d25b15f37048c3730134686abe60335/harness2/core/prompts.py
+  - title: Google Research Harness² — recursion implementation
+    url: https://github.com/google-research/harness2/blob/1cfe254e8d25b15f37048c3730134686abe60335/harness2/core/recursion.py
+  - title: Google Research Harness² — selection and baseline exclusion
+    url: https://github.com/google-research/harness2/blob/1cfe254e8d25b15f37048c3730134686abe60335/harness2/core/selection.py
+overlap: retrospective identifies lessons and placement; improvement-loop implements process fixes; self-improvement-loop already suggests comparisons. This workflow specifies isolation, candidate hypotheses, execution contrasts, composed replay and baseline retention. Host sessions and evaluation tools supply execution, not evidence that guidance helps. ralph-loop repeats product work toward completion instead of comparing harness changes.
+related: [self-improvement-loop, retrospective, improvement-loop, verification-before-completion, agents-md-authoring, ralph-loop]

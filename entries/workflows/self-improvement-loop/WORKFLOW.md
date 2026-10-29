@@ -26,3 +26,5 @@ Every few weeks, or whenever `AGENTS.md` passes about 150 lines, delete lines th
 ## Measure when it matters
 
 When a lesson is expensive to keep, compare a session with it against one without it on the same task before keeping it permanently.
+
+Use the catalog's `harness-experiment-loop` workflow for the comparison procedure: isolate fresh runs, preserve an unchanged baseline, compare execution evidence and check transfer separately. It is optional when a small improvement needs no experiment.
