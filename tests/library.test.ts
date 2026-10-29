@@ -147,6 +147,19 @@ test('entries must live under the folder for their type and match their ID', (co
   assert.throws(() => loadCatalog(other), /must match its directory/u);
 });
 
+test('tags accept underscore separators without relaxing entry IDs or malformed tags', (context) => {
+  const root = sandbox(context);
+  updateYaml(root, metadataPath, (entry) => { entry.tags = ['reverse_engineering', 'binary-analysis']; });
+  assert.deepEqual(loadCatalog(root).entries.find((entry) => entry.id === 'systematic-debugging')!.tags,
+    ['reverse_engineering', 'binary-analysis']);
+  for (const tag of ['_reverse', 'reverse_', 'reverse__engineering', 'reverse engineering', 'Reverse_engineering', 'a'.repeat(65)]) {
+    updateYaml(root, metadataPath, (entry) => { entry.tags = [tag]; });
+    assert.throws(() => loadCatalog(root), /must match pattern|must NOT have more than 64 characters/u, tag);
+  }
+  updateYaml(root, metadataPath, (entry) => { entry.tags = ['reverse_engineering']; entry.id = 'systematic_debugging'; });
+  assert.throws(() => loadCatalog(root), /must match pattern/u);
+});
+
 test('unknown entry folders are rejected', (context) => {
   const root = sandbox(context);
   mkdirSync(join(root, 'entries/prompts'));

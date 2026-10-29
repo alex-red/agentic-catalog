@@ -15,6 +15,11 @@
       "minLength": 1,
       "pattern": "\\S"
     },
+    "tag": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$",
+      "maxLength": 64
+    },
     "https": {
       "type": "string",
       "pattern": "^https://\\S+$"
@@ -91,7 +96,7 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/slug"
+        "$ref": "#/definitions/tag"
       },
       "uniqueItems": true,
       "minItems": 1,

@@ -1,0 +1,39 @@
+schemaVersion: 2
+id: reva
+type: mcp
+title: ReVa Ghidra investigation
+summary: Ghidra MCP integration for triage, focused code navigation and iterative database refinement, with optional binary-triage and deep-analysis skills. Known inference-example defects and incomplete runtime review remain disclosed.
+useWhen: Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration.
+tags:
+  - reverse_engineering
+  - ghidra
+  - binary-analysis
+  - decompilation
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: README, manifest and selected triage/deep-analysis procedures reviewed. Runtime, extension and full skill bodies remain unaudited. Fixed budgets and the AES worked example need judgment; type changes improving pseudocode do not prove semantics. No integration or agent outcome trial.
+source:
+  kind: linked
+  url: https://github.com/cyberkaida/reverse-engineering-assistant
+  revision: a2fcd946ec9c0bcf204da308365c16abb781dc53
+  retrieved: 2026-10-29
+  license: Apache-2.0
+  author: cyberkaida
+  notes: Repository snapshot pins the MCP runtime and optional skills together. Deep-analysis itself last changed at d4195002d43f48863b9576b235ba76de50fe73eb. Root and extension licenses apply; transitive dependencies are outside this review.
+install:
+  any: "Fetch https://github.com/cyberkaida/reverse-engineering-assistant at a2fcd946ec9c0bcf204da308365c16abb781dc53. Use the pinned README installation route: build the extension against the existing Ghidra with GHIDRA_INSTALL_DIR and gradle install, or select a matching release after separately recording its source/version. Enable the extension in the chosen project and Code Browser only when requested. For a running local GUI, register the project-scoped HTTP MCP endpoint http://localhost:8080/mcp/message in the host configuration. Headless use additionally requires the pinned Python CLI and PyGhidra setup. Ghidra 12.0+ is documented; 12.2+ requires Java 25, earlier supported versions Java 21. Keep the server local and retain normal tool approvals. Optional ReVa/skills/binary-triage and deep-analysis must be separately selected with complete resources and licenses; do not install the entire marketplace implicitly."
+  notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
+overlap: Ghidra already supplies analysis and scripting; host tools supply planning and file inspection. This bridge adds incremental live database access. reverse-engineering can use exported text; REA provides broader artifact coordination and official IDA MCP is an alternative backend.
+related:
+  - reverse-engineering
+  - reverse-engineer-anything
+  - ida-mcp
+  - systematic-debugging

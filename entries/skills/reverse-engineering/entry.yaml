@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: reverse-engineering
+type: skill
+title: Reverse engineering (Encid)
+summary: Broad headless artifact triage and analysis with platform playbooks, decompiler exporters and evidence-linked findings. A linked experimental option with incomplete helper review and a noncanonical Apache-labelled license text.
+useWhen: Understanding shipped binaries, APKs, packaged applications or protocols without complete source, while explicitly selecting a broad shell-first method.
+tags:
+  - reverse_engineering
+  - binary-analysis
+  - decompilation
+  - triage
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 4
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Entrypoint, cross-cutting workflow, findings template and license read. Platform references and executable helpers are not fully audited. Useful routing and evidence labels; Ghidra/JDK assumptions require release-specific checks. Root license abbreviates Apache clauses. No behavioral trial or superiority evidence.
+source:
+  kind: linked
+  url: https://github.com/EncidXVII/claude-reverse-engineering-skill
+  revision: 9a857bd2ee62bd13aa66b3942bd17c89eabf6b8a
+  retrieved: 2026-10-29
+  license: Apache-2.0-labelled; noncanonical upstream text
+  author: EncidXVII
+  notes: Pin is the last commit affecting the complete skill subtree. Linked only; no upstream payload or license wording is copied. Preserve actual upstream terms and clarify them before redistribution.
+  path: skills/reverse-engineering
+install:
+  any: Fetch https://github.com/EncidXVII/claude-reverse-engineering-skill at 9a857bd2ee62bd13aa66b3942bd17c89eabf6b8a. Copy the complete skills/reverse-engineering subtree, including references, scripts and assets, into the selected project skill directory (.agents/skills/reverse-engineering or .claude/skills/reverse-engineering); retain the actual root LICENSE as LICENSE.txt. Check for an existing same-name skill before copying. Resolve skill-relative paths explicitly outside Claude Code. Review helpers before invoking them and use existing compatible analysis tools; copying the skill does not install Ghidra, Frida or an MCP server.
+  notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
+overlap: repo-research handles source repositories; systematic-debugging handles hypothesis testing. ReVa supplies a live Ghidra database and REA a larger cross-format runtime. Native shell and file tools cover basic triage; this option adds routing, exports and artifact-coordinate reporting.
+related:
+  - repo-research
+  - systematic-debugging
+  - reva
+  - reverse-engineer-anything

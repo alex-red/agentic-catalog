@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: ida-mcp
+type: mcp
+title: Official Hex-Rays IDA MCP
+summary: Vendor-maintained MCP access to IDA databases through reference lookup, Python analysis and database lifecycle tools. Supports headless and GUI coordination; requires an appropriate IDA installation and entitlement.
+useWhen: Selecting an IDA analysis backend for compiled artifacts, particularly when starting a new integration or migrating from mrexodia-specific recipes.
+tags:
+  - reverse_engineering
+  - ida
+  - binary-analysis
+  - decompilation
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 3
+  quality: 4
+  portability: 3
+  novelty: 5
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: README, manifest, MIT license and selected tool implementations reviewed. Nexus, ZeroMCP, lifecycle/logging infrastructure and host hooks are not fully audited. Arbitrary Python can mutate analysis state. mrexodia upstream recommends this server; no runtime trial or outcome superiority is claimed.
+source:
+  kind: linked
+  url: https://github.com/HexRaysSA/ida-mcp
+  revision: 391c2f0606a773050fbafcd3ff62942688a0713b
+  retrieved: 2026-10-29
+  license: MIT
+  author: Hex-Rays SA
+  notes: Repository snapshot includes package 20261028.0.3. Requires IDA 9.4+, idalib and Python 3.11+. Available processors/decompilers depend on the user installation. The host plugin declares hooks; direct MCP registration avoids implicitly selecting those extras.
+install:
+  any: Fetch https://github.com/HexRaysSA/ida-mcp at 391c2f0606a773050fbafcd3ff62942688a0713b. With an existing licensed IDA 9.4+ and idalib, install this checkout into a dedicated Python 3.11+ environment and register its absolute ida-mcp executable with argument stdio as a project-scoped MCP server. Retain LICENSE and record resolved ida-nexus/zeromcp versions. Existing GUI attachment additionally needs the matching IDA GUI plugin; headless operation does not inherently require the host plugin. Inspect the pinned README and any selected plugin/hook configuration before enabling it. Do not register a second competing IDA server by default or assume mrexodia tool names are compatible.
+  notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
+overlap: IDA supplies the underlying analysis; this entry exposes its reference/Python/database contract to agents. ReVa is a Ghidra alternative, REA a higher-level workbench, and reverse-engineering an optional investigation method. Generic host shell access does not provide IDA integration.
+related:
+  - reva
+  - reverse-engineering
+  - reverse-engineer-anything

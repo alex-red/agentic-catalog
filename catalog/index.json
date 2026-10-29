@@ -163,6 +163,56 @@
     },
     {
       "schemaVersion": 2,
+      "id": "cynthion-reverse-engineer",
+      "type": "skill",
+      "title": "Cynthion USB protocol investigation",
+      "summary": "Structured USB protocol experiments using labelled captures, transaction differences, field hypotheses, replay/emulation scaffolds and a protocol document. Requires the sibling capture decoder and separately selected hardware tooling.",
+      "useWhen": "Reverse engineering a proprietary USB device protocol from contrasting captures, or preparing a bounded replay/emulation experiment.",
+      "tags": [
+        "reverse_engineering",
+        "usb",
+        "protocol-analysis",
+        "hardware"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 2,
+        "quality": 3,
+        "portability": 2,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Complete entrypoint and sibling decoder loader read. Analysis/generator helpers and required decoder runtime are not fully audited. Two-capture ambiguity and fixed-length assumptions are disclosed upstream. No synthetic-helper run, hardware trial or agent outcome evaluation."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/curtisgalloway/public-skills",
+        "revision": "322192876442b066dd31690a190773c7f903d099",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0",
+        "author": "Curtis Galloway and contributors",
+        "notes": "Pin is the last commit affecting the selected skill subtree; required decoder and resources must come from this same snapshot. Root license and source SPDX notices must accompany copied material. Replay scaffolds are not evidence of protocol equivalence.",
+        "path": "plugins/hardware-lab/skills/cynthion-reverse-engineer"
+      },
+      "install": {
+        "any": "Fetch https://github.com/curtisgalloway/public-skills at 322192876442b066dd31690a190773c7f903d099. Copy the complete plugins/hardware-lab/skills/cynthion-reverse-engineer and cynthion-pcap-decode subtrees as siblings in the selected .agents/skills or .claude/skills directory, including scripts, examples and references; retain root LICENSE as LICENSE.txt in both. Preserve existing destinations. Read the required decoder and all helpers used before executing them. Cynthion/Packetry support live capture; supplied decoded JSON can support offline analysis. tshark is recommended, libusb1 is needed for generated replay, and Facedancer for optional emulation. Do not install setup/capture sibling skills, adjust device permissions, replay traffic or clone hardware implicitly.",
+        "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
+      },
+      "overlap": "Generic debugging and file tools lack USB-specific capture differencing and command inference. REA covers broader application artifacts; reverse-engineering supplies a general analysis method. This specialist option requires its decoder and is not a default dependency of other RE entries.",
+      "related": [
+        "reverse-engineering",
+        "reverse-engineer-anything"
+      ],
+      "score": 2.6,
+      "sourceUrl": "https://github.com/curtisgalloway/public-skills/tree/322192876442b066dd31690a190773c7f903d099/plugins/hardware-lab/skills/cynthion-reverse-engineer",
+      "path": "entries/skills/cynthion-reverse-engineer",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "diagnosing-bugs",
       "type": "skill",
       "title": "Diagnosing bugs with a tight feedback loop",
@@ -1020,6 +1070,58 @@
         "entries/skills/retrospective/SKILL.md",
         "entries/skills/retrospective/references/trigger-checks.md"
       ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "reverse-engineering",
+      "type": "skill",
+      "title": "Reverse engineering (Encid)",
+      "summary": "Broad headless artifact triage and analysis with platform playbooks, decompiler exporters and evidence-linked findings. A linked experimental option with incomplete helper review and a noncanonical Apache-labelled license text.",
+      "useWhen": "Understanding shipped binaries, APKs, packaged applications or protocols without complete source, while explicitly selecting a broad shell-first method.",
+      "tags": [
+        "reverse_engineering",
+        "binary-analysis",
+        "decompilation",
+        "triage"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 4,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Entrypoint, cross-cutting workflow, findings template and license read. Platform references and executable helpers are not fully audited. Useful routing and evidence labels; Ghidra/JDK assumptions require release-specific checks. Root license abbreviates Apache clauses. No behavioral trial or superiority evidence."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/EncidXVII/claude-reverse-engineering-skill",
+        "revision": "9a857bd2ee62bd13aa66b3942bd17c89eabf6b8a",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0-labelled; noncanonical upstream text",
+        "author": "EncidXVII",
+        "notes": "Pin is the last commit affecting the complete skill subtree. Linked only; no upstream payload or license wording is copied. Preserve actual upstream terms and clarify them before redistribution.",
+        "path": "skills/reverse-engineering"
+      },
+      "install": {
+        "any": "Fetch https://github.com/EncidXVII/claude-reverse-engineering-skill at 9a857bd2ee62bd13aa66b3942bd17c89eabf6b8a. Copy the complete skills/reverse-engineering subtree, including references, scripts and assets, into the selected project skill directory (.agents/skills/reverse-engineering or .claude/skills/reverse-engineering); retain the actual root LICENSE as LICENSE.txt. Check for an existing same-name skill before copying. Resolve skill-relative paths explicitly outside Claude Code. Review helpers before invoking them and use existing compatible analysis tools; copying the skill does not install Ghidra, Frida or an MCP server.",
+        "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
+      },
+      "overlap": "repo-research handles source repositories; systematic-debugging handles hypothesis testing. ReVa supplies a live Ghidra database and REA a larger cross-format runtime. Native shell and file tools cover basic triage; this option adds routing, exports and artifact-coordinate reporting.",
+      "related": [
+        "repo-research",
+        "systematic-debugging",
+        "reva",
+        "reverse-engineer-anything"
+      ],
+      "score": 3.4,
+      "sourceUrl": "https://github.com/EncidXVII/claude-reverse-engineering-skill/tree/9a857bd2ee62bd13aa66b3942bd17c89eabf6b8a/skills/reverse-engineering",
+      "path": "entries/skills/reverse-engineering",
+      "files": []
     },
     {
       "schemaVersion": 2,
@@ -3338,6 +3440,58 @@
     },
     {
       "schemaVersion": 2,
+      "id": "cerberus-re",
+      "type": "mcp",
+      "title": "Cerberus RE Apple workbench",
+      "summary": "Apple-focused CLI and MCP workbench joining Ghidra static exports with LLDB traces, Frida probes and durable evidence. Bounded standalone use is supported; a separate mission-state companion is optional.",
+      "useWhen": "Correlating Mach-O, Objective-C, Swift or XPC static findings with explicitly requested Apple runtime observations.",
+      "tags": [
+        "reverse_engineering",
+        "apple",
+        "ghidra",
+        "lldb",
+        "frida"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 2,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Root skill, installation/requirements sections and dependency manifest reviewed. Bridge, runtime helpers, references and benchmarks remain unaudited. Workspace conventions and optional companion composition add scope. No static/runtime integration trial or outcome evidence."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/OwenPawl/cerberus-re-skill",
+        "revision": "3116c94de17386d18367ed14e55dd2c7d1c7fe14",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0",
+        "author": "OwenPawl",
+        "notes": "Repository snapshot pins the Python workbench and root skill together. Requires Python 3.11+; Ghidra/JDK and Apple runtime dependencies must match the selected versions. Full transitive dependency review remains outstanding."
+      },
+      "install": {
+        "any": "Fetch https://github.com/OwenPawl/cerberus-re-skill at 3116c94de17386d18367ed14e55dd2c7d1c7fe14. With existing prerequisites, install the pinned checkout into a dedicated Python 3.11+ environment using pip install -e . and register its absolute cerberus-mcp executable as a project-scoped stdio MCP server. Set GHIDRA_WORKSPACE to an agreed project location and CERBERUS_MCP_STRICT_SURFACE=1 as documented. Read references/mcp-server.md and the helpers relevant to the task before use; retain LICENSE and complete runtime/resources. Optional root SKILL.md installation requires the supporting references, scripts, templates and installed package rather than a lone file. Do not run the dependency installer, bootstrap, install command or long-run-agent companion implicitly. LLDB/Frida and Apple runtime access are conditional on the selected investigation.",
+        "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
+      },
+      "overlap": "ReVa supplies Ghidra database access and REA broader application investigation. This option specializes in Apple metadata and static/runtime joins. Native debugging alone does not maintain those correlations; generic handoff is optional and the upstream long-run-agent companion is not required for bounded use.",
+      "related": [
+        "reva",
+        "reverse-engineer-anything",
+        "reverse-engineering",
+        "handoff"
+      ],
+      "score": 2.8,
+      "sourceUrl": "https://github.com/OwenPawl/cerberus-re-skill/tree/3116c94de17386d18367ed14e55dd2c7d1c7fe14",
+      "path": "entries/mcps/cerberus-re",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "chrome-devtools-mcp",
       "type": "mcp",
       "title": "Chrome DevTools MCP",
@@ -3426,6 +3580,159 @@
       "score": 4,
       "sourceUrl": "https://github.com/upstash/context7/tree/74eda1819f17f8b177e0bdad10de14bdc6bb26af",
       "path": "entries/mcps/context7",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ida-mcp",
+      "type": "mcp",
+      "title": "Official Hex-Rays IDA MCP",
+      "summary": "Vendor-maintained MCP access to IDA databases through reference lookup, Python analysis and database lifecycle tools. Supports headless and GUI coordination; requires an appropriate IDA installation and entitlement.",
+      "useWhen": "Selecting an IDA analysis backend for compiled artifacts, particularly when starting a new integration or migrating from mrexodia-specific recipes.",
+      "tags": [
+        "reverse_engineering",
+        "ida",
+        "binary-analysis",
+        "decompilation"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 4,
+        "portability": 3,
+        "novelty": 5,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "README, manifest, MIT license and selected tool implementations reviewed. Nexus, ZeroMCP, lifecycle/logging infrastructure and host hooks are not fully audited. Arbitrary Python can mutate analysis state. mrexodia upstream recommends this server; no runtime trial or outcome superiority is claimed."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/HexRaysSA/ida-mcp",
+        "revision": "391c2f0606a773050fbafcd3ff62942688a0713b",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "Hex-Rays SA",
+        "notes": "Repository snapshot includes package 20261028.0.3. Requires IDA 9.4+, idalib and Python 3.11+. Available processors/decompilers depend on the user installation. The host plugin declares hooks; direct MCP registration avoids implicitly selecting those extras."
+      },
+      "install": {
+        "any": "Fetch https://github.com/HexRaysSA/ida-mcp at 391c2f0606a773050fbafcd3ff62942688a0713b. With an existing licensed IDA 9.4+ and idalib, install this checkout into a dedicated Python 3.11+ environment and register its absolute ida-mcp executable with argument stdio as a project-scoped MCP server. Retain LICENSE and record resolved ida-nexus/zeromcp versions. Existing GUI attachment additionally needs the matching IDA GUI plugin; headless operation does not inherently require the host plugin. Inspect the pinned README and any selected plugin/hook configuration before enabling it. Do not register a second competing IDA server by default or assume mrexodia tool names are compatible.",
+        "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
+      },
+      "overlap": "IDA supplies the underlying analysis; this entry exposes its reference/Python/database contract to agents. ReVa is a Ghidra alternative, REA a higher-level workbench, and reverse-engineering an optional investigation method. Generic host shell access does not provide IDA integration.",
+      "related": [
+        "reva",
+        "reverse-engineering",
+        "reverse-engineer-anything"
+      ],
+      "score": 3.6,
+      "sourceUrl": "https://github.com/HexRaysSA/ida-mcp/tree/391c2f0606a773050fbafcd3ff62942688a0713b",
+      "path": "entries/mcps/ida-mcp",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "reva",
+      "type": "mcp",
+      "title": "ReVa Ghidra investigation",
+      "summary": "Ghidra MCP integration for triage, focused code navigation and iterative database refinement, with optional binary-triage and deep-analysis skills. Known inference-example defects and incomplete runtime review remain disclosed.",
+      "useWhen": "Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration.",
+      "tags": [
+        "reverse_engineering",
+        "ghidra",
+        "binary-analysis",
+        "decompilation"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "README, manifest and selected triage/deep-analysis procedures reviewed. Runtime, extension and full skill bodies remain unaudited. Fixed budgets and the AES worked example need judgment; type changes improving pseudocode do not prove semantics. No integration or agent outcome trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/cyberkaida/reverse-engineering-assistant",
+        "revision": "a2fcd946ec9c0bcf204da308365c16abb781dc53",
+        "retrieved": "2026-10-29",
+        "license": "Apache-2.0",
+        "author": "cyberkaida",
+        "notes": "Repository snapshot pins the MCP runtime and optional skills together. Deep-analysis itself last changed at d4195002d43f48863b9576b235ba76de50fe73eb. Root and extension licenses apply; transitive dependencies are outside this review."
+      },
+      "install": {
+        "any": "Fetch https://github.com/cyberkaida/reverse-engineering-assistant at a2fcd946ec9c0bcf204da308365c16abb781dc53. Use the pinned README installation route: build the extension against the existing Ghidra with GHIDRA_INSTALL_DIR and gradle install, or select a matching release after separately recording its source/version. Enable the extension in the chosen project and Code Browser only when requested. For a running local GUI, register the project-scoped HTTP MCP endpoint http://localhost:8080/mcp/message in the host configuration. Headless use additionally requires the pinned Python CLI and PyGhidra setup. Ghidra 12.0+ is documented; 12.2+ requires Java 25, earlier supported versions Java 21. Keep the server local and retain normal tool approvals. Optional ReVa/skills/binary-triage and deep-analysis must be separately selected with complete resources and licenses; do not install the entire marketplace implicitly.",
+        "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
+      },
+      "overlap": "Ghidra already supplies analysis and scripting; host tools supply planning and file inspection. This bridge adds incremental live database access. reverse-engineering can use exported text; REA provides broader artifact coordination and official IDA MCP is an alternative backend.",
+      "related": [
+        "reverse-engineering",
+        "reverse-engineer-anything",
+        "ida-mcp",
+        "systematic-debugging"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/cyberkaida/reverse-engineering-assistant/tree/a2fcd946ec9c0bcf204da308365c16abb781dc53",
+      "path": "entries/mcps/reva",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
+      "id": "reverse-engineer-anything",
+      "type": "mcp",
+      "title": "Reverse Engineer Anything (REA)",
+      "summary": "CLI and MCP workbench for cross-format artifact investigation, feature tracing and evidence retention across native, managed, JavaScript and other packaged targets. Large linked experiment with provider-specific dependencies.",
+      "useWhen": "Tracing behavior across shipped application components or artifact formats where retained evidence and a common investigation surface justify a broader workbench.",
+      "tags": [
+        "reverse_engineering",
+        "binary-analysis",
+        "application-analysis",
+        "evidence"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "usefulness": 3,
+        "quality": 3,
+        "portability": 3,
+        "novelty": 4,
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Investigation entrypoint sections and installation-route sections reviewed; seven referenced guides and the large runtime/provider graph are not fully audited. Repository-main instructions can exceed a published package. No provider trial, independent evaluation or install-count evidence."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/morluto/rea",
+        "revision": "c0c3902207d6b1a33709e42b80c7e570da7db964",
+        "retrieved": "2026-10-29",
+        "license": "MIT; third-party components retain their own terms",
+        "author": "morluto",
+        "notes": "Repository snapshot binds source, runtime and authored skill consistently. Public skill subtree last changed at 8188497f13477918f2b696689c3598b65f11a7c5. Preserve THIRD_PARTY_NOTICES.md and relevant licenses. A package version string does not prove equality with this source tree."
+      },
+      "install": {
+        "any": "Fetch https://github.com/morluto/rea at c0c3902207d6b1a33709e42b80c7e570da7db964 into a trusted tool directory outside the analysis target. Review lifecycle scripts, notices and selected provider dependencies, then follow pinned docs/installation.md for a source build: npm ci and npm run build:cached. Use its documented Node.js version and record the resolved environment. Register an absolute Node executable with arguments /absolute/path/to/rea/scripts/rea.mjs and mcp in project-scoped host configuration. Copy the complete authored .agents/skills/reverse-engineer-anything subtree and references only if its guidance is selected, retaining LICENSE and notices. Native work requires a separately selected compatible provider. Do not run rea setup, install engines, hooks, plugin bundles or AgentEnv/Docker implicitly; a selected published release needs a separately recorded pin and capability check.",
+        "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
+      },
+      "overlap": "Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost.",
+      "related": [
+        "repo-research",
+        "reverse-engineering",
+        "reva",
+        "ida-mcp",
+        "cerberus-re"
+      ],
+      "score": 3.2,
+      "sourceUrl": "https://github.com/morluto/rea/tree/c0c3902207d6b1a33709e42b80c7e570da7db964",
+      "path": "entries/mcps/reverse-engineer-anything",
       "files": []
     },
     {

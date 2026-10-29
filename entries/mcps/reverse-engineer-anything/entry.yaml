@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: reverse-engineer-anything
+type: mcp
+title: Reverse Engineer Anything (REA)
+summary: CLI and MCP workbench for cross-format artifact investigation, feature tracing and evidence retention across native, managed, JavaScript and other packaged targets. Large linked experiment with provider-specific dependencies.
+useWhen: Tracing behavior across shipped application components or artifact formats where retained evidence and a common investigation surface justify a broader workbench.
+tags:
+  - reverse_engineering
+  - binary-analysis
+  - application-analysis
+  - evidence
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 3
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Investigation entrypoint sections and installation-route sections reviewed; seven referenced guides and the large runtime/provider graph are not fully audited. Repository-main instructions can exceed a published package. No provider trial, independent evaluation or install-count evidence.
+source:
+  kind: linked
+  url: https://github.com/morluto/rea
+  revision: c0c3902207d6b1a33709e42b80c7e570da7db964
+  retrieved: 2026-10-29
+  license: MIT; third-party components retain their own terms
+  author: morluto
+  notes: Repository snapshot binds source, runtime and authored skill consistently. Public skill subtree last changed at 8188497f13477918f2b696689c3598b65f11a7c5. Preserve THIRD_PARTY_NOTICES.md and relevant licenses. A package version string does not prove equality with this source tree.
+install:
+  any: "Fetch https://github.com/morluto/rea at c0c3902207d6b1a33709e42b80c7e570da7db964 into a trusted tool directory outside the analysis target. Review lifecycle scripts, notices and selected provider dependencies, then follow pinned docs/installation.md for a source build: npm ci and npm run build:cached. Use its documented Node.js version and record the resolved environment. Register an absolute Node executable with arguments /absolute/path/to/rea/scripts/rea.mjs and mcp in project-scoped host configuration. Copy the complete authored .agents/skills/reverse-engineer-anything subtree and references only if its guidance is selected, retaining LICENSE and notices. Native work requires a separately selected compatible provider. Do not run rea setup, install engines, hooks, plugin bundles or AgentEnv/Docker implicitly; a selected published release needs a separately recorded pin and capability check."
+  notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
+overlap: Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost.
+related:
+  - repo-research
+  - reverse-engineering
+  - reva
+  - ida-mcp
+  - cerberus-re

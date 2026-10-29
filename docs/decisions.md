@@ -274,3 +274,13 @@ The methods are self-contained MIT prose with immutable inspiration and explicit
 The browser now supports a Game design topic category derived from the existing `game-design` tag. It has a dedicated primary tree group and a Category filter that composes with existing filters. Entry types and installation routes remain unchanged. Featured remains an additional listing; Custom and Experimental keep their existing placement priority. A topic category is not a new entry type or an install-all collection.
 
 Generated indexes are rebuilt from source, and the [selection guide](game-design-options.md) explains each method. The catalog now has 70 entries, including 32 skills and 11 workflows, with seven collections. Category tests, a site build and local browser verification assess implementation; they do not establish improved gameplay or agent outcomes.
+
+## 44. Admit explicitly selected reverse-engineering alternatives (2026-10-29)
+
+Following the user's selection of the six [research options](research/2026-10-29-reverse-engineering-research.md), added linked `reverse-engineering` and `cynthion-reverse-engineer` skills, plus `reva`, `ida-mcp`, `reverse-engineer-anything` and `cerberus-re` MCP entries. All are experimental and start at `reviewed`. The [admission record](research/2026-10-29-reverse-engineering-admission.md) and [selection guide](reverse-engineering-options.md) distinguish methods, tool access and larger runtimes.
+
+Explicit selection permits listing these alternatives without claiming their prior review blockers are resolved. Known technical examples, incomplete resource/runtime audits and Encid's noncanonical Apache-labelled text remain disclosed. Installation routes retain complete resources and licenses; Cynthion requires its sibling decoder, and workbench dependencies remain conditional. No upstream payload is vendored or edited, and no integration, host hook, engine, runtime probe or hardware operation is activated.
+
+The exact requested `reverse_engineering` tag uses a separate tag schema accepting single hyphen or underscore separators. Entry and relation IDs keep their hyphen-only convention. Tests preserve that distinction and reject malformed tags. This is a searchable tag, not a new entry type, topic category or install-all collection.
+
+The recovered RE report now uses a descriptive filename after a shared-workspace dated-filename collision; the existing game-design report and its links are preserved. Generated indexes are rebuilt from source. The catalog now contains 76 entries, including 34 skills, six MCP servers, seven experimental entries, one custom entry and seven collections. No plugin manifest or version changes.

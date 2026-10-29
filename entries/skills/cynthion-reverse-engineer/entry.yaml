@@ -1,0 +1,38 @@
+schemaVersion: 2
+id: cynthion-reverse-engineer
+type: skill
+title: Cynthion USB protocol investigation
+summary: Structured USB protocol experiments using labelled captures, transaction differences, field hypotheses, replay/emulation scaffolds and a protocol document. Requires the sibling capture decoder and separately selected hardware tooling.
+useWhen: Reverse engineering a proprietary USB device protocol from contrasting captures, or preparing a bounded replay/emulation experiment.
+tags:
+  - reverse_engineering
+  - usb
+  - protocol-analysis
+  - hardware
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 2
+  quality: 3
+  portability: 2
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Complete entrypoint and sibling decoder loader read. Analysis/generator helpers and required decoder runtime are not fully audited. Two-capture ambiguity and fixed-length assumptions are disclosed upstream. No synthetic-helper run, hardware trial or agent outcome evaluation.
+source:
+  kind: linked
+  url: https://github.com/curtisgalloway/public-skills
+  revision: 322192876442b066dd31690a190773c7f903d099
+  retrieved: 2026-10-29
+  license: Apache-2.0
+  author: Curtis Galloway and contributors
+  notes: Pin is the last commit affecting the selected skill subtree; required decoder and resources must come from this same snapshot. Root license and source SPDX notices must accompany copied material. Replay scaffolds are not evidence of protocol equivalence.
+  path: plugins/hardware-lab/skills/cynthion-reverse-engineer
+install:
+  any: Fetch https://github.com/curtisgalloway/public-skills at 322192876442b066dd31690a190773c7f903d099. Copy the complete plugins/hardware-lab/skills/cynthion-reverse-engineer and cynthion-pcap-decode subtrees as siblings in the selected .agents/skills or .claude/skills directory, including scripts, examples and references; retain root LICENSE as LICENSE.txt in both. Preserve existing destinations. Read the required decoder and all helpers used before executing them. Cynthion/Packetry support live capture; supplied decoded JSON can support offline analysis. tshark is recommended, libusb1 is needed for generated replay, and Facedancer for optional emulation. Do not install setup/capture sibling skills, adjust device permissions, replay traffic or clone hardware implicitly.
+  notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
+overlap: Generic debugging and file tools lack USB-specific capture differencing and command inference. REA covers broader application artifacts; reverse-engineering supplies a general analysis method. This specialist option requires its decoder and is not a default dependency of other RE entries.
+related:
+  - reverse-engineering
+  - reverse-engineer-anything

@@ -1,0 +1,40 @@
+schemaVersion: 2
+id: cerberus-re
+type: mcp
+title: Cerberus RE Apple workbench
+summary: Apple-focused CLI and MCP workbench joining Ghidra static exports with LLDB traces, Frida probes and durable evidence. Bounded standalone use is supported; a separate mission-state companion is optional.
+useWhen: Correlating Mach-O, Objective-C, Swift or XPC static findings with explicitly requested Apple runtime observations.
+tags:
+  - reverse_engineering
+  - apple
+  - ghidra
+  - lldb
+  - frida
+hosts:
+  - any
+experimental: true
+rating:
+  usefulness: 2
+  quality: 3
+  portability: 3
+  novelty: 4
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Root skill, installation/requirements sections and dependency manifest reviewed. Bridge, runtime helpers, references and benchmarks remain unaudited. Workspace conventions and optional companion composition add scope. No static/runtime integration trial or outcome evidence.
+source:
+  kind: linked
+  url: https://github.com/OwenPawl/cerberus-re-skill
+  revision: 3116c94de17386d18367ed14e55dd2c7d1c7fe14
+  retrieved: 2026-10-29
+  license: Apache-2.0
+  author: OwenPawl
+  notes: Repository snapshot pins the Python workbench and root skill together. Requires Python 3.11+; Ghidra/JDK and Apple runtime dependencies must match the selected versions. Full transitive dependency review remains outstanding.
+install:
+  any: Fetch https://github.com/OwenPawl/cerberus-re-skill at 3116c94de17386d18367ed14e55dd2c7d1c7fe14. With existing prerequisites, install the pinned checkout into a dedicated Python 3.11+ environment using pip install -e . and register its absolute cerberus-mcp executable as a project-scoped stdio MCP server. Set GHIDRA_WORKSPACE to an agreed project location and CERBERUS_MCP_STRICT_SURFACE=1 as documented. Read references/mcp-server.md and the helpers relevant to the task before use; retain LICENSE and complete runtime/resources. Optional root SKILL.md installation requires the supporting references, scripts, templates and installed package rather than a lone file. Do not run the dependency installer, bootstrap, install command or long-run-agent companion implicitly. LLDB/Frida and Apple runtime access are conditional on the selected investigation.
+  notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
+overlap: ReVa supplies Ghidra database access and REA broader application investigation. This option specializes in Apple metadata and static/runtime joins. Native debugging alone does not maintain those correlations; generic handoff is optional and the upstream long-run-agent companion is not required for bounded use.
+related:
+  - reva
+  - reverse-engineer-anything
+  - reverse-engineering
+  - handoff
