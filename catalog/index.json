@@ -718,6 +718,69 @@
     },
     {
       "schemaVersion": 2,
+      "id": "design-dna",
+      "type": "skill",
+      "title": "Reference-driven visual identity (Design DNA)",
+      "summary": "Extracts design tokens, qualitative style and visual effects from screenshots or URLs into a structured profile, then applies that profile to new content. Its palette verifier checks color distance and coverage, not complete UI or UX fidelity.",
+      "useWhen": "Recreating a reference's visual language or making a new interface inspired by an existing product, game or artwork, with actual reference material and separate rendered and interaction checks.",
+      "tags": [
+        "frontend",
+        "design",
+        "design-system",
+        "visual-design",
+        "typography"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "rubric": "human-v1",
+        "dimensions": {
+          "value": 3,
+          "dependability": 2,
+          "cognitiveEase": 2,
+          "control": 3,
+          "adoption": 2,
+          "compatibility": 3,
+          "upkeep": 2
+        },
+        "context": "Developers translating screenshots or URLs into a reusable visual identity and implementing new content in that style; not a guarantee of exact screen or interaction reproduction.",
+        "baseline": "Installed frontend-design plus a manual reference dossier and rendered comparison; ui-ux-pro-max retrieves suggestions and human-interface-design addresses task and platform behavior.",
+        "review": "docs/reviews/2026-10-29-design-dna.md",
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Source-reviewed style-transfer alternative. Mandatory schema completion can turn unseen details into confident inferences. Palette PASS does not verify layout, typography, motion or usability. Node/sharp setup and floating CDN examples add adoption and upkeep costs. No behavioral trial."
+      },
+      "source": {
+        "kind": "linked",
+        "url": "https://github.com/zanwei/design-dna",
+        "path": ".",
+        "revision": "593e39bc9e3652734653bd75544a333d7d43615e",
+        "retrieved": "2026-10-29",
+        "license": "MIT",
+        "author": "Design DNA authors",
+        "notes": "Root skill package at a pinned repository revision. Entrypoint, both references, all three runtime modules, package metadata and MIT license read in full. Third-party dependencies, tests and examples were not audited or executed."
+      },
+      "install": {
+        "any": "Fetch https://github.com/zanwei/design-dna at 593e39bc9e3652734653bd75544a333d7d43615e. Copy SKILL.md, the complete references and scripts directories, and LICENSE into .claude/skills/design-dna for Claude Code or .agents/skills/design-dna for Codex, retaining LICENSE as LICENSE.txt. Preserve existing skills and local changes. Do not use a moving-branch installer. Measurement requires Node >=18.17 and the scripts/package.json sharp dependency; dependency setup is separate from copying the skill. Resolve script paths from the installed skill directory.",
+        "notes": "Admission installs or activates nothing. Use actual reference images or URLs for source-specific claims; a title such as Cyberpunk 2077 alone supplies no measured design values. Record measured, estimated, inferred and unknown details alongside the upstream profile. Compare rendered regions, type, states and interactions separately from palette scores. Use project dependencies and pinned versions instead of the guide's floating CDN examples. Source asset rights are separate from the skill's MIT license; preserve existing authorization and project conventions."
+      },
+      "overlap": "frontend-design supplies creative implementation but lacks a required extraction and fidelity loop. ui-ux-pro-max searches suggested design guidance rather than measuring a supplied reference. interface-design records product tokens; human-interface-design covers task, state and platform decisions. Installed image and browser tools enable inspection but do not replace the extraction procedure. Design DNA adds a reusable reference-derived profile; its color check cannot replace webapp-testing or visual and interaction review.",
+      "related": [
+        "frontend-design",
+        "ui-ux-pro-max",
+        "interface-design",
+        "human-interface-design",
+        "webapp-testing"
+      ],
+      "score": 6.3,
+      "sourceUrl": "https://github.com/zanwei/design-dna/tree/593e39bc9e3652734653bd75544a333d7d43615e/.",
+      "path": "entries/skills/design-dna",
+      "files": []
+    },
+    {
+      "schemaVersion": 2,
       "id": "design-taste-frontend",
       "type": "skill",
       "title": "Art direction and browser gates (Taste)",
@@ -4632,6 +4695,77 @@
       "path": "entries/workflows/ralph-loop",
       "files": [
         "entries/workflows/ralph-loop/WORKFLOW.md"
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "reference-to-interface",
+      "type": "workflow",
+      "title": "Reference-to-interface recreation workflow",
+      "summary": "Turns screenshots, live interfaces or named inspirations into a reference dossier, explicit design mappings and an implementation checked against rendered and interaction evidence. Supports exact recreation and style transfer while keeping measurements, estimates, inferences and unknowns distinct.",
+      "useWhen": "Recreating a supplied interface or translating a named product, game or artwork into a new UI while preserving the target's tasks and verifying fidelity against actual references.",
+      "tags": [
+        "frontend",
+        "design",
+        "ux",
+        "design-system",
+        "visual-design",
+        "interaction-design",
+        "verification"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "rubric": "human-v1",
+        "dimensions": {
+          "value": 3,
+          "dependability": 3,
+          "cognitiveEase": 3,
+          "control": 4,
+          "adoption": 3,
+          "compatibility": 3,
+          "upkeep": 4
+        },
+        "context": "Developers recreating a reference screen or transferring an observed visual language to an existing product, using available image, browser and implementation tools.",
+        "baseline": "frontend-design with manual reference notes and screenshots; design-dna adds structured style extraction but has palette-only automated verification and mandatory schema completion.",
+        "review": "docs/reviews/2026-10-29-reference-to-interface.md",
+        "evidence": "reviewed",
+        "reviewed": "2026-10-29",
+        "notes": "Independent procedure adds reference acquisition, uncertainty labels and mode-specific fidelity checks. No required runtime or sibling entry. Actual references and a render path are needed for verified fidelity; source review does not establish improved output quality. No behavioral trial."
+      },
+      "source": {
+        "kind": "adapted",
+        "license": "MIT",
+        "author": "Agentic Catalog contributors",
+        "notes": "Independently written from the reference-UI scout. Combines reference-derived identity extraction and rendered comparison with explicit uncertainty, task mapping and separate interaction evidence. No upstream prose, scripts, assets, installers or mandatory integrations copied."
+      },
+      "inspiredBy": [
+        {
+          "title": "Design DNA — reference identity extraction and application",
+          "url": "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md"
+        },
+        {
+          "title": "UXKIN UI from screenshot — measure, build and compare",
+          "url": "https://github.com/uxkin/agent/blob/693e43207465c6b70d636e0531f60d12eb2ed932/.agents/skills/ui-from-screenshot/SKILL.md"
+        }
+      ],
+      "overlap": "frontend-design supplies visual implementation; design-dna supplies a structured token/style/effects profile; interface-design records product tokens. human-interface-design addresses task/state/platform decisions and webapp-testing exercises browser behavior. This standalone procedure connects actual reference acquisition, traceable uncertainty, target task mapping and mode-specific visual and interaction comparison without requiring those entries or tools. Installed browser/image capabilities execute parts of the method but do not supply its evidence contract.",
+      "related": [
+        "design-dna",
+        "frontend-design",
+        "human-interface-design",
+        "interface-design",
+        "webapp-testing",
+        "evidence-to-flow-ux"
+      ],
+      "score": 8,
+      "sourceUrl": "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md",
+      "path": "entries/workflows/reference-to-interface",
+      "files": [
+        "entries/workflows/reference-to-interface/LICENSE.txt",
+        "entries/workflows/reference-to-interface/WORKFLOW.md"
       ]
     },
     {

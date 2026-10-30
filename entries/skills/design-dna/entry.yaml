@@ -1,0 +1,50 @@
+schemaVersion: 2
+id: design-dna
+type: skill
+title: Reference-driven visual identity (Design DNA)
+summary: Extracts design tokens, qualitative style and visual effects from screenshots or URLs into a structured profile, then applies that profile to new content. Its palette verifier checks color distance and coverage, not complete UI or UX fidelity.
+useWhen: Recreating a reference's visual language or making a new interface inspired by an existing product, game or artwork, with actual reference material and separate rendered and interaction checks.
+tags:
+  - frontend
+  - design
+  - design-system
+  - visual-design
+  - typography
+hosts:
+  - any
+experimental: true
+rating:
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: Developers translating screenshots or URLs into a reusable visual identity and implementing new content in that style; not a guarantee of exact screen or interaction reproduction.
+  baseline: Installed frontend-design plus a manual reference dossier and rendered comparison; ui-ux-pro-max retrieves suggestions and human-interface-design addresses task and platform behavior.
+  review: docs/reviews/2026-10-29-design-dna.md
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Source-reviewed style-transfer alternative. Mandatory schema completion can turn unseen details into confident inferences. Palette PASS does not verify layout, typography, motion or usability. Node/sharp setup and floating CDN examples add adoption and upkeep costs. No behavioral trial.
+source:
+  kind: linked
+  url: https://github.com/zanwei/design-dna
+  path: .
+  revision: 593e39bc9e3652734653bd75544a333d7d43615e
+  retrieved: 2026-10-29
+  license: MIT
+  author: Design DNA authors
+  notes: Root skill package at a pinned repository revision. Entrypoint, both references, all three runtime modules, package metadata and MIT license read in full. Third-party dependencies, tests and examples were not audited or executed.
+install:
+  any: Fetch https://github.com/zanwei/design-dna at 593e39bc9e3652734653bd75544a333d7d43615e. Copy SKILL.md, the complete references and scripts directories, and LICENSE into .claude/skills/design-dna for Claude Code or .agents/skills/design-dna for Codex, retaining LICENSE as LICENSE.txt. Preserve existing skills and local changes. Do not use a moving-branch installer. Measurement requires Node >=18.17 and the scripts/package.json sharp dependency; dependency setup is separate from copying the skill. Resolve script paths from the installed skill directory.
+  notes: Admission installs or activates nothing. Use actual reference images or URLs for source-specific claims; a title such as Cyberpunk 2077 alone supplies no measured design values. Record measured, estimated, inferred and unknown details alongside the upstream profile. Compare rendered regions, type, states and interactions separately from palette scores. Use project dependencies and pinned versions instead of the guide's floating CDN examples. Source asset rights are separate from the skill's MIT license; preserve existing authorization and project conventions.
+overlap: frontend-design supplies creative implementation but lacks a required extraction and fidelity loop. ui-ux-pro-max searches suggested design guidance rather than measuring a supplied reference. interface-design records product tokens; human-interface-design covers task, state and platform decisions. Installed image and browser tools enable inspection but do not replace the extraction procedure. Design DNA adds a reusable reference-derived profile; its color check cannot replace webapp-testing or visual and interaction review.
+related:
+  - frontend-design
+  - ui-ux-pro-max
+  - interface-design
+  - human-interface-design
+  - webapp-testing

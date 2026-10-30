@@ -23,6 +23,10 @@ Project components, accepted tokens, real user tasks and supported input methods
 
 For an independently written cross-platform method, choose [human-interface-design](../entries/skills/human-interface-design/SKILL.md). Its Apple-inspired principles guide task structure, state, recovery, hierarchy and platform adaptation while retaining the product's visual identity. It is a separate adapted entry with local references, rather than another linked source in the table above; see [the research](research/2026-10-29-apple-inspired-interface-skill.md).
 
+For our standalone approach, choose the adapted experimental [reference-to-interface workflow](../entries/workflows/reference-to-interface/WORKFLOW.md). It covers exact screen recreation, reference-inspired style transfer and observed interaction recreation, using only the stages needed. It gathers actual references for title-only requests, tracks measurements separately from estimates and inferences, maps visual rules to the target's tasks, and checks corresponding rendered regions and interactions. Its [author assessment](reviews/2026-10-29-reference-to-interface.md) is source-based, not a measured accuracy claim. The workflow is complete inside its directory and requires no other design entry or integration.
+
+For reference-driven style transfer, choose [design-dna](../entries/skills/design-dna/entry.yaml), a separate linked experimental option. It extracts tokens, qualitative character and effects from actual screenshots or URLs, then applies the profile to new content. It is the selected fit for requests such as “inspired by Cyberpunk 2077,” once the intended reference family is established. A title alone supplies no measured values. Record estimates and unknowns, and compare rendered regions, typography, states and interactions separately from its palette score. See the [assessment](reviews/2026-10-29-design-dna.md).
+
 ## Complete, bounded installation
 
 These entries are linked, not vendored. Their `entry.yaml` files give the exact upstream repository, artifact path, full commit, license and installation boundaries. Fetch that revision rather than a moving branch or an unversioned installer. Preserve existing skills and local changes. Catalog admission does not install any of them in this checkout or a consumer project.
@@ -65,6 +69,12 @@ The upstream change-review entrypoint is user-invoked. It delegates reporting an
 Taste's source folder is `taste-skill`, but its frontmatter name is `design-taste-frontend`; use the latter as the installed directory name. Keep its complete library, scripts, references and assets. Full inspection needs Node 22+ and Chrome-family browser tooling. It writes `.taste-skill` artifacts and may retrieve media whose license and credits need separate checks. Passing its style gates demonstrates compliance with those gates.
 
 Emil's core and the Ibelick prompts can be selected individually. Referrals to another animation skill do not install that sibling. The typography entry includes its six local reference files; cross-domain skills remain optional unless selecting the full interface-review bundle.
+
+### Design DNA
+
+Use the pinned manual copy in its entry metadata, preserving `SKILL.md`, both references, the complete scripts subtree and MIT license. Measurement requires Node >=18.17 and sharp; copying the skill does not install those dependencies. Resolve scripts from the installed skill directory. Dependency setup writes into that directory and remains a separate consumer action.
+
+Preserve project conventions and use pinned project dependencies instead of the generation guide's floating CDN examples. Keep measured, estimated, inferred and unknown properties in an accompanying record: the upstream's required schema completion is not evidence that every field was observed. Palette PASS checks color distance and coverage only; it does not validate layout, typography, motion or usability. This entry complements implementation and UX guidance without installing them, fetching assets or activating workflows implicitly.
 
 ## Conflicts and verification
 

@@ -474,3 +474,23 @@ At the user’s request, substantively reassess the remaining 105 entries agains
 Store per-entry AI curator assessments outside installable payloads and an inspection manifest with pinned resources, SHA-256 digests, exact excerpt ranges, prior ratings and explicit unread scope. A fetched file is not a reviewed file. Withhold dependability where required core/reference/runtime inspection remains insufficient, and human control for Impeccable until its engine behavior is inspected. Keep scores null until all dimensions can be supported.
 
 The [catalog-wide review](research/2026-10-29-catalog-prune.md) records every disposition and the next evidence. Scoped source defects and retained earlier findings remain explicit blockers; a favorable aggregate does not clear them. This request updates ratings, not guidance or consumer authority: preserve payloads, source pins, evidence levels/records, install policy, collections and connections. No retirements or implicit installations occur. Legacy parsing and malformed-input coverage remain supported through synthetic test fixtures. Independent human calibration, weight sensitivity and matched outcome evidence remain outstanding.
+
+## 61. Add reference-driven visual identity extraction (2026-10-29)
+
+Following the user's request to add the best option from the [reference-driven UI scout](research/2026-10-29-catalog-scout-5.md), admit `design-dna` as a linked experimental skill pinned to repository revision `593e39bc9e3652734653bd75544a333d7d43615e`. It is selected for transferring a reference's visual language to new content, including named-game inspiration once actual reference material is available. UI from screenshot remains an unadmitted exact-screen alternative.
+
+The entrypoint, both required references, all three runtime modules, package metadata and root MIT license were read. Preserve the complete skill/reference/scripts package with its license through a bounded manual copy. No consumer skill, dependency, CDN library, asset fetch or service is installed or activated by admission. No plugin manifest or version change is needed.
+
+The [human-v1 assessment](reviews/2026-10-29-design-dna.md) assigns a provisional 6.3/10 and evidence `reviewed`. Mandatory schema completion can overstate unseen details; record uncertainty separately. Its palette verifier measures colors and coverage, not spatial or behavioral fidelity. Effects-library recipes remain untested and floating CDN examples need project-appropriate pinned replacements. Admission is not an accuracy benchmark or permission to copy reference assets.
+
+Inventory becomes 109 entries, including 61 skills and twenty-two experimental entries. All have human-v1 profiles: 77 complete and 32 incomplete; the existing 9 scoped blockers remain. Generated indexes are rebuilt from source. No collection is expanded: design alternatives remain explicitly selectable.
+
+## 62. Add our reference-to-interface method (2026-10-29)
+
+At the user's request, add [reference-to-interface](../entries/workflows/reference-to-interface/WORKFLOW.md) as an adapted experimental workflow alongside the linked Design DNA alternative. It independently combines the inspected sources' extraction/application and measure/build/compare ideas, with source citations in `inspiredBy`; no upstream prose, scripts or assets are copied.
+
+The method separates screen recreation, visual style transfer and bounded interaction recreation. It obtains actual reference material for named inspirations, distinguishes measured/estimated/inferred/unknown properties, maps observed rules to the target's tasks and compares rendered evidence under stated capture conditions. Unseen interactions remain unknown; palette scores cannot establish full fidelity. Narrow tasks use only relevant stages, without mandatory approvals, accounts, sibling skills, global profiles or extra workers.
+
+Package the complete procedure and MIT license within its entry directory. Its [author source assessment](reviews/2026-10-29-reference-to-interface.md) assigns a provisional human-v1 score of 8.0/10 and evidence `reviewed`; this is not an independently measured improvement over Design DNA or host defaults. No consumer workflow is installed or activated.
+
+Inventory becomes 110 entries, including 13 workflows and twenty-three experimental entries, with 78 complete human-v1 profiles and 32 incomplete profiles. Existing scoped blockers and collections remain unchanged. Rebuild generated indexes from source; no plugin manifest or version changes are needed.

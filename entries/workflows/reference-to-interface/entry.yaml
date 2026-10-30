@@ -1,0 +1,37 @@
+schemaVersion: 2
+id: reference-to-interface
+type: workflow
+title: Reference-to-interface recreation workflow
+summary: Turns screenshots, live interfaces or named inspirations into a reference dossier, explicit design mappings and an implementation checked against rendered and interaction evidence. Supports exact recreation and style transfer while keeping measurements, estimates, inferences and unknowns distinct.
+useWhen: Recreating a supplied interface or translating a named product, game or artwork into a new UI while preserving the target's tasks and verifying fidelity against actual references.
+tags: [frontend, design, ux, design-system, visual-design, interaction-design, verification]
+hosts: [any]
+experimental: true
+rating:
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: Developers recreating a reference screen or transferring an observed visual language to an existing product, using available image, browser and implementation tools.
+  baseline: frontend-design with manual reference notes and screenshots; design-dna adds structured style extraction but has palette-only automated verification and mandatory schema completion.
+  review: docs/reviews/2026-10-29-reference-to-interface.md
+  evidence: reviewed
+  reviewed: 2026-10-29
+  notes: Independent procedure adds reference acquisition, uncertainty labels and mode-specific fidelity checks. No required runtime or sibling entry. Actual references and a render path are needed for verified fidelity; source review does not establish improved output quality. No behavioral trial.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written from the reference-UI scout. Combines reference-derived identity extraction and rendered comparison with explicit uncertainty, task mapping and separate interaction evidence. No upstream prose, scripts, assets, installers or mandatory integrations copied.
+inspiredBy:
+  - title: Design DNA — reference identity extraction and application
+    url: https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md
+  - title: UXKIN UI from screenshot — measure, build and compare
+    url: https://github.com/uxkin/agent/blob/693e43207465c6b70d636e0531f60d12eb2ed932/.agents/skills/ui-from-screenshot/SKILL.md
+overlap: frontend-design supplies visual implementation; design-dna supplies a structured token/style/effects profile; interface-design records product tokens. human-interface-design addresses task/state/platform decisions and webapp-testing exercises browser behavior. This standalone procedure connects actual reference acquisition, traceable uncertainty, target task mapping and mode-specific visual and interaction comparison without requiring those entries or tools. Installed browser/image capabilities execute parts of the method but do not supply its evidence contract.
+related: [design-dna, frontend-design, human-interface-design, interface-design, webapp-testing, evidence-to-flow-ux]
