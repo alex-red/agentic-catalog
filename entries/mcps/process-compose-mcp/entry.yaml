@@ -7,13 +7,25 @@ useWhen: A project's dev stack runs under process-compose and agents keep starti
 tags: [dev-ux, dev-servers, logging, observability]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 2
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: A project's dev stack runs under process-compose and agents keep starting duplicate servers, losing background logs, or guessing whether a service is ready. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Host background shells (Claude Code run_in_background, Monitor, task lists) run commands within one session; this persists one named stack across sessions and agents, with readiness and searchable logs. portless gives the same apps stable URLs. Third-party process-compose MCP wrappers are superseded by this built-in server."
+  review: docs/reviews/2026-10-29-process-compose-mcp.md
+  unknowns:
+    - Audit transport/control code and argument escaping; the previously recorded shell interpolation defect remains unresolved.
+  blockers:
+    - scope: Shell-interpolated process tool arguments
+      reason: Earlier pinned-source review records injectable quoted placeholders in the documented psql example. Do not expose untrusted arguments through that recipe until escaping is verified and corrected.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: MCP server, transports, argument handling and SSE security reviewed at the pin. Nothing is exposed without an mcp_server block; control tools need expose_control_tools. SSE attaches to the running instance; stdio starts a separate copy of the whole project and exits on a port 8080 clash unless --no-server is passed. Process-as-tool substitutes @{arg} into shell commands, and a placeholder inside quotes, as in the docs' psql example, allows injection. SSE without PC_API_TOKEN is open to any local process. No agent outcome trial.
+  notes: Useful stack management with retained command-interpolation and transport concerns. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/F1bonacc1/process-compose

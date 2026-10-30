@@ -8,13 +8,25 @@ tags: [dev-ux, dev-servers, local-urls, worktrees]
 hosts: [any]
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    cognitiveEase: 3
+    control: 1
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Agents run several dev servers, worktrees or monorepo apps at once and keep testing the wrong port, hitting EADDRINUSE, or mixing cookies across localhost apps. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: No host built-in or catalog entry gives agents stable named local URLs. Host background processes and webapp-testing still choose ports themselves; portless can sit underneath them. dev3000 (not admitted) now requires it. Worktree-aware names complement worktrunk."
+  review: docs/reviews/2026-10-29-portless.md
+  unknowns:
+    - Inspect remaining setup guidance, proxy, CA trust, hosts-sync and elevation paths; no privileged setup was executed.
+  blockers:
+    - scope: Default privileged setup
+      reason: Earlier pinned-source review records automatic privileged proxy/CA/hosts setup without an approval boundary. Keep those setup effects disabled until reviewed and explicitly authorized.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Skill, MCP, hosts sync and elevation paths reviewed at the pin; proxy and certificate code only searched. Careful code, but the skill tells the agent to start the proxy on 443 with sudo, trust a local CA, sync /etc/hosts, edit package.json scripts and install globally, without asking first. Without a TTY no password prompt appears, though cached sudo or a macOS keychain dialog can still apply changes. Pre-1.0 and changing weekly. No telemetry found. No agent outcome trial.
+  notes: Strong development convenience with privileged setup costs that need explicit scope. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/vercel-labs/portless

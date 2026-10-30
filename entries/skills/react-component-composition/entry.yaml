@@ -7,13 +7,21 @@ useWhen: Designing or refactoring React APIs with interacting mode flags, duplic
 tags: [frontend, react, components, state-management, architecture, refactoring]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Designing or refactoring React APIs with interacting mode flags, duplicated state, tangled providers or behavior-sensitive component extraction. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: react-best-practices supplies performance guidance and frontend-design supplies visual implementation. Native code review and React docs cover basic composition; this skill focuses on public contract and ownership changes that must preserve interaction and state identity."
+  review: docs/reviews/2026-10-29-react-component-composition.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Independently written from official React contracts to complement existing performance guidance. Avoids mandatory context, blanket memoization and React 19-only defaults. Source reviewed; no representative behavioral or agent trigger evaluation.
+  reviewed: 2026-10-29
+  notes: Useful for difficult ownership/API changes; ordinary component edits rarely need the whole method. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

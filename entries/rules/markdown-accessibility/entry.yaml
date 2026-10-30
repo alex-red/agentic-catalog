@@ -7,13 +7,21 @@ useWhen: Writing or reviewing Markdown documentation where screen-reader navigat
 tags: [accessibility, markdown, documentation, code-review]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 4
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Writing or reviewing Markdown documentation where screen-reader navigation, image alternatives, or visual-only instructions need attention beyond formatter and lint checks. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Markdown linters already catch some heading, list, and image syntax issues. Models and host writing guidance cover plain language; frontend-design and ux-critique address interface design. This rule adds a bounded documentation review for meaningful link text, image purpose, semantic navigation, and nonvisual instructions. Skip it when existing project accessibility guidance covers those checks."
+  review: docs/reviews/2026-10-29-markdown-accessibility.md
   evidence: reviewed
-  reviewed: 2026-10-27
-  notes: A scoped, independently written adaptation of GitHub's documentation guidance. Markdown lint catches some heading and list structure but cannot judge link meaning or image context. The rule preserves decorative empty alt text and treats one-H1 style as a renderer or project convention. Source review is not an accessibility conformance audit or behavioral evaluation.
+  reviewed: 2026-10-29
+  notes: Useful where documentation has real access barriers; assistive-technology behavior still needs inspection. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

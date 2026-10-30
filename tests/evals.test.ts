@@ -13,7 +13,7 @@ import { frontmatter, readYaml, repositoryRoot } from '../scripts/library.ts';
 function sandbox(context: TestContext): string {
   const root = mkdtempSync(join(tmpdir(), 'agentic-catalog-evals-'));
   context.after(() => rmSync(root, { recursive: true, force: true }));
-  for (const name of ['entries', 'skills', 'collections', 'evals', 'catalog', 'package.json', 'llms.txt']) {
+  for (const name of ['entries', 'skills', 'collections', 'evals', 'catalog', 'docs', 'package.json', 'llms.txt']) {
     cpSync(join(repositoryRoot, name), join(root, name), { recursive: true });
   }
   return root;

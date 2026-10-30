@@ -7,13 +7,21 @@ useWhen: Onboarding to a repository, assessing its setup, or researching stack a
 tags: [research, onboarding, project-setup, architecture, documentation]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Onboarding to a repository, assessing its setup, or researching stack and integration choices before project initialization. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native file search, browsing and plan mode already support exploration. agents-md-authoring writes project instructions; grilling clarifies requirements; domain-modeling maintains terminology; explore-plan-implement-review executes changes. This skill supplies the evidence and setup handoff without requiring those entries or the Compound Engineering runtime."
+  review: docs/reviews/2026-10-29-repo-research.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: A small research contract with workspace scoping, source attribution, uncertainty labels and command status. Native agents already explore repositories and browse docs; the added value is a bounded decision-ready handoff. No runtime dependencies or automatic writes. Source and structural review only; trigger reliability and outcome benefit have not been measured.
+  reviewed: 2026-10-29
+  notes: Best for consequential onboarding decisions; redundant for trivial repository navigation. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

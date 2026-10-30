@@ -7,13 +7,21 @@ useWhen: Agents in your project tend to over-reach with refactors, new dependenc
 tags: [scope, diff-size, conventions]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 1
+  rubric: human-v1
+  dimensions:
+    value: 1
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 4
+    compatibility: 4
+    upkeep: 4
+  context: "Developers seeing repeated over-reaching agent diffs; existing project patterns and commands remain authoritative."
+  baseline: "Current Claude Code/Codex scope guidance, recorded in overlap; use an explicit project-specific instruction if it suffices."
+  review: docs/reviews/2026-10-29-human-v1-starter.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Short and sound, but host system prompts already restate most of it. Add it only if you have seen over-reaching diffs.
+  reviewed: 2026-10-29
+  notes: "Source review only: small, actionable guidance with low setup cost. Incremental value is limited by host overlap; choose it for observed overreach. No new behavioral trial or matched outcome evidence."
 source:
   kind: original
   license: MIT

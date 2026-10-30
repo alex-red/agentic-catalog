@@ -9,13 +9,21 @@ hosts: [any]
 custom: true
 featured: true
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 2
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: You want a deliberate, plan-first improvement pass after a piece of work, ending in tooling changes you approve and can verify. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: The retrospective skill covers the same moment, with deeper guidance on where instructions load and on skill trigger checks, and it triggers on its own. This one is plan-first and focuses on tooling changes. Use one per session."
+  review: docs/reviews/2026-10-29-improvement-loop.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Grew from the hand-pasted prompt that the retrospective skill also came from, expanded with root-cause classification, items with done-when checks, payoff-based prioritization, an approval gate before changes, and before/after verification. Its stance on tooling quality is distinctive. Unmeasured; it runs only when invoked, so it does not compete with retrospective for triggers.
+  reviewed: 2026-10-29
+  notes: A deliberate tooling-improvement option; use one retrospective method per session and avoid ritual for minor fixes. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

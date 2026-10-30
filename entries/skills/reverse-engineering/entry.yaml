@@ -13,13 +13,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Understanding shipped binaries, APKs, packaged applications or protocols without complete source, while explicitly selecting a broad shell-first method. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: repo-research handles source repositories; systematic-debugging handles hypothesis testing. ReVa supplies a live Ghidra database and REA a larger cross-format runtime. Native shell and file tools cover basic triage; this option adds routing, exports and artifact-coordinate reporting."
+  review: docs/reviews/2026-10-29-reverse-engineering.md
+  unknowns:
+    - Only listed entrypoint ranges inspected; audit the remainder, platform references and executable helpers before grading dependability.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Entrypoint, cross-cutting workflow, findings template and license read. Platform references and executable helpers are not fully audited. Useful routing and evidence labels; Ghidra/JDK assumptions require release-specific checks. Root license abbreviates Apache clauses. No behavioral trial or superiority evidence.
+  notes: A useful cross-format method with unverified platform and helper coverage. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/EncidXVII/claude-reverse-engineering-skill

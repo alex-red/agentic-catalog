@@ -7,13 +7,21 @@ useWhen: Discussing ambiguous codebase terminology, maintaining a domain glossar
 tags: [system-design, domain-modeling, glossary, architecture, decisions, documentation]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Discussing ambiguous codebase terminology, maintaining a domain glossary, or recording the reasoning behind a consequential architecture decision. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Ordinary model behavior covers terminology clarification and drafting ADRs. grilling interviews design decisions, handoff preserves session context, and explore-plan-implement-review organizes implementation; none specifically maintains canonical domain language against the code. Check for an existing host or project glossary skill before installing another."
+  review: docs/reviews/2026-10-29-domain-modeling.md
   evidence: reviewed
-  reviewed: 2026-10-27
-  notes: Small and complete, with concrete terminology checks and a useful threshold for offering ADRs. Ordinary models can already write glossaries and decision notes; the value is the ongoing discipline. It writes resolved terms inline and prescribes GLOSSARY.md and docs/adr/ conventions, which must yield to the consumer project's existing guidance. No trigger or outcome evaluation has been run.
+  reviewed: 2026-10-29
+  notes: Useful where terminology drifts; prescribed files and immediate writes must yield to existing project practice. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/mattpocock/skills

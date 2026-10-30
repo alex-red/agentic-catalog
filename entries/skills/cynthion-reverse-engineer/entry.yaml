@@ -13,13 +13,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 2
-  quality: 3
-  portability: 2
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: Reverse engineering a proprietary USB device protocol from contrasting captures, or preparing a bounded replay/emulation experiment. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Generic debugging and file tools lack USB-specific capture differencing and command inference. REA covers broader application artifacts; reverse-engineering supplies a general analysis method. This specialist option requires its decoder and is not a default dependency of other RE entries."
+  review: docs/reviews/2026-10-29-cynthion-reverse-engineer.md
+  unknowns:
+    - Read entrypoint excerpts only; inspect remaining workflow, analysis/generator helpers and the required decoder before grading dependability.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Complete entrypoint and sibling decoder loader read. Analysis/generator helpers and required decoder runtime are not fully audited. Two-capture ambiguity and fixed-length assumptions are disclosed upstream. No synthetic-helper run, hardware trial or agent outcome evaluation.
+  notes: Useful USB specialist workflow; mandatory decoder and generator inspection is still outstanding. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/curtisgalloway/public-skills

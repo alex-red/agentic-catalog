@@ -14,13 +14,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Looking for product-specific design references or stack guidance and willing to verify the search results before applying or persisting them. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: frontend-design and Taste choose visual directions; this externalizes recommendations into searchable local data. react-best-practices overlaps its React guidance. It does not replace ux-critique or rendered verification."
+  review: docs/reviews/2026-10-29-ui-ux-pro-max.md
+  unknowns:
+    - Audit the dataset, search scripts and generation chain; use the bounded install route rather than assuming sibling installation is authorized.
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Entrypoint, CLI/template routing, core configuration and sample provenance reviewed; full dataset and generation chain not audited. Python 3 required. Confidence fields and retrieval ranks are not correctness evidence. Default installer copies sibling skills; use the bounded manual route. No outcome trial.
+  reviewed: 2026-10-29
+  notes: Useful design retrieval option; search rank and confidence fields do not establish correctness. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill

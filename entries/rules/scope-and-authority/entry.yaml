@@ -7,13 +7,21 @@ useWhen: You want an explicit, host-neutral statement of authorization boundarie
 tags: [scope, authorization]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 1
+  rubric: human-v1
+  dimensions:
+    value: 1
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 4
+    compatibility: 4
+    upkeep: 4
+  context: "Developers needing explicit authorization boundaries in project instructions, especially with thinner host guidance."
+  baseline: "Current host authorization and scope instructions, recorded in overlap; existing project instructions may already suffice."
+  review: docs/reviews/2026-10-29-human-v1-starter.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Accurate but mostly duplicates host system prompts. It is most useful for hosts with thinner built-in guidance.
+  reviewed: 2026-10-29
+  notes: "Source review only: clear authority boundaries and proportionate clarification, with low adoption and upkeep costs. Mostly redundant on the primary hosts; no new behavioral or outcome evaluation."
 source:
   kind: original
   license: MIT

@@ -7,13 +7,21 @@ useWhen: Planning or verifying cross-package changes, shared build configuration
 tags: [monorepo, architecture, dependencies, build-systems, caching, verification, testing]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Planning or verifying cross-package changes, shared build configuration, affected-task selection or package boundaries in a monorepo. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: repo-research discovers conventions and verification-before-completion requires evidence. Native task runners compute graphs and execute checks; agents-md-authoring covers scoped instructions. This workflow handles cross-package selection and package/cache contracts without installing or replacing a runner."
+  review: docs/reviews/2026-10-29-monorepo-change-verification.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: A tool-agnostic workflow that distinguishes dependency, task and release graphs and checks conservative affected selection. Complements repository discovery and general verification. Source reviewed; no representative agent outcome or Turbo/Nx cache evaluation.
+  reviewed: 2026-10-29
+  notes: Useful for cross-package changes; native task runners still execute and validate the actual graph. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

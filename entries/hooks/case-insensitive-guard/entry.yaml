@@ -13,13 +13,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Agents delete or overwrite similarly capitalized paths on macOS, Windows, or shared case-insensitive drives. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: protect-files-and-commands blocks a few destructive patterns; this addresses actual path spelling collisions that generic command rules miss."
+  review: docs/reviews/2026-10-29-case-insensitive-guard.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Models several shell chains and wrappers without probe writes. Dynamic targets, substitutions, globs, and complete shell semantics remain outside coverage. Exact-case deletes and case-only renames pass. Not a general deletion sandbox. Codex support is a documented direct-script registration for canonical Bash/deny payloads; live invocation remains unverified.
+  reviewed: 2026-10-29
+  notes: A focused accidental-deletion guard; it cannot replace sandboxing or resolve every dynamic shell target. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/karanb192/claude-code-hooks

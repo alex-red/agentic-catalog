@@ -7,13 +7,21 @@ useWhen: Tuning the responsiveness, impact or readability of hits, jumps, pickup
 tags: [game-design, game-feel, feedback, accessibility]
 hosts: [any]
 rating:
-  usefulness: 2
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Tuning the responsiveness, impact or readability of hits, jumps, pickups and other gameplay events, including repeated effects and camera motion. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native design reasoning covers audiovisual polish; emil-design-eng addresses interface motion; human-interface-design addresses general feedback and access. This targets gameplay event timing, simulation boundaries, repeated impact and effect ownership without requiring an engine or motion library."
+  review: docs/reviews/2026-10-29-game-feel.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Compact conceptual adaptation with overlap, cancellation, multiplayer and reduced-effects decisions. No executable recipes are included; upstream time-scale risks remain documented in research. No player-comfort study, runtime demonstration or matched outcome evaluation.
+  notes: A practical source-based method; player comfort and satisfaction still require suitable player evidence. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

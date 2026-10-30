@@ -7,13 +7,21 @@ useWhen: Reviewing or fixing Tokio select loops, lost work, orphan tasks, closed
 tags: [rust, tokio, async, concurrency, cancellation, backpressure, testing]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Reviewing or fixing Tokio select loops, lost work, orphan tasks, closed-channel spins, unbounded spawning or shutdown behavior. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Rust compiler diagnostics and Clippy catch some mistakes; diagnosing-bugs and property-based-testing supply general methods. This skill owns Tokio cancellation, task lifecycle and bounded work. rust-verification-ladder selects wider verification tools; no Tokio dependency, tool connection or background process is installed by selecting the skill."
+  review: docs/reviews/2026-10-29-tokio-async-correctness.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Targets lifecycle bugs that compile successfully, using official Tokio contracts. Includes a complete bounded task example with supervisor-cancellation and result-memory limits disclosed. Compiled and checked with coordinated scratch cases; no agent trigger, representative schedule coverage or matched outcome evaluation is claimed.
+  reviewed: 2026-10-29
+  notes: Strong specialist review method; bounded fixtures do not prove all interleavings correct. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

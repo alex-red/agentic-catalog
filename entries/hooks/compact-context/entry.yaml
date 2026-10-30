@@ -12,13 +12,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 2
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Compaction repeatedly loses a few critical details that are not already covered by loaded project instructions. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: CLAUDE.md, auto memory and compaction already preserve context. Use only for demonstrated gaps; handoff and retrospective provide broader state and instruction workflows."
+  review: docs/reviews/2026-10-29-compact-context.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Claude reads CLAUDE_PROJECT_DIR; the Codex adapter infers the project from its .codex/hooks installation and reads .codex/compact-context.md. Bounded to 6000 UTF-8 bytes. Missing/oversize/outside-root notes are not loaded. Source-level fixtures only; host invocation remains unverified.
+  reviewed: 2026-10-29
+  notes: Use only for observed compaction gaps; stale duplicated notes can worsen context quality. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

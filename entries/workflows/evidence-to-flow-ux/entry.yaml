@@ -7,13 +7,21 @@ useWhen: Moving from a concrete task problem or research uncertainty to a design
 tags: [ux, user-research, usability, interaction-design, verification]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Moving from a concrete task problem or research uncertainty to a design decision, authorized change and a retest that matches the claim. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native planning and browser tools execute parts of this process. explore-plan-implement-review covers general code delivery; ux-critique examines interfaces; webapp-testing checks browser behavior; the study and synthesis skills provide deeper methods. This workflow supplies the evidence-dependent decision path and stopping boundary without installing those entries or a broad UX system."
+  review: docs/reviews/2026-10-29-evidence-to-flow-ux.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Bounded, self-contained procedure with branching by evidence, task-state coverage, an evidence ledger and explicit stopping conditions. Browser success remains distinct from human usability; unavailable participants lead to preparation rather than invented results. No full lifecycle ceremony or mandatory tool. Source and structural review only; no measured outcome improvement.
+  notes: Useful decision discipline; browser success remains distinct from human comprehension. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

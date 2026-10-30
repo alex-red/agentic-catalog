@@ -39,7 +39,7 @@ export function createLandingPage(options: LandingOptions): HTMLElement {
           <div class="landing-step-label"><span aria-hidden="true">02</span><h4>Compare</h4></div>
           <div>
             <p>Open an entry and read <strong>When to use</strong>, reviewer notes and <strong>Built-in overlap</strong>. Check whether your agent already covers the job, then compare related guidance. Collections offer a starting shortlist; you can choose individual members.</p>
-            <p>A score is a curator judgment about usefulness, quality, portability and novelty—not a measured guarantee. Check the evidence and its scope. Experimental entries are options to investigate, with limitations recorded in their notes.</p>
+            <p>Human-focused scores are out of 10 and consider value, dependability, mental effort, control, adoption, compatibility and upkeep. Incomplete assessments have no total until their named gaps are resolved. Check the evidence, intended use and any blockers. Experimental entries retain their stated limitations.</p>
           </div>
         </li>
         <li>

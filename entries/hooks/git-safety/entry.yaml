@@ -13,13 +13,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 2
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: A project forbids agents from modifying main/master or merging and closing GitHub items. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: An opt-in policy alternative to protect-files-and-commands; server branch protection and scoped credentials remain authoritative."
+  review: docs/reviews/2026-10-29-git-safety.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Hardcoded main/master policy; branch lookup uses hook process cwd and does not model cd, git -C, aliases, or arbitrary shell semantics. Critical level applies no rules. Strict adds force-push checks but permits --force-with-lease. Codex support is a documented direct-script registration for canonical Bash/deny payloads; live invocation remains unverified.
+  reviewed: 2026-10-29
+  notes: An opt-in policy guard, not branch protection; critical level applies no rules and high is not standalone full coverage. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/karanb192/claude-code-hooks

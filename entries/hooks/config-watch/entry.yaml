@@ -11,13 +11,21 @@ tags:
 hosts:
   - claude-code
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 2
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Installers or other processes may alter agent settings while a session runs. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Complements config-guard by watching configuration reloads rather than agent tool inputs; native ConfigChange supplies the event."
+  review: docs/reviews/2026-10-29-config-watch.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Warns by default; CONFIG_WATCH_BLOCK=true blocks eligible changes, including intentional user changes. Managed policy cannot be blocked. Full event payloads are logged locally; upstream's undocumented-payload caveat is outdated.
+  reviewed: 2026-10-29
+  notes: Useful visibility tripwire; audit raw-payload retention and keep block mode an explicit choice. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/karanb192/claude-code-hooks

@@ -7,13 +7,21 @@ useWhen: A repository enforces commit messages with commitlint, through husky, l
 tags: [commits, conventional-commits, git, quality-gate]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 5
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: A repository enforces commit messages with commitlint, through husky, lefthook or a commit-msg hook, and agent commits keep getting rejected. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: git-commit covers Conventional Commits generally and also reads commitlint configuration, but does not validate before committing or interpret rejections. Host commit procedures say not to skip hooks but give no recovery method."
+  review: docs/reviews/2026-10-29-committing-with-commitlint.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Written by the commitlint maintainers; complete one-file skill read at the pin. Narrow and precise, with a concrete self-correction loop from hook output. `npx commitlint` can download the package when it is not installed locally, so it is not offline-safe; prefer the project's local binary. Only useful in repositories that already use commitlint.
+  notes: "Prefer the project-local executable: upstream npx commands can download packages. Intended for existing commitlint repositories. Static curator assessment; no new behavioral trial."
 source:
   kind: vendored
   url: https://github.com/conventional-changelog/commitlint

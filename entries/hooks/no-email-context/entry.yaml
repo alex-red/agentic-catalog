@@ -11,13 +11,21 @@ tags:
 hosts:
   - claude-code
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 1
-  novelty: 5
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: You want Claude Code's injected account-email context removed before a new conversation reaches the model. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Native context transformation supplies the mechanism, but no equivalent account-email setting was verified. prompt-secret-check handles newly submitted credential-like text; secret-serialization concerns application data models."
+  review: docs/reviews/2026-10-29-no-email-context.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Complete MIT source and two tests read. Claude Code 2.1.301 static validation passes with a missing-author warning; no final-request or privacy outcome test. User-installed prompt.context mods are skipped under organization management unless deployed through managed settings.
+  reviewed: 2026-10-29
+  notes: A narrow privacy control; it does not scrub tools, files, logs, histories or all identity data. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/AlexErrant/claude-code-no-email

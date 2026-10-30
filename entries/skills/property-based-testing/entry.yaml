@@ -7,13 +7,21 @@ useWhen: Code has an algebraic shape (encode and decode pairs, parsers, normaliz
 tags: [testing, property-based-testing, fuzzing, hypothesis, fast-check]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 5
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Code has an algebraic shape (encode and decode pairs, parsers, normalizers, comparators, data structures, contract invariants), or existing property tests need review. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: test-driven-development covers the red-green loop, not property design. Models write simple property tests unprompted, but rarely check them for tautology or vacuity."
+  review: docs/reviews/2026-10-29-property-based-testing.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Strong test-design guidance beyond a TDD loop, with task-specific references that load on demand. It treats adding a testing library as the user's decision. Linked rather than vendored because the repository is CC-BY-SA-4.0. Upstream ships its own eval prompts; we have not run them.
+  reviewed: 2026-10-29
+  notes: Useful property design, with all five task references inspected; fixed severity/settings claims and unnecessary refactor suggestions need judgment. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/trailofbits/skills

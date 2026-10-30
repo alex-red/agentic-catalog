@@ -7,13 +7,22 @@ useWhen: Making a private repository public, choosing a license, or setting up p
 tags: [open-source, security, secrets, licensing, releases, github]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 2
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Making a private repository public, choosing a license, or setting up packaging and release automation ahead of a public launch. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: oss-repo-health audits an already-public repository's ongoing practices and hands the pre-release secrets audit to this entry. github-actions-hardening reviews workflows in more depth. Hosts have no built-in release-readiness workflow."
+  review: docs/reviews/2026-10-29-open-sourcing.md
+  unknowns:
+    - Core inspected; inspect both scripts and required references. Earlier metadata reports read-only checks, which this pass does not independently re-audit.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Read SKILL.md, licensing reference, both scripts and manifest; scanned the language references. Scripts are read-only presence checks and a remote/email grep, with no network or writes. The secrets-first ordering and rationalizations to reject are the distinctive part. A Trail of Bits overlay loads only when detected; the Python reference defers to a sibling modern-python skill. Launch-focused, so ongoing upkeep (changelog, templates, CODEOWNERS) is thin. Linked because the repository is CC-BY-SA-4.0.
+  notes: Useful launch checklist; do not infer release readiness from presence checks. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/trailofbits/skills

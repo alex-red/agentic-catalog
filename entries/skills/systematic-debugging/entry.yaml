@@ -7,13 +7,21 @@ useWhen: A bug, failing test, crash, or regression needs a diagnosed fix rather 
 tags: [debugging, reproduction, regression, testing]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: A bug, failing test, crash, or regression needs a diagnosed fix rather than a symptom patch. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Default model behavior covers most ordinary bugs. A same-named skill ships in obra/superpowers; install only one."
+  review: docs/reviews/2026-10-29-systematic-debugging.md
   evidence: tested
-  reviewed: 2026-10-20
-  notes: Clear and proportional. It triggered 29/30 in the Opus sandbox suite. On Sonnet 5.5 it fired for prompts framed as regressions or diagnosis, but not for plain find-and-fix requests on small bugs, which Sonnet solved directly. Current models already debug this way on most bugs, and a same-named superpowers skill covers similar ground, so the main value is on hard reproductions.
+  reviewed: 2026-10-29
+  notes: A lightweight debugging option; recorded trigger misses on small bugs do not prove worse outcomes. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

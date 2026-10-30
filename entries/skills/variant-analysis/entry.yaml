@@ -7,13 +7,22 @@ useWhen: A vulnerability or logic bug has been found in one place and the questi
 tags: [security, code-review, bug-hunting, semgrep, codeql]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 5
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Host review commands and the security-threat-model entry find issues in a diff or a design; none of them start from a known bug and expand it systematically."
+  review: docs/reviews/2026-10-29-variant-analysis.md
+  unknowns:
+    - "Dependability: core and four step references were inspected; query resources and report template remain uninspected at this pin."
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The exact-match-first rule and the one-change-at-a-time ladder are distinctive and keep reports from flooding. Not for discovering the first bug. It names sibling skills (audit-context-building, issue-writer), and its parallel /variant-analysis:variants workflow needs the plugin. Linked because the repository is CC-BY-SA-4.0. Upstream ships eval prompts; we have not run them.
+  reviewed: 2026-10-29
+  notes: Useful seed-based method; the core is not the complete parallel plugin workflow. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/trailofbits/skills

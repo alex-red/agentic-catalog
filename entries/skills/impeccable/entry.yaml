@@ -15,13 +15,21 @@ hosts:
   - codex
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    adoption: 1
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: Explicitly trying a broad design-refinement workflow and accepting its engine setup, project artifacts and command-specific dependencies. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Overlaps frontend-design, ux-critique, webapp-testing and native browser tools. Adds coordinated refinement vocabulary and live variants. Prefer a focused command to loading several competing design systems. A clean detector is not proof of design quality."
+  review: docs/reviews/2026-10-29-impeccable.md
+  unknowns:
+    - Inspect launcher/engine, required references, default telemetry and opt-out behavior before grading dependability or human control.
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Experimental linked option requested after scouting. Entrypoint, craft/polish and launcher/context/telemetry sections reviewed; full engine, live mutation and all references remain unaudited. Default-on roll/choice telemetry; opt-out is not offline mode. Manual copy omits hooks and agents. No runtime trial.
+  reviewed: 2026-10-29
+  notes: Experimental suite; runtime behavior and data collection need inspection before recommendation. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/pbakaus/impeccable

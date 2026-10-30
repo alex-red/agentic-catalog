@@ -7,13 +7,21 @@ useWhen: You want a fresh-context review before commit or PR that enforces your 
 tags: [code-review, false-positives, project-instructions]
 hosts: [claude-code]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 2
+    cognitiveEase: 2
+    control: 2
+    adoption: 2
+    compatibility: 2
+    upkeep: 3
+  context: "Developers working on this task: You want a fresh-context review before commit or PR that enforces your CLAUDE.md or AGENTS.md rules while keeping false positives low. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Claude Code /code-review and /security-review cover bug review; Codex has /review. The added value is checking compliance with your written rules."
+  review: docs/reviews/2026-10-29-pr-review-code-reviewer.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The confidence threshold is the useful idea. It beats the popular generic reviewer personas in VoltAgent and wshobson, which use broad checklists and can edit files. It pins model opus and declares no tools list, so it inherits every tool, including edits. Consider setting model to inherit and tools to Read, Grep, Glob, Bash.
+  reviewed: 2026-10-29
+  notes: A conditional reviewer persona; confidence is not calibrated probability and inherited tools are broader than a read-only role. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/anthropics/claude-plugins-official

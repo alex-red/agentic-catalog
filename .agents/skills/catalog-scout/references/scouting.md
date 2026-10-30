@@ -53,7 +53,7 @@ For each shortlisted candidate, provide a compact record with these fields (comb
 | Identity | Owner/repository, exact artifact path and type, immutable link, full reviewed commit; aliases or fork ancestry when relevant |
 | Signals | Adoption/popularity observations, units and time windows, checked dates, source links; unknowns explicitly marked |
 | Inspection | Files read, resources/scripts followed, uninspected scope, technical claims checked, and sources supporting findings |
-| Fit | Concrete user job, catalog gap, existing entry IDs and host overlap, qualitative usefulness/quality/portability/novelty |
+| Fit | Concrete user job, catalog gap, existing entry IDs and host overlap, qualitative assessment against the seven human-focused criteria in `docs/ratings.md`, with evidence, fit and blockers separate |
 | Admission path | Proposed source kind, applicable license/notice links, required packaging and dependencies, optional integrations and effects |
 | Decision | Disposition, reason, prior status/decision link, changed evidence if reopening, and exact next step or blocker |
 

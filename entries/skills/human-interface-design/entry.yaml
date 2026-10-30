@@ -7,13 +7,21 @@ useWhen: Designing, implementing, refining or reviewing an interface where task 
 tags: [design, ux, interaction-design, accessibility, cross-platform]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Designing, implementing, refining or reviewing an interface where task clarity, interaction behavior, recovery or platform fit needs deliberate decisions. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native design reasoning and frontend-design cover visual execution; interface-design covers product hierarchy and tokens; emil-design-eng covers motion craft. ux-critique and evidence-to-flow-ux cover evidence and criticism; intent covers a broader lifecycle. This adds a compact cross-platform decision method centered on agency, honest states, recovery and platform adaptation. It requires no other entry, tool connection or persistence convention."
+  review: docs/reviews/2026-10-29-human-interface-design.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Independently written core and three conditional references. Reviewed for proportionality, task and platform fit, state and recovery semantics, scoped accessibility criteria and evidence limits. General design knowledge overlaps substantially with host capabilities and existing skills. Structural checks are not proof of activation, accessibility conformance or improved UX outcomes.
+  notes: Useful cross-platform decision structure; overlaps existing design skills and is not accessibility certification. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

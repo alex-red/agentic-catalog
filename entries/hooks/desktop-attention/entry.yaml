@@ -11,13 +11,21 @@ tags:
 hosts:
   - claude-code
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: You switch applications while agents work and miss permission or input prompts. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Claude's UI already signals attention; this provides a local desktop alert. Skip it if native app notifications already suffice."
+  review: docs/reviews/2026-10-29-desktop-attention.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Small independent Python implementation of the native notification pattern. macOS and Linux desktop support only; requires notification permissions/daemon. Failures are advisory; no remote notification service or dynamic prompt text.
+  reviewed: 2026-10-29
+  notes: Skip when host notifications suffice; desktop permission and headless-session limits remain. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

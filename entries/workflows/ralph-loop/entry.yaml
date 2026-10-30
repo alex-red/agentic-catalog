@@ -7,13 +7,21 @@ useWhen: You have clear specs and a strong test suite and want long, unattended 
 tags: [autonomous-loop, long-running, planning, backpressure]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 2
+    control: 2
+    adoption: 2
+    compatibility: 2
+    upkeep: 3
+  context: "Developers working on this task: You have clear specs and a strong test suite and want long, unattended greenfield or backlog work in a sandbox. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Claude Code /goal and /loop, Codex /goal, and the ralph-loop plugin for Claude Code."
+  review: docs/reviews/2026-10-29-ralph-loop.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: An influential, simple, host-neutral technique. It works only with strong tests and a cap, and it is risky on existing codebases. The built-in /goal and /loop commands now cover the in-session variant, so the value here is the fresh-context outer loop and the plan-file discipline.
+  reviewed: 2026-10-29
+  notes: Only for explicitly authorized sandboxed iteration with strong checks; no whole-loop outcome claim. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

@@ -7,13 +7,22 @@ useWhen: Authoring or tuning a skill and measuring whether it triggers and helps
 tags: [skill-authoring, evaluation]
 hosts: [claude-code]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 2
-  novelty: 1
+  rubric: human-v1
+  dimensions:
+    value: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Authoring or tuning a skill and measuring whether it triggers and helps; use it as a methodology reference. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Built into Claude Code through the skill-creator plugin; Codex ships a system skill-creator."
+  review: docs/reviews/2026-10-29-skill-creator.md
+  unknowns:
+    - Audit required helpers and the remaining authoring/evaluation instructions before grading dependability.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: A reference-grade evaluation method, but a 33 KB body with sections specific to Claude. Both hosts already ship a skill creator, so install it only when the built-in one is missing.
+  reviewed: 2026-10-29
+  notes: Compare with the installed host skill creator before adopting a second authoring system. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/anthropics/skills

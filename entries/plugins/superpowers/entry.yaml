@@ -7,13 +7,25 @@ useWhen: A team wants a complete, enforced spec-to-merge workflow rather than in
 tags: [methodology, planning, tdd, debugging, code-review, verification, subagents, worktrees]
 hosts: [claude-code, codex]
 rating:
-  usefulness: 5
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 1
+    control: 1
+    adoption: 2
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: A team wants a complete, enforced spec-to-merge workflow rather than individual techniques. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Plan mode and the review commands in both hosts cover part of it. It also contains verification-before-completion, test-driven-development, and a systematic-debugging skill."
+  review: docs/reviews/2026-10-29-superpowers.md
+  unknowns:
+    - Audit bootstrap, skill bodies, hooks and optional companion; README workflow claims do not establish behavioral dependability.
+  blockers:
+    - scope: Mandatory delete-before-tests workflow
+      reason: The pinned README explicitly describes deleting code written before tests. Preserve user work and existing authorization instead of adopting that instruction.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The most adopted skills library, and actively released (v7.0.0 on 2026-10-10). Its always-on bootstrap skill forces a skill check before every reply, which is heavy for small tasks and competes with host plan mode. Its skills reference each other, so install it whole or vendor single skills.
+  reviewed: 2026-10-29
+  notes: High process cost; document-specific deletion and compulsory routing rules need revision before broad use. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/obra/superpowers

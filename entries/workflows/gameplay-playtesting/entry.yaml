@@ -7,13 +7,21 @@ useWhen: Planning gameplay studies, analyzing playtest notes or recordings, or e
 tags: [game-design, playtesting, user-research, verification]
 hosts: [any]
 rating:
-  usefulness: 2
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 2
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Planning gameplay studies, analyzing playtest notes or recordings, or exercising a playable build to investigate controls, learning, fairness, pacing or cooperation. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: moderated-usability-study handles general participant sessions, synthesize-research handles findings and webapp-testing handles browser checks. This is a game-specific route through the needed evidence, including mastery, fairness, repeat loops and controls; it requires none of those entries and does not claim automated play proves human enjoyment."
+  review: docs/reviews/2026-10-29-gameplay-playtesting.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Independent game-specific workflow reuses evidence discipline while covering gameplay failures, controls, repeated sessions and browser render state. No invented participant results, fixed sample guarantees or automatic recruitment. Source and structural review only; no study or agent outcome evaluation performed.
+  notes: Good game-study structure; long-term social and mastery questions need longer observation. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

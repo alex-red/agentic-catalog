@@ -7,13 +7,25 @@ useWhen: You run several agent sessions on separate branches and want consistent
 tags: [dev-ux, worktrees, git, subagents]
 hosts: [claude-code, codex]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 2
+    adoption: 2
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: You run several agent sessions on separate branches and want consistent worktree creation, cleanup and a view of which session is working or waiting. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Claude Code has built-in worktrees (--worktree, EnterWorktree, worktree-isolated subagents under .claude/worktrees/); Codex has its own. Worktrunk adds merge and cleanup, project lifecycle hooks with approval, and per-session status. The superpowers and compound-engineering worktree skills are guidance only. desktop-attention covers waiting-for-input alerts."
+  review: docs/reviews/2026-10-29-worktrunk.md
+  unknowns:
+    - Audit hook handler, PermissionRequest behavior, merge/removal and shell integration; previous findings remain unresolved.
+  blockers:
+    - scope: PermissionRequest auto-approval for EnterWorktree
+      reason: Earlier pinned-source review records automatic approval into existing worktrees. Disable that hook path where it supersedes the host or project approval policy until explicitly adopted.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Skills, plugin manifests, hook script and the Rust hook handler reviewed at the pin; large reference files only searched. No telemetry. Hooks write status markers to .git/config. In Claude Code, WorktreeCreate and WorktreeRemove take over built-in worktrees (sibling <repo>.<branch> layout, also for worktree-isolated subagents), and the PermissionRequest hook auto-approves EnterWorktree into existing worktrees. Removal never forces, but deletes merged branches. Project hooks need approval and fail closed without a TTY.
+  notes: Useful worktree UX; plugin lifecycle takeover and retained auto-approval behavior need review. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/max-sixty/worktrunk

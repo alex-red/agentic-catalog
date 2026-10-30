@@ -13,13 +13,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Agents run with broad edit or auto-approve permissions and you want a cheap extra guardrail against a few known-bad actions. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Claude Code permissions.deny rules and sandboxing; the Codex sandbox and approval policy. Those are the primary controls."
+  review: docs/reviews/2026-10-29-protect-files-and-commands.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Refreshed Codex patch checks to align lockfile names with direct edits and cover Move headers. A simple heuristic with known command/path bypasses and overmatches; permissions and sandboxing remain authoritative. Scratch checks do not establish host behavior.
+  reviewed: 2026-10-29
+  notes: An advisory guardrail alongside real permissions; do not rely on it for canonical path enforcement. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

@@ -7,13 +7,22 @@ useWhen: You want to know what agent sessions cost over time or across projects 
 tags: [dev-ux, usage-tracking, observability, budgets]
 hosts: [claude-code, codex]
 rating:
-  usefulness: 5
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: You want to know what agent sessions cost over time or across projects and agents, beyond the current session's /cost or /usage. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Claude Code's /cost and /usage cover the current session and plan limits; this adds history across sessions, projects and agents. Codex has no built-in historical report. claude-hud shows live session cost in the status line."
+  review: docs/reviews/2026-10-29-ccusage.md
+  unknowns:
+    - Audit wrapper/native executable correspondence, input parsers, pricing paths and offline behavior at the release pin.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Wrapper, docs and data paths reviewed at the release pin; the prebuilt native binary that v20 spawns was not. Reads ~/.claude/projects, ~/.config/claude/projects and $CODEX_HOME, writing only caches. By default it fetches model prices from LiteLLM's and models.dev's default branches; --offline uses embedded snapshots. Costs are estimates. No telemetry found. A user-facing tool; no agent outcome claim.
+  notes: Useful human-facing reporting; displayed costs are estimates and runtime behavior still needs inspection. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/ccusage/ccusage

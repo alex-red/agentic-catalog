@@ -7,13 +7,22 @@ useWhen: Agents change web UI and need to see the result, read console or networ
 tags: [dev-ux, browser, verification, debugging, performance]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them."
+  review: docs/reviews/2026-10-29-chrome-devtools-mcp.md
+  unknowns:
+    - Inspect runtime/tool contracts and isolation, telemetry and CrUX controls; no browser server was installed or exercised.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Official, Apache-2.0, and actively released. Claude Code already has a Chrome integration and a browser pane, so there the gain is performance traces, network inspection, and isolated headless runs. For Codex it fills a real gap. Use --isolated so the agent does not get a profile with personal sign-ins.
+  reviewed: 2026-10-29
+  notes: Useful browser diagnostics; explicitly review data collection, profile isolation and overlap with installed tools. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/ChromeDevTools/chrome-devtools-mcp

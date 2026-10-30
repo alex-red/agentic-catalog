@@ -11,13 +11,21 @@ tags:
 hosts:
   - claude-code
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 2
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Agents have made failing suites pass by removing or skipping tests instead of fixing code. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: stop-gate-checks checks results; test-driven-development guides process. This targets an evasion those checks do not detect. CI and human review remain needed."
+  review: docs/reviews/2026-10-29-protect-tests.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: A heuristic for named paths and skip markers, not semantic test integrity. It can reject legitimate skips and misses assertion weakening, interpreter writes, and some deletion syntax. Default high does not screen whole-file Write; strict does.
+  reviewed: 2026-10-29
+  notes: A heuristic tripwire for named test removals, not semantic test integrity or comprehensive write protection. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/karanb192/claude-code-hooks

@@ -7,13 +7,24 @@ useWhen: You want to search the wider public skills registry, beyond this curate
 tags: [discovery, skills-registry, tooling]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 4
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 1
+    cognitiveEase: 2
+    control: 1
+    adoption: 3
+    compatibility: 2
+    upkeep: 3
+  context: "Developers working on this task: You want to search the wider public skills registry, beyond this curated catalog. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: The agentic-catalog skill in this repository covers curated discovery. Claude Code's plugin browser and Codex's skill installer cover installation."
+  review: docs/reviews/2026-10-29-find-skills.md
+  blockers:
+    - scope: Default installation recipe
+      reason: The offered installation defaults to global scope and skips CLI confirmation; do not run it from approval for only a project-scoped install.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The most-installed skill on skills.sh. It treats popularity as trust, and it suggests global installs that skip confirmation (-g -y), which conflicts with explicit approval. skills.sh's own audit marks it medium risk. If you install it, drop -y.
+  reviewed: 2026-10-29
+  notes: Discovery utility with weak vetting heuristics; stars/installs do not establish safety or quality. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/vercel-labs/skills

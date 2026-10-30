@@ -7,13 +7,24 @@ useWhen: Verifying or debugging frontend behavior headlessly, especially on host
 tags: [dev-ux, frontend, testing, browser, verification, playwright]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 1
+    cognitiveEase: 2
+    control: 2
+    adoption: 2
+    compatibility: 2
+    upkeep: 3
+  context: "Developers working on this task: Verifying or debugging frontend behavior headlessly, especially on hosts without a built-in browser. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Claude Code's Chrome integration and built-in browser, and browser MCP servers, cover interactive checks. This is the headless, scriptable option."
+  review: docs/reviews/2026-10-29-webapp-testing.md
+  blockers:
+    - scope: scripts/with_server.py server-management path
+      reason: Server stdout/stderr are piped but never drained; chatty servers can block and hide errors. Shell-only termination may also leave descendants. Avoid this helper until corrected or independently managed.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Proportional, with a clear decision tree. It requires Python Playwright. Its with_server.py helper starts servers, which conflicts with projects that forbid agents from starting dev servers. Say so when recommending it. One example writes to a fixed /mnt path. with_server.py pipes server output it never reads, so a chatty server can stall and its errors stay hidden; networkidle may never settle with hot reload.
+  reviewed: 2026-10-29
+  notes: Use the already-running-app path where suitable; the server helper has documented pipe/readiness/cleanup limitations. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/anthropics/skills

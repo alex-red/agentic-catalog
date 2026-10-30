@@ -12,13 +12,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: Tracing behavior across shipped application components or artifact formats where retained evidence and a common investigation surface justify a broader workbench. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost."
+  review: docs/reviews/2026-10-29-reverse-engineer-anything.md
+  unknowns:
+    - Audit investigation guides, setup and provider runtimes at the installed release; repository README alone is insufficient.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Investigation entrypoint sections and installation-route sections reviewed; seven referenced guides and the large runtime/provider graph are not fully audited. Repository-main instructions can exceed a published package. No provider trial, independent evaluation or install-count evidence.
+  notes: Broad RE workbench whose runtime and package-to-repository correspondence need inspection. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/morluto/rea

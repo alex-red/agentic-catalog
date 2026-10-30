@@ -7,13 +7,21 @@ useWhen: Writing, reviewing, or configuring Cloudflare Workers code or Wrangler 
 tags: [cloudflare, workers, serverless, typescript, observability, code-review]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 2
+    cognitiveEase: 3
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Writing, reviewing, or configuring Cloudflare Workers code or Wrangler configuration. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: context7 can fetch Cloudflare docs on request, and models know common Workers patterns, but neither supplies this review checklist or the version-aware baseline."
+  review: docs/reviews/2026-10-29-workers-best-practices.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Concrete, platform-maintained anti-patterns with consequences and checks; three references load on demand. It asks the agent to verify claims against current Cloudflare docs, which is documentation lookup, not remote instructions. It enables logs and traces for production Workers by default, so check that against your cost and logging policy. It names sibling skills (durable-objects, cf-cli, wrangler) that are not included.
+  reviewed: 2026-10-29
+  notes: Useful platform checklist; fixed CPU-plan limits are stale and default logs/traces can affect privacy/cost. Recheck the actual target before applying recipes. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/cloudflare/skills

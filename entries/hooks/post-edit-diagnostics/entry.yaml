@@ -13,13 +13,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Type errors or lint diagnostics should reach the agent immediately after source edits, and the project has a fast read-only check. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: format-after-edit normalizes style; this reports diagnostics without fixing files. stop-gate-checks checks completion. Avoid duplicate expensive checks across both gates."
+  review: docs/reviews/2026-10-29-post-edit-diagnostics.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Claude Edit/Write paths and Codex apply_patch Add/Update/Move headers select one checker run. Codex paths resolve from event cwd, checker runs at installed project root. Argument arrays and a 20-second deadline; no edit rollback. Requires Python 3.9+ and installed tools. No host invocation evaluation.
+  reviewed: 2026-10-29
+  notes: Choose a genuinely fast checker; exit-2 feedback after an edit must not be mistaken for rollback. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

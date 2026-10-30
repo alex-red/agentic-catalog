@@ -7,13 +7,22 @@ useWhen: Agents write code against fast-moving libraries and keep using deprecat
 tags: [documentation, libraries, api-accuracy]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Agents write code against fast-moving libraries and keep using deprecated or invented APIs. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions."
+  review: docs/reviews/2026-10-29-context7.md
+  unknowns:
+    - Inspect client/installer code and service/data handling, and test version-specific retrieval; README claims are not accuracy evidence.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The most adopted documentation server for coding agents, MIT licensed and very active. It is a third-party service, so queries leave your machine, and an API key avoids rate limits. The CLI plus skill mode avoids the context cost of an MCP tool list.
+  reviewed: 2026-10-29
+  notes: Convenient version-specific documentation retrieval; verify important results against primary docs. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/upstash/context7

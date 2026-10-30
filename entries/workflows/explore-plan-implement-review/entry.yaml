@@ -7,13 +7,21 @@ useWhen: A change spans several files, the approach is uncertain, or the agent w
 tags: [planning, code-review, verification, subagents]
 hosts: [any]
 rating:
-  usefulness: 5
-  quality: 4
-  portability: 4
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 3
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: A change spans several files, the approach is uncertain, or the agent will run long enough unattended that it should not grade its own work. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Plan mode, /code-review, and subagents in Claude Code; plan mode and /review in Codex. compound-engineering is the heavyweight version."
+  review: docs/reviews/2026-10-29-explore-plan-implement-review.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The core workflow Anthropic recommends. Both hosts have plan modes and review commands, so most of it is built in. The value is in the skip rule, the per-step checks, and the instruction not to chase every reviewer comment.
+  reviewed: 2026-10-29
+  notes: Use for changes needing coordination; ordinary one-sentence fixes should take its explicit skip path. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

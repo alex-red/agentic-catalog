@@ -11,13 +11,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: The project has a formatter, and agents leave style drift or spend turns fixing formatting. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Editor save hooks and pre-commit formatters overlap. This adds formatting immediately after supported agent edits; skip duplicate tooling when it already suffices."
+  review: docs/reviews/2026-10-29-format-after-edit.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Independent Python implementation of the documented formatting pattern, refreshed for explicit path handling. Scratch checks cover spaces, quotes, leading dashes and new patch files. Requires a locally installed formatter. No host behavior or matched outcome evaluation.
+  reviewed: 2026-10-29
+  notes: Useful where formatter feedback is late; avoid duplicate editor/pre-commit work and test the actual client. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

@@ -7,13 +7,21 @@ useWhen: Writing commit messages in a repository whose releases and changelog ar
 tags: [commits, conventional-commits, releases, monorepo]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Writing commit messages in a repository whose releases and changelog are generated from commits, such as with conventional-changelog, release-please or semantic-release. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: git-commit covers the Conventional Commits format with a basic type table and commits. committing-with-commitlint validates against enforced rules. This adds release-impact typing and monorepo scope rules for commit-driven release tooling."
+  review: docs/reviews/2026-10-29-conventional-commit-message.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Complete 264-line file read at the pin; spec rules on footers, BREAKING CHANGE casing and token hyphens are accurate. The release-impact red flags are the distinctive part. Tuned to the conventionalcommits preset; whether hidden types bump depends on the release tool. One example puts an issue reference in the subject, contradicting its own footer rule. Message-only, so it does not commit.
+  notes: Useful with commit-driven releases; visible/hidden type semantics are preset-specific, not universal SemVer rules. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/conventional-changelog/conventional-changelog

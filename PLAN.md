@@ -1,7 +1,7 @@
 # Plan
 
 Updated: October 29, 2026
-Status: experimental. The catalog has 108 entries across eight types and eight collections, including twenty-one experimental and one custom entry. Ratings are curator reviews: two skills have recorded trigger results, and no entry has matched outcome evidence yet.
+Status: experimental. The catalog has 108 entries across eight types and eight collections, including twenty-one experimental and one custom entry. All 108 entries have human-v1 curator profiles: 76 complete scores, 32 incomplete assessments and 9 scoped blockers. Independent human calibration remains pending. Two skills have recorded trigger results, and no entry has matched outcome evidence yet.
 
 Decisions and their reasons live in [docs/decisions.md](docs/decisions.md). The previous plan, written for the measured-library phase, is in Git history (`93e99a5`).
 
@@ -14,7 +14,7 @@ The goal is that a user can tell an agent "grab some useful skills from the cata
 Each entry records:
 
 - **What it is and when to use it**: type, title, summary, `useWhen`, tags, hosts.
-- **A rating**: four 1–5 axes (usefulness, quality, portability, novelty beyond host built-ins), a computed score, an evidence level (`reviewed`, `used`, `tested`, `evaluated`), and review notes.
+- **A rating**: the [human-focused rubric](docs/ratings.md), seven 0–4 grades and a weighted score out of 10, with intended context, baseline, linked assessment, unknowns and recommendation blockers. Evidence (`reviewed`, `used`, `tested`, `evaluated`) stays separate. Legacy reviews remain labeled out of 5 pending reassessment.
 - **Where it came from**: `original`, `adapted` (with `inspiredBy` links), `vendored` (a pinned upstream copy with its license), or `linked` (upstream only, pinned where possible).
 - **Overlap and relations**: what hosts or other entries already cover, and related entries.
 
@@ -30,7 +30,7 @@ All three are generated from `entries/` and `collections/` and checked for fresh
 ## Curation rules
 
 1. Prefer fit and quality over coverage. An entry must be the best available option for its job, or a clearly labelled alternative.
-2. Rate novelty against host built-ins and default model behavior, and say what overlaps in `overlap`.
+2. Grade practical value against host defaults and the best simpler alternative; state the intended use and overlap. Fit precedes score, and a favorable score cannot clear a recommendation blocker.
 3. Read everything before vendoring. Vendor only permissive licenses, keep the upstream license file, pin the commit, and do not edit vendored files. Anything else is linked or adapted.
 4. Evidence levels above `reviewed` need linked evidence files. Never describe a curator score as a measured result.
 5. Hooks, MCP servers, and plugins are never installed implicitly; the discovery skill shows their configuration and asks first.

@@ -12,13 +12,21 @@ tags:
 hosts:
   - claude-code
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 2
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: The agent must leave its own guardrail configuration to a human. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: protect-files-and-commands protects a few files; native managed settings and permissions provide stronger enforcement. This adds configuration-specific diagnostics."
+  review: docs/reviews/2026-10-29-config-guard.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Resolves direct edit paths through symlinks, but Bash checks are heuristics. Interpreter writes, variable-built paths, and some Git commands bypass them. Parse errors allow. Default high level blocks plugin management too.
+  reviewed: 2026-10-29
+  notes: Useful explanatory config guard alongside managed controls; it deliberately cannot enforce every mutation route. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/karanb192/claude-code-hooks

@@ -7,13 +7,21 @@ useWhen: Reviewing or improving a public repository's practices, preparing it fo
 tags: [open-source, documentation, licensing, releases, github, audit]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Reviewing or improving a public repository's practices, preparing it for outside contributors, or setting up versioning, a changelog or releases. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: open-sourcing covers the go-public event and secrets history; github-actions-hardening covers workflow security; GitHub's community profile shows file presence only. The OpenSSF Scorecard tool scores security practices automatically but not documentation or contributor experience."
+  review: docs/reviews/2026-10-29-oss-repo-health.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Fills the ongoing-maintenance gap that launch-focused skills leave. It calibrates checks to project kind, leaves license choice and repository settings to the owner, and distinguishes unknown from missing when API access is limited. The four gh queries were run read-only against a public repository. It is GitHub-first with stated mappings for other forges, and it hands workflow security and the pre-release secrets audit to the specialist entries. No trigger or outcome evaluation has been run.
+  notes: Useful ongoing audit; several Must/Should judgments need project-specific calibration. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

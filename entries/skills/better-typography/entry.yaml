@@ -13,13 +13,21 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Fixing or reviewing typography implementation while preserving the project's typeface, styling system and accepted design decisions. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: frontend-design chooses visual identity; this focuses on font and text-rendering implementation. ux-critique reviews broader usability. baseline-ui has brief typography rules but different constraints. Do not load both as competing global policies."
+  review: docs/reviews/2026-10-29-better-typography.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Entrypoint, all six local typography references and agent metadata reviewed. Detailed implementation guidance; numeric floors and some rendering advice remain opinionated or version-sensitive. Sibling domain ownership is disclosed. No font/browser matrix or matched outcome trial.
+  reviewed: 2026-10-29
+  notes: All six typography references inspected. Useful implementation detail; numeric floors and rendering preferences are not universal defects. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/jakubkrehel/skills

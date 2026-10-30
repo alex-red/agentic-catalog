@@ -13,13 +13,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Agents end turns with failing checks, or unattended sessions must not finish red. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: The /goal command in Claude Code and Codex; CI."
+  review: docs/reviews/2026-10-29-stop-gate-checks.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Refreshed to detect untracked-only changes. The retry guard allows ending after one blocked Stop; this is a bounded reminder, not an invariant that checks always pass. Whole-tree dirtiness includes pre-existing changes. Scratch script checks do not establish host behavior.
+  reviewed: 2026-10-29
+  notes: A bounded reminder, not an invariant that checks pass; whole-tree dirtiness is not turn ownership. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

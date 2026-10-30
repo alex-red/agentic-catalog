@@ -7,13 +7,21 @@ useWhen: Planning or reviewing playable level geometry, encounters, wayfinding, 
 tags: [game-design, level-design, encounters, platformers]
 hosts: [any]
 rating:
-  usefulness: 2
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Planning or reviewing playable level geometry, encounters, wayfinding, gates, platform spacing or repeatable farming routes. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native engine tools create geometry; frontend-design and human-interface-design address interfaces; mmorpg-design addresses persistent systems. This adds traversal measurement, spatial state/gate reasoning and encounter iteration. Related entries are optional and existing controller/camera contracts retain authority."
+  review: docs/reviews/2026-10-29-level-design.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Independent core and platform-map reference distinguish measured capability, topology, intended pacing and player evidence. Genre-specific curves remain optional. No engine snippets or helpers shipped. Structural review is not proof of enjoyable levels or agent effectiveness.
+  notes: Strong for layout decisions; reachability and agent traversal do not establish enjoyment. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

@@ -14,13 +14,21 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 1
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: An interface feels slow or over-animated and you want a focused motion-reduction pass that preserves interaction behavior. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: emil-design-eng and baseline-ui address motion policy; ux-critique may identify excessive motion. This adds an explicit removal-hazard procedure. It opposes Taste's marketing motion quota, so choose according to the task rather than combining them."
+  review: docs/reviews/2026-10-29-remove-animations.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Complete entrypoint and MIT license reviewed. Dependency hazards are concrete; universal keyboard/frequency deletion rules and a fixed kept-animation quota are opinions. Apply the user's scope and accepted project decisions first. Dependency removal is separately proposed. No behavioral evaluation.
+  reviewed: 2026-10-29
+  notes: Use dependency-aware cleanup while retaining intentional motion and accepted project decisions. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/emilkowalski/skills

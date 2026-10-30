@@ -12,13 +12,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: A workflow needs a small explicit limit on subagent call attempts to prevent runaway fan-out. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Native concurrency/depth controls limit simultaneous agents; this limits total attempts for an event session ID. Does not authorize delegation or override existing approvals."
+  review: docs/reviews/2026-10-29-subagent-budget.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Atomic SQLite attempt reservations for Claude Agent/Task and Codex spawn_agent. Keeps harness session-ID namespaces separate; later tool failure/denial still consumes a reservation. Codex errors/timeouts are not guaranteed fail-closed by the documented handler contract. No billing or global nested-agent guarantee.
+  reviewed: 2026-10-29
+  notes: Counts admitted attempts, not tokens, concurrent agents or nested global fan-out; Codex host failures may proceed. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

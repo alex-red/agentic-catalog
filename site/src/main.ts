@@ -1,3 +1,4 @@
+import { compareRatings, humanAxes, scoreLabel, type Rating } from "../../catalog/ratings";
 import data from "../../catalog/index.json";
 import "./styles.css";
 import "./scrollbars.css";
@@ -16,16 +17,6 @@ import {
 } from "./bulk";
 
 declare const __CATALOG_REVISION__: string;
-
-interface Rating {
-  usefulness: number;
-  quality: number;
-  portability: number;
-  novelty: number;
-  evidence: string;
-  reviewed: string;
-  notes: string;
-}
 
 interface Source {
   kind: string;
@@ -55,7 +46,7 @@ interface CatalogEntry {
   experimental?: boolean;
   custom?: boolean;
   featured?: boolean;
-  score: number;
+  score: number | null;
   sourceUrl?: string;
   path: string;
   files: string[];
@@ -87,7 +78,7 @@ interface Item {
   id: string;
   title: string;
   summary: string;
-  score?: number;
+  score?: number | null;
   tags: string[];
   hosts: string[];
   evidence?: string;
@@ -133,9 +124,9 @@ const sourceKinds = ["original", "adapted", "vendored", "linked"];
 
 type SortKey = "score" | "name" | "evidence" | "reviewed";
 const sorters: Record<SortKey, (a: Item, b: Item) => number> = {
-  score: (a, b) => (b.score ?? 0) - (a.score ?? 0),
+  score: (a, b) => a.entry && b.entry ? compareRatings(a.entry, b.entry) || a.title.localeCompare(b.title) : a.title.localeCompare(b.title),
   name: (a, b) => a.title.localeCompare(b.title),
-  evidence: (a, b) => evidenceTiers.indexOf(a.evidence ?? "") - evidenceTiers.indexOf(b.evidence ?? "") || (b.score ?? 0) - (a.score ?? 0),
+  evidence: (a, b) => evidenceTiers.indexOf(a.evidence ?? "") - evidenceTiers.indexOf(b.evidence ?? "") || sorters.score(a, b),
   reviewed: (a, b) => (b.reviewed ?? "").localeCompare(a.reviewed ?? ""),
 };
 
@@ -368,7 +359,7 @@ function renderControls() {
 }
 
 const sortLabels: Record<SortKey, string> = {
-  score: "Score, high to low",
+  score: "Score, grouped by rubric",
   name: "Name, A to Z",
   evidence: "Evidence, strongest first",
   reviewed: "Recently reviewed",
@@ -521,8 +512,10 @@ function renderList() {
       const itemTitle = el("span", item.title, "tree-item-title");
       a.append(dot, catalogIcon(item.kind), itemTitle);
 
-      if (item.score !== undefined) {
-        a.append(el("span", item.score.toFixed(1), "tree-item-score"));
+      if (item.entry) {
+        const score = el("span", scoreLabel(item.entry), "tree-item-score");
+        score.title = `${item.entry.rating.rubric}: curator judgment; inspect evidence and project fit`;
+        a.append(score);
       }
 
       const row = el("div", undefined, "tree-row");
@@ -892,12 +885,15 @@ function installSnippet(e: CatalogEntry, host: InstallHost): { text: string; not
 
 function rubricMeter(r: Rating) {
   const box = el("div", undefined, "rubric-meter");
-  const axes: { label: string; val: number }[] = [
-    { label: "Usefulness", val: r.usefulness },
-    { label: "Quality", val: r.quality },
-    { label: "Portability", val: r.portability },
-    { label: "Novelty", val: r.novelty },
-  ];
+  const max = r.rubric === "human-v1" ? 4 : 5;
+  const axes: { label: string; val?: number }[] = r.rubric === "human-v1"
+    ? humanAxes.map(({ key, label, weight }) => ({ label: `${label} · ${weight}%`, val: r.dimensions[key] }))
+    : [
+      { label: "Usefulness", val: r.usefulness },
+      { label: "Quality", val: r.quality },
+      { label: "Portability", val: r.portability },
+      { label: "Novelty", val: r.novelty },
+    ];
 
   for (const axis of axes) {
     const row = el("div", undefined, "rubric-row");
@@ -905,11 +901,11 @@ function rubricMeter(r: Rating) {
 
     const track = el("div", undefined, "rubric-bar-track");
     const fill = el("div", undefined, "rubric-bar-fill");
-    fill.style.width = `${(axis.val / 5) * 100}%`;
+    fill.style.width = `${((axis.val ?? 0) / max) * 100}%`;
     track.append(fill);
     row.append(track);
 
-    row.append(el("span", axis.val.toFixed(1), "rubric-val"));
+    row.append(el("span", axis.val === undefined ? "?" : `${axis.val}/${max}`, "rubric-val"));
     box.append(row);
   }
 
@@ -986,8 +982,8 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
 
     const top = el("div", undefined, "card-top");
     top.append(kindBadge(entryItem.kind));
-    if (entryItem.score !== undefined) {
-      top.append(el("span", entryItem.score.toFixed(1), "score-pill"));
+    if (entryItem.entry) {
+      top.append(el("span", scoreLabel(entryItem.entry), "score-pill"));
     }
 
     card.append(top, el("h4", entryItem.title), el("div", entryItem.summary, "card-summary"));
@@ -1149,7 +1145,7 @@ async function renderViewer() {
     badges.append(el("span", h === "claude-code" ? "Claude Code" : h === "codex" ? "Codex" : "Portable", `badge badge-host-${h}`));
   }
   badges.append(el("span", entry.rating.evidence, `badge badge-ev-${entry.rating.evidence}`));
-  badges.append(el("span", `Score ${entry.score.toFixed(1)}`, "score-pill"));
+  badges.append(el("span", scoreLabel(entry), "score-pill"));
 
   left.append(badges, el("h2", entry.title));
   const retrieval = retrievalNote(entry, "viewer-retrieved");
@@ -1211,13 +1207,31 @@ async function renderViewer() {
 
   // Rubric Card
   const rubricCard = el("div", undefined, "inspector-card");
-  rubricCard.append(el("h4", "Curator Rating Rubric"));
+  rubricCard.append(el("h4", entry.rating.rubric === "human-v1" ? "Human-focused rating · v1" : "Legacy rating · v1"));
+  rubricCard.append(el("p", entry.rating.rubric === "human-v1"
+    ? "Seven grades from 0 to 4; higher is better. Source-reviewed judgments remain provisional. Evidence and project fit are separate."
+    : "Original four-axis review, out of 5. Awaiting a human-focused review; this score is not comparable with scores out of 10.", "rating-context"));
+  rubricCard.append(link("How ratings work", `${REPO_URL}/blob/main/docs/ratings.md`));
   rubricCard.append(rubricMeter(entry.rating));
 
   if (entry.rating.notes) {
     const notesBox = el("div", undefined, "review-notes");
     notesBox.append(el("strong", "Reviewer notes: "), document.createTextNode(entry.rating.notes));
     rubricCard.append(notesBox);
+  }
+  if (entry.rating.rubric === "human-v1") {
+    for (const [label, text] of [["Intended use", entry.rating.context], ["Baseline", entry.rating.baseline]]) {
+      const detail = el("p", undefined, "rating-context");
+      detail.append(el("strong", `${label}: `), document.createTextNode(text));
+      rubricCard.append(detail);
+    }
+    rubricCard.append(link("Read the assessment and its limits", `${REPO_URL}/blob/main/${entry.rating.review}`));
+    if (entry.rating.unknowns?.length) rubricCard.append(el("p", `Unknowns: ${entry.rating.unknowns.join("; ")}`, "review-notes"));
+    for (const blocker of entry.rating.blockers ?? []) {
+      const notice = el("div", undefined, "rating-blocker");
+      notice.append(el("strong", `Recommendation blocker · ${blocker.scope}: `), document.createTextNode(blocker.reason));
+      rubricCard.append(notice);
+    }
   }
   grid.append(rubricCard);
 
@@ -1447,13 +1461,14 @@ treeToggleAllBtn.addEventListener("click", () => {
 $("#counts").textContent = `${catalog.entries.length}`;
 
 // Global navigation searches all items independently of the sidebar's filters.
+const scorePriorities = new Map([...items].sort(sorters.score).map((item, index) => [item.id, (items.length - index) / items.length]));
 const itemCommands: SearchCommand[] = items.map((item) => ({
   id: `open:${item.kind}:${item.id}`,
   title: item.title,
   detail: `${kindLabels[item.kind]} · ${item.summary}`,
   group: item.kind === "collection" ? "Collections" : "Catalog entries",
   keywords: `${item.id} ${item.tags.join(" ")} ${item.hosts.join(" ")} ${item.entry?.useWhen ?? ""}`,
-  priority: item.score ?? 0,
+  priority: scorePriorities.get(item.id) ?? 0,
   run: () => { location.hash = `#/${item.kind}/${item.id}`; },
 }));
 

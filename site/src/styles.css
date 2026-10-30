@@ -1182,7 +1182,7 @@ kbd {
 
 .rubric-row {
   display: grid;
-  grid-template-columns: 85px 1fr 30px;
+  grid-template-columns: minmax(100px, 145px) minmax(24px, 1fr) 30px;
   align-items: center;
   gap: 0.65rem;
   font-size: 0.78rem;
@@ -1706,3 +1706,6 @@ kbd {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+.rating-context { color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+.rating-blocker { margin-top: 0.75rem; padding: 0.75rem; border: 1px solid currentColor; border-radius: 4px; font-size: 0.85rem; }

@@ -7,13 +7,21 @@ useWhen: Committing a body of work as several commits, tidying a branch before r
 tags: [commits, git, code-review, conventions]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Committing a body of work as several commits, tidying a branch before review, squashing fixups, or adding co-author or sign-off trailers. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Host commit procedures cover single commits, explicit staging and no hook skipping. git-commit and committing-with-commitlint cover message format and validation and defer to this for series and fixups. No host or catalog entry covers commit planning, non-interactive splitting, per-commit verification or autosquash."
+  review: docs/reviews/2026-10-29-commit-history-hygiene.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Written for agents, which cannot drive git add -p or rebase -i. Non-interactive autosquash, rebase --exec stopping at the first failing commit, and the fixup forms that need an editor were exercised in a scratch repository on Git 2.51; the Git 2.44 autosquash change was checked against release notes. History rewriting and force pushes stay behind explicit user requests, and Signed-off-by is treated as the user's certification. No trigger or outcome evaluation has been run.
+  notes: Improves reviewable history; staged intermediate versions and rebase checks still require careful supervision. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

@@ -7,13 +7,21 @@ useWhen: Someone explicitly asks for a threat model or abuse-path analysis of a 
 tags: [security, threat-modeling, architecture]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Someone explicitly asks for a threat model or abuse-path analysis of a codebase or service. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Claude Code /security-review and Codex /review inspect diffs. Neither builds a whole-system threat model."
+  review: docs/reviews/2026-10-29-security-threat-model.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Well scoped, with explicit negative triggers, and it insists on evidence for every claim. Upstream is deprecated and frozen since February 2026, so this pinned copy is effectively owned here.
+  reviewed: 2026-10-29
+  notes: Useful for explicit threat modeling; fixed report naming and mandatory confirmation need project-sensitive use. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/openai/skills

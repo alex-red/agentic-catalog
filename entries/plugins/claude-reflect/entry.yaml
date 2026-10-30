@@ -7,13 +7,22 @@ useWhen: You keep correcting the agent on the same preferences and want those co
 tags: [self-improvement, memory, corrections, project-instructions]
 hosts: [claude-code]
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 2
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: You keep correcting the agent on the same preferences and want those corrections captured with a review step. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Claude Code auto memory, the retrospective skill, and revise-claude-md."
+  review: docs/reviews/2026-10-29-claude-reflect.md
+  unknowns:
+    - Audit capture hooks, local storage, history processing and memory/skill writes before grading dependability.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: MIT, active, and tested. Claude Code's auto memory now captures corrections natively, so its distinct value is the review queue and the skill mining. It installs always-on hooks and needs Python.
+  reviewed: 2026-10-29
+  notes: Adopt only when the review queue justifies automatic capture and reminders. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/BayramAnnakov/claude-reflect

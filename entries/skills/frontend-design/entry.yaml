@@ -12,13 +12,21 @@ tags:
 hosts:
   - any
 rating:
-  usefulness: 5
-  quality: 4
-  portability: 5
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Building a new interface or changing its visual identity when the host does not already provide equivalent frontend-design guidance. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Installed frontend-design and ordinary model design guidance overlap directly. ux-critique reviews findings; webapp-testing gathers runtime evidence. This is a selectable upstream baseline for hosts without it, not another layer to load alongside an existing copy."
+  review: docs/reviews/2026-10-29-frontend-design.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Compact, brief-first baseline. Complete entrypoint and local Apache license read. The current version emphasizes restraint; older installed copies differ. Visual review depends on host browser support. Adds little when the host already supplies it. No activation or outcome comparison.
+  reviewed: 2026-10-29
+  notes: Select as an alternative to installed frontend-design, not an extra global design layer. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/anthropics/skills

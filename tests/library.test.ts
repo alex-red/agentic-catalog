@@ -1,3 +1,4 @@
+import { compareRatings } from '../catalog/ratings.ts';
 import assert from 'node:assert/strict';
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -10,7 +11,7 @@ import {
   repositoryRoot, validateSkillBundle, writeCatalog,
 } from '../scripts/library.ts';
 
-const sandboxPaths = ['entries', 'skills', 'collections', 'evals', 'catalog', 'package.json', 'llms.txt'];
+const sandboxPaths = ['entries', 'skills', 'collections', 'evals', 'catalog', 'docs', 'package.json', 'llms.txt'];
 
 function sandbox(context: TestContext): string {
   const root = mkdtempSync(join(tmpdir(), 'agentic-catalog-test-'));
@@ -43,7 +44,7 @@ function addLinkedEntry(root: string, overrides: Record<string, unknown> = {}): 
   writeFileSync(join(directory, 'entry.yaml'), stringify({
     schemaVersion: 2, id: 'example-plugin', type: 'plugin', title: 'Example plugin',
     summary: 'An upstream plugin.', useWhen: 'Testing.', tags: ['planning'], hosts: ['claude-code'],
-    rating: { usefulness: 3, quality: 3, portability: 2, novelty: 3, evidence: 'reviewed', reviewed: '2026-10-20', notes: 'Test entry.' },
+    rating: { rubric: 'legacy-v1', usefulness: 3, quality: 3, portability: 2, novelty: 3, evidence: 'reviewed', reviewed: '2026-10-20', notes: 'Test entry.' },
     source: { kind: 'linked', url: 'https://github.com/example/plugin', license: 'MIT', author: 'Example', retrieved: '2026-10-20' },
     ...overrides,
   }));
@@ -67,12 +68,12 @@ test('catalog generation is deterministic and changes only the generated files',
   checkCatalog(root);
 });
 
-test('scores weight usefulness twice and drive llms.txt ranking', (context) => {
-  assert.equal(entryScore({ usefulness: 5, quality: 4, portability: 3, novelty: 2, evidence: 'reviewed', reviewed: '2026-10-20', notes: 'x' }), 3.8);
+test('legacy scores retain their formula and llms.txt ranks within rubric groups', (context) => {
+  assert.equal(entryScore({ rubric: 'legacy-v1', usefulness: 5, quality: 4, portability: 3, novelty: 2, evidence: 'reviewed', reviewed: '2026-10-20', notes: 'x' }), 3.8);
   const root = sandbox(context);
   const catalog = loadCatalog(root);
   const rules = renderLlmsText(catalog).split('## Rules')[1].split('##')[0];
-  const order = catalog.entries.filter((entry) => entry.type === 'rule').sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
+  const order = catalog.entries.filter((entry) => entry.type === 'rule').sort((a, b) => compareRatings(a, b) || a.id.localeCompare(b.id));
   const positions = order.map((entry) => rules.indexOf(`id \`${entry.id}\``));
   assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.ok(positions.every((position) => position >= 0));
@@ -269,8 +270,37 @@ test('related entries must exist', (context) => {
 
 test('rating axes are bounded integers', (context) => {
   const root = sandbox(context);
-  updateYaml(root, metadataPath, (entry) => { (entry.rating as Record<string, unknown>).usefulness = 6; });
+  const directory = addLinkedEntry(root);
+  updateYaml(root, relative(root, join(directory, 'entry.yaml')), (entry) => { (entry.rating as Record<string, unknown>).usefulness = 6; });
   assert.throws(() => loadCatalog(root), /must be <= 5/u);
+});
+
+test('human assessments require real review records and render incomplete profiles and blockers honestly', (context) => {
+  const root = sandbox(context);
+  addLinkedEntry(root);
+  const path = `${rulePath}/entry.yaml`;
+  const file = join(root, path);
+  const original = readFileSync(file, 'utf8');
+  updateYaml(root, path, (entry) => {
+    (entry.rating as Record<string, unknown>).review = 'docs/reviews/missing-review.md';
+  });
+  assert.throws(() => loadCatalog(root), /missing-review.md/u);
+  writeFileSync(file, original);
+  writeFileSync(join(root, 'docs/reviews/2026-10-29-human-v1-starter.md'), ' ');
+  assert.throws(() => loadCatalog(root), /rating review is empty/u);
+  writeFileSync(join(root, 'docs/reviews/2026-10-29-human-v1-starter.md'), 'Source-only curator assessment.');
+  updateYaml(root, path, (entry) => {
+    const rating = entry.rating as Record<string, unknown>;
+    delete (rating.dimensions as Record<string, unknown>).dependability;
+    rating.unknowns = ['Recovery has not been inspected.'];
+    rating.blockers = [{ scope: 'Optional export', reason: 'Leaks credentials.' }];
+  });
+  const catalog = loadCatalog(root);
+  assert.equal(catalog.entries.find((entry) => entry.id === 'focused-changes')!.score, null);
+  const text = renderLlmsText(catalog);
+  assert.match(text, /Assessment incomplete · blocker \(human-v1\), blockers: Optional export: Leaks credentials/u);
+  assert.ok(!text.includes('NaN'));
+  assert.match(text, /\/5 · legacy \(legacy-v1\)/u);
 });
 
 test('the discovery skill must point at the published catalog', (context) => {

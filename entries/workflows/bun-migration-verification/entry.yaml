@@ -7,13 +7,21 @@ useWhen: Initializing a Bun project or planning, implementing or reviewing a mig
 tags: [bun, javascript, typescript, migration, package-management, verification, testing]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Initializing a Bun project or planning, implementing or reviewing a migration to Bun package management, runtime, bundling or testing. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: repo-research establishes project conventions; verification-before-completion requires evidence. Bun and framework tooling perform actual installation, checks and builds. This workflow selects Bun-specific migration boundaries and resolution/trust checks; it installs no runtime, hooks or tools."
+  review: docs/reviews/2026-10-29-bun-migration-verification.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Original workflow based on current official Bun documentation. Separates capability and compatibility checks by installed version and preserves established framework pipelines. Repository validation does not establish a successful consumer migration or improved agent outcomes.
+  reviewed: 2026-10-29
+  notes: Good migration boundaries; a successful install is still insufficient deployment evidence. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

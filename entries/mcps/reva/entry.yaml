@@ -13,13 +13,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 3
+    adoption: 1
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Ghidra already supplies analysis and scripting; host tools supply planning and file inspection. This bridge adds incremental live database access. reverse-engineering can use exported text; REA provides broader artifact coordination and official IDA MCP is an alternative backend."
+  review: docs/reviews/2026-10-29-reva.md
+  unknowns:
+    - Audit extension, scripting controls, runtime and full operating skill; no integration trial was performed.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: README, manifest and selected triage/deep-analysis procedures reviewed. Runtime, extension and full skill bodies remain unaudited. Fixed budgets and the AES worked example need judgment; type changes improving pseudocode do not prove semantics. No integration or agent outcome trial.
+  notes: Useful Ghidra bridge; scripting and database edits need explicit analysis scope. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/cyberkaida/reverse-engineering-assistant

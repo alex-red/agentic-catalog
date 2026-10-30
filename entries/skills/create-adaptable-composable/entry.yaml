@@ -7,13 +7,21 @@ useWhen: Writing or refactoring a reusable Vue 3 composable whose inputs may be 
 tags: [vue, composables, reactivity, typescript, frontend]
 hosts: [any]
 rating:
-  usefulness: 2
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Writing or refactoring a reusable Vue 3 composable whose inputs may be plain values, refs, or getters. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: The Vue reactivity docs cover the same APIs, and host-installed Vue skills may include similar guidance. Check for those first."
+  review: docs/reviews/2026-10-29-create-adaptable-composable.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Small, correct, and specific; the callback-versus-getter warning is the most useful line. Useful mainly for library-style composables. The same source's Vue testing skill was passed over because several examples are stale (the msw v1 API and Vitest's removed poolOptions).
+  reviewed: 2026-10-29
+  notes: Useful for library-style composables; often redundant with installed Vue guidance. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/vuejs-ai/skills

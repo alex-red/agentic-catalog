@@ -42,7 +42,7 @@ Or copy `skills/agentic-catalog/` into `.claude/skills/` or `.agents/skills/`.
 
 Each entry lives in `entries/<type>s/<id>/` with an `entry.yaml` and, unless it is linked, the files to install:
 
-- **Rating:** usefulness, quality, portability, and novelty (value beyond host built-ins), each from 1 to 5. The score is (2 × usefulness + quality + portability + novelty) / 5.
+- **Rating:** the [human-focused rubric](docs/ratings.md) grades practical value, dependability, cognitive ease, human control, adoption cost, compatibility and upkeep from 0 to 4, producing a weighted score out of 10. Legacy reviews remain labeled out of 5 until reassessed. Evidence and project fit are separate; scores cannot clear recommendation blockers.
 - **Evidence:** `reviewed` (read and judged), `used` (used in a real project), `tested` (trigger or load checks recorded), or `evaluated` (matched outcome runs).
 - **Source:** `original`, `adapted` (with `inspiredBy` links), `vendored` (a pinned, unmodified upstream copy with its license), or `linked` (upstream only).
 - **Tags, hosts, `useWhen`, `overlap`, and `related` entries**, for matching and comparison.

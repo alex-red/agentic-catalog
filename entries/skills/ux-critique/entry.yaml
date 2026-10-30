@@ -7,13 +7,22 @@ useWhen: You want direct, evidence-grounded criticism of an app screen, prototyp
 tags: [ux, usability, design-review]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 4
+    adoption: 2
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: You want direct, evidence-grounded criticism of an app screen, prototype, screenshot, or connected user flow, with unsupported findings challenged before reporting. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Generic model critique and frontend-design guidance already identify familiar UI issues. This entry adds an explicit observation, citation-support, skeptic, and confidence pipeline. webapp-testing and chrome-devtools-mcp collect runtime evidence but do not supply that critique method. grilling stress-tests decisions through questions; improvement-loop and retrospective improve agent tooling and process. None of these substitutes for observing real users."
+  review: docs/reviews/2026-10-29-ux-critique.md
+  unknowns:
+    - Inspect required pipeline references, retrieval helpers, KB support samples and any requested writeback path.
   evidence: reviewed
-  reviewed: 2026-10-21
-  notes: Observation-first review, citation-support checks, and a skeptic pass add structure beyond generic critique. Fixed structural-over-visual ordering, a mandatory Brief check-in, and large KB dependencies limit it. Quick Scan checks IDs without auditing support. Expert critique is not user research. Core instructions and retrieval/usage scripts reviewed; 606 KB paths checked, not every body or Figma script audited. No behavioral evaluation; upstream receipt/retrieval fixtures do not establish critique quality.
+  reviewed: 2026-10-29
+  notes: A useful critique method with large support dependencies; expert critique is not user research. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/Thecsiz/ux-critique

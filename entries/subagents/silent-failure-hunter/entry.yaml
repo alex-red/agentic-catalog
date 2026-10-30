@@ -7,13 +7,21 @@ useWhen: A change adds try/catch, fallbacks, retries, or optional chaining, and 
 tags: [code-review, error-handling, reliability]
 hosts: [claude-code, codex]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: A change adds try/catch, fallbacks, retries, or optional chaining, and you want errors surfaced rather than hidden. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: General review commands catch some cases but do not specialize in them."
+  review: docs/reviews/2026-10-29-silent-failure-hunter.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Targets a failure agents often produce, defensive code that hides errors, which general reviewers underweight. Adapted rather than vendored because the upstream text names one project's logging and Sentry setup. It is limited to read-only tools.
+  reviewed: 2026-10-29
+  notes: Use as a focused reviewer; its Bash tool permission does not enforce read-only execution. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

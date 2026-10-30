@@ -7,13 +7,21 @@ useWhen: Designing a catalog's tagging system, auditing vocabulary drift, defini
 tags: [system-design, taxonomy, information-architecture, search, discovery]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Designing a catalog's tagging system, auditing vocabulary drift, defining discovery filters, or migrating established classification metadata. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native model reasoning covers ordinary tags, schemas and search design. domain-modeling maintains domain terminology and ADRs; human-interface-design addresses navigation and interaction; neither specifies catalog concept identity, facet counts and vocabulary migrations together. No catalog-taxonomy equivalent appears in this session's host skill inventory. Reuse an existing project vocabulary instead of introducing a competing registry."
+  review: docs/reviews/2026-10-29-catalog-taxonomy.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Focused synthesis with concept boundaries, alias collision handling, multi-topic discovery, contextual counts and merge/split migration guidance. Native agents can propose tags and schemas; this adds explicit semantics and compatibility constraints. No trigger trial, retrieval benchmark, user study or matched outcome evaluation has been run.
+  notes: Useful for real discovery problems; adds unjustified ceremony to a small stable tag list. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

@@ -8,13 +8,25 @@ tags: [security, github-actions, ci, audit]
 hosts: [any]
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Reviewing workflows that invoke an AI agent action, especially ones triggered by issues, comments or pull_request_target. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: github-actions-hardening covers general workflow hardening, including direct expression injection and pull_request_target checkout, which this also checks. This adds the agent-specific vectors and action settings. Host security review does not cover workflow configuration."
+  review: docs/reviews/2026-10-29-agentic-actions-auditor.md
+  unknowns:
+    - "Dependability: core plus vector G/action profiles were read; foundations, other vectors and cross-file-resolution remain uninspected in this pass."
+  blockers:
+    - scope: GitHub AI Inference remediation in references/action-profiles.md
+      reason: The example labeled SAFE interpolates model output into a single-quoted run script, which an embedded quote can escape; it also conflicts with vector G on the output field. Do not copy that remediation.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: All 17 files read at the pin. Covers agent-specific sinks a general reviewer misses. Defects verified at the pin. The AI-output remediation labelled SAFE puts model output in single quotes inside run:, which is still injectable, and names a wrong output (result, not response). Gemini sandbox defaults contradict across files. Vector H omits bypass-permission flags. Action input names will drift. Experimental for these reasons.
+  notes: Useful specialist audit structure, but unsafe remediation and unreviewed required references prevent an aggregate. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/trailofbits/skills

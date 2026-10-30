@@ -14,13 +14,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 3
+    adoption: 3
+    compatibility: 2
+    upkeep: 3
+  context: "Developers working on this task: Trying detailed interaction and motion guidance for product UI while checking its technical examples against the project's actual library versions. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: frontend-design supplies art direction; react-component-composition supplies component contracts. remove-animations focuses on subtraction. This is an alternative craft policy, not an additional global mandate; it conflicts with baseline-ui and Taste on motion and easing."
+  review: docs/reviews/2026-10-29-emil-design-eng.md
+  unknowns:
+    - Inspect remaining skill sections and references, and verify animation claims against the actual runtime.
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Useful craft detail, with absolute frequency/keyboard rules and stale performance generalizations. Main sections and MIT license reviewed; no live UI trial. Do not assume every Motion shorthand runs on the main thread, or that scale replaces layout semantics. Preserve accepted project decisions.
+  reviewed: 2026-10-29
+  notes: Useful craft detail with absolute rules that need project-specific judgment. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/emilkowalski/skills

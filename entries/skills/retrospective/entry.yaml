@@ -7,13 +7,21 @@ useWhen: You want a self-improvement loop where an agent learns from a session a
 tags: [self-improvement, retrospective, project-instructions, skill-authoring, memory]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: You want a self-improvement loop where an agent learns from a session and writes the lessons back into the project. Declared hosts: any."
+  baseline: Existing host memory and a short manually reviewed lesson in project instructions; improvement-loop for agent tooling changes.
+  review: docs/reviews/2026-10-29-retrospective.md
   evidence: tested
-  reviewed: 2026-10-20
-  notes: Built from a pilot where the user kept pasting a retrospective prompt by hand. It triggered 15/15 in the sandbox. It separates always-loaded facts from on-demand skills, which most reflection prompts do not. Its outcome benefit is not yet measured.
+  reviewed: 2026-10-29
+  notes: Useful for repeat friction; trigger results establish activation, not that the resulting guidance helps. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

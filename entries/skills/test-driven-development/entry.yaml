@@ -7,13 +7,24 @@ useWhen: Projects with a runnable test suite where agents write tests after the 
 tags: [testing, tdd, test-quality]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 1
+    control: 2
+    adoption: 2
+    compatibility: 1
+    upkeep: 3
+  context: "Developers working on this task: Projects with a runnable test suite where agents write tests after the fact, write tautological tests, or test mocks instead of behavior. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: No host built-in. Part of the superpowers plugin."
+  review: docs/reviews/2026-10-29-test-driven-development.md
+  blockers:
+    - scope: Delete-and-restart policy
+      reason: The skill directs deleting implementation written before tests without preserving unrelated work; do not adopt that instruction into a project requiring scoped, recoverable changes.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The writing-good-tests reference is excellent. The main skill is dogmatic ("write code before the test? Delete it."), and its trigger fires on any feature or bugfix, which can clash with exploratory work or project conventions. Consider narrowing the description after installing.
+  reviewed: 2026-10-29
+  notes: Use only where its strict policy is deliberately adopted; the deletion instruction is a recommendation blocker. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/obra/superpowers

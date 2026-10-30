@@ -13,13 +13,21 @@ hosts:
   - claude-code
   - codex
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Accidental credential pastes are a recurring risk before prompts reach the model. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: no-email-context removes a host-injected identity block; this screens user submissions. Native DLP and secret scanners may provide broader coverage. Neither replaces credential isolation."
+  review: docs/reviews/2026-10-29-prompt-secret-check.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Shared UserPromptSubmit prompt field and exit-2 rejection for Claude/Codex. Recognizes only a few shapes; examples can trigger it and other secrets pass. Does not erase UI/history or screen files/auxiliary requests. Claude onFailure is omitted in Codex; host error/timeout behavior remains a limitation.
+  reviewed: 2026-10-29
+  notes: A narrow accidental-paste guard, not comprehensive DLP or erasure of local history. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

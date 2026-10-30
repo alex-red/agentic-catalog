@@ -7,13 +7,22 @@ useWhen: You run long or parallel Claude Code sessions and want context pressure
 tags: [dev-ux, status-line, context, observability]
 hosts: [claude-code]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 2
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: You run long or parallel Claude Code sessions and want context pressure, tool and subagent activity, and limits visible without running /context, /cost or /usage. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Claude Code's statusLine setting, which this fills, and the built-in status line setup agent; /context, /cost and /usage report the same numbers on demand. ccusage statusline is a lighter cost-only alternative. context-hogs attributes context cost to files rather than showing live use."
+  review: docs/reviews/2026-10-29-claude-hud.md
+  unknowns:
+    - Audit setup, cache launcher, transcript/config readers and distributed output; earlier highest-version cache finding is unresolved.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Setup, launcher and main readers reviewed at the pin; no network requests or telemetry found. Reads the transcript, ~/.claude.json (plan tier, optional email local part, MCP counts) and settings files; writes caches under ~/.claude/plugins/claude-hud/. The launcher runs the highest-version claude-hud in any marketplace cache, not a pinned copy, and Node runs CI-built dist/ not compared with src. Claude Code only. A user-facing tool; no agent outcome claim.
+  notes: Useful human-facing visibility; retained launcher pinning concerns require follow-up. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/jarrodwatts/claude-hud

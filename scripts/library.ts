@@ -15,7 +15,9 @@ interface Frontmatter {
 
 export const entryTypes = ['skill', 'rule', 'workflow', 'hook', 'subagent', 'mcp', 'plugin', 'tool'] as const;
 export type EntryType = (typeof entryTypes)[number];
-export type Evidence = 'reviewed' | 'used' | 'tested' | 'evaluated';
+export type { Evidence } from '../catalog/ratings.ts';
+import { compareRatings, entryScore, scoreLabel, type Rating } from '../catalog/ratings.ts';
+export { entryScore } from '../catalog/ratings.ts';
 
 // The installable file each non-linked entry must carry; plugins and tools are always linked.
 export const primaryFiles: Record<EntryType, string | undefined> = {
@@ -37,7 +39,7 @@ export interface EntryMetadata {
   custom?: true;
   /** Also shown under a Featured group in the browser, in addition to its own type. */
   featured?: true;
-  rating: { usefulness: number; quality: number; portability: number; novelty: number; evidence: Evidence; reviewed: string; notes: string };
+  rating: Rating;
   source: { kind: 'original' | 'adapted' | 'vendored' | 'linked'; url?: string; path?: string; revision?: string; retrieved?: string; license: string; author?: string; notes?: string };
   inspiredBy?: { title: string; url: string }[];
   install?: Partial<Record<'claude-code' | 'codex' | 'any' | 'notes', string>>;
@@ -48,8 +50,8 @@ export interface EntryMetadata {
 }
 
 export interface Entry extends EntryMetadata {
-  /** Weighted curator score: usefulness counts twice. */
-  score: number;
+  /** Versioned curator score; null when human-v1 grades are incomplete. */
+  score: number | null;
   /** Best link to where the entry came from: the pinned upstream path, else a cited source, GitHub first. */
   sourceUrl?: string;
   /** Repo-relative entry directory. */
@@ -294,10 +296,6 @@ export function sourceUrl(entry: EntryMetadata): string | undefined {
   return cited.find(github) ?? cited[0];
 }
 
-export function entryScore(rating: EntryMetadata['rating']): number {
-  return Math.round(((2 * rating.usefulness + rating.quality + rating.portability + rating.novelty) / 5) * 10) / 10;
-}
-
 // The published location comes from package.json so the index, llms.txt, and discovery skill agree.
 export function repositoryLocation(root = repositoryRoot): { repository: string; rawBase: string } {
   const manifest = JSON.parse(readFileSync(repoFile(root, 'package.json'), 'utf8'));
@@ -334,6 +332,10 @@ function loadEntry(root: string, directory: string, type: EntryType): Entry {
     }
   }
   for (const path of entry.evidence ?? []) repoFile(root, path);
+  if (entry.rating.rubric === 'human-v1') {
+    const review = repoFile(root, entry.rating.review);
+    if (!readFileSync(review, 'utf8').trim()) throw new Error(`${label}: rating review is empty`);
+  }
   const link = sourceUrl(entry);
   return { ...entry, score: entryScore(entry.rating), ...(link && { sourceUrl: link }), path: label, files: files.map((file) => localName(root, file)) };
 }
@@ -431,16 +433,16 @@ export function renderLlmsText(catalog: Catalog): string {
     '',
     `Full metadata for every entry is in [catalog/index.json](${url('catalog/index.json')}). Install steps by entry type are in the [install guide](${url('skills/agentic-catalog/references/install.md')}). Repository: ${catalog.repository}`,
     '',
-    'Score (1-5) = (2 × usefulness + quality + portability + novelty) / 5, where novelty means value beyond host built-ins. Evidence, from weakest to strongest: reviewed, used, tested, evaluated. Hosts: `any` means portable through an open format. Entries are ranked by score within each section. Show users the score, the evidence level, and the source before installing anything.',
+    `Human-focused rubric (human-v1): seven 0–4 grades weighted by practical value 25%, dependability 20%, cognitive ease 15%, human control 15%, adoption cost 10%, compatibility 10%, upkeep 5%; weighted total / 40 gives a score out of 10. Higher is better on every axis. Missing grades produce no aggregate. Legacy-v1 scores remain out of 5 and are not comparable. See the [rating guide](${url('docs/ratings.md')}). Entries within sections are grouped: complete human-v1, legacy-v1, incomplete human-v1, then human-v1 with blockers; scores rank only within groups. Evidence: reviewed, used, tested, evaluated; inspect its actual scope. Hosts: any means an open format. Select for project fit first. Show the score scale, rubric, evidence, source and blockers before installation; never let a high average clear a blocker.`,
   ];
-  const byScore = (a: Entry, b: Entry) => b.score - a.score || a.id.localeCompare(b.id);
+  const byScore = (a: Entry, b: Entry) => compareRatings(a, b) || a.id.localeCompare(b.id);
   const line = (entry: Entry) => {
     const primary = primaryFiles[entry.type];
     const target = entry.source.kind === 'linked' || !primary ? entry.sourceUrl! : url(`${entry.path}/${primary}`);
     const origin = entry.source.kind === 'original'
       ? `original${entry.sourceUrl ? `, informed by ${entry.sourceUrl}` : ''}` : `${entry.source.kind} from ${entry.sourceUrl}`;
     const kind = entry.experimental || entry.custom ? `type ${entry.type}, ` : '';
-    return `- [${entry.title}](${target}): ${entry.summary} Use when: ${entry.useWhen} — id \`${entry.id}\`, ${kind}score ${entry.score.toFixed(1)}, evidence ${entry.rating.evidence}, hosts ${entry.hosts.join('/')}, tags ${entry.tags.join(', ')}, ${origin}, [metadata](${url(`${entry.path}/entry.yaml`)})`;
+    return `- [${entry.title}](${target}): ${entry.summary} Use when: ${entry.useWhen} — id \`${entry.id}\`, ${kind}${scoreLabel(entry)} (${entry.rating.rubric})${entry.rating.rubric === 'human-v1' && entry.rating.blockers?.length ? `, blockers: ${entry.rating.blockers.map((blocker) => `${blocker.scope}: ${blocker.reason}`).join('; ')}` : ''}, evidence ${entry.rating.evidence}, hosts ${entry.hosts.join('/')}, tags ${entry.tags.join(', ')}, ${origin}, [metadata](${url(`${entry.path}/entry.yaml`)})`;
   };
   for (const type of entryTypes) {
     const group = catalog.entries.filter((entry) => entry.type === type && !entry.experimental && !entry.custom).sort(byScore);

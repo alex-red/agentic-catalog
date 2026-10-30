@@ -7,13 +7,22 @@ useWhen: A project pins tools or tasks with mise and agents keep using the wrong
 tags: [dev-ux, toolchains, project-setup, secrets]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 5
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 2
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: A project pins tools or tasks with mise and agents keep using the wrong runtime version, assuming a tool is missing, or inventing build and test commands. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: The agent can run mise commands in a shell already; this adds effect-labeled commands, trust enforcement and structured resources. repo-research covers discovering commands by reading the repository. process-compose-mcp manages long-running processes, which run_task does not."
+  review: docs/reviews/2026-10-29-mise-mcp.md
+  unknowns:
+    - Audit full implementation and trust/config behavior, including CI and safe-mode exceptions recorded in earlier metadata.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: The full MCP implementation, docs and trust checks reviewed at the pin. run_task and install_tool refuse untrusted configs and run children that never trust implicitly. Tasks run as the user with confirmation prompts answered yes, so rely on host tool approval. mise://env returns resolved values, secrets included, unredacted. If CI is set, mise trusts every config outside paranoid mode, removing the gate. Linked worktrees inherit trust. MISE_SAFE=1 blocks task runs and hides env values but is not fully read-only. No agent outcome trial.
+  notes: Useful for existing mise users; environment disclosure and task authority require deliberate client configuration. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/jdx/mise

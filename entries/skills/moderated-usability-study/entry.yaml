@@ -7,13 +7,21 @@ useWhen: Preparing a study with real participants or analyzing its session recor
 tags: [ux, user-research, usability, study-planning]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Preparing a study with real participants or analyzing its session records, especially when comprehension, findability or task behavior is unresolved. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native agents can draft interview questions and summarize notes. ux-critique supplies expert inspection rather than participant evidence; synthesize-research handles broader existing datasets. This skill adds a focused session protocol and observation contract. It requires no study platform, calculator or other catalog entry."
+  review: docs/reviews/2026-10-29-moderated-usability-study.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Self-contained prose adaptation with decision framing, neutral tasks, assistance logging, exposed-participant denominators and traceable findings. Does not execute recruitment or invent study observations. Omits upstream calculators and fixed sample guarantees. Reviewed for scope and packaging; not exercised with participants or behaviorally evaluated.
+  notes: Good study discipline; participant access and organizational consent prerequisites are real costs. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

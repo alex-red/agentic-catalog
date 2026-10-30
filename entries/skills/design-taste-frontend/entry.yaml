@@ -13,13 +13,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 2
+    adoption: 2
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: Explicitly trying a strict art-direction system for a marketing page or app screen and accepting its style policy and browser-tool overhead. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Alternative to frontend-design and Impeccable, with stronger house-style enforcement. Native browser tools and webapp-testing cover screenshots and behavior. emil-design-eng, remove-animations and baseline-ui conflict with its marketing motion policy."
+  review: docs/reviews/2026-10-29-design-taste-frontend.md
+  unknowns:
+    - Entrypoint excerpts inspected; audit remaining guidance, study scripts, browser/media chain and asset handling.
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Experimental house style, not a universal design standard. Entrypoint, study/test sections and inspector paths reviewed; full browser/media chain not audited. Marketing motion quota and banned devices can conflict with a brand. Author's small model-judged tests do not establish general superiority.
+  reviewed: 2026-10-29
+  notes: Experimental design method whose style and setup costs must fit the project. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/Leonxlnx/taste-skill

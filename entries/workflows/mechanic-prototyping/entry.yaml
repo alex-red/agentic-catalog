@@ -7,13 +7,21 @@ useWhen: Testing a gameplay idea, control interaction or small loop before commi
 tags: [game-design, prototyping, experimentation]
 hosts: [any]
 rating:
-  usefulness: 2
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Testing a gameplay idea, control interaction or small loop before committing to production, or comparing mechanic variants in a playable prototype. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native planning can build prototypes; explore-plan-implement-review organizes production work; mmorpg-design proposes testable mechanics. This adds experiment containment, observable decision criteria and inconclusive outcomes without requiring another skill or engine."
+  review: docs/reviews/2026-10-29-mechanic-prototyping.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Independent method with conditional scope budgets, context-dependent presentation and explicit evidence limits. Adds a learning-oriented alternative to feature delivery. Source and structural review only; no activation or matched outcome evaluation.
+  notes: Useful for deciding whether to build a mechanic; a successful spike does not establish production quality. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

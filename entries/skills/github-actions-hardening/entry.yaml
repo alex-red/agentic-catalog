@@ -7,13 +7,24 @@ useWhen: Reviewing, writing or hardening .github/workflows files, especially one
 tags: [security, github-actions, ci, supply-chain, audit]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 2
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Reviewing, writing or hardening .github/workflows files, especially ones using pull_request_target, workflow_run or issue_comment. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Claude Code /security-review targets application code changes, not workflow configuration; gh-fix-ci repairs failing checks; security-threat-model covers system design. agentic-actions-auditor adds AI-agent workflow vectors. getsentry gha-security-review was held because its do-not-flag rules exempt inputs passed through with, including github-script scripts."
+  review: docs/reviews/2026-10-29-github-actions-hardening.md
+  blockers:
+    - scope: Cross-run artifact remediation example
+      reason: The documented workflow_run download omits cross-run identification/authentication inputs; validate and correct it before using that remediation.
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: All six files read at the pin. The core insight (expressions are pasted into the script before the shell runs) and the two-workflow pattern are correct and well taught. It never applies changes. Its trust matrix presents token scopes as fixed, but they follow repository default permissions. The workflow_run example downloads an artifact without the run-id and github-token inputs that a cross-run download needs. It reasons only, without running zizmor or actionlint. No trigger or outcome evaluation has been run.
+  notes: Useful review lens, but do not copy the cross-run download example or fixed permission claims unchanged. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/github/awesome-copilot

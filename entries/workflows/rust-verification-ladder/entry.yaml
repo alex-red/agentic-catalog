@@ -7,13 +7,21 @@ useWhen: Choosing or reviewing verification for a Rust change involving unsafe c
 tags: [rust, verification, testing, unsafe-code, concurrency, fuzzing, api-compatibility]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 4
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Choosing or reviewing verification for a Rust change involving unsafe code, concurrency, input handling, test quality or a public library API. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Cargo, rustfmt, Clippy and project CI supply the actual checks. verification-before-completion requires evidence but does not select Rust-specific layers. property-based-testing and variant-analysis supply adjacent methods; tokio-async-correctness covers runtime lifecycle review. Optional tools are separate prerequisites, not bundled capabilities."
+  review: docs/reviews/2026-10-29-rust-verification-ladder.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Selects distinct evidence rather than running every advanced tool. Preserves MSRV, feature matrices and project policy, and distinguishes bounded tests/models from soundness proofs. The baseline was checked in a disposable Rust fixture; specialized tools were not installed or exercised. No trigger or matched outcome evaluation.
+  reviewed: 2026-10-29
+  notes: Strong specialist selection guide; optional layers remain prerequisites, not bundled verified capabilities. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

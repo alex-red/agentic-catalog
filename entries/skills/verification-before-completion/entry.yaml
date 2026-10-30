@@ -7,13 +7,21 @@ useWhen: Agents claim success, commit, or open PRs without running the checks th
 tags: [verification, completion-claims, testing, subagents]
 hosts: [any]
 rating:
-  usefulness: 5
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Agents claim success, commit, or open PRs without running the checks that prove it, or trust subagent reports without checking the diff. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Complements verification-evidence, which covers checking visible changes in a running app. It is also part of the superpowers plugin; skip it if that plugin is installed."
+  review: docs/reviews/2026-10-29-verification-before-completion.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: One self-contained file aimed at the most common agent failure. The table pairing each claim with the evidence it needs, including "agent reported success → check the diff", is concrete. The absolutist tone ("skip any step = lying") costs some quality. Current hosts already push honest reporting, which caps novelty.
+  reviewed: 2026-10-29
+  notes: Concrete evidence table, but absolutist tone and repeated full verification make this a conditional policy. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/obra/superpowers

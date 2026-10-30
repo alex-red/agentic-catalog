@@ -7,13 +7,21 @@ useWhen: Creating project instructions, or when they have grown long or the agen
 tags: [project-instructions, agents-md, context, monorepo]
 hosts: [any]
 rating:
-  usefulness: 5
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Creating project instructions, or when they have grown long or the agent ignores them. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: /init in both hosts scaffolds a starter file."
+  review: docs/reviews/2026-10-29-agents-md-authoring.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Distills three vendor guides and two 2026 evaluations. It ships as a skill rather than a rule so that the advice about short instructions does not itself cost context in every session. Both hosts' /init commands scaffold files but do not prune them.
+  reviewed: 2026-10-29
+  notes: Useful for bloated instructions; the fixed size target and host-version claims need project judgment. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

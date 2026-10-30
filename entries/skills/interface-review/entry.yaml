@@ -15,13 +15,22 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 3
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 1
+    compatibility: 2
+    upkeep: 3
+  context: "Developers working on this task: Explicitly reviewing interface regressions in a change and accepting installation of the complete required domain-review bundle. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Native code review and ux-critique overlap general findings. This adds change attribution and affected-surface expansion, while react-component-composition covers implementation contracts. It is a review bundle, not a standalone one-file skill."
+  review: docs/reviews/2026-10-29-interface-review.md
+  unknowns:
+    - "Dependability: required better-interface/domain skills and scope/removal references have not been inspected at this pin."
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Review entrypoint, scope/removal references and better-interface router read; not every transitive domain reference audited. Requires seven sibling skills. Change-scoped source review is useful, but rendered verification is opt-in and unverified domains must stay visible. No behavioral trial.
+  reviewed: 2026-10-29
+  notes: Useful change-scoped review orchestration; installation must include the required sibling bundle. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/jakubkrehel/skills

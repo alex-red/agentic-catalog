@@ -26,7 +26,7 @@ It saves dated reports under `docs/research/`, building on prior research and ad
    | plugin | Always linked |
    | tool | Always linked: a user-facing developer tool such as a CLI or status line, not agent guidance |
 
-3. Rate it honestly on all four axes, and explain the rating in `rating.notes`. Score novelty against host built-ins and default model behavior, and record the overlap in `overlap`.
+3. Use the [human-focused rating guide](docs/ratings.md): `rubric: human-v1`, seven anchored 0–4 grades, intended context, named baseline, and a linked curator assessment under `docs/reviews/`. Explain tradeoffs in `rating.notes` and overlap in `overlap`. Omit unknown grades and name the unknowns; incomplete profiles have no aggregate. Record recommendation blockers explicitly. Keep evidence independent. Existing `legacy-v1` reviews remain out of 5 until a substantive reassessment; never convert them arithmetically.
 4. Run `bun run catalog:build` and `bun run check`.
 
 ## Review and retire entries

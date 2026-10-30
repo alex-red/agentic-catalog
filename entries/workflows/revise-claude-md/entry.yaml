@@ -7,13 +7,21 @@ useWhen: A session showed context the agent was missing, and you want a lightwei
 tags: [self-improvement, project-instructions, memory, retrospective]
 hosts: [claude-code]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 3
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: A session showed context the agent was missing, and you want a lightweight, approval-gated write-back to project instructions. Declared hosts: claude-code."
+  baseline: "Comparison baseline and alternatives: Claude Code auto memory and /memory. The retrospective skill is the broader version."
+  review: docs/reviews/2026-10-29-revise-claude-md.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Short, with an approval gate and a brevity rule. It is simpler than the retrospective skill. It writes only to CLAUDE.md, and does not choose between instructions, skills, and hooks or check triggers. Claude Code's auto memory already captures some of this.
+  reviewed: 2026-10-29
+  notes: A simple session-learning command; it does not choose between rules, skills, scripts and hooks. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/anthropics/claude-plugins-official

@@ -7,13 +7,21 @@ useWhen: You are ending a long session and want a new session or another agent t
 tags: [handoff, context, memory]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 3
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: You are ending a long session and want a new session or another agent to continue the work without replaying the conversation. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Host compaction (Claude Code's /compact and Codex's automatic compaction) summarizes context within the same session. This skill instead writes a file that a different session or agent can read."
+  review: docs/reviews/2026-10-29-handoff.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Small and well scoped. It never runs on its own, writes outside the workspace, and points to existing artifacts. It has no checklist for unresolved constraints, rejected approaches, or pending checks, so a short handoff can still drop them; ask for those explicitly. Widely installed through skills.sh.
+  reviewed: 2026-10-29
+  notes: Useful for a fresh chat; reviewers should check that unresolved constraints and rejected approaches survived summarization. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/mattpocock/skills

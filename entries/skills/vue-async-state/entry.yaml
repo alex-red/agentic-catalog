@@ -7,13 +7,21 @@ useWhen: Reviewing or fixing stale Vue 3 results during rapid input, reused rout
 tags: [vue, async, reactivity, cancellation, routing, testing]
 hosts: [any]
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 4
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Reviewing or fixing stale Vue 3 results during rapid input, reused route components, cancellation or shared state disposal. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Installed Vue skills and official docs cover core APIs. create-adaptable-composable covers flexible inputs; this entry covers invalidation and completion ownership. Existing query libraries may already supply cancellation and cache behavior. webapp-testing supplies browser interaction checks when needed."
+  review: docs/reviews/2026-10-29-vue-async-state.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: A focused alternative to overlapping core Vue bundles. Uses official watcher and Router contracts and preserves project API style. Scratch checks exercise the example, not agent activation or representative application outcomes.
+  reviewed: 2026-10-29
+  notes: Useful for stale async state; reuse query-library behavior rather than adding another owner. Static curator assessment; no new behavioral trial.
 source:
   kind: original
   license: MIT

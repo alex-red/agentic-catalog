@@ -7,13 +7,22 @@ useWhen: Writing, reviewing, or refactoring React or Next.js code where performa
 tags: [frontend, react, nextjs, performance, code-review]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 2
+  context: "Developers working on this task: Writing, reviewing, or refactoring React or Next.js code where performance matters. Declared hosts: any."
+  baseline: React and the project framework documentation, existing profiler measurements, and targeted host code review.
+  review: docs/reviews/2026-10-29-react-best-practices.md
+  unknowns:
+    - Audit the applicable rule bodies and compiled reference, then verify advice with the target React/framework version.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Good progressive disclosure and widely installed, but framework-specific. Linked rather than vendored because the repository has no LICENSE file, despite declaring MIT, and the skill's name (vercel-react-best-practices) differs from its folder.
+  reviewed: 2026-10-29
+  notes: Useful React performance index; the index alone cannot establish rule correctness. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/vercel-labs/agent-skills

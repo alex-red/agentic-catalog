@@ -7,13 +7,21 @@ useWhen: You want a recognized, drop-in baseline against over-engineering and dr
 tags: [scope, diff-size, simplicity, assumptions]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 3
+    cognitiveEase: 2
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: You want a recognized, drop-in baseline against over-engineering and drive-by edits. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Largely restated by host system prompts and by focused-changes."
+  review: docs/reviews/2026-10-29-karpathy-coding-guidelines.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: Very popular, short (about 65 lines), and concrete ("every changed line should trace to the request"). Host system prompts already push most of it, and it overlaps focused-changes. Linked, not vendored, because the repository declares MIT but ships no license file.
+  reviewed: 2026-10-29
+  notes: A short alternative policy with substantial built-in overlap; keep linked packaging and avoid stacking duplicates. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/multica-ai/andrej-karpathy-skills

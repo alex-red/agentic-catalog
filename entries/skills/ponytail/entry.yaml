@@ -8,13 +8,21 @@ tags: [scope, diff-size, simplicity, reuse, conventions]
 hosts: [any]
 experimental: true
 rating:
-  usefulness: 3
-  quality: 4
-  portability: 4
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 2
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: You want to try a stronger push toward small diffs and reuse than a focused-changes rule gives, and are willing to compare the results yourself. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Restates much of focused-changes, karpathy-coding-guidelines, and host system prompts. Install one of those, not several."
+  review: docs/reviews/2026-10-29-ponytail.md
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: An unusually clear reuse ladder with explicit never-cut items. Experimental because the upstream benchmark (39 tasks, Bash disabled) shows similar correctness to baseline (87/90 vs 86/90) and mostly measures smaller output. Its trigger covers any coding task and it stays on for the session, so it is easy to over-apply. Upstream reports large adoption.
+  reviewed: 2026-10-29
+  notes: Experimental session-wide style policy; smaller output and popularity are not evidence of better correctness. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/DietrichGebert/ponytail

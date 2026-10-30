@@ -7,13 +7,22 @@ useWhen: You want a complete, opinionated plan, review, and learn loop where eve
 tags: [self-improvement, planning, code-review, memory, methodology, worktrees]
 hosts: [claude-code, codex]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 4
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    cognitiveEase: 2
+    control: 3
+    adoption: 2
+    compatibility: 2
+    upkeep: 2
+  context: "Developers working on this task: You want a complete, opinionated plan, review, and learn loop where every change leaves searchable lessons for the next task. Declared hosts: claude-code, codex."
+  baseline: "Comparison baseline and alternatives: Lesson capture overlaps the retrospective skill. Planning and review overlap host plan mode and review commands."
+  review: docs/reviews/2026-10-29-compound-engineering.md
+  unknowns:
+    - Inspect active skills, prompt assets, persistence and host adapters; no end-to-end method trial was performed.
   evidence: reviewed
-  reviewed: 2026-10-20
-  notes: The most mature self-improvement loop found. It is MIT licensed and very active. Its compound step sets a strong bar of writing down only what a future reader could not recover from the code. It is heavy, with many skills and its own artifact folders, so install it only if you adopt the whole method.
+  reviewed: 2026-10-29
+  notes: Consider for deliberate method adoption, after comparing native planning/review and a smaller retrospective. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/EveryInc/compound-engineering-plugin

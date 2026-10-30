@@ -14,13 +14,21 @@ hosts:
   - any
 experimental: true
 rating:
-  usefulness: 4
-  quality: 3
-  portability: 5
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Reviewing or fixing a focused HTML accessibility issue with native semantics and targeted changes. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: ux-critique, webapp-testing and native browser tools already cover some accessibility issues. This is a compact code-level checklist, with narrower scope and lower novelty. better-typography owns text rendering rather than complete accessibility."
+  review: docs/reviews/2026-10-29-fixing-accessibility.md
   evidence: reviewed
-  reviewed: 2026-10-28
-  notes: Complete entrypoint and MIT license reviewed. Broad Tab-reachability wording needs composite-widget exceptions; arrow-key and roving-tabindex patterns remain valid. Review checks do not certify WCAG conformance or replace assistive-technology testing. No behavioral evaluation.
+  reviewed: 2026-10-29
+  notes: Useful focused checklist; apply composite-widget exceptions and do not infer WCAG conformance from source review. Static curator assessment; no new behavioral trial.
 source:
   kind: linked
   url: https://github.com/ibelick/ui-skills

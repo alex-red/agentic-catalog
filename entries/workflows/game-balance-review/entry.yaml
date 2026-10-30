@@ -7,13 +7,21 @@ useWhen: Assessing game balance from formulas, content data, progression require
 tags: [game-design, balance, virtual-economies, progression]
 hosts: [any]
 rating:
-  usefulness: 2
-  quality: 4
-  portability: 5
-  novelty: 4
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers working on this task: Assessing game balance from formulas, content data, progression requirements, loot rules or telemetry, and proposing bounded tuning experiments. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: mmorpg-design examines mechanics and incentives; native analysis can calculate formulas; synthesize-research organizes evidence. This supplies a data-bearing balance review with cohort/condition assumptions and acquisition-tail analysis. It does not replace project targets or require a studio configuration."
+  review: docs/reviews/2026-10-29-game-balance-review.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Independent method retains data/target/not-assessed distinctions without studio helpers, registry conventions or automatic agent review. Math models require explicit assumptions; missing telemetry is not a healthy verdict. No behavioral evaluation or actual game-balance outcome recorded.
+  notes: Useful specialist analysis; target ranges and spreadsheets do not establish enjoyable balance. Static curator assessment; no new behavioral trial.
 source:
   kind: adapted
   license: MIT

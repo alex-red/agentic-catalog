@@ -7,13 +7,21 @@ useWhen: Asking the agent to commit work in a repository that uses, or should us
 tags: [commits, git, conventional-commits, conventions]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 2
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 3
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Asking the agent to commit work in a repository that uses, or should use, Conventional Commits, especially on hosts without a built-in commit procedure. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Claude Code's built-in git commit instructions already cover commit-only-when-asked, explicit staging, secrets, hooks, no amend after a hook failure and no push. Codex prompts forbid unrequested commits but give no message format. This adds the Conventional Commits format and type table."
+  review: docs/reviews/2026-10-29-git-commit.md
   evidence: reviewed
   reviewed: 2026-10-29
-  notes: Complete one-file skill read at the pin. Repository rules take precedence over the skill's own format; Git trailer syntax and the hook-failure rule are stated correctly. `git add --resolved` exists only from Git 2.56, and `git history` is experimental; both were checked against upstream Git documentation and release notes. Splitting is file-level only. It commits once invoked, which fits its explicit trigger. Claude Code's built-in commit procedure covers most of the safety rules, so the main gain there is the message format; Codex has no format guidance.
+  notes: Useful for requested commits; review exact staging and use Git 2.56+ for --resolved. Static curator assessment; no new behavioral trial.
 source:
   kind: vendored
   url: https://github.com/github/awesome-copilot

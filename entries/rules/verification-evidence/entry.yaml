@@ -7,13 +7,21 @@ useWhen: Agents in your project hand back visible UI changes without looking at 
 tags: [dev-ux, verification, browser, completion-claims]
 hosts: [any]
 rating:
-  usefulness: 4
-  quality: 4
-  portability: 5
-  novelty: 3
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: "Developers receiving visible changes without app checks, with an already-running app and available inspection tools."
+  baseline: "Generic verification/reporting instructions and host browser tools; compare an explicit project-specific running-app pointer."
+  review: docs/reviews/2026-10-29-human-v1-starter.md
   evidence: used
-  reviewed: 2026-10-20
-  notes: Targets an observed gap. In 3 of about 9 pilot sessions with visible changes, the agent never opened the already-running app. A matched outcome fixture exists but has not been run.
+  reviewed: 2026-10-29
+  notes: "Targets the recorded pilot gap while preserving server-start authorization. Grades are curator judgments; the existing used evidence is an exploratory transcript review. No matched outcome benefit has been established."
 source:
   kind: original
   license: MIT
