@@ -2,7 +2,7 @@ schemaVersion: 2
 id: reva
 type: mcp
 title: ReVa Ghidra investigation
-summary: Ghidra MCP integration for triage, focused code navigation and iterative database refinement, with optional binary-triage and deep-analysis skills. Known inference-example defects and incomplete runtime review remain disclosed.
+summary: Ghidra MCP integration for triage, focused code navigation and iterative database refinement, with optional binary-triage and deep-analysis skills. Known inference-example defects, retry risks and runtime inspection limits remain disclosed.
 useWhen: Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration.
 tags:
   - reverse_engineering
@@ -21,14 +21,16 @@ rating:
     adoption: 1
     compatibility: 3
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Ghidra already supplies analysis and scripting; host tools supply planning and file inspection. This bridge adds incremental live database access. reverse-engineering can use exported text; REA provides broader artifact coordination and official IDA MCP is an alternative backend."
-  review: docs/reviews/2026-10-29-reva.md
-  unknowns:
-    - Audit extension, scripting controls, runtime and full operating skill; no integration trial was performed.
+  review: docs/reviews/2026-10-30-reva.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful Ghidra bridge; scripting and database edits need explicit analysis scope. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Operating method and key runtime controls inspected. Public-bind and script-path guards help, but automatic stdio retries can repeat mutations; cooperative timeouts and inference examples remain weak. Preserve experimental scope and the headless retry blocker. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: Headless stdio calls that can mutate state or execute scripts
+      reason: ReconnectingBackend retries call_tool after transport errors/timeouts without checking idempotence; an operation may execute twice. Use direct local HTTP with controlled retries or repair the bridge.
 source:
   kind: linked
   url: https://github.com/cyberkaida/reverse-engineering-assistant

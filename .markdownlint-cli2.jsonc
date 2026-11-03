@@ -20,6 +20,7 @@
     "entries/skills/secret-serialization/**",
     "entries/skills/security-threat-model/**",
     "entries/skills/test-driven-development/**",
+    "entries/skills/typescript-ops/**",
     "entries/skills/verification-before-completion/**",
     "entries/skills/webapp-testing/**",
     "entries/skills/workers-best-practices/**",

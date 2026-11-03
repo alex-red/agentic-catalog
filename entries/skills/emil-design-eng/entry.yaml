@@ -22,14 +22,13 @@ rating:
     adoption: 3
     compatibility: 2
     upkeep: 3
+    dependability: 2
   context: "Developers working on this task: Trying detailed interaction and motion guidance for product UI while checking its technical examples against the project's actual library versions. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: frontend-design supplies art direction; react-component-composition supplies component contracts. remove-animations focuses on subtraction. This is an alternative craft policy, not an additional global mandate; it conflicts with baseline-ui and Taste on motion and easing."
-  review: docs/reviews/2026-10-29-emil-design-eng.md
-  unknowns:
-    - Inspect remaining skill sections and references, and verify animation claims against the actual runtime.
+  review: docs/reviews/2026-10-30-emil-design-eng.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful craft detail with absolute rules that need project-specific judgment. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Useful interaction craft and verification guidance, qualified by blanket acceleration claims, fixed timing rules and a mandatory review-table format. Profile the target browser and Motion version. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/emilkowalski/skills

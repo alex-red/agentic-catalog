@@ -4,8 +4,8 @@ type: skill
 title: React and Next.js performance practices (Vercel)
 summary: A prioritized set of about 70 React and Next.js performance rules covering request waterfalls, bundle size, server and client boundaries, re-renders, and JavaScript micro-optimizations. SKILL.md is the index, and each rule loads on demand.
 useWhen: Writing, reviewing, or refactoring React or Next.js code where performance matters.
-tags: [frontend, react, nextjs, performance, code-review]
-hosts: [any]
+tags: [ frontend, react, nextjs, performance, code-review ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: Writing, reviewing, or refactoring React or Next.js code where performance matters. Declared hosts: any."
   baseline: React and the project framework documentation, existing profiler measurements, and targeted host code review.
-  review: docs/reviews/2026-10-29-react-best-practices.md
-  unknowns:
-    - Audit the applicable rule bodies and compiled reference, then verify advice with the target React/framework version.
+  review: docs/reviews/2026-10-30-react-best-practices.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful React performance index; the index alone cannot establish rule correctness. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: "Complete compiled guide inspected. Useful performance priorities, with incorrect transition-cancellation/default-prop claims and behavior-changing micro-optimization examples. Select rules by framework version and measured bottleneck. Static AI curator assessment; no new behavioral evidence."
 source:
   kind: linked
   url: https://github.com/vercel-labs/agent-skills

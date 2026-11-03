@@ -4,8 +4,8 @@ type: skill
 title: Intent UX lifecycle router
 summary: Broad UX principles and context gathering with routing to research, journeys, information architecture, content, evaluation and handoff. The core includes eight foundational references; specialist skills are separately selectable siblings.
 useWhen: Explicitly choosing a broad UX design system across several stages and accepting its artifact conventions and experimental review limits.
-tags: [ux, user-research, interaction-design, information-architecture, design]
-hosts: [any]
+tags: [ ux, user-research, interaction-design, information-architecture, design ]
+hosts: [ any ]
 experimental: true
 rating:
   rubric: human-v1
@@ -16,14 +16,13 @@ rating:
     adoption: 1
     compatibility: 2
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: Explicitly choosing a broad UX design system across several stages and accepting its artifact conventions and experimental review limits. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Native planning and design reasoning cover parts of the process. ux-critique specializes in interface criticism; synthesize-research starts from existing records; moderated-usability-study prepares real sessions; evidence-to-flow-ux is a smaller decision procedure. Frontend design entries emphasize visual execution. Intent is an alternative broad system, not a prerequisite for these entries."
-  review: docs/reviews/2026-10-29-intent.md
-  unknowns:
-    - Only listed routing/context excerpts inspected; audit foundational references and required specialist paths before grading dependability.
+  review: docs/reviews/2026-10-30-intent.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Best considered for teams choosing the wider lifecycle method. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core and relevant research/ethics/accessibility foundations inspected. Useful bounded routing, but artifact conventions can hide material uncertainty; standards and regulatory claims need correction. Keep experimental scope and inspect selected siblings separately. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/ghaida/intent
@@ -37,4 +36,4 @@ install:
   any: "Fetch https://github.com/ghaida/intent at 7111cb85894feaeb7e98938b1ed34597d40e3b4c. Copy the complete skills/intent subtree, including all eight references, into .agents/skills/intent or .claude/skills/intent. Retain root LICENSE as LICENSE.txt. Check the destination and preserve existing guidance. If the user selects a routed specialist, inspect and copy that complete skills/<name> subtree as a sibling at the same revision, with its resources and license; do not represent an absent sibling as available or install all eighteen merely because the router names them. Do not copy agents, hooks, plugin configuration or platform rules implicitly."
   notes: Catalog admission activates nothing. Context files, decision logs, specialist routing, design tools and iteration remain within the user's task and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/ux-workflow-options.md for scope and unresolved review limits.
 overlap: Native planning and design reasoning cover parts of the process. ux-critique specializes in interface criticism; synthesize-research starts from existing records; moderated-usability-study prepares real sessions; evidence-to-flow-ux is a smaller decision procedure. Frontend design entries emphasize visual execution. Intent is an alternative broad system, not a prerequisite for these entries.
-related: [ux-critique, synthesize-research, moderated-usability-study, evidence-to-flow-ux, interface-design, frontend-design]
+related: [ ux-critique, synthesize-research, moderated-usability-study, evidence-to-flow-ux, interface-design, frontend-design ]

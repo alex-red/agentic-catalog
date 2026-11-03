@@ -4,8 +4,8 @@ type: plugin
 title: Superpowers
 summary: An opinionated end-to-end development method packaged as interlocking skills for brainstorming, planning, subagent execution with review, TDD, debugging, verification, git worktrees, and finishing a branch. It ships manifests for Claude Code, Codex, Cursor, and other hosts.
 useWhen: A team wants a complete, enforced spec-to-merge workflow rather than individual techniques.
-tags: [methodology, planning, tdd, debugging, code-review, verification, subagents, worktrees]
-hosts: [claude-code, codex]
+tags: [ methodology, planning, tdd, debugging, code-review, verification, subagents, worktrees ]
+hosts: [ claude-code, codex ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,17 +15,16 @@ rating:
     adoption: 2
     compatibility: 2
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: A team wants a complete, enforced spec-to-merge workflow rather than individual techniques. Declared hosts: claude-code, codex."
   baseline: "Comparison baseline and alternatives: Plan mode and the review commands in both hosts cover part of it. It also contains verification-before-completion, test-driven-development, and a systematic-debugging skill."
-  review: docs/reviews/2026-10-29-superpowers.md
-  unknowns:
-    - Audit bootstrap, skill bodies, hooks and optional companion; README workflow claims do not establish behavioral dependability.
+  review: docs/reviews/2026-10-30-superpowers.md
   blockers:
     - scope: Mandatory delete-before-tests workflow
       reason: The pinned README explicitly describes deleting code written before tests. Preserve user work and existing authorization instead of adopting that instruction.
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: High process cost; document-specific deletion and compulsory routing rules need revision before broad use. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core workflow audit confirms deletion blocker, package-install assumptions and path-based ownership/ignore weaknesses. Host adapter details require checking against live tools. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/obra/superpowers
@@ -38,4 +37,4 @@ install:
   codex: codex plugin marketplace add obra/superpowers, then codex plugin add superpowers@superpowers
   notes: Check the upstream README for the current marketplace names before installing.
 overlap: Plan mode and the review commands in both hosts cover part of it. It also contains verification-before-completion, test-driven-development, and a systematic-debugging skill.
-related: [verification-before-completion, test-driven-development]
+related: [ verification-before-completion, test-driven-development ]

@@ -4,8 +4,8 @@ type: tool
 title: ccusage usage and cost reports
 summary: A local CLI that reads agent session logs and reports token use and estimated cost by day, week, month, session or five-hour block, for Claude Code, Codex and sixteen other agents. Includes a beta Claude Code status line command.
 useWhen: You want to know what agent sessions cost over time or across projects and agents, beyond the current session's /cost or /usage.
-tags: [dev-ux, usage-tracking, observability, budgets]
-hosts: [claude-code, codex]
+tags: [ dev-ux, usage-tracking, observability, budgets ]
+hosts: [ claude-code, codex ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: You want to know what agent sessions cost over time or across projects and agents, beyond the current session's /cost or /usage. Declared hosts: claude-code, codex."
   baseline: "Comparison baseline and alternatives: Claude Code's /cost and /usage cover the current session and plan limits; this adds history across sessions, projects and agents. Codex has no built-in historical report. claude-hud shows live session cost in the status line."
-  review: docs/reviews/2026-10-29-ccusage.md
-  unknowns:
-    - Audit wrapper/native executable correspondence, input parsers, pricing paths and offline behavior at the release pin.
+  review: docs/reviews/2026-10-30-ccusage.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful human-facing reporting; displayed costs are estimates and runtime behavior still needs inspection. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Primary Claude/Codex source paths and native release wiring inspected. Silent record omissions, heuristic deduplication/model inference and pricing snapshots limit cost accuracy; published binary equivalence remains unverified. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/ccusage/ccusage
@@ -32,8 +31,8 @@ source:
   author: ryoppippi
   notes: Release tag v20.0.45 (npm ccusage 20.0.45). ryoppippi/ccusage redirects to this repository. The @ccusage/codex and @ccusage/mcp packages are deprecated in favor of ccusage 20.
 install:
-  any: 'Run a pinned version instead of @latest: npx ccusage@20.0.45 daily (Claude Code) or npx ccusage@20.0.45 codex daily (Codex). bunx ccusage@20.0.45 also works. Add --offline to skip the price download.'
+  any: 'Run a pinned version instead of @latest: npx ccusage@20.0.45 claude daily (Claude Code) or npx ccusage@20.0.45 codex daily (Codex). bunx ccusage@20.0.45 also works. Add --offline to skip the price download.'
   claude-code: 'Optional status line: set statusLine in settings.json to {"type": "command", "command": "npx -y ccusage@20.0.45 statusline"}. ccusage never edits settings itself. An unpinned npx or bunx command here would fetch new code on every render, so keep the version.'
   notes: The npm package downloads a native binary for your platform. Nothing is installed globally unless you choose npm install -g.
 overlap: Claude Code's /cost and /usage cover the current session and plan limits; this adds history across sessions, projects and agents. Codex has no built-in historical report. claude-hud shows live session cost in the status line.
-related: [claude-hud, subagent-budget]
+related: [ claude-hud, subagent-budget ]

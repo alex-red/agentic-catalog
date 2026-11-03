@@ -20,14 +20,13 @@ rating:
     adoption: 2
     compatibility: 2
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: Tracing behavior across shipped application components or artifact formats where retained evidence and a common investigation surface justify a broader workbench. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost."
-  review: docs/reviews/2026-10-29-reverse-engineer-anything.md
-  unknowns:
-    - Audit investigation guides, setup and provider runtimes at the installed release; repository README alone is insufficient.
+  review: docs/reviews/2026-10-30-reverse-engineer-anything.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Broad RE workbench whose runtime and package-to-repository correspondence need inspection. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core investigation and selected provider lifecycle/wire reviewed. Source npm preparation can install Husky; source-build instructions now disable that hook setup. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/morluto/rea
@@ -37,7 +36,7 @@ source:
   author: morluto
   notes: Repository snapshot binds source, runtime and authored skill consistently. Public skill subtree last changed at 8188497f13477918f2b696689c3598b65f11a7c5. Preserve THIRD_PARTY_NOTICES.md and relevant licenses. A package version string does not prove equality with this source tree.
 install:
-  any: "Fetch https://github.com/morluto/rea at c0c3902207d6b1a33709e42b80c7e570da7db964 into a trusted tool directory outside the analysis target. Review lifecycle scripts, notices and selected provider dependencies, then follow pinned docs/installation.md for a source build: npm ci and npm run build:cached. Use its documented Node.js version and record the resolved environment. Register an absolute Node executable with arguments /absolute/path/to/rea/scripts/rea.mjs and mcp in project-scoped host configuration. Copy the complete authored .agents/skills/reverse-engineer-anything subtree and references only if its guidance is selected, retaining LICENSE and notices. Native work requires a separately selected compatible provider. Do not run rea setup, install engines, hooks, plugin bundles or AgentEnv/Docker implicitly; a selected published release needs a separately recorded pin and capability check."
+  any: "Fetch https://github.com/morluto/rea at c0c3902207d6b1a33709e42b80c7e570da7db964 into a trusted tool directory outside the analysis target. Review lifecycle scripts, notices and selected provider dependencies, then follow pinned docs/installation.md for a source build: set HUSKY=0 for npm ci to prevent prepare from installing Git hooks, then npm run build:cached. Use its documented Node.js version and record the resolved environment. Register an absolute Node executable with arguments /absolute/path/to/rea/scripts/rea.mjs and mcp in project-scoped host configuration. Copy the complete authored .agents/skills/reverse-engineer-anything subtree and references only if its guidance is selected, retaining LICENSE and notices. Native work requires a separately selected compatible provider. Do not run rea setup, install engines, hooks, plugin bundles or AgentEnv/Docker implicitly; a selected published release needs a separately recorded pin and capability check."
   notes: Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits.
 overlap: Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost.
 related:

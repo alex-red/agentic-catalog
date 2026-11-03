@@ -435,6 +435,12 @@ At the user's direction ("review the rest, decide for us"), read the four review
 
 Both new entries start at `reviewed`. The catalog now has 108 entries, 60 of them skills, twenty-one experimental and eight collections. No plugin manifest, version, hook or consumer installation changes. Generated indexes are rebuilt from source.
 
+## 55. Extend lightweight source highlighting to shell files (2026-10-29)
+
+The existing source viewer now recognizes `.sh` files, with colors for shebangs/comments, strings, shell keywords, common builtins, variables, assignments and operators. Quoting state carries across lines; simple named heredocs, including quoted delimiters and tab-stripping forms, keep body text out of command highlighting. Source text remains escaped and copying still uses the original loaded string. No dependency or script execution is introduced.
+
+Focused tests cover CRLF preservation, variable interpolation, literal and escaped hashes, multiline quotes, heredoc boundaries and HTML escaping. The existing size fallbacks remain in effect. This is lexical highlighting, not a complete shell parser. Browser verification was blocked by automatic approval review when the account usage limit was reached; no rendered-shell or browser-copy check is claimed for this addition.
+
 ## 56. Give catalog types a custom icon vocabulary (2026-10-29)
 
 The browser uses original inline SVG glyphs for all eight entry types, collections, topic groups and special groups. A shared 20-unit grid, 1.5-unit stroke and open geometry match the compact workbench theme. Distinct silhouettes identify types in group headings, entry rows and viewer/collection badges; row icons retain the underlying type inside topic and status groups. Existing host dots keep their host meaning.
@@ -494,3 +500,21 @@ The method separates screen recreation, visual style transfer and bounded intera
 Package the complete procedure and MIT license within its entry directory. Its [author source assessment](reviews/2026-10-29-reference-to-interface.md) assigns a provisional human-v1 score of 8.0/10 and evidence `reviewed`; this is not an independently measured improvement over Design DNA or host defaults. No consumer workflow is installed or activated.
 
 Inventory becomes 110 entries, including 13 workflows and twenty-three experimental entries, with 78 complete human-v1 profiles and 32 incomplete profiles. Existing scoped blockers and collections remain unchanged. Rebuild generated indexes from source; no plugin manifest or version changes are needed.
+
+## 63. Add a qualified TypeScript 7 reference option (2026-10-30)
+
+At the user's request to add the selected TypeScript skill, admit `typescript-ops` from `0xDarkMatter/claude-mods` as a **vendored experimental** entry, pinned to the last commit affecting `skills/typescript-ops`: `dd21becd241fbd0132a1e783062b27283e9fec4e`. Read all ten subtree files, including its Python helper, Bash self-test and six references, plus the root MIT license. Preserve every upstream byte and package the root license as `LICENSE.txt`; no upstream script or plugin infrastructure is executed or activated.
+
+Full inspection qualifies the earlier chat recommendation. The [assessment](reviews/2026-10-30-typescript-ops.md) records TS7-incompatible configuration templates, a reversed variance explanation, incorrect literal-inference guidance, a function utility that rejects its own example, and migration-readiness claims that cannot be established by `npm ls`. Bounded local TS7.0.2 probes confirmed three example defects. Preserve scoped blockers in metadata rather than changing vendored content. Freshness checks concern names/majors, not technical correctness or minor-version compatibility; author compiler benchmarks do not evaluate the skill.
+
+The [focused research](research/2026-10-30-catalog-scout.md) compares the selected entry with official TypeScript documentation, installed host capabilities and named catalog alternatives. No existing general TypeScript entry is replaced, and no collection is expanded. The provisional human-v1 score is 5.9/10 and evidence starts at `reviewed`; neither source probes nor structural catalog checks raise that evidence level. Re-review corrected upstream content before recommending it as a default.
+
+Inventory becomes 111 entries, including 62 skills and twenty-four experimental entries. This admission adds one complete human-v1 profile with scoped blockers; concurrent assessment completions are separate work. Regenerate indexes from source. No plugin manifest, version, consumer installation, hook or connection changes are needed.
+
+## 64. Complete the 32 outstanding source assessments (2026-11-03)
+
+At the user's request, complete all 32 incomplete human-v1 profiles with one AI reviewer. Preserve the October 29 partial reviews and add linked follow-ups begun October 30 and completed November 3, with a shared pinned-source manifest. Read the primary artifacts and consequential source paths; explicitly bound optional runtime, provider, dataset and dependency coverage rather than treating a completed profile as a repository-wide audit. Keep evidence at `reviewed`; no installer, integration or behavioral evaluation is executed to assign a grade.
+
+The [report](research/2026-11-03-catalog-prune.md) accounts for all 32 entries: 13 Keep and 19 Refresh. Retain existing scoped blockers and add eight for concrete affected paths. Grade Impeccable's missing human control at 2 and revise Compound Engineering's control from 3 to 2 for default external-model egress. Active inventory, including the separate TypeScript admission, is 111 complete profiles, zero incomplete profiles and 19 scoped blockers across 18 entries. Completion does not clear blockers or establish observed improvement.
+
+Correct REA's source-install instruction to disable Husky during npm preparation, make ccusage's Claude example source-specific, disclose Impeccable's separate update-check opt-out, and make ReVa's summary reflect the bounded inspection and retry finding. Preserve source pins, vendored bytes, collections, evidence records and unrelated edits. No consumer installation, plugin manifest or version change is needed. Regenerate catalog outputs and run the required repository checks.

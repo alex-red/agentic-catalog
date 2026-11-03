@@ -21,14 +21,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: Understanding shipped binaries, APKs, packaged applications or protocols without complete source, while explicitly selecting a broad shell-first method. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: repo-research handles source repositories; systematic-debugging handles hypothesis testing. ReVa supplies a live Ghidra database and REA a larger cross-format runtime. Native shell and file tools cover basic triage; this option adds routing, exports and artifact-coordinate reporting."
-  review: docs/reviews/2026-10-29-reverse-engineering.md
-  unknowns:
-    - Only listed entrypoint ranges inspected; audit the remainder, platform references and executable helpers before grading dependability.
+  review: docs/reviews/2026-10-30-reverse-engineering.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: A useful cross-format method with unverified platform and helper coverage. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core, helper chain, both exporters and native/dynamic method inspected. Coordinate-based findings and visible analysis caps help; parser resource limits, metadata path trust, error exit status and incomplete secret masking need care. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/EncidXVII/claude-reverse-engineering-skill

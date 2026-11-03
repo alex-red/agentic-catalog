@@ -23,14 +23,16 @@ rating:
     adoption: 1
     compatibility: 2
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: Correlating Mach-O, Objective-C, Swift or XPC static findings with explicitly requested Apple runtime observations. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: ReVa supplies Ghidra database access and REA broader application investigation. This option specializes in Apple metadata and static/runtime joins. Native debugging alone does not maintain those correlations; generic handoff is optional and the upstream long-run-agent companion is not required for bounded use."
-  review: docs/reviews/2026-10-29-cerberus-re.md
-  unknowns:
-    - Inspect agent-facing procedure, bridge, installer and runtime enforcement; documented controls are not verified behavior.
+  review: docs/reviews/2026-10-30-cerberus-re.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Specialist Apple workbench with documented opt-ins and an unaudited runtime. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core, installer and runtime/MCP policy boundaries inspected. Dedicated gates help, but allow-by-default passthrough admits bootstrap installation/config writes. Typed status wrappers still rely on heuristic output parsing; repair the generic path. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: Generic MCP cerberus_run setup commands
+      reason: passthrough_policy permits bootstrap as read-oriented, but bootstrap writes configuration and installs the bridge. Require explicit setup scope and a corrected allowlist before using generic passthrough.
 source:
   kind: linked
   url: https://github.com/OwenPawl/cerberus-re-skill

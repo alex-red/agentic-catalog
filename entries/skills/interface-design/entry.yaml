@@ -22,14 +22,13 @@ rating:
     adoption: 3
     compatibility: 2
     upkeep: 3
+    dependability: 2
   context: "Developers working on this task: Trying an opinionated product-UI workflow for dashboards, settings or admin tools, with persistent design decisions and explicit technical caveats. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Overlaps frontend-design, Impeccable Operate mode and existing component conventions. Adds product-domain exploration and a persistent system.md convention. Preserve native controls and established semantic tokens when they fit."
-  review: docs/reviews/2026-10-29-interface-design.md
-  unknowns:
-    - Inspect remaining core and command paths; resolve the previously recorded WCAG target-size wording and native-select claim.
+  review: docs/reviews/2026-10-30-interface-design.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful domain-specific design method with retained prior accessibility and native-control concerns. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Useful product-UI craft, component reuse and visual checks. Native-control styling and WCAG target-size wording are overbroad; fixed exploration/motion rules need project judgment. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/Dammyjay93/interface-design

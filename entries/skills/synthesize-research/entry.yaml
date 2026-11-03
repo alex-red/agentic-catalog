@@ -4,8 +4,8 @@ type: skill
 title: Synthesize supplied user research (Anthropic)
 summary: Turns existing interview notes, survey responses and feedback into attributed themes, contradictions, conditional behavioral segments and decision-linked recommendations. Selects the product-management skill rather than the similarly named design-plugin template.
 useWhen: Existing research records need analysis into supported findings and product decisions, rather than preparing a new study or inspecting an interface.
-tags: [ux, user-research, synthesis, product-management]
-hosts: [any]
+tags: [ ux, user-research, synthesis, product-management ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 3
+    dependability: 3
   context: "Developers working on this task: Existing research records need analysis into supported findings and product decisions, rather than preparing a new study or inspecting an interface. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Native summarization already extracts themes. This adds source-by-source observation, contradictory cases and product-decision synthesis. ux-critique examines an interface; moderated-usability-study prepares participant sessions; evidence-to-flow-ux connects evidence to design and retest. None is a required runtime dependency."
-  review: docs/reviews/2026-10-29-synthesize-research.md
-  unknowns:
-    - Inspect the remaining entrypoint and connector contract, including participant deduplication and limits on prevalence claims.
+  review: docs/reviews/2026-10-30-synthesize-research.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful research structure; frequency and impact rankings require sampling judgment. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Coherent attributed synthesis with explicit confidence and contradictions. Deduplicate participants across sources and avoid treating convenience-sample frequencies as population prevalence. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/anthropics/knowledge-work-plugins
@@ -36,4 +35,4 @@ install:
   any: "Fetch https://github.com/anthropics/knowledge-work-plugins at 2574e29377c7173d0cecffef29a6ecbd7f8ccb5d. Copy product-management/skills/synthesize-research into .agents/skills/synthesize-research or .claude/skills/synthesize-research, checking and preserving any existing version first. Copy product-management/CONNECTORS.md into that installed skill directory and retain product-management/LICENSE as LICENSE.txt. Apply one explicit packaging adapter: change the SKILL.md connector link from ../../CONNECTORS.md to ./CONNECTORS.md so every reference stays inside the installed skill. Add a prominent packaging-change notice in the installed SKILL.md body and record the source pin with that notice. Preserve upstream attribution; no applicable NOTICE file appears in the pinned inventory. Do not install the surrounding plugin or its MCP configuration."
   notes: Works from supplied records without connectors. Use connected sources only within existing access and task authorization; no implicit service connection or publication. Preserve contradictory cases and material limitations. See https://github.com/alex-red/agentic-catalog/blob/main/docs/ux-workflow-options.md.
 overlap: Native summarization already extracts themes. This adds source-by-source observation, contradictory cases and product-decision synthesis. ux-critique examines an interface; moderated-usability-study prepares participant sessions; evidence-to-flow-ux connects evidence to design and retest. None is a required runtime dependency.
-related: [moderated-usability-study, evidence-to-flow-ux, ux-critique, intent]
+related: [ moderated-usability-study, evidence-to-flow-ux, ux-critique, intent ]

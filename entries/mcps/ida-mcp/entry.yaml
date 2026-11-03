@@ -21,14 +21,13 @@ rating:
     adoption: 1
     compatibility: 3
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: Selecting an IDA analysis backend for compiled artifacts, particularly when starting a new integration or migrating from mrexodia-specific recipes. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: IDA supplies the underlying analysis; this entry exposes its reference/Python/database contract to agents. ReVa is a Ghidra alternative, REA a higher-level workbench, and reverse-engineering an optional investigation method. Generic host shell access does not provide IDA integration."
-  review: docs/reviews/2026-10-29-ida-mcp.md
-  unknowns:
-    - Audit runtime, Python/database mutations, logging and optional hooks before grading dependability.
+  review: docs/reviews/2026-10-30-ida-mcp.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Specialist IDA bridge; do not treat analysis tools or Python execution as inherently read-only. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Complete MCP boundary and optional hooks inspected. Target/cancellation handling is explicit; arbitrary Python, persistent mutation, full-content tracing and unauthenticated remote HTTP require trusted scope. Keep optional auto-allow hooks excluded. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/HexRaysSA/ida-mcp

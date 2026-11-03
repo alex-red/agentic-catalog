@@ -4,8 +4,8 @@ type: plugin
 title: claude-reflect
 summary: Hooks detect when you correct the agent and queue the correction. /reflect reviews the queue and writes the approved items into CLAUDE.md and AGENTS.md, and /reflect-skills mines session history for repeated tasks to turn into commands.
 useWhen: You keep correcting the agent on the same preferences and want those corrections captured with a review step.
-tags: [self-improvement, memory, corrections, project-instructions]
-hosts: [claude-code]
+tags: [ self-improvement, memory, corrections, project-instructions ]
+hosts: [ claude-code ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,16 @@ rating:
     adoption: 2
     compatibility: 3
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: You keep correcting the agent on the same preferences and want those corrections captured with a review step. Declared hosts: claude-code."
   baseline: "Comparison baseline and alternatives: Claude Code auto memory, the retrospective skill, and revise-claude-md."
-  review: docs/reviews/2026-10-29-claude-reflect.md
-  unknowns:
-    - Audit capture hooks, local storage, history processing and memory/skill writes before grading dependability.
+  review: docs/reviews/2026-10-30-claude-reflect.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Adopt only when the review queue justifies automatic capture and reminders. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core command, hooks and storage/validation boundaries inspected. Manual final review helps, but migration/concurrent queue loss, filtering drift and whole-section AGENTS replacement need repair. Raw corrections remain sensitive local records. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: AGENTS.md batch synchronization
+      reason: The command replaces the whole managed section using the current learning batch; preserve and merge previously accepted entries before applying this path.
 source:
   kind: linked
   url: https://github.com/BayramAnnakov/claude-reflect
@@ -33,4 +35,4 @@ source:
 install:
   claude-code: claude plugin marketplace add bayramannakov/claude-reflect, then claude plugin install claude-reflect@claude-reflect-marketplace, and restart.
 overlap: Claude Code auto memory, the retrospective skill, and revise-claude-md.
-related: [retrospective, revise-claude-md, self-improvement-loop]
+related: [ retrospective, revise-claude-md, self-improvement-loop ]

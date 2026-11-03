@@ -4,8 +4,8 @@ type: skill
 title: Evidence-grounded UX critique (Thecsiz)
 summary: Reviews interfaces and product flows by observing first, checking missing states, comparing relevant local UX references, verifying citation support, and challenging each finding with a skeptic pass. Reports concrete fixes with separate confidence labels and structural, behavioral, or visual classifications; chat is the default output.
 useWhen: You want direct, evidence-grounded criticism of an app screen, prototype, screenshot, or connected user flow, with unsupported findings challenged before reporting.
-tags: [ux, usability, design-review]
-hosts: [any]
+tags: [ ux, usability, design-review ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 2
     compatibility: 3
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: You want direct, evidence-grounded criticism of an app screen, prototype, screenshot, or connected user flow, with unsupported findings challenged before reporting. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Generic model critique and frontend-design guidance already identify familiar UI issues. This entry adds an explicit observation, citation-support, skeptic, and confidence pipeline. webapp-testing and chrome-devtools-mcp collect runtime evidence but do not supply that critique method. grilling stress-tests decisions through questions; improvement-loop and retrospective improve agent tooling and process. None of these substitutes for observing real users."
-  review: docs/reviews/2026-10-29-ux-critique.md
-  unknowns:
-    - Inspect required pipeline references, retrieval helpers, KB support samples and any requested writeback path.
+  review: docs/reviews/2026-10-30-ux-critique.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: A useful critique method with large support dependencies; expert critique is not user research. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Required chat/flow pipeline and retrieval/usage helpers inspected with KB samples. Explicit quote/applicability checks help; lexical ranking, stage heuristics and citation uniqueness need judgment. Local aggregate usage writes are opt-out. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/Thecsiz/ux-critique
@@ -38,4 +37,4 @@ install:
   any: Assemble the same complete skill and root kb bundle at the pinned revision in the host's skill directory, retaining all four root license and notice files. Keep references, scripts, facets, and kb-ids.json together with SKILL.md; do not install SKILL.md alone.
   notes: Start with Standard review in chat. Figma output needs a separately connected integration and explicit write authorization; installing this entry configures neither. Deep Flow uses workers for four or more screens by default; pass --serial to avoid that workflow. Upstream records aggregate local citation counts by default; set UX_CRITIQUE_DISABLE_USAGE=1 to disable recording. HTML artifact output is incomplete because its template is absent from this revision, and Apply Mode is experimental; neither is recommended here.
 overlap: Generic model critique and frontend-design guidance already identify familiar UI issues. This entry adds an explicit observation, citation-support, skeptic, and confidence pipeline. webapp-testing and chrome-devtools-mcp collect runtime evidence but do not supply that critique method. grilling stress-tests decisions through questions; improvement-loop and retrospective improve agent tooling and process. None of these substitutes for observing real users.
-related: [webapp-testing, chrome-devtools-mcp, grilling, verification-before-completion]
+related: [ webapp-testing, chrome-devtools-mcp, grilling, verification-before-completion ]

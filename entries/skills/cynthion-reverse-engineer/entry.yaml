@@ -21,14 +21,16 @@ rating:
     adoption: 2
     compatibility: 2
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: Reverse engineering a proprietary USB device protocol from contrasting captures, or preparing a bounded replay/emulation experiment. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Generic debugging and file tools lack USB-specific capture differencing and command inference. REA covers broader application artifacts; reverse-engineering supplies a general analysis method. This specialist option requires its decoder and is not a default dependency of other RE entries."
-  review: docs/reviews/2026-10-29-cynthion-reverse-engineer.md
-  unknowns:
-    - Read entrypoint excerpts only; inspect remaining workflow, analysis/generator helpers and the required decoder before grading dependability.
+  review: docs/reviews/2026-10-30-cynthion-reverse-engineer.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful USB specialist workflow; mandatory decoder and generator inspection is still outstanding. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Complete analysis/generation chain and decoder inspected. Counter ordering, unmatched-transfer loss and replay limitations weaken inference. Device strings enter clone Python without escaping; generated clone execution is blocked pending repair. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: Generated Facedancer clone execution
+      reason: gen_facedancer_clone.py inserts device-provided strings into Python literals/docstrings without escaping; inspect and repair generated source before execution.
 source:
   kind: linked
   url: https://github.com/curtisgalloway/public-skills

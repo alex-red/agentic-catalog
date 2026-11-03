@@ -4,25 +4,27 @@ type: plugin
 title: Compound Engineering
 summary: A cross-host plugin of about 36 skills built around brainstorm, plan, work, simplify, review, and compound. Its compound step writes each verified, non-obvious lesson to docs/solutions/, where later planning runs read it.
 useWhen: You want a complete, opinionated plan, review, and learn loop where every change leaves searchable lessons for the next task.
-tags: [self-improvement, planning, code-review, memory, methodology, worktrees]
-hosts: [claude-code, codex]
+tags: [ self-improvement, planning, code-review, memory, methodology, worktrees ]
+hosts: [ claude-code, codex ]
 rating:
   rubric: human-v1
   dimensions:
     value: 3
     cognitiveEase: 2
-    control: 3
+    control: 2
     adoption: 2
     compatibility: 2
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: You want a complete, opinionated plan, review, and learn loop where every change leaves searchable lessons for the next task. Declared hosts: claude-code, codex."
   baseline: "Comparison baseline and alternatives: Lesson capture overlaps the retrospective skill. Planning and review overlap host plan mode and review commands."
-  review: docs/reviews/2026-10-29-compound-engineering.md
-  unknowns:
-    - Inspect active skills, prompt assets, persistence and host adapters; no end-to-end method trial was performed.
+  review: docs/reviews/2026-10-30-compound-engineering.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Consider for deliberate method adoption, after comparing native planning/review and a smaller retrospective. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Core method and persistence reviewed. Full review defaults to external-model egress after disclosure; automatic history probing and shipping tail need deliberate adoption. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: Automatic external-model review
+      reason: The full review path defaults to auto with no required recipient allowlist and treats invocation plus disclosure as authorization. Disable this route where external code transfer needs separately recorded permission until explicitly adopted.
 source:
   kind: linked
   url: https://github.com/EveryInc/compound-engineering-plugin
@@ -35,4 +37,4 @@ install:
   codex: codex plugin marketplace add EveryInc/compound-engineering-plugin, then codex plugin add compound-engineering@compound-engineering-plugin
   notes: List the hooks and commands the plugin enables before installing it.
 overlap: Lesson capture overlaps the retrospective skill. Planning and review overlap host plan mode and review commands.
-related: [self-improvement-loop, retrospective, explore-plan-implement-review]
+related: [ self-improvement-loop, retrospective, explore-plan-implement-review ]

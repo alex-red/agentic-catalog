@@ -4,8 +4,8 @@ type: mcp
 title: Chrome DevTools MCP
 summary: The Chrome team's MCP server, which drives Chrome through DevTools to navigate, click, take screenshots, read the console and network activity, and record performance traces, so agents can verify and debug web changes.
 useWhen: Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups.
-tags: [dev-ux, browser, verification, debugging, performance]
-hosts: [any]
+tags: [ dev-ux, browser, verification, debugging, performance ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 2
+    dependability: 3
   context: "Developers working on this task: Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them."
-  review: docs/reviews/2026-10-29-chrome-devtools-mcp.md
-  unknowns:
-    - Inspect runtime/tool contracts and isolation, telemetry and CrUX controls; no browser server was installed or exercised.
+  review: docs/reviews/2026-10-30-chrome-devtools-mcp.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful browser diagnostics; explicitly review data collection, profile isolation and overlap with installed tools. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: MCP/browser boundary, path checks and telemetry/CrUX paths inspected. Explicit errors and reconnect handling support use; profile persistence, dialog acceptance, raw debug logs and default outbound features require deliberate configuration. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/ChromeDevTools/chrome-devtools-mcp
@@ -35,4 +34,4 @@ install:
   codex: 'User scope: codex mcp add chrome-devtools -- npx chrome-devtools-mcp@latest --isolated. Project scope: add [mcp_servers.chrome-devtools] with command = "npx" and args = ["chrome-devtools-mcp@latest", "--isolated"] to .codex/config.toml.'
   notes: Pin a version instead of @latest for repeatable setups. --slim reduces the tool list.
 overlap: Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them.
-related: [verification-evidence, webapp-testing]
+related: [ verification-evidence, webapp-testing ]

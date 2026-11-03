@@ -28,14 +28,12 @@
           "control": 4,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Reviewing workflows that invoke an AI agent action, especially ones triggered by issues, comments or pull_request_target. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: github-actions-hardening covers general workflow hardening, including direct expression injection and pull_request_target checkout, which this also checks. This adds the agent-specific vectors and action settings. Host security review does not cover workflow configuration.",
-        "review": "docs/reviews/2026-10-29-agentic-actions-auditor.md",
-        "unknowns": [
-          "Dependability: core plus vector G/action profiles were read; foundations, other vectors and cross-file-resolution remain uninspected in this pass."
-        ],
+        "review": "docs/reviews/2026-10-30-agentic-actions-auditor.md",
         "blockers": [
           {
             "scope": "GitHub AI Inference remediation in references/action-profiles.md",
@@ -43,8 +41,8 @@
           }
         ],
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful specialist audit structure, but unsafe remediation and unreviewed required references prevent an aggregate. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Full core/reference review confirms unsafe output remediation, inconsistent defaults and blind spots in cross-file discovery. Retain the remediation blocker; tainted input alone does not prove successful execution. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -67,7 +65,7 @@
         "oss-repo-health",
         "security-threat-model"
       ],
-      "score": null,
+      "score": 7.4,
       "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/agentic-actions-auditor/skills/agentic-actions-auditor",
       "path": "entries/skills/agentic-actions-auditor",
       "files": []
@@ -680,17 +678,21 @@
           "control": 3,
           "adoption": 2,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Reverse engineering a proprietary USB device protocol from contrasting captures, or preparing a bounded replay/emulation experiment. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Generic debugging and file tools lack USB-specific capture differencing and command inference. REA covers broader application artifacts; reverse-engineering supplies a general analysis method. This specialist option requires its decoder and is not a default dependency of other RE entries.",
-        "review": "docs/reviews/2026-10-29-cynthion-reverse-engineer.md",
-        "unknowns": [
-          "Read entrypoint excerpts only; inspect remaining workflow, analysis/generator helpers and the required decoder before grading dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-cynthion-reverse-engineer.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful USB specialist workflow; mandatory decoder and generator inspection is still outstanding. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Complete analysis/generation chain and decoder inspected. Counter ordering, unmatched-transfer loss and replay limitations weaken inference. Device strings enter clone Python without escaping; generated clone execution is blocked pending repair. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Generated Facedancer clone execution",
+            "reason": "gen_facedancer_clone.py inserts device-provided strings into Python literals/docstrings without escaping; inspect and repair generated source before execution."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -711,7 +713,7 @@
         "reverse-engineering",
         "reverse-engineer-anything"
       ],
-      "score": null,
+      "score": 5.5,
       "sourceUrl": "https://github.com/curtisgalloway/public-skills/tree/322192876442b066dd31690a190773c7f903d099/plugins/hardware-lab/skills/cynthion-reverse-engineer",
       "path": "entries/skills/cynthion-reverse-engineer",
       "files": []
@@ -804,17 +806,21 @@
           "control": 2,
           "adoption": 2,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Explicitly trying a strict art-direction system for a marketing page or app screen and accepting its style policy and browser-tool overhead. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Alternative to frontend-design and Impeccable, with stronger house-style enforcement. Native browser tools and webapp-testing cover screenshots and behavior. emil-design-eng, remove-animations and baseline-ui conflict with its marketing motion policy.",
-        "review": "docs/reviews/2026-10-29-design-taste-frontend.md",
-        "unknowns": [
-          "Entrypoint excerpts inspected; audit remaining guidance, study scripts, browser/media chain and asset handling."
-        ],
+        "review": "docs/reviews/2026-10-30-design-taste-frontend.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Experimental design method whose style and setup costs must fit the project. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Model-judged study and browser/media chain reviewed. Inspector can expose checkout dotfiles/symlink targets; screenshot and download coverage have explicit limits. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Local-file inspector serving sensitive checkouts",
+            "reason": "The local server serves the checkout root without authentication or Host validation, permits dotfiles, and uses lexical containment that follows symlink targets. Use an independently scoped static preview or fix those boundaries before exposing a sensitive checkout."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -836,7 +842,7 @@
         "impeccable",
         "webapp-testing"
       ],
-      "score": null,
+      "score": 5.1,
       "sourceUrl": "https://github.com/Leonxlnx/taste-skill/tree/af8a897996e159ccc89c9da535dff714d5dba62d/skills/taste-skill",
       "path": "entries/skills/design-taste-frontend",
       "files": []
@@ -992,17 +998,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 2,
-          "upkeep": 3
+          "upkeep": 3,
+          "dependability": 2
         },
         "context": "Developers working on this task: Trying detailed interaction and motion guidance for product UI while checking its technical examples against the project's actual library versions. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: frontend-design supplies art direction; react-component-composition supplies component contracts. remove-animations focuses on subtraction. This is an alternative craft policy, not an additional global mandate; it conflicts with baseline-ui and Taste on motion and easing.",
-        "review": "docs/reviews/2026-10-29-emil-design-eng.md",
-        "unknowns": [
-          "Inspect remaining skill sections and references, and verify animation claims against the actual runtime."
-        ],
+        "review": "docs/reviews/2026-10-30-emil-design-eng.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful craft detail with absolute rules that need project-specific judgment. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Useful interaction craft and verification guidance, qualified by blanket acceleration claims, fixed timing rules and a mandatory review-table format. Profile the target browser and Motion version. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -1024,7 +1028,7 @@
         "fixing-motion-performance",
         "react-component-composition"
       ],
-      "score": null,
+      "score": 6.4,
       "sourceUrl": "https://github.com/emilkowalski/skills/tree/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3/skills/emil-design-eng",
       "path": "entries/skills/emil-design-eng",
       "files": []
@@ -1760,17 +1764,16 @@
           "cognitiveEase": 2,
           "adoption": 1,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2,
+          "control": 2
         },
         "context": "Developers working on this task: Explicitly trying a broad design-refinement workflow and accepting its engine setup, project artifacts and command-specific dependencies. Declared hosts: claude-code, codex.",
         "baseline": "Comparison baseline and alternatives: Overlaps frontend-design, ux-critique, webapp-testing and native browser tools. Adds coordinated refinement vocabulary and live variants. Prefer a focused command to loading several competing design systems. A clean detector is not proof of design quality.",
-        "review": "docs/reviews/2026-10-29-impeccable.md",
-        "unknowns": [
-          "Inspect launcher/engine, required references, default telemetry and opt-out behavior before grading dependability or human control."
-        ],
+        "review": "docs/reviews/2026-10-30-impeccable.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Experimental suite; runtime behavior and data collection need inspection before recommendation. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Launcher and telemetry inspected. Cached/unversioned engines can differ from pin; telemetry opt-out preserves roll traffic, and update checks have a separate opt-out. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -1784,7 +1787,7 @@
       },
       "install": {
         "any": "Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow.",
-        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations. The launcher may download a versioned native engine. Rolls contact an upstream API; IMPECCABLE_NO_TELEMETRY=1 disables telemetry but not roll requests. Manual context fallback exists. Full engine and live-edit security are not audited.",
+        "notes": "Catalog admission does not activate this guidance, dependencies, hooks, external services or sibling workflows. Preserve user authorization and project conventions. See https://github.com/alex-red/agentic-catalog/blob/main/docs/frontend-design-options.md for selection and known limitations. The launcher may download a versioned native engine. Rolls contact an upstream API; IMPECCABLE_NO_TELEMETRY=1 disables choice telemetry but not roll requests; IMPECCABLE_NO_UPDATE_CHECK=1 separately disables version checks. Manual context fallback exists. Full engine and live-edit security are not audited.",
         "codex": "Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow. Resolve command paths from the installed skill base. Do not copy .codex/hooks.json.",
         "claude-code": "Fetch https://github.com/pbakaus/impeccable at 7510e233b228864606888d252abacf5e7148bf87. Copy the entire .agents/skills/impeccable subtree into .claude/skills/impeccable for Claude Code or .agents/skills/impeccable for Codex, preserving all nested files. Retain the repository-root LICENSE as LICENSE.txt in the installed directory. Check for an existing skill and preserve local changes rather than overwriting it. Include root NOTICE.md. This manual route omits hooks and named subagents; begin with scoped polish/refinement. Commands requiring named agents need separately selected host setup; manual copying does not supply the full workflow. Resolve command paths from the installed skill base. Do not copy repository settings or agent definitions implicitly."
       },
@@ -1795,7 +1798,7 @@
         "ux-critique",
         "webapp-testing"
       ],
-      "score": null,
+      "score": 5.4,
       "sourceUrl": "https://github.com/pbakaus/impeccable/tree/7510e233b228864606888d252abacf5e7148bf87/.agents/skills/impeccable",
       "path": "entries/skills/impeccable",
       "files": []
@@ -1880,17 +1883,15 @@
           "control": 3,
           "adoption": 1,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Explicitly choosing a broad UX design system across several stages and accepting its artifact conventions and experimental review limits. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Native planning and design reasoning cover parts of the process. ux-critique specializes in interface criticism; synthesize-research starts from existing records; moderated-usability-study prepares real sessions; evidence-to-flow-ux is a smaller decision procedure. Frontend design entries emphasize visual execution. Intent is an alternative broad system, not a prerequisite for these entries.",
-        "review": "docs/reviews/2026-10-29-intent.md",
-        "unknowns": [
-          "Only listed routing/context excerpts inspected; audit foundational references and required specialist paths before grading dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-intent.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Best considered for teams choosing the wider lifecycle method. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core and relevant research/ethics/accessibility foundations inspected. Useful bounded routing, but artifact conventions can hide material uncertainty; standards and regulatory claims need correction. Keep experimental scope and inspect selected siblings separately. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -1915,7 +1916,7 @@
         "interface-design",
         "frontend-design"
       ],
-      "score": null,
+      "score": 5.8,
       "sourceUrl": "https://github.com/ghaida/intent/tree/7111cb85894feaeb7e98938b1ed34597d40e3b4c/skills/intent",
       "path": "entries/skills/intent",
       "files": []
@@ -1946,17 +1947,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 2,
-          "upkeep": 3
+          "upkeep": 3,
+          "dependability": 2
         },
         "context": "Developers working on this task: Trying an opinionated product-UI workflow for dashboards, settings or admin tools, with persistent design decisions and explicit technical caveats. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Overlaps frontend-design, Impeccable Operate mode and existing component conventions. Adds product-domain exploration and a persistent system.md convention. Preserve native controls and established semantic tokens when they fit.",
-        "review": "docs/reviews/2026-10-29-interface-design.md",
-        "unknowns": [
-          "Inspect remaining core and command paths; resolve the previously recorded WCAG target-size wording and native-select claim."
-        ],
+        "review": "docs/reviews/2026-10-30-interface-design.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful domain-specific design method with retained prior accessibility and native-control concerns. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Useful product-UI craft, component reuse and visual checks. Native-control styling and WCAG target-size wording are overbroad; fixed exploration/motion rules need project judgment. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -1978,7 +1977,7 @@
         "impeccable",
         "react-component-composition"
       ],
-      "score": null,
+      "score": 6.4,
       "sourceUrl": "https://github.com/Dammyjay93/interface-design/tree/890d9295acdaf57891a20dc2499abfb4b8529784/.claude/skills/interface-design",
       "path": "entries/skills/interface-design",
       "files": []
@@ -2010,17 +2009,15 @@
           "control": 4,
           "adoption": 1,
           "compatibility": 2,
-          "upkeep": 3
+          "upkeep": 3,
+          "dependability": 3
         },
         "context": "Developers working on this task: Explicitly reviewing interface regressions in a change and accepting installation of the complete required domain-review bundle. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Native code review and ux-critique overlap general findings. This adds change attribution and affected-surface expansion, while react-component-composition covers implementation contracts. It is a review bundle, not a standalone one-file skill.",
-        "review": "docs/reviews/2026-10-29-interface-review.md",
-        "unknowns": [
-          "Dependability: required better-interface/domain skills and scope/removal references have not been inspected at this pin."
-        ],
+        "review": "docs/reviews/2026-10-30-interface-review.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful change-scoped review orchestration; installation must include the required sibling bundle. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Complete required eight-skill bundle inspected at one pin. Strong scope attribution, checkout protection and explicit coverage limits; exact polish conventions and abbreviated widget recipes still need judgment and rendered verification. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -2042,7 +2039,7 @@
         "ux-critique",
         "webapp-testing"
       ],
-      "score": null,
+      "score": 7.1,
       "sourceUrl": "https://github.com/jakubkrehel/skills/tree/1eb03d2b145df1c6cd84ab54a337600a2a379017/skills/interface-review",
       "path": "entries/skills/interface-review",
       "files": []
@@ -2137,17 +2134,21 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Building or reviewing an MCP server that wraps an external API or service. Declared hosts: any.",
         "baseline": "Current MCP SDK documentation and a small server built with its official examples, using the host’s ordinary code review.",
-        "review": "docs/reviews/2026-10-29-mcp-builder.md",
-        "unknowns": [
-          "Audit required language guides, best practices and evaluation harness before grading dependability; no server trial was performed."
-        ],
+        "review": "docs/reviews/2026-10-30-mcp-builder.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful MCP design guidance; supporting implementation and evaluation material still needs inspection. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Tool-design principles remain useful, but implementation examples and the evaluation harness have concrete correctness/control defects. Repair the file-resource, HTTP and harness paths before use; scoped example blocker retained. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Python file-resource and TypeScript HTTP example deployment",
+            "reason": "The Python example interpolates an unvalidated name into a file path; the HTTP example omits host binding and authentication middleware. Do not deploy these recipes unchanged."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -2161,7 +2162,7 @@
       "install": {
         "any": "npx skills add anthropics/skills --skill mcp-builder"
       },
-      "score": null,
+      "score": 6,
       "sourceUrl": "https://github.com/anthropics/skills/tree/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/mcp-builder",
       "path": "entries/skills/mcp-builder",
       "files": []
@@ -2335,17 +2336,15 @@
           "control": 2,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 3
         },
         "context": "Developers working on this task: Making a private repository public, choosing a license, or setting up packaging and release automation ahead of a public launch. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: oss-repo-health audits an already-public repository's ongoing practices and hands the pre-release secrets audit to this entry. github-actions-hardening reviews workflows in more depth. Hosts have no built-in release-readiness workflow.",
-        "review": "docs/reviews/2026-10-29-open-sourcing.md",
-        "unknowns": [
-          "Core inspected; inspect both scripts and required references. Earlier metadata reports read-only checks, which this pass does not independently re-audit."
-        ],
+        "review": "docs/reviews/2026-10-30-open-sourcing.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful launch checklist; do not infer release readiness from presence checks. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Read-only helper checks and a coherent secrets-first launch workflow. Presence checks cannot establish readiness; organization inference, license choice and release recipes need project verification. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -2367,7 +2366,7 @@
         "github-actions-hardening",
         "variant-analysis"
       ],
-      "score": null,
+      "score": 6.8,
       "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/open-sourcing/skills/open-sourcing",
       "path": "entries/skills/open-sourcing",
       "files": []
@@ -2543,23 +2542,21 @@
           "control": 1,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Agents run several dev servers, worktrees or monorepo apps at once and keep testing the wrong port, hitting EADDRINUSE, or mixing cookies across localhost apps. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: No host built-in or catalog entry gives agents stable named local URLs. Host background processes and webapp-testing still choose ports themselves; portless can sit underneath them. dev3000 (not admitted) now requires it. Worktree-aware names complement worktrunk.",
-        "review": "docs/reviews/2026-10-29-portless.md",
-        "unknowns": [
-          "Inspect remaining setup guidance, proxy, CA trust, hosts-sync and elevation paths; no privileged setup was executed."
-        ],
+        "review": "docs/reviews/2026-10-30-portless.md",
         "blockers": [
           {
             "scope": "Default privileged setup",
-            "reason": "Earlier pinned-source review records automatic privileged proxy/CA/hosts setup without an approval boundary. Keep those setup effects disabled until reviewed and explicitly authorized."
+            "reason": "Verified default app startup can invoke sudo, CA trust installation and hosts-file synchronization. Terminal/OS prompts exist but do not establish project-level authorization for all setup effects. Require explicit setup scope before using that path."
           }
         ],
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Strong development convenience with privileged setup costs that need explicit scope. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core proxy/TLS/hosts and elevation paths inspected. Routing and errors are visible, but app startup expands into privileged proxy, CA trust and hosts writes; trust markers can be stale. Preserve the setup blocker and use explicit configuration/removal scope. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -2584,7 +2581,7 @@
         "webapp-testing",
         "chrome-devtools-mcp"
       ],
-      "score": null,
+      "score": 6.5,
       "sourceUrl": "https://github.com/vercel-labs/portless/tree/3a67ed12fb9175e2bb2a237af5d14831e052a1aa/skills/portless",
       "path": "entries/skills/portless",
       "files": []
@@ -2673,17 +2670,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Writing, reviewing, or refactoring React or Next.js code where performance matters. Declared hosts: any.",
         "baseline": "React and the project framework documentation, existing profiler measurements, and targeted host code review.",
-        "review": "docs/reviews/2026-10-29-react-best-practices.md",
-        "unknowns": [
-          "Audit the applicable rule bodies and compiled reference, then verify advice with the target React/framework version."
-        ],
+        "review": "docs/reviews/2026-10-30-react-best-practices.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful React performance index; the index alone cannot establish rule correctness. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Complete compiled guide inspected. Useful performance priorities, with incorrect transition-cancellation/default-prop claims and behavior-changing micro-optimization examples. Select rules by framework version and measured bottleneck. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -2697,7 +2692,7 @@
       "install": {
         "any": "npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices"
       },
-      "score": null,
+      "score": 6.9,
       "sourceUrl": "https://github.com/vercel-labs/agent-skills/tree/dc8367e6f91c022d83361f03c3313fa05e848ee5/skills/react-best-practices",
       "path": "entries/skills/react-best-practices",
       "files": []
@@ -2967,17 +2962,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Understanding shipped binaries, APKs, packaged applications or protocols without complete source, while explicitly selecting a broad shell-first method. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: repo-research handles source repositories; systematic-debugging handles hypothesis testing. ReVa supplies a live Ghidra database and REA a larger cross-format runtime. Native shell and file tools cover basic triage; this option adds routing, exports and artifact-coordinate reporting.",
-        "review": "docs/reviews/2026-10-29-reverse-engineering.md",
-        "unknowns": [
-          "Only listed entrypoint ranges inspected; audit the remainder, platform references and executable helpers before grading dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-reverse-engineering.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "A useful cross-format method with unverified platform and helper coverage. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core, helper chain, both exporters and native/dynamic method inspected. Coordinate-based findings and visible analysis caps help; parser resource limits, metadata path trust, error exit status and incomplete secret masking need care. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -3000,7 +2993,7 @@
         "reva",
         "reverse-engineer-anything"
       ],
-      "score": null,
+      "score": 6.9,
       "sourceUrl": "https://github.com/EncidXVII/claude-reverse-engineering-skill/tree/9a857bd2ee62bd13aa66b3942bd17c89eabf6b8a/skills/reverse-engineering",
       "path": "entries/skills/reverse-engineering",
       "files": []
@@ -3149,17 +3142,21 @@
           "control": 3,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Authoring or tuning a skill and measuring whether it triggers and helps; use it as a methodology reference. Declared hosts: claude-code.",
         "baseline": "Comparison baseline and alternatives: Built into Claude Code through the skill-creator plugin; Codex ships a system skill-creator.",
-        "review": "docs/reviews/2026-10-29-skill-creator.md",
-        "unknowns": [
-          "Audit required helpers and the remaining authoring/evaluation instructions before grading dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-skill-creator.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Compare with the installed host skill creator before adopting a second authoring system. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Complete procedure and required authoring/benchmark/viewer boundaries inspected. Benchmark layout/metric mismatches and trigger proxies weaken results; viewer embedding and port cleanup need repair. Use the writing method selectively. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Evaluation viewer with untrusted outputs and default live launch",
+            "reason": "Unescaped JSON enters an inline HTML script; live launch also SIGTERMs any process listening on its port. Repair embedding and ownership checks before using this path."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -3174,7 +3171,7 @@
       "related": [
         "retrospective"
       ],
-      "score": null,
+      "score": 5.1,
       "sourceUrl": "https://github.com/anthropics/skills/tree/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/skill-creator",
       "path": "entries/skills/skill-creator",
       "files": []
@@ -3203,17 +3200,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 3
+          "upkeep": 3,
+          "dependability": 3
         },
         "context": "Developers working on this task: Existing research records need analysis into supported findings and product decisions, rather than preparing a new study or inspecting an interface. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Native summarization already extracts themes. This adds source-by-source observation, contradictory cases and product-decision synthesis. ux-critique examines an interface; moderated-usability-study prepares participant sessions; evidence-to-flow-ux connects evidence to design and retest. None is a required runtime dependency.",
-        "review": "docs/reviews/2026-10-29-synthesize-research.md",
-        "unknowns": [
-          "Inspect the remaining entrypoint and connector contract, including participant deduplication and limits on prevalence claims."
-        ],
+        "review": "docs/reviews/2026-10-30-synthesize-research.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful research structure; frequency and impact rankings require sampling judgment. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Coherent attributed synthesis with explicit confidence and contradictions. Deduplicate participants across sources and avoid treating convenience-sample frequencies as population prevalence. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -3236,7 +3231,7 @@
         "ux-critique",
         "intent"
       ],
-      "score": null,
+      "score": 7.5,
       "sourceUrl": "https://github.com/anthropics/knowledge-work-plugins/tree/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/product-management/skills/synthesize-research",
       "path": "entries/skills/synthesize-research",
       "files": []
@@ -3424,6 +3419,91 @@
     },
     {
       "schemaVersion": 2,
+      "id": "typescript-ops",
+      "type": "skill",
+      "title": "TypeScript types and native compiler adoption",
+      "summary": "Type modeling, generics, utility types, strict configuration and runtime validation, with a dedicated TypeScript 7 native compiler adoption guide. Experimental reference option; known configuration and type-example defects require independent verification.",
+      "useWhen": "Reviewing TypeScript types or planning a TypeScript 7 migration, especially compiler API consumers, configuration changes and side-by-side compiler installs, with project-specific verification.",
+      "tags": [
+        "typescript",
+        "migration",
+        "build-systems",
+        "monorepo",
+        "testing"
+      ],
+      "hosts": [
+        "any"
+      ],
+      "experimental": true,
+      "rating": {
+        "rubric": "human-v1",
+        "dimensions": {
+          "value": 3,
+          "dependability": 1,
+          "cognitiveEase": 2,
+          "control": 3,
+          "adoption": 3,
+          "compatibility": 2,
+          "upkeep": 3
+        },
+        "context": "Developers reviewing TypeScript types or assessing migration to the native TypeScript 7 compiler; use as a checked reference, not a copy-ready configuration or utility library.",
+        "baseline": "Ordinary model assistance plus the project-local compiler and official TypeScript migration documentation. monorepo-change-verification covers package graphs; secret-serialization and workers-best-practices cover narrower TypeScript risks. No dedicated general TypeScript skill is listed among this session's installed host skills.",
+        "review": "docs/reviews/2026-10-30-typescript-ops.md",
+        "blockers": [
+          {
+            "scope": "Unchanged configuration and advanced type examples",
+            "reason": "The references retain TS7-incompatible Node resolution templates, reverse a strictFunctionTypes assignment explanation, overclaim satisfies literal preservation and include a Promisify constraint that rejects its own example. Verify or replace affected recipes before use."
+          },
+          {
+            "scope": "TS7 migration readiness and diagnostic parity",
+            "reason": "npm ls cannot prove the absence of compiler API imports; plain TS/TSX projects can still depend on that API. The guide also treats every diagnostic difference as a compiler bug despite documented intentional changes. Inspect actual tooling and classify differences before migration."
+          }
+        ],
+        "evidence": "reviewed",
+        "reviewed": "2026-10-30",
+        "notes": "Broad TS7-aware reference with useful adoption concerns, but confirmed example defects and overbroad migration claims limit endorsement. Freshness helpers check package names/majors, not technical correctness or minor-version compatibility. Author benchmarks are not catalog outcomes. Experimental; no activation or matched trial."
+      },
+      "source": {
+        "kind": "vendored",
+        "url": "https://github.com/0xDarkMatter/claude-mods",
+        "path": "skills/typescript-ops",
+        "revision": "dd21becd241fbd0132a1e783062b27283e9fec4e",
+        "retrieved": "2026-10-30",
+        "license": "MIT",
+        "author": "0xDarkMatter (claude-mods)",
+        "notes": "Complete ten-file subtree copied unchanged at the last commit affecting the skill path, plus the root MIT license as LICENSE.txt. All packaged files read, including the Python helper and shell self-test. No applicable nested license or NOTICE was found in the pinned tree. No upstream script, installer, plugin or sibling skill was executed or activated."
+      },
+      "install": {
+        "notes": "Copy the entire directory including references, assets, scripts, tests and LICENSE.txt. Resolve helper paths from the installed skill directory. The optional freshness helper needs Python 3; --offline reads packaged files, --live queries the configured npm registry. The optional self-test needs Bash and Python and writes temporary files/bytecode. Do not schedule these or adopt sibling skills implicitly. Preserve project tools and authorization; consult the scoped blockers before applying recipes."
+      },
+      "overlap": "Ordinary model behavior and the compiler cover everyday syntax and diagnostics. This session lists no dedicated general TypeScript host skill; no claim is made about every host release. monorepo-change-verification owns cross-package graphs, secret-serialization owns serialization leaks, workers-best-practices owns Workers behavior, and create-adaptable-composable/vue-async-state own Vue concerns. This entry adds consolidated type references and a TS7 API/configuration migration checklist. Official documentation remains the simpler authority for release details; compiler and ecosystem compatibility must be checked per project.",
+      "related": [
+        "monorepo-change-verification",
+        "secret-serialization",
+        "workers-best-practices",
+        "create-adaptable-composable",
+        "vue-async-state",
+        "verification-before-completion"
+      ],
+      "score": 5.9,
+      "sourceUrl": "https://github.com/0xDarkMatter/claude-mods/tree/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops",
+      "path": "entries/skills/typescript-ops",
+      "files": [
+        "entries/skills/typescript-ops/LICENSE.txt",
+        "entries/skills/typescript-ops/SKILL.md",
+        "entries/skills/typescript-ops/assets/typescript-facts.json",
+        "entries/skills/typescript-ops/references/config-strict.md",
+        "entries/skills/typescript-ops/references/ecosystem.md",
+        "entries/skills/typescript-ops/references/generics-patterns.md",
+        "entries/skills/typescript-ops/references/ts7-native-compiler.md",
+        "entries/skills/typescript-ops/references/type-system.md",
+        "entries/skills/typescript-ops/references/utility-types.md",
+        "entries/skills/typescript-ops/scripts/check-typescript-facts.py",
+        "entries/skills/typescript-ops/tests/run.sh"
+      ]
+    },
+    {
+      "schemaVersion": 2,
       "id": "ui-ux-pro-max",
       "type": "skill",
       "title": "Searchable UI design guidance (UI UX Pro Max)",
@@ -3448,17 +3528,15 @@
           "control": 3,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Looking for product-specific design references or stack guidance and willing to verify the search results before applying or persisting them. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: frontend-design and Taste choose visual directions; this externalizes recommendations into searchable local data. react-best-practices overlaps its React guidance. It does not replace ux-critique or rendered verification.",
-        "review": "docs/reviews/2026-10-29-ui-ux-pro-max.md",
-        "unknowns": [
-          "Audit the dataset, search scripts and generation chain; use the bounded install route rather than assuming sibling installation is authorized."
-        ],
+        "review": "docs/reviews/2026-10-30-ui-ux-pro-max.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful design retrieval option; search rank and confidence fields do not establish correctness. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core, references and search/generation/persistence boundaries inspected with dataset samples. Closed rules and no-overwrite writes help; plausible defaults, editorial mappings and page/Master drift require verification before applying results. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -3481,7 +3559,7 @@
         "better-typography",
         "react-best-practices"
       ],
-      "score": null,
+      "score": 6.6,
       "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/28b3b8dee8c976df4fa3e94aed4e092ad43fcb03/.claude/skills/ui-ux-pro-max",
       "path": "entries/skills/ui-ux-pro-max",
       "files": []
@@ -3509,17 +3587,15 @@
           "control": 4,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: You want direct, evidence-grounded criticism of an app screen, prototype, screenshot, or connected user flow, with unsupported findings challenged before reporting. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Generic model critique and frontend-design guidance already identify familiar UI issues. This entry adds an explicit observation, citation-support, skeptic, and confidence pipeline. webapp-testing and chrome-devtools-mcp collect runtime evidence but do not supply that critique method. grilling stress-tests decisions through questions; improvement-loop and retrospective improve agent tooling and process. None of these substitutes for observing real users.",
-        "review": "docs/reviews/2026-10-29-ux-critique.md",
-        "unknowns": [
-          "Inspect required pipeline references, retrieval helpers, KB support samples and any requested writeback path."
-        ],
+        "review": "docs/reviews/2026-10-30-ux-critique.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "A useful critique method with large support dependencies; expert critique is not user research. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Required chat/flow pipeline and retrieval/usage helpers inspected with KB samples. Explicit quote/applicability checks help; lexical ranking, stage heuristics and citation uniqueness need judgment. Local aggregate usage writes are opt-out. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -3544,7 +3620,7 @@
         "grilling",
         "verification-before-completion"
       ],
-      "score": null,
+      "score": 6.6,
       "sourceUrl": "https://github.com/Thecsiz/ux-critique/tree/3da293cafb639195bf71797590081d4ffb0045ba/skills/ux-critique",
       "path": "entries/skills/ux-critique",
       "files": []
@@ -3574,17 +3650,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 3
+          "upkeep": 3,
+          "dependability": 2
         },
         "context": "Developers working on this task: A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Host review commands and the security-threat-model entry find issues in a diff or a design; none of them start from a known bug and expand it systematically.",
-        "review": "docs/reviews/2026-10-29-variant-analysis.md",
-        "unknowns": [
-          "Dependability: core and four step references were inspected; query resources and report template remain uninspected at this pin."
-        ],
+        "review": "docs/reviews/2026-10-30-variant-analysis.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful seed-based method; the core is not the complete parallel plugin workflow. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core and all query/report resources inspected. Strong seed-based method; generic source/sink/barrier models are unreliable defaults. Rewrite and validate task-specific queries before treating their absence of matches as evidence. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -3606,7 +3680,7 @@
         "secret-serialization",
         "diagnosing-bugs"
       ],
-      "score": null,
+      "score": 7,
       "sourceUrl": "https://github.com/trailofbits/skills/tree/123037ec8aed26f0d86327cc39137ee5043e5deb/plugins/variant-analysis/skills/variant-analysis",
       "path": "entries/skills/variant-analysis",
       "files": []
@@ -6041,17 +6115,21 @@
           "control": 3,
           "adoption": 1,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Correlating Mach-O, Objective-C, Swift or XPC static findings with explicitly requested Apple runtime observations. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: ReVa supplies Ghidra database access and REA broader application investigation. This option specializes in Apple metadata and static/runtime joins. Native debugging alone does not maintain those correlations; generic handoff is optional and the upstream long-run-agent companion is not required for bounded use.",
-        "review": "docs/reviews/2026-10-29-cerberus-re.md",
-        "unknowns": [
-          "Inspect agent-facing procedure, bridge, installer and runtime enforcement; documented controls are not verified behavior."
-        ],
+        "review": "docs/reviews/2026-10-30-cerberus-re.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Specialist Apple workbench with documented opt-ins and an unaudited runtime. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core, installer and runtime/MCP policy boundaries inspected. Dedicated gates help, but allow-by-default passthrough admits bootstrap installation/config writes. Typed status wrappers still rely on heuristic output parsing; repair the generic path. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Generic MCP cerberus_run setup commands",
+            "reason": "passthrough_policy permits bootstrap as read-oriented, but bootstrap writes configuration and installs the bridge. Require explicit setup scope and a corrected allowlist before using generic passthrough."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -6073,7 +6151,7 @@
         "reverse-engineering",
         "handoff"
       ],
-      "score": null,
+      "score": 5.3,
       "sourceUrl": "https://github.com/OwenPawl/cerberus-re-skill/tree/3116c94de17386d18367ed14e55dd2c7d1c7fe14",
       "path": "entries/mcps/cerberus-re",
       "files": []
@@ -6103,17 +6181,15 @@
           "control": 2,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 3
         },
         "context": "Developers working on this task: Agents change web UI and need to see the result, read console or network errors, or diagnose performance, especially in Codex or headless setups. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Claude Code's Chrome integration and built-in browser pane; Playwright MCP is an alternative, so install one of them.",
-        "review": "docs/reviews/2026-10-29-chrome-devtools-mcp.md",
-        "unknowns": [
-          "Inspect runtime/tool contracts and isolation, telemetry and CrUX controls; no browser server was installed or exercised."
-        ],
+        "review": "docs/reviews/2026-10-30-chrome-devtools-mcp.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful browser diagnostics; explicitly review data collection, profile isolation and overlap with installed tools. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "MCP/browser boundary, path checks and telemetry/CrUX paths inspected. Explicit errors and reconnect handling support use; profile persistence, dialog acceptance, raw debug logs and default outbound features require deliberate configuration. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6133,7 +6209,7 @@
         "verification-evidence",
         "webapp-testing"
       ],
-      "score": null,
+      "score": 7,
       "sourceUrl": "https://github.com/ChromeDevTools/chrome-devtools-mcp/tree/5463101120f94fc7c79d43c44c01a4ab57835279",
       "path": "entries/mcps/chrome-devtools-mcp",
       "files": []
@@ -6161,17 +6237,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Agents write code against fast-moving libraries and keep using deprecated or invented APIs. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.",
-        "review": "docs/reviews/2026-10-29-context7.md",
-        "unknowns": [
-          "Inspect client/installer code and service/data handling, and test version-specific retrieval; README claims are not accuracy evidence."
-        ],
+        "review": "docs/reviews/2026-10-30-context7.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Convenient version-specific documentation retrieval; verify important results against primary docs. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "MCP and setup/data boundaries inspected. Version-aware retrieval is a useful lead, not verified release accuracy. Queries leave the host; setup adds rules/skills and can overwrite files. Prefer explicit manual MCP configuration for bounded adoption. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6188,7 +6262,7 @@
         "notes": "Keep the API key in the environment, never in checked-in configuration."
       },
       "overlap": "Web search and fetch in both hosts, and libraries' own llms.txt files. Context7 is faster and targets specific versions.",
-      "score": null,
+      "score": 6.9,
       "sourceUrl": "https://github.com/upstash/context7/tree/74eda1819f17f8b177e0bdad10de14bdc6bb26af",
       "path": "entries/mcps/context7",
       "files": []
@@ -6218,17 +6292,15 @@
           "control": 3,
           "adoption": 1,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Selecting an IDA analysis backend for compiled artifacts, particularly when starting a new integration or migrating from mrexodia-specific recipes. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: IDA supplies the underlying analysis; this entry exposes its reference/Python/database contract to agents. ReVa is a Ghidra alternative, REA a higher-level workbench, and reverse-engineering an optional investigation method. Generic host shell access does not provide IDA integration.",
-        "review": "docs/reviews/2026-10-29-ida-mcp.md",
-        "unknowns": [
-          "Audit runtime, Python/database mutations, logging and optional hooks before grading dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-ida-mcp.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Specialist IDA bridge; do not treat analysis tools or Python execution as inherently read-only. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Complete MCP boundary and optional hooks inspected. Target/cancellation handling is explicit; arbitrary Python, persistent mutation, full-content tracing and unauthenticated remote HTTP require trusted scope. Keep optional auto-allow hooks excluded. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6249,7 +6321,7 @@
         "reverse-engineering",
         "reverse-engineer-anything"
       ],
-      "score": null,
+      "score": 6,
       "sourceUrl": "https://github.com/HexRaysSA/ida-mcp/tree/391c2f0606a773050fbafcd3ff62942688a0713b",
       "path": "entries/mcps/ida-mcp",
       "files": []
@@ -6278,17 +6350,15 @@
           "control": 2,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 3
+          "upkeep": 3,
+          "dependability": 2
         },
         "context": "Developers working on this task: A project pins tools or tasks with mise and agents keep using the wrong runtime version, assuming a tool is missing, or inventing build and test commands. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: The agent can run mise commands in a shell already; this adds effect-labeled commands, trust enforcement and structured resources. repo-research covers discovering commands by reading the repository. process-compose-mcp manages long-running processes, which run_task does not.",
-        "review": "docs/reviews/2026-10-29-mise-mcp.md",
-        "unknowns": [
-          "Audit full implementation and trust/config behavior, including CI and safe-mode exceptions recorded in earlier metadata."
-        ],
+        "review": "docs/reviews/2026-10-30-mise-mcp.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful for existing mise users; environment disclosure and task authority require deliberate client configuration. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Complete MCP boundary and trust paths inspected. Explicit argv validation and failure reporting help. CI trust shortcuts qualify refusal claims; environment reads expose real values and task runs answer other prompts automatically. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6311,7 +6381,7 @@
         "repo-research",
         "bun-workspaces"
       ],
-      "score": null,
+      "score": 6.6,
       "sourceUrl": "https://github.com/jdx/mise/blob/b71ae7cfd663e8eb2f88ed95086638db170543f6/src/cli/mcp.rs",
       "path": "entries/mcps/mise-mcp",
       "files": []
@@ -6340,14 +6410,12 @@
           "control": 2,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: A project's dev stack runs under process-compose and agents keep starting duplicate servers, losing background logs, or guessing whether a service is ready. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Host background shells (Claude Code run_in_background, Monitor, task lists) run commands within one session; this persists one named stack across sessions and agents, with readiness and searchable logs. portless gives the same apps stable URLs. Third-party process-compose MCP wrappers are superseded by this built-in server.",
-        "review": "docs/reviews/2026-10-29-process-compose-mcp.md",
-        "unknowns": [
-          "Audit transport/control code and argument escaping; the previously recorded shell interpolation defect remains unresolved."
-        ],
+        "review": "docs/reviews/2026-10-30-process-compose-mcp.md",
         "blockers": [
           {
             "scope": "Shell-interpolated process tool arguments",
@@ -6355,8 +6423,8 @@
           }
         ],
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful stack management with retained command-interpolation and transport concerns. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "MCP package and guide inspected. Explicit SSE controls, opt-in process tools and timeouts help, but nested quoting in the psql recipe remains injectable. Resource reads execute processes; arguments can enter logs. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6381,7 +6449,7 @@
         "webapp-testing",
         "chrome-devtools-mcp"
       ],
-      "score": null,
+      "score": 5.4,
       "sourceUrl": "https://github.com/F1bonacc1/process-compose/tree/6ffa74f462cd2fa4f8dc1ee63c70b793b298c858/src/mcp",
       "path": "entries/mcps/process-compose-mcp",
       "files": []
@@ -6391,7 +6459,7 @@
       "id": "reva",
       "type": "mcp",
       "title": "ReVa Ghidra investigation",
-      "summary": "Ghidra MCP integration for triage, focused code navigation and iterative database refinement, with optional binary-triage and deep-analysis skills. Known inference-example defects and incomplete runtime review remain disclosed.",
+      "summary": "Ghidra MCP integration for triage, focused code navigation and iterative database refinement, with optional binary-triage and deep-analysis skills. Known inference-example defects, retry risks and runtime inspection limits remain disclosed.",
       "useWhen": "Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration.",
       "tags": [
         "reverse_engineering",
@@ -6411,17 +6479,21 @@
           "control": 3,
           "adoption": 1,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: Investigating compiled behavior in a Ghidra project where repeated cross-reference queries, annotations and type refinement justify a live integration. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Ghidra already supplies analysis and scripting; host tools supply planning and file inspection. This bridge adds incremental live database access. reverse-engineering can use exported text; REA provides broader artifact coordination and official IDA MCP is an alternative backend.",
-        "review": "docs/reviews/2026-10-29-reva.md",
-        "unknowns": [
-          "Audit extension, scripting controls, runtime and full operating skill; no integration trial was performed."
-        ],
+        "review": "docs/reviews/2026-10-30-reva.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful Ghidra bridge; scripting and database edits need explicit analysis scope. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Operating method and key runtime controls inspected. Public-bind and script-path guards help, but automatic stdio retries can repeat mutations; cooperative timeouts and inference examples remain weak. Preserve experimental scope and the headless retry blocker. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Headless stdio calls that can mutate state or execute scripts",
+            "reason": "ReconnectingBackend retries call_tool after transport errors/timeouts without checking idempotence; an operation may execute twice. Use direct local HTTP with controlled retries or repair the bridge."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -6443,7 +6515,7 @@
         "ida-mcp",
         "systematic-debugging"
       ],
-      "score": null,
+      "score": 5.5,
       "sourceUrl": "https://github.com/cyberkaida/reverse-engineering-assistant/tree/a2fcd946ec9c0bcf204da308365c16abb781dc53",
       "path": "entries/mcps/reva",
       "files": []
@@ -6472,17 +6544,15 @@
           "control": 3,
           "adoption": 2,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: Tracing behavior across shipped application components or artifact formats where retained evidence and a common investigation surface justify a broader workbench. Declared hosts: any.",
         "baseline": "Comparison baseline and alternatives: Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost.",
-        "review": "docs/reviews/2026-10-29-reverse-engineer-anything.md",
-        "unknowns": [
-          "Audit investigation guides, setup and provider runtimes at the installed release; repository README alone is insufficient."
-        ],
+        "review": "docs/reviews/2026-10-30-reverse-engineer-anything.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Broad RE workbench whose runtime and package-to-repository correspondence need inspection. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core investigation and selected provider lifecycle/wire reviewed. Source npm preparation can install Husky; source-build instructions now disable that hook setup. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6494,7 +6564,7 @@
         "notes": "Repository snapshot binds source, runtime and authored skill consistently. Public skill subtree last changed at 8188497f13477918f2b696689c3598b65f11a7c5. Preserve THIRD_PARTY_NOTICES.md and relevant licenses. A package version string does not prove equality with this source tree."
       },
       "install": {
-        "any": "Fetch https://github.com/morluto/rea at c0c3902207d6b1a33709e42b80c7e570da7db964 into a trusted tool directory outside the analysis target. Review lifecycle scripts, notices and selected provider dependencies, then follow pinned docs/installation.md for a source build: npm ci and npm run build:cached. Use its documented Node.js version and record the resolved environment. Register an absolute Node executable with arguments /absolute/path/to/rea/scripts/rea.mjs and mcp in project-scoped host configuration. Copy the complete authored .agents/skills/reverse-engineer-anything subtree and references only if its guidance is selected, retaining LICENSE and notices. Native work requires a separately selected compatible provider. Do not run rea setup, install engines, hooks, plugin bundles or AgentEnv/Docker implicitly; a selected published release needs a separately recorded pin and capability check.",
+        "any": "Fetch https://github.com/morluto/rea at c0c3902207d6b1a33709e42b80c7e570da7db964 into a trusted tool directory outside the analysis target. Review lifecycle scripts, notices and selected provider dependencies, then follow pinned docs/installation.md for a source build: set HUSKY=0 for npm ci to prevent prepare from installing Git hooks, then npm run build:cached. Use its documented Node.js version and record the resolved environment. Register an absolute Node executable with arguments /absolute/path/to/rea/scripts/rea.mjs and mcp in project-scoped host configuration. Copy the complete authored .agents/skills/reverse-engineer-anything subtree and references only if its guidance is selected, retaining LICENSE and notices. Native work requires a separately selected compatible provider. Do not run rea setup, install engines, hooks, plugin bundles or AgentEnv/Docker implicitly; a selected published release needs a separately recorded pin and capability check.",
         "notes": "Admission activates nothing. Preserve project conventions and existing permissions. Runtime execution, hardware interaction, database writes and optional companions require the scope of the actual task. Source review only; see docs/reverse-engineering-options.md and the admission record for limits."
       },
       "overlap": "Ordinary source analysis belongs to repo-research. reverse-engineering supplies a smaller method; ReVa and IDA MCP expose particular databases; Cerberus specializes in Apple static/runtime correlation. REA adds cross-format routing, retained evidence and feature investigation at greater operational cost.",
@@ -6505,7 +6575,7 @@
         "ida-mcp",
         "cerberus-re"
       ],
-      "score": null,
+      "score": 6,
       "sourceUrl": "https://github.com/morluto/rea/tree/c0c3902207d6b1a33709e42b80c7e570da7db964",
       "path": "entries/mcps/reverse-engineer-anything",
       "files": []
@@ -6534,17 +6604,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: You run long or parallel Claude Code sessions and want context pressure, tool and subagent activity, and limits visible without running /context, /cost or /usage. Declared hosts: claude-code.",
         "baseline": "Comparison baseline and alternatives: Claude Code's statusLine setting, which this fills, and the built-in status line setup agent; /context, /cost and /usage report the same numbers on demand. ccusage statusline is a lighter cost-only alternative. context-hogs attributes context cost to files rather than showing live use.",
-        "review": "docs/reviews/2026-10-29-claude-hud.md",
-        "unknowns": [
-          "Audit setup, cache launcher, transcript/config readers and distributed output; earlier highest-version cache finding is unresolved."
-        ],
+        "review": "docs/reviews/2026-10-30-claude-hud.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful human-facing visibility; retained launcher pinning concerns require follow-up. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Setup/launcher and primary source/distributed entry paths inspected. Backups, sanitization and opt-in shell execution help; highest-cache version selection ignores enabled/pinned choice, and append-only parser assumptions can show stale or partial state. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6565,7 +6633,7 @@
         "context-hogs",
         "desktop-attention"
       ],
-      "score": null,
+      "score": 6.9,
       "sourceUrl": "https://github.com/jarrodwatts/claude-hud/tree/ce2ceff9d67a34e9e6a7889336cf2911254800ff",
       "path": "entries/plugins/claude-hud",
       "files": []
@@ -6594,17 +6662,21 @@
           "control": 3,
           "adoption": 2,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: You keep correcting the agent on the same preferences and want those corrections captured with a review step. Declared hosts: claude-code.",
         "baseline": "Comparison baseline and alternatives: Claude Code auto memory, the retrospective skill, and revise-claude-md.",
-        "review": "docs/reviews/2026-10-29-claude-reflect.md",
-        "unknowns": [
-          "Audit capture hooks, local storage, history processing and memory/skill writes before grading dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-claude-reflect.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Adopt only when the review queue justifies automatic capture and reminders. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core command, hooks and storage/validation boundaries inspected. Manual final review helps, but migration/concurrent queue loss, filtering drift and whole-section AGENTS replacement need repair. Raw corrections remain sensitive local records. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "AGENTS.md batch synchronization",
+            "reason": "The command replaces the whole managed section using the current learning batch; preserve and merge previously accepted entries before applying this path."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -6623,7 +6695,7 @@
         "revise-claude-md",
         "self-improvement-loop"
       ],
-      "score": null,
+      "score": 5.1,
       "sourceUrl": "https://github.com/BayramAnnakov/claude-reflect/tree/77c3340592aefc6ca964909198effc70fca3d01e",
       "path": "entries/plugins/claude-reflect",
       "files": []
@@ -6652,20 +6724,24 @@
         "dimensions": {
           "value": 3,
           "cognitiveEase": 2,
-          "control": 3,
+          "control": 2,
           "adoption": 2,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: You want a complete, opinionated plan, review, and learn loop where every change leaves searchable lessons for the next task. Declared hosts: claude-code, codex.",
         "baseline": "Comparison baseline and alternatives: Lesson capture overlaps the retrospective skill. Planning and review overlap host plan mode and review commands.",
-        "review": "docs/reviews/2026-10-29-compound-engineering.md",
-        "unknowns": [
-          "Inspect active skills, prompt assets, persistence and host adapters; no end-to-end method trial was performed."
-        ],
+        "review": "docs/reviews/2026-10-30-compound-engineering.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Consider for deliberate method adoption, after comparing native planning/review and a smaller retrospective. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core method and persistence reviewed. Full review defaults to external-model egress after disclosure; automatic history probing and shipping tail need deliberate adoption. Static AI curator assessment; no new behavioral evidence.",
+        "blockers": [
+          {
+            "scope": "Automatic external-model review",
+            "reason": "The full review path defaults to auto with no required recipient allowlist and treats invocation plus disclosure as authorization. Disable this route where external code transfer needs separately recorded permission until explicitly adopted."
+          }
+        ]
       },
       "source": {
         "kind": "linked",
@@ -6686,7 +6762,7 @@
         "retrospective",
         "explore-plan-implement-review"
       ],
-      "score": null,
+      "score": 5.6,
       "sourceUrl": "https://github.com/EveryInc/compound-engineering-plugin/tree/bdc53d034ccfa5baf01b6139cd46082145ff95cc",
       "path": "entries/plugins/compound-engineering",
       "files": []
@@ -6720,14 +6796,12 @@
           "control": 1,
           "adoption": 2,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 1
         },
         "context": "Developers working on this task: A team wants a complete, enforced spec-to-merge workflow rather than individual techniques. Declared hosts: claude-code, codex.",
         "baseline": "Comparison baseline and alternatives: Plan mode and the review commands in both hosts cover part of it. It also contains verification-before-completion, test-driven-development, and a systematic-debugging skill.",
-        "review": "docs/reviews/2026-10-29-superpowers.md",
-        "unknowns": [
-          "Audit bootstrap, skill bodies, hooks and optional companion; README workflow claims do not establish behavioral dependability."
-        ],
+        "review": "docs/reviews/2026-10-30-superpowers.md",
         "blockers": [
           {
             "scope": "Mandatory delete-before-tests workflow",
@@ -6735,8 +6809,8 @@
           }
         ],
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "High process cost; document-specific deletion and compulsory routing rules need revision before broad use. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Core workflow audit confirms deletion blocker, package-install assumptions and path-based ownership/ignore weaknesses. Host adapter details require checking against live tools. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6756,7 +6830,7 @@
         "verification-before-completion",
         "test-driven-development"
       ],
-      "score": null,
+      "score": 4.4,
       "sourceUrl": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3",
       "path": "entries/plugins/superpowers",
       "files": []
@@ -6786,14 +6860,12 @@
           "control": 2,
           "adoption": 2,
           "compatibility": 2,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: You run several agent sessions on separate branches and want consistent worktree creation, cleanup and a view of which session is working or waiting. Declared hosts: claude-code, codex.",
         "baseline": "Comparison baseline and alternatives: Claude Code has built-in worktrees (--worktree, EnterWorktree, worktree-isolated subagents under .claude/worktrees/); Codex has its own. Worktrunk adds merge and cleanup, project lifecycle hooks with approval, and per-session status. The superpowers and compound-engineering worktree skills are guidance only. desktop-attention covers waiting-for-input alerts.",
-        "review": "docs/reviews/2026-10-29-worktrunk.md",
-        "unknowns": [
-          "Audit hook handler, PermissionRequest behavior, merge/removal and shell integration; previous findings remain unresolved."
-        ],
+        "review": "docs/reviews/2026-10-30-worktrunk.md",
         "blockers": [
           {
             "scope": "PermissionRequest auto-approval for EnterWorktree",
@@ -6801,8 +6873,8 @@
           }
         ],
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful worktree UX; plugin lifecycle takeover and retained auto-approval behavior need review. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Same-repository hook restriction verified; approval takeover remains blocked. Merge may continue without declined validation hooks; stash recovery is not identity-bound. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6827,7 +6899,7 @@
         "desktop-attention",
         "superpowers"
       ],
-      "score": null,
+      "score": 6,
       "sourceUrl": "https://github.com/max-sixty/worktrunk/tree/bc8ad63e232b28445474dd03ab1ac9641bdd4f31/plugins/worktrunk",
       "path": "entries/plugins/worktrunk",
       "files": []
@@ -6857,17 +6929,15 @@
           "control": 3,
           "adoption": 3,
           "compatibility": 3,
-          "upkeep": 2
+          "upkeep": 2,
+          "dependability": 2
         },
         "context": "Developers working on this task: You want to know what agent sessions cost over time or across projects and agents, beyond the current session's /cost or /usage. Declared hosts: claude-code, codex.",
         "baseline": "Comparison baseline and alternatives: Claude Code's /cost and /usage cover the current session and plan limits; this adds history across sessions, projects and agents. Codex has no built-in historical report. claude-hud shows live session cost in the status line.",
-        "review": "docs/reviews/2026-10-29-ccusage.md",
-        "unknowns": [
-          "Audit wrapper/native executable correspondence, input parsers, pricing paths and offline behavior at the release pin."
-        ],
+        "review": "docs/reviews/2026-10-30-ccusage.md",
         "evidence": "reviewed",
-        "reviewed": "2026-10-29",
-        "notes": "Useful human-facing reporting; displayed costs are estimates and runtime behavior still needs inspection. Static curator assessment; no new behavioral trial."
+        "reviewed": "2026-11-03",
+        "notes": "Primary Claude/Codex source paths and native release wiring inspected. Silent record omissions, heuristic deduplication/model inference and pricing snapshots limit cost accuracy; published binary equivalence remains unverified. Static AI curator assessment; no new behavioral evidence."
       },
       "source": {
         "kind": "linked",
@@ -6879,7 +6949,7 @@
         "notes": "Release tag v20.0.45 (npm ccusage 20.0.45). ryoppippi/ccusage redirects to this repository. The @ccusage/codex and @ccusage/mcp packages are deprecated in favor of ccusage 20."
       },
       "install": {
-        "any": "Run a pinned version instead of @latest: npx ccusage@20.0.45 daily (Claude Code) or npx ccusage@20.0.45 codex daily (Codex). bunx ccusage@20.0.45 also works. Add --offline to skip the price download.",
+        "any": "Run a pinned version instead of @latest: npx ccusage@20.0.45 claude daily (Claude Code) or npx ccusage@20.0.45 codex daily (Codex). bunx ccusage@20.0.45 also works. Add --offline to skip the price download.",
         "claude-code": "Optional status line: set statusLine in settings.json to {\"type\": \"command\", \"command\": \"npx -y ccusage@20.0.45 statusline\"}. ccusage never edits settings itself. An unpinned npx or bunx command here would fetch new code on every render, so keep the version.",
         "notes": "The npm package downloads a native binary for your platform. Nothing is installed globally unless you choose npm install -g."
       },
@@ -6888,7 +6958,7 @@
         "claude-hud",
         "subagent-budget"
       ],
-      "score": null,
+      "score": 6.9,
       "sourceUrl": "https://github.com/ccusage/ccusage/tree/154e13bb6658778e774821bc5d0f6a92dcc9ae36",
       "path": "entries/tools/ccusage",
       "files": []

@@ -4,8 +4,8 @@ type: plugin
 title: Worktrunk parallel worktrees
 summary: A git worktree CLI (wt) with Claude Code and Codex plugins for running agents in parallel. It creates, merges and removes worktrees, shows each session's activity in wt list, and replaces Claude Code's built-in worktree creation and removal with its own.
 useWhen: You run several agent sessions on separate branches and want consistent worktree creation, cleanup and a view of which session is working or waiting.
-tags: [dev-ux, worktrees, git, subagents]
-hosts: [claude-code, codex]
+tags: [ dev-ux, worktrees, git, subagents ]
+hosts: [ claude-code, codex ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,17 +15,16 @@ rating:
     adoption: 2
     compatibility: 2
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: You run several agent sessions on separate branches and want consistent worktree creation, cleanup and a view of which session is working or waiting. Declared hosts: claude-code, codex."
   baseline: "Comparison baseline and alternatives: Claude Code has built-in worktrees (--worktree, EnterWorktree, worktree-isolated subagents under .claude/worktrees/); Codex has its own. Worktrunk adds merge and cleanup, project lifecycle hooks with approval, and per-session status. The superpowers and compound-engineering worktree skills are guidance only. desktop-attention covers waiting-for-input alerts."
-  review: docs/reviews/2026-10-29-worktrunk.md
-  unknowns:
-    - Audit hook handler, PermissionRequest behavior, merge/removal and shell integration; previous findings remain unresolved.
+  review: docs/reviews/2026-10-30-worktrunk.md
   blockers:
     - scope: PermissionRequest auto-approval for EnterWorktree
       reason: Earlier pinned-source review records automatic approval into existing worktrees. Disable that hook path where it supersedes the host or project approval policy until explicitly adopted.
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful worktree UX; plugin lifecycle takeover and retained auto-approval behavior need review. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Same-repository hook restriction verified; approval takeover remains blocked. Merge may continue without declined validation hooks; stash recovery is not identity-bound. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/max-sixty/worktrunk
@@ -41,4 +40,4 @@ install:
   codex: codex plugin marketplace add max-sixty/worktrunk, then codex plugin add worktrunk@worktrunk. Markers only; the bundled wt-switch-create skill works only in Claude Code.
   notes: 'Skills without hooks (not documented upstream): npx skills add max-sixty/worktrunk --skill worktrunk. Always pass --skill, because the repository also exposes maintainer skills. wt-switch-create depends on the plugin hooks, so install it only with the plugin.'
 overlap: Claude Code has built-in worktrees (--worktree, EnterWorktree, worktree-isolated subagents under .claude/worktrees/); Codex has its own. Worktrunk adds merge and cleanup, project lifecycle hooks with approval, and per-session status. The superpowers and compound-engineering worktree skills are guidance only. desktop-attention covers waiting-for-input alerts.
-related: [portless, subagent-budget, desktop-attention, superpowers]
+related: [ portless, subagent-budget, desktop-attention, superpowers ]

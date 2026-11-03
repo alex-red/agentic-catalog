@@ -4,8 +4,8 @@ type: skill
 title: Variant analysis (Trail of Bits)
 summary: Finds the other instances of a bug already found. It extracts the root cause, writes a pattern that matches only the known instance, generalizes one element at a time, and stops when more than half the matches are noise. Triage and a report template follow, with CodeQL and Semgrep starters for five languages.
 useWhen: A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs.
-tags: [security, code-review, bug-hunting, semgrep, codeql]
-hosts: [any]
+tags: [ security, code-review, bug-hunting, semgrep, codeql ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 3
+    dependability: 2
   context: "Developers working on this task: A vulnerability or logic bug has been found in one place and the question is where else the same root cause occurs. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Host review commands and the security-threat-model entry find issues in a diff or a design; none of them start from a known bug and expand it systematically."
-  review: docs/reviews/2026-10-29-variant-analysis.md
-  unknowns:
-    - "Dependability: core and four step references were inspected; query resources and report template remain uninspected at this pin."
+  review: docs/reviews/2026-10-30-variant-analysis.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful seed-based method; the core is not the complete parallel plugin workflow. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: "Core and all query/report resources inspected. Strong seed-based method; generic source/sink/barrier models are unreliable defaults. Rewrite and validate task-specific queries before treating their absence of matches as evidence. Static AI curator assessment; no new behavioral evidence."
 source:
   kind: linked
   url: https://github.com/trailofbits/skills
@@ -36,4 +35,4 @@ install:
   codex: codex plugin marketplace add trailofbits/skills, then codex plugin add variant-analysis@trailofbits
   notes: Other hosts can copy the skill directory, including resources/, from the pinned revision; keep the CC-BY-SA-4.0 attribution and share-alike terms with it. CodeQL or Semgrep are optional.
 overlap: Host review commands and the security-threat-model entry find issues in a diff or a design; none of them start from a known bug and expand it systematically.
-related: [security-threat-model, secret-serialization, diagnosing-bugs]
+related: [ security-threat-model, secret-serialization, diagnosing-bugs ]

@@ -4,8 +4,8 @@ type: plugin
 title: Claude HUD status line
 summary: A Claude Code status line showing context use, active tools, running subagents, todo progress, rate limits and session cost, read from the session transcript and the JSON Claude Code passes to the status line. Setup backs up settings and asks before replacing an existing status line.
 useWhen: You run long or parallel Claude Code sessions and want context pressure, tool and subagent activity, and limits visible without running /context, /cost or /usage.
-tags: [dev-ux, status-line, context, observability]
-hosts: [claude-code]
+tags: [ dev-ux, status-line, context, observability ]
+hosts: [ claude-code ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 2
+    dependability: 2
   context: "Developers working on this task: You run long or parallel Claude Code sessions and want context pressure, tool and subagent activity, and limits visible without running /context, /cost or /usage. Declared hosts: claude-code."
   baseline: "Comparison baseline and alternatives: Claude Code's statusLine setting, which this fills, and the built-in status line setup agent; /context, /cost and /usage report the same numbers on demand. ccusage statusline is a lighter cost-only alternative. context-hogs attributes context cost to files rather than showing live use."
-  review: docs/reviews/2026-10-29-claude-hud.md
-  unknowns:
-    - Audit setup, cache launcher, transcript/config readers and distributed output; earlier highest-version cache finding is unresolved.
+  review: docs/reviews/2026-10-30-claude-hud.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful human-facing visibility; retained launcher pinning concerns require follow-up. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Setup/launcher and primary source/distributed entry paths inspected. Backups, sanitization and opt-in shell execution help; highest-cache version selection ignores enabled/pinned choice, and append-only parser assumptions can show stale or partial state. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/jarrodwatts/claude-hud
@@ -35,4 +34,4 @@ install:
   claude-code: claude plugin marketplace add jarrodwatts/claude-hud, then claude plugin install claude-hud@claude-hud. In a session, run /reload-plugins and then /claude-hud:setup, which writes statusLine to settings.json after backing it up to settings.json.bak.<timestamp>.
   notes: 'Requires Node 18+ or Bun. To revert, restore the settings backup (or remove statusLine), uninstall the plugin, and delete ~/.claude/plugins/claude-hud/. The optional --extra-cmd segment runs a shell command only when CLAUDE_HUD_ALLOW_EXTRA_CMD=1 is set; leave it off unless you need it.'
 overlap: Claude Code's statusLine setting, which this fills, and the built-in status line setup agent; /context, /cost and /usage report the same numbers on demand. ccusage statusline is a lighter cost-only alternative. context-hogs attributes context cost to files rather than showing live use.
-related: [ccusage, context-hogs, desktop-attention]
+related: [ ccusage, context-hogs, desktop-attention ]

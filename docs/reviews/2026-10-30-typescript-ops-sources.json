@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-30",
+  "reviewer": "Codex (AI curator)",
+  "revision": "dd21becd241fbd0132a1e783062b27283e9fec4e",
+  "path": "skills/typescript-ops",
+  "files": [
+    {
+      "path": "entries/skills/typescript-ops/LICENSE.txt",
+      "upstreamPath": "LICENSE",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/LICENSE",
+      "sha256": "203a43b7a95449dff6221e22a6ba4b8498771b418691bd699b183636b7185eea",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/SKILL.md",
+      "upstreamPath": "skills/typescript-ops/SKILL.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/SKILL.md",
+      "sha256": "eb47f4f11d6e34e540041547f783d5a67b5f7bf34aff9a6e52dc708dd389fb0d",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/assets/typescript-facts.json",
+      "upstreamPath": "skills/typescript-ops/assets/typescript-facts.json",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/assets/typescript-facts.json",
+      "sha256": "bb94f5e3d40b14e2a68d4c9a1f66bb93326fdd44418f1cf14542321674008ba7",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/references/config-strict.md",
+      "upstreamPath": "skills/typescript-ops/references/config-strict.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/references/config-strict.md",
+      "sha256": "db67b064d8dbccb9a76dba1aa912c3fd4e475b19d36ca905868de74961b781ce",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/references/ecosystem.md",
+      "upstreamPath": "skills/typescript-ops/references/ecosystem.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/references/ecosystem.md",
+      "sha256": "ed7310ff4b48f392b9061d3574b0445984556dda11483669f6527d702f44e51f",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/references/generics-patterns.md",
+      "upstreamPath": "skills/typescript-ops/references/generics-patterns.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/references/generics-patterns.md",
+      "sha256": "881b97e0d734a395f9f5f6a4c910b275cc2969fae84cae9535daaacd571635db",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/references/ts7-native-compiler.md",
+      "upstreamPath": "skills/typescript-ops/references/ts7-native-compiler.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/references/ts7-native-compiler.md",
+      "sha256": "b3c440af93d893d5d672444f06a7d3286348c2ee9552eedd0f398863b2187c7b",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/references/type-system.md",
+      "upstreamPath": "skills/typescript-ops/references/type-system.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/references/type-system.md",
+      "sha256": "ff6e08cdb4c73c78520ffb24919dff409762aef9d5c56e65d3781943f224eb7f",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/references/utility-types.md",
+      "upstreamPath": "skills/typescript-ops/references/utility-types.md",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/references/utility-types.md",
+      "sha256": "603063d0ac63e58e20945d5f4914b4f9d34b2d70ef35dd7711ef75dedc565408",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/scripts/check-typescript-facts.py",
+      "upstreamPath": "skills/typescript-ops/scripts/check-typescript-facts.py",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/scripts/check-typescript-facts.py",
+      "sha256": "752957e8f3c5d2de078bb97490613cc71aade837a1c55de3df3178d071de18c5",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    },
+    {
+      "path": "entries/skills/typescript-ops/tests/run.sh",
+      "upstreamPath": "skills/typescript-ops/tests/run.sh",
+      "url": "https://github.com/0xDarkMatter/claude-mods/blob/dd21becd241fbd0132a1e783062b27283e9fec4e/skills/typescript-ops/tests/run.sh",
+      "sha256": "1711cb89b4aed26b975502969a927313ca5635b1f6020a13e6f1ed99263b998b",
+      "inspection": "read in full; upstream data, not active contributor instructions"
+    }
+  ],
+  "unreadPackagedFiles": [],
+  "upstreamScriptsExecuted": false,
+  "behavioralEvaluation": false
+}

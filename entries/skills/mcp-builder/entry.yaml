@@ -4,8 +4,8 @@ type: skill
 title: MCP server builder
 summary: A four-phase guide for designing, implementing, reviewing, and evaluating MCP servers in Python (FastMCP) or TypeScript, with tool-design best practices and an evaluation harness.
 useWhen: Building or reviewing an MCP server that wraps an external API or service.
-tags: [mcp, tool-design, api-integration, evaluation]
-hosts: [any]
+tags: [ mcp, tool-design, api-integration, evaluation ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,16 @@ rating:
     adoption: 3
     compatibility: 3
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: Building or reviewing an MCP server that wraps an external API or service. Declared hosts: any."
   baseline: Current MCP SDK documentation and a small server built with its official examples, using the host’s ordinary code review.
-  review: docs/reviews/2026-10-29-mcp-builder.md
-  unknowns:
-    - Audit required language guides, best practices and evaluation harness before grading dependability; no server trial was performed.
+  review: docs/reviews/2026-10-30-mcp-builder.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful MCP design guidance; supporting implementation and evaluation material still needs inspection. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Tool-design principles remain useful, but implementation examples and the evaluation harness have concrete correctness/control defects. Repair the file-resource, HTTP and harness paths before use; scoped example blocker retained. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: Python file-resource and TypeScript HTTP example deployment
+      reason: The Python example interpolates an unvalidated name into a file path; the HTTP example omits host binding and authentication middleware. Do not deploy these recipes unchanged.
 source:
   kind: linked
   url: https://github.com/anthropics/skills

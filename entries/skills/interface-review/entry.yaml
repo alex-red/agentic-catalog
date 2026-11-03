@@ -23,14 +23,13 @@ rating:
     adoption: 1
     compatibility: 2
     upkeep: 3
+    dependability: 3
   context: "Developers working on this task: Explicitly reviewing interface regressions in a change and accepting installation of the complete required domain-review bundle. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Native code review and ux-critique overlap general findings. This adds change attribution and affected-surface expansion, while react-component-composition covers implementation contracts. It is a review bundle, not a standalone one-file skill."
-  review: docs/reviews/2026-10-29-interface-review.md
-  unknowns:
-    - "Dependability: required better-interface/domain skills and scope/removal references have not been inspected at this pin."
+  review: docs/reviews/2026-10-30-interface-review.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful change-scoped review orchestration; installation must include the required sibling bundle. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Complete required eight-skill bundle inspected at one pin. Strong scope attribution, checkout protection and explicit coverage limits; exact polish conventions and abbreviated widget recipes still need judgment and rendered verification. Static AI curator assessment; no new behavioral evidence.
 source:
   kind: linked
   url: https://github.com/jakubkrehel/skills

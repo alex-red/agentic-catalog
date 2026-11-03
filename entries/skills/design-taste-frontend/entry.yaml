@@ -21,14 +21,16 @@ rating:
     adoption: 2
     compatibility: 2
     upkeep: 2
+    dependability: 1
   context: "Developers working on this task: Explicitly trying a strict art-direction system for a marketing page or app screen and accepting its style policy and browser-tool overhead. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: Alternative to frontend-design and Impeccable, with stronger house-style enforcement. Native browser tools and webapp-testing cover screenshots and behavior. emil-design-eng, remove-animations and baseline-ui conflict with its marketing motion policy."
-  review: docs/reviews/2026-10-29-design-taste-frontend.md
-  unknowns:
-    - Entrypoint excerpts inspected; audit remaining guidance, study scripts, browser/media chain and asset handling.
+  review: docs/reviews/2026-10-30-design-taste-frontend.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Experimental design method whose style and setup costs must fit the project. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: Model-judged study and browser/media chain reviewed. Inspector can expose checkout dotfiles/symlink targets; screenshot and download coverage have explicit limits. Static AI curator assessment; no new behavioral evidence.
+  blockers:
+    - scope: Local-file inspector serving sensitive checkouts
+      reason: The local server serves the checkout root without authentication or Host validation, permits dotfiles, and uses lexical containment that follows symlink targets. Use an independently scoped static preview or fix those boundaries before exposing a sensitive checkout.
 source:
   kind: linked
   url: https://github.com/Leonxlnx/taste-skill

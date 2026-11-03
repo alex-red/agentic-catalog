@@ -4,8 +4,8 @@ type: skill
 title: Open-source release readiness (Trail of Bits)
 summary: Prepares a repository for going public, secrets audit first. It recommends a fresh repository over history rewriting when secrets ever existed, then covers README essentials, SECURITY.md, licensing with consistent SPDX metadata, CI and workflow hardening, branch rules, dependency cooldowns, semver tags, CI-driven releases with trusted publishing, and per-language packaging.
 useWhen: Making a private repository public, choosing a license, or setting up packaging and release automation ahead of a public launch.
-tags: [open-source, security, secrets, licensing, releases, github]
-hosts: [any]
+tags: [ open-source, security, secrets, licensing, releases, github ]
+hosts: [ any ]
 rating:
   rubric: human-v1
   dimensions:
@@ -15,14 +15,13 @@ rating:
     adoption: 2
     compatibility: 3
     upkeep: 2
+    dependability: 3
   context: "Developers working on this task: Making a private repository public, choosing a license, or setting up packaging and release automation ahead of a public launch. Declared hosts: any."
   baseline: "Comparison baseline and alternatives: oss-repo-health audits an already-public repository's ongoing practices and hands the pre-release secrets audit to this entry. github-actions-hardening reviews workflows in more depth. Hosts have no built-in release-readiness workflow."
-  review: docs/reviews/2026-10-29-open-sourcing.md
-  unknowns:
-    - Core inspected; inspect both scripts and required references. Earlier metadata reports read-only checks, which this pass does not independently re-audit.
+  review: docs/reviews/2026-10-30-open-sourcing.md
   evidence: reviewed
-  reviewed: 2026-10-29
-  notes: Useful launch checklist; do not infer release readiness from presence checks. Static curator assessment; no new behavioral trial.
+  reviewed: 2026-11-03
+  notes: "Read-only helper checks and a coherent secrets-first launch workflow. Presence checks cannot establish readiness; organization inference, license choice and release recipes need project verification. Static AI curator assessment; no new behavioral evidence."
 source:
   kind: linked
   url: https://github.com/trailofbits/skills
@@ -36,4 +35,4 @@ install:
   codex: codex plugin marketplace add trailofbits/skills, then codex plugin add open-sourcing@trailofbits
   notes: The marketplace install tracks upstream rather than this pin. Other hosts can copy plugins/open-sourcing/skills/open-sourcing, including references/ and scripts/, from the pinned revision and keep the CC-BY-SA-4.0 attribution. The scripts need bash and git. gitleaks or trufflehog are optional for the history scan.
 overlap: oss-repo-health audits an already-public repository's ongoing practices and hands the pre-release secrets audit to this entry. github-actions-hardening reviews workflows in more depth. Hosts have no built-in release-readiness workflow.
-related: [oss-repo-health, github-actions-hardening, variant-analysis]
+related: [ oss-repo-health, github-actions-hardening, variant-analysis ]
