@@ -518,3 +518,11 @@ At the user's request, complete all 32 incomplete human-v1 profiles with one AI 
 The [report](research/2026-11-03-catalog-prune.md) accounts for all 32 entries: 13 Keep and 19 Refresh. Retain existing scoped blockers and add eight for concrete affected paths. Grade Impeccable's missing human control at 2 and revise Compound Engineering's control from 3 to 2 for default external-model egress. Active inventory, including the separate TypeScript admission, is 111 complete profiles, zero incomplete profiles and 19 scoped blockers across 18 entries. Completion does not clear blockers or establish observed improvement.
 
 Correct REA's source-install instruction to disable Husky during npm preparation, make ccusage's Claude example source-specific, disclose Impeccable's separate update-check opt-out, and make ReVa's summary reflect the bounded inspection and retry finding. Preserve source pins, vendored bytes, collections, evidence records and unrelated edits. No consumer installation, plugin manifest or version change is needed. Regenerate catalog outputs and run the required repository checks.
+
+## 65. Add an ambitious task-framing skill (2026-11-08)
+
+At the user's request, distill Felix Rieseberg's essay [How to be more ambitious](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/) into [ambitious-framing](../entries/skills/ambitious-framing/SKILL.md), an adapted experimental skill. The essay carries no license, so the procedure is original prose with paraphrased examples, credited in `inspiredBy`; nothing is vendored.
+
+It keeps the essay's altitude, depth and range axes, four depth questions, outside-judge rule, nouns-to-verbs technique and warning against role-play. It adds a propose-then-act boundary so reframes never expand scope without the person's choice, consistent with `scope-and-authority`, and requires honest reporting when hard targets are missed. No overlapping entry reframes the request itself; `grilling` and plan mode are recorded in `overlap`.
+
+The [author assessment](reviews/2026-11-08-ambitious-framing.md) assigns a provisional human-v1 score of 7.0/10 at evidence `reviewed`. No collection is changed and nothing is installed or activated.

@@ -1,0 +1,35 @@
+schemaVersion: 2
+id: ambitious-framing
+type: skill
+title: Ambitious task framing (altitude, depth, range)
+summary: Reframes a request before work begins by raising it to the outcome it serves, deepening it to the raw material, methods and outside checks a field-leading expert would use, and widening it with techniques from other disciplines. Presents a short menu with one recommended rewritten prompt and the access gaps, and expands scope only after the person chooses.
+useWhen: Before a substantial task where the literal request undersells what is possible, or when the person asks the agent to be more ambitious, go deeper or think like an expert.
+tags: [planning, methodology, assumptions, requirements]
+hosts: [any]
+experimental: true
+rating:
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 3
+    adoption: 3
+    compatibility: 3
+    upkeep: 3
+  context: "Developers working on this task: Before a substantial task where the literal request undersells what is possible, or when the person asks the agent to be more ambitious, go deeper or think like an expert. Declared hosts: any."
+  baseline: "Comparison baseline and alternatives: Asking the model directly to be more ambitious or to act as an expert, and plan mode. grilling stress-tests an existing plan through interview rounds; explore-plan-implement-review sequences execution. This adds a structured reframe of the request itself, with an outside-check requirement and a propose-then-act boundary."
+  review: docs/reviews/2026-11-08-ambitious-framing.md
+  evidence: reviewed
+  reviewed: 2026-11-08
+  notes: Compact reframing method with explicit scope and verification boundaries; benefit over a plain "be more ambitious" prompt is unmeasured, and hard-target framing can encourage overreach. Static curator assessment; no behavioral trial.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Original prose and procedure adapted from Felix Rieseberg's October 13, 2026 essay, read in full November 8, 2026. The article's examples and prompts are paraphrased, not reproduced; the propose-then-act boundary, honest-reporting rule and output template are catalog additions. Not endorsed by the author.
+inspiredBy:
+  - title: "Felix Rieseberg — How to be more ambitious: A tutorial for humans with models"
+    url: https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/
+overlap: Asking the model directly to be more ambitious or to act as an expert, and plan mode. grilling stress-tests an existing plan through interview rounds; explore-plan-implement-review sequences execution. This adds a structured reframe of the request itself, with an outside-check requirement and a propose-then-act boundary.
+related: [grilling, explore-plan-implement-review, verification-before-completion, scope-and-authority]
