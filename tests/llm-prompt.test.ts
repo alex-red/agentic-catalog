@@ -2,9 +2,24 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { installPrompt } from '../site/src/llm-prompt.ts';
+import { simplePrompts } from '../site/src/simple-prompts.ts';
 
 const catalog = JSON.parse(readFileSync(new URL('../catalog/index.json', import.meta.url), 'utf8'));
 const revision = 'abcdef1234567890';
+
+test('standalone prompts cover portable methods and collections without offering installation prompts as methods', () => {
+  const methods = catalog.entries.filter(({ id, type }: { id: string; type: string }) =>
+    (['skill', 'rule', 'workflow', 'subagent'].includes(type) && id !== 'portless') ||
+    ['claude-reflect', 'compound-engineering', 'superpowers'].includes(id),
+  );
+  const expectedIds = [...methods, ...catalog.collections].map(({ id }) => id);
+  assert.deepEqual([...simplePrompts.keys()].sort(), expectedIds.sort());
+  assert.equal(new Set(simplePrompts.values()).size, simplePrompts.size);
+  for (const [id, prompt] of simplePrompts) {
+    assert.ok(prompt.trim(), `Missing prompt for ${id}`);
+    assert.ok(!prompt.includes('Catalog revision:'), `Installation prompt used for ${id}`);
+  }
+});
 
 test('every entry type has a scoped prompt with complete files, provenance and install overrides', () => {
   const types = new Set<string>();

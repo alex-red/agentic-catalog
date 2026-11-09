@@ -10,6 +10,7 @@ import { createCommandPalette } from "./command-palette";
 import type { SearchCommand } from "./command-search";
 import { canInstallHook, hookInstallCommand } from "./hook-install";
 import { installPrompt } from "./llm-prompt";
+import { simplePrompts } from "./simple-prompts";
 import { belongsToTreeGroup, catalogCategories, matchesCategories } from "./categories";
 import {
   CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
@@ -949,6 +950,72 @@ function copyForLlm(entry?: CatalogEntry, collection?: Collection, label = "Copy
   return button;
 }
 
+function renderItemTabs(prompt?: string): HTMLElement {
+  if (!prompt) return viewer;
+
+  const tabs = el("div", undefined, "install-tabs item-tabs");
+  tabs.setAttribute("role", "tablist");
+  tabs.setAttribute("aria-label", "Item view");
+  const overview = el("div", undefined, "item-panel");
+  const promptPanel = el("div", undefined, "item-panel");
+  const views = [
+    { id: "overview", label: "Overview", panel: overview },
+    { id: "prompt", label: "Simple LLM Prompt", panel: promptPanel },
+  ].map(({ id, label, panel }) => {
+    const tab = el("button", label, "install-tab-btn");
+    tab.type = "button";
+    tab.id = `item-tab-${id}`;
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-controls", `item-panel-${id}`);
+    panel.id = `item-panel-${id}`;
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("aria-labelledby", tab.id);
+    tabs.append(tab);
+    return { tab, panel };
+  });
+  const selectView = (selected: number) => {
+    views.forEach(({ tab, panel }, index) => {
+      const active = index === selected;
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+      panel.hidden = !active;
+    });
+  };
+  views.forEach(({ tab }, index) => {
+    tab.onclick = () => selectView(index);
+    tab.onkeydown = (event) => {
+      const destination = new Map([["ArrowLeft", 1 - index], ["ArrowRight", 1 - index], ["Home", 0], ["End", 1]]).get(event.key);
+      if (destination === undefined) return;
+      event.preventDefault();
+      selectView(destination);
+      views[destination].tab.focus();
+    };
+  });
+  overview.tabIndex = 0;
+  selectView(0);
+
+  const heading = el("div", undefined, "install-header");
+  const copy = el("button", "Copy prompt", "btn-action");
+  copy.type = "button";
+  heading.append(el("p", "Paste this prompt into your agent’s current chat. No installation required.", "file-status"), copy);
+  const body = el("pre", prompt, "code-view");
+  body.tabIndex = 0;
+  body.setAttribute("aria-label", "Prompt text");
+  const status = el("p", undefined, "file-status");
+  status.setAttribute("role", "status");
+  copy.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      status.textContent = "Prompt copied to clipboard.";
+    } catch {
+      status.textContent = "Clipboard unavailable. Select the prompt and copy it manually.";
+    }
+  };
+  promptPanel.append(heading, body, status);
+  viewer.append(tabs, overview, promptPanel);
+  return overview;
+}
+
 function renderCollectionViewer(collection: Collection, activeFile?: string) {
   viewer.replaceChildren();
   viewer.scrollTop = 0;
@@ -966,7 +1033,9 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
   const desc = el("div", undefined, "callout-when");
   desc.append(el("div", "Collection Purpose", "callout-title"), el("p", collection.description, "callout-body"));
 
-  viewer.append(header, desc);
+  viewer.append(header);
+  const overview = renderItemTabs(simplePrompts.get(collection.id));
+  overview.append(desc);
 
   // Grid of member entries
   const memberSection = el("div", undefined, "inspector-card");
@@ -990,10 +1059,10 @@ function renderCollectionViewer(collection: Collection, activeFile?: string) {
     grid.append(card);
   }
   memberSection.append(grid);
-  viewer.append(memberSection);
+  overview.append(memberSection);
 
   // File viewer for the collection definition
-  renderSourceViewer(collection.path, [collection.path], activeFile ?? collection.path);
+  renderSourceViewer(overview, collection.path, [collection.path], activeFile ?? collection.path);
 }
 
 // Swaps the visible source file in place; set by renderSourceViewer.
@@ -1016,7 +1085,7 @@ function retrievalNote(entry: CatalogEntry, className: string): HTMLElement | un
   return note;
 }
 
-function renderSourceViewer(title: string, files: string[], activeFile: string, caption?: HTMLElement) {
+function renderSourceViewer(container: HTMLElement, title: string, files: string[], activeFile: string, caption?: HTMLElement) {
   const fileSection = el("div", undefined, "file-viewer-section");
   fileSection.id = "entry-files";
   fileSection.tabIndex = -1;
@@ -1052,7 +1121,7 @@ function renderSourceViewer(title: string, files: string[], activeFile: string, 
   retryBtn.type = "button";
   retryBtn.hidden = true;
   fileSection.append(tabsBar, fileStatus, retryBtn, codeView);
-  viewer.append(fileSection);
+  container.append(fileSection);
 
   let token = 0;
   showFile = (file) => {
@@ -1177,6 +1246,8 @@ async function renderViewer() {
   }
   titleRow.append(actions);
   header.append(titleRow);
+  viewer.append(header);
+  const overview = renderItemTabs(simplePrompts.get(entry.id));
   const sections = el("div", undefined, "section-shortcuts");
   sections.setAttribute("role", "group");
   sections.setAttribute("aria-label", "Jump to entry section");
@@ -1190,14 +1261,13 @@ async function renderViewer() {
     };
     sections.append(jump);
   }
-  header.append(sections);
-  viewer.append(header);
+  (overview === viewer ? header : overview).append(sections);
 
   // When to Use Callout
   if (entry.useWhen) {
     const whenBox = el("div", undefined, "callout-when");
     whenBox.append(el("div", "When to Use", "callout-title"), el("p", entry.useWhen, "callout-body"));
-    viewer.append(whenBox);
+    overview.append(whenBox);
   }
 
   // Curation & Rubric Grid
@@ -1297,7 +1367,7 @@ async function renderViewer() {
   }
 
   grid.append(provCard);
-  viewer.append(grid);
+  overview.append(grid);
 
   // How to Install & Use Snippet Card
   const installCard = el("div", undefined, "install-card");
@@ -1367,12 +1437,12 @@ async function renderViewer() {
 
   snippetBox.append(snippetText, copySnippetBtn);
   installCard.append(snippetBox, noteBox);
-  viewer.append(installCard);
+  overview.append(installCard);
 
   // Source File Viewer
   // Only vendored entries display upstream text in the file viewer, so only they get the copy date there.
   const caption = entry.source.kind === "vendored" ? retrievalNote(entry, "file-retrieved") : undefined;
-  renderSourceViewer(entry.title, item.files, currentFile, caption);
+  renderSourceViewer(overview, entry.title, item.files, currentFile, caption);
 }
 
 let lastPath: string | undefined;

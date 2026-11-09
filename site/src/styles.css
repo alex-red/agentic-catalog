@@ -1313,11 +1313,23 @@ kbd {
   cursor: pointer;
 }
 
-.install-tab-btn[aria-pressed="true"] {
+.install-tab-btn:is([aria-pressed="true"], [aria-selected="true"]) {
   background: var(--surface-raised);
   border-color: var(--accent);
   color: var(--accent);
   font-weight: 600;
+}
+
+.item-tabs .install-tab-btn {
+  min-height: 32px;
+  padding-inline: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.item-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .code-snippet-box {

@@ -526,3 +526,9 @@ At the user's request, distill Felix Rieseberg's essay [How to be more ambitious
 It keeps the essay's altitude, depth and range axes, four depth questions, outside-judge rule, nouns-to-verbs technique and warning against role-play. It adds a propose-then-act boundary so reframes never expand scope without the person's choice, consistent with `scope-and-authority`, and requires honest reporting when hard targets are missed. No overlapping entry reframes the request itself; `grilling` and plan mode are recorded in `overlap`.
 
 The [author assessment](reviews/2026-11-08-ambitious-framing.md) assigns a provisional human-v1 score of 7.0/10 at evidence `reviewed`. No collection is changed and nothing is installed or activated.
+
+## 66. Add standalone prompts to the browser (2026-11-09)
+
+Show a Simple LLM Prompt tab when a catalog method can be applied in an existing agent conversation. Prompts describe the method in the context of the current task and retain relevant evidence checks and authority boundaries. Coverage includes skills, rules, workflows, review subagents, collections and plugins with a portable workflow. Hooks, MCP servers, tools and proxy or status integrations depend on their runtime and keep their installation guidance.
+
+Keep the prompts in [the browser's prompt data](../site/src/simple-prompts.ts), separate from generated indexes and installable bundles. This lets the browser offer a short adaptation of linked and vendored methods while preserving source provenance, upstream files and the existing installation prompt. A prompt is a condensed procedure with no new evidence rating.

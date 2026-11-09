@@ -10,6 +10,8 @@ A curated, rated catalog of agent guidance for coding agents: skills, rules, wor
 
 **[Browse the catalog online](https://alex-red.github.io/agentic-catalog/)**: search, filter, and read every entry's rating, provenance, and source files.
 
+Use the **Simple LLM Prompt** tab on supported items to copy a short prompt into an active agent conversation. **Copy for LLM** prepares project installation instructions.
+
 ## Use it from an agent
 
 Point an agent at the catalog and say what you want:
