@@ -937,6 +937,8 @@ kbd {
 .badge-plugin { background: rgba(219, 97, 162, 0.15); color: #d2a8ff; }
 .badge-collection { background: rgba(139, 148, 158, 0.15); color: #8b949e; }
 .badge-tool { background: var(--accent-subtle); color: var(--accent-text); }
+.badge-new { background: rgba(46, 160, 67, 0.14); color: #7ee787; }
+.tree-item .badge-new { flex-shrink: 0; font-size: 0.625rem; padding-inline: 0.25rem; }
 .badge-custom { background: rgba(163, 113, 247, 0.15); color: #a371f7; border: 1px solid rgba(163, 113, 247, 0.45); }
 .badge-featured { background: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.45); }
 .badge-experimental { background: rgba(219, 109, 40, 0.15); color: #db6d28; border: 1px dashed rgba(219, 109, 40, 0.5); }
@@ -956,7 +958,7 @@ kbd {
   .badge-rule, .badge-plugin, .badge-custom, .badge-host-any { color: #6639ba; }
   .badge-workflow, .badge-experimental, .badge-host-claude { color: #8a4600; }
   .badge-hook { color: #a40e26; }
-  .badge-subagent, .badge-mcp, .badge-ev-evaluated, .badge-host-codex { color: #116329; }
+  .badge-subagent, .badge-mcp, .badge-new, .badge-ev-evaluated, .badge-host-codex { color: #116329; }
   .badge-collection, .badge-ev-reviewed { color: #424a53; }
   .badge-featured, .badge-ev-tested { color: #7d4e00; }
 }

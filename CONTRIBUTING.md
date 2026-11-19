@@ -29,6 +29,8 @@ It saves dated reports under `docs/research/`, building on prior research and ad
 3. Use the [human-focused rating guide](docs/ratings.md): `rubric: human-v1`, seven anchored 0–4 grades, intended context, named baseline, and a linked curator assessment under `docs/reviews/`. Explain tradeoffs in `rating.notes` and overlap in `overlap`. Omit unknown grades and name the unknowns; incomplete profiles have no aggregate. Record recommendation blockers explicitly. Keep evidence independent. Existing `legacy-v1` reviews remain out of 5 until a substantive reassessment; never convert them arithmetically.
 4. Run `bun run catalog:build` and `bun run check`.
 
+Use the optional `added: YYYY-MM-DD` field for the UTC calendar date an entry first joins Agentic Catalog. Preserve it on updates and leave historical dates absent unless you can verify them. The browser shows **New** on skills for the first seven UTC calendar days, including the addition date. Review dates, source retrieval dates, and upstream freshness checks track separate events.
+
 ## Review and retire entries
 
 Use `.agents/skills/catalog-prune/SKILL.md` for catalog upkeep:

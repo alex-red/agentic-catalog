@@ -79,6 +79,24 @@ test('legacy scores retain their formula and llms.txt ranks within rubric groups
   assert.ok(positions.every((position) => position >= 0));
 });
 
+test('the catalog preserves added dates independently of review dates', (context) => {
+  const root = sandbox(context);
+  const catalogEntry = () => JSON.parse(renderCatalog(loadCatalog(root))).entries.find(
+    (entry: { id: string }) => entry.id === 'systematic-debugging',
+  );
+  assert.equal(catalogEntry().added, undefined);
+  updateYaml(root, metadataPath, (entry) => { entry.added = '2026-11-19'; });
+  assert.equal(catalogEntry().added, '2026-11-19');
+  updateYaml(root, metadataPath, (entry) => {
+    (entry.rating as Record<string, unknown>).reviewed = '2026-11-26';
+  });
+  const updated = catalogEntry();
+  assert.equal(updated.added, '2026-11-19');
+  assert.equal(updated.rating.reviewed, '2026-11-26');
+  updateYaml(root, metadataPath, (entry) => { entry.added = '2026-11-19T00:00:00Z'; });
+  assert.throws(catalogEntry, /\/added must match pattern/u);
+});
+
 test('experimental entries are listed only in their own llms.txt section', (context) => {
   const root = sandbox(context);
   updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.experimental = true; });

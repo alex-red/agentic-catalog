@@ -29,6 +29,7 @@ export interface EntryMetadata {
   id: string;
   type: EntryType;
   title: string;
+  added?: string;
   summary: string;
   useWhen: string;
   tags: string[];

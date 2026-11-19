@@ -532,3 +532,9 @@ The [author assessment](reviews/2026-11-08-ambitious-framing.md) assigns a provi
 Show a Simple LLM Prompt tab when a catalog method can be applied in an existing agent conversation. Prompts describe the method in the context of the current task and retain relevant evidence checks and authority boundaries. Coverage includes skills, rules, workflows, review subagents, collections and plugins with a portable workflow. Hooks, MCP servers, tools and proxy or status integrations depend on their runtime and keep their installation guidance.
 
 Keep the prompts in [the browser's prompt data](../site/src/simple-prompts.ts), separate from generated indexes and installable bundles. This lets the browser offer a short adaptation of linked and vendored methods while preserving source provenance, upstream files and the existing installation prompt. A prompt is a condensed procedure with no new evidence rating.
+
+## 67. Add Repo Retro and show recent skill admissions (2026-11-19)
+
+Adapt [Repo Retro](../entries/skills/repo-retro/SKILL.md) from the pinned Dev Catalog skill as a portable, proposal-only review across repository sessions or lessons notes. Keep its upstream MIT notice and link [Retrospective](../entries/skills/retrospective/SKILL.md), which turns lessons from a finished piece of work into durable project guidance. The [human-v1 assessment](reviews/2026-11-19-repo-retro.md) records the comparison and its limits at evidence level `reviewed`.
+
+Use optional `added` metadata for an entry's first Agentic Catalog admission date in UTC. Preserve it on updates and leave unverified historical dates absent. The browser calculates **New** for skills on render, from midnight on the addition date up to midnight seven days later. Both the sidebar and details use the same rule. Ratings, upstream freshness, and Featured grouping have their own metadata and behavior.

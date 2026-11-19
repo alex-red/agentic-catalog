@@ -12,6 +12,7 @@ import { canInstallHook, hookInstallCommand } from "./hook-install";
 import { installPrompt } from "./llm-prompt";
 import { simplePrompts } from "./simple-prompts";
 import { belongsToTreeGroup, catalogCategories, matchesCategories } from "./categories";
+import { isNewSkill } from "./entry-age";
 import {
   CONFIG_NAME, configPath, configToScript, configToYaml, makeConfig, parseConfig, planSteps, skillDir,
   type BulkHost, type BulkScope, type InstallConfig, type StepKind,
@@ -40,6 +41,7 @@ interface CatalogEntry {
   id: string;
   type: string;
   title: string;
+  added?: string;
   summary: string;
   useWhen: string;
   tags: string[];
@@ -332,6 +334,13 @@ function kindBadge(kind: string, label = kind) {
   return badge;
 }
 
+function appendNewBadge(container: HTMLElement, entry: CatalogEntry, now: number) {
+  if (!isNewSkill(entry, now)) return;
+  const badge = el("span", "New", "badge badge-new");
+  badge.title = `Added to Agentic Catalog on ${entry.added} (UTC)`;
+  container.append(badge);
+}
+
 function renderControls() {
   const refresh = () => {
     renderControls();
@@ -464,6 +473,7 @@ function renderTokens() {
 }
 
 function renderList() {
+  const now = Date.now();
   const { item: current } = route();
   const openGroups = new Map([...list.querySelectorAll<HTMLDetailsElement>("details.tree-group")]
     .map((group) => [group.dataset.kind, group.open]));
@@ -514,6 +524,7 @@ function renderList() {
       a.append(dot, catalogIcon(item.kind), itemTitle);
 
       if (item.entry) {
+        appendNewBadge(a, item.entry, now);
         const score = el("span", scoreLabel(item.entry), "tree-item-score");
         score.title = `${item.entry.rating.rubric}: curator judgment; inspect evidence and project fit`;
         a.append(score);
@@ -1206,6 +1217,7 @@ async function renderViewer() {
 
   const badges = el("div", undefined, "card-badges");
   badges.append(kindBadge(entry.type));
+  appendNewBadge(badges, entry, Date.now());
   if (entry.featured) badges.append(kindBadge("featured", "Featured"));
   if (entry.custom) badges.append(kindBadge("custom", "Custom"));
   if (entry.experimental) badges.append(kindBadge("experimental", "Experimental"));
