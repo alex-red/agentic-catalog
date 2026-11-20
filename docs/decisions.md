@@ -538,3 +538,7 @@ Keep the prompts in [the browser's prompt data](../site/src/simple-prompts.ts), 
 Adapt [Repo Retro](../entries/skills/repo-retro/SKILL.md) from the pinned Dev Catalog skill as a portable, proposal-only review across repository sessions or lessons notes. Keep its upstream MIT notice and link [Retrospective](../entries/skills/retrospective/SKILL.md), which turns lessons from a finished piece of work into durable project guidance. The [human-v1 assessment](reviews/2026-11-19-repo-retro.md) records the comparison and its limits at evidence level `reviewed`.
 
 Use optional `added` metadata for an entry's first Agentic Catalog admission date in UTC. Preserve it on updates and leave unverified historical dates absent. The browser calculates **New** for skills on render, from midnight on the addition date up to midnight seven days later. Both the sidebar and details use the same rule. Ratings, upstream freshness, and Featured grouping have their own metadata and behavior.
+
+## 68. Use harness-native evidence in Repo Retro (2026-11-20)
+
+Keep the repository retrospective independent of any required history tool. Use documented history access in Claude Code, Google Antigravity, and Codex, and accept equivalent read access on other harnesses. Verify repository scope before reading turns, including worktrees, and use existing notes or supplied excerpts when a harness exposes limited history. The browser prompt follows the same evidence rules. Documentation review supports the examples, and the catalog evidence level stays `reviewed`.

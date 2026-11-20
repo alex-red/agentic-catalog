@@ -2965,11 +2965,11 @@
           "compatibility": 3,
           "upkeep": 4
         },
-        "context": "Developers reviewing recurring friction across coding-agent sessions in one repository, with Codex history where available or repository notes or excerpts on other hosts.",
+        "context": "Developers reviewing recurring friction in one repository using available harness history, repository notes, or supplied transcript excerpts.",
         "baseline": "Retrospective for a finished piece of work, or manually reviewing repository lessons notes and checking them against the current tree.",
         "review": "docs/reviews/2026-11-19-repo-retro.md",
         "evidence": "reviewed",
-        "reviewed": "2026-11-19",
+        "reviewed": "2026-11-20",
         "notes": "Repository scoping and cited proposals help connect recurring incidents to current checks. Incomplete history or sparse notes limit what the review can conclude."
       },
       "source": {
@@ -2984,7 +2984,7 @@
           "url": "https://github.com/alex-red/dev-catalog/blob/b583768ccd0703d1c445075770009089f96ebb14/entries/workflows/repo-retro/SKILL.md"
         }
       ],
-      "overlap": "Retrospective turns lessons from a finished piece of work into durable project guidance. Repo Retro reviews evidence across repository sessions or lessons notes and ranks proposals for the user to decide on. Codex history provides the raw past turns, and manual notes review can suffice when the notes already identify a current fix.",
+      "overlap": "Retrospective turns lessons from a finished piece of work into durable project guidance. Repo Retro reviews evidence across repository sessions or lessons notes and ranks proposals for the user to decide on. Native harness history provides past turns when available, and manual notes review can suffice when the notes already identify a current fix.",
       "related": [
         "retrospective"
       ],
