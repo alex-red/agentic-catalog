@@ -20,7 +20,7 @@ export function createLandingPage(options: LandingOptions): HTMLElement {
       <div class="landing-actions">
         <a class="btn-source" href="#/collection/starter">Explore the starter set <span aria-hidden="true">→</span></a>
       </div>
-      <p class="landing-caption">Start with a few useful entries, or paste the copied prompt into your agent for a project-specific shortlist.</p>
+      <p class="landing-caption">Start with a few useful entries, or paste the copied prompt into your agent for a project-specific shortlist. See also <a href="https://github.com/alex-red/dev-catalog" target="_blank" rel="noreferrer">Dev Catalog on GitHub</a>.</p>
     </header>
 
     <section aria-labelledby="landing-how">

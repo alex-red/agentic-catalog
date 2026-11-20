@@ -250,6 +250,9 @@ input[type="search"]:focus {
   flex-wrap: wrap;
 }
 
+.header-link, .dialog-col a { color: var(--accent-text); text-underline-offset: 3px; }
+.header-link { font-size: 0.75rem; white-space: nowrap; }
+
 .filter-cluster {
   display: inline-flex;
   align-items: center;
