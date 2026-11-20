@@ -126,11 +126,18 @@ body {
   max-height: 80dvh;
   overflow: hidden;
 }
+.command-palette[open] { display: flex; flex-direction: column; }
+.command-palette > :not(.command-results, .sr-only) { flex-shrink: 0; }
 .command-search-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); }
 .command-search-symbol { font-size: 1.8rem; line-height: 1; color: var(--accent); }
 .command-input { flex: 1; min-width: 0; padding: 0.5rem; background: transparent; border: 0; color: var(--text); font: inherit; }
 .command-input:focus { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 4px; }
-.command-results { max-height: 52dvh; overflow-y: auto; overscroll-behavior: contain; padding: 0.4rem; }
+.command-semantic { padding: 0.45rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+.command-semantic summary { width: fit-content; color: var(--accent-text); cursor: pointer; }
+.command-semantic-state, .command-semantic-status { color: var(--text-muted); }
+.command-semantic-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 0.65rem; padding-block: 0.4rem 0.2rem; }
+.command-semantic-controls p { flex-basis: 100%; margin: 0; color: var(--text-muted); }
+.command-results { min-height: 0; max-height: 52dvh; overflow-y: auto; overscroll-behavior: contain; padding: 0.4rem; }
 .command-group { padding: 0.55rem 0.65rem 0.3rem; color: var(--text-muted); font: 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
 .command-option { padding: 0.6rem 0.7rem; border: 1px solid transparent; border-radius: 5px; cursor: pointer; }
 .command-option[aria-selected="true"] { background: var(--surface-active); border-color: var(--accent); }

@@ -1551,6 +1551,12 @@ const itemCommands: SearchCommand[] = items.map((item) => ({
   group: item.kind === "collection" ? "Collections" : "Catalog entries",
   keywords: `${item.id} ${item.tags.join(" ")} ${item.hosts.join(" ")} ${item.entry?.useWhen ?? ""}`,
   priority: scorePriorities.get(item.id) ?? 0,
+  semantic: {
+    key: item.id,
+    text: [item.title, item.entry?.useWhen, item.summary, simplePrompts.get(item.id)?.split(/(?<=[.!?])\s/u, 1)[0], item.tags.join(", ")]
+      .filter(Boolean).join(". "),
+    hosts: item.entry?.hosts,
+  },
   run: () => { location.hash = `#/${item.kind}/${item.id}`; },
 }));
 
@@ -1576,6 +1582,7 @@ function paletteActions(): SearchCommand[] {
 createCommandPalette({
   trigger: $<HTMLButtonElement>("#command-toggle"),
   commands: () => [...paletteActions(), ...itemCommands],
+  searchHosts: () => [...activeHosts],
   defaults: () => [
     ...paletteActions(),
     ...itemCommands.filter((command) => command.id === "open:collection:starter"),

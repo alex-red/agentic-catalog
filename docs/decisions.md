@@ -542,3 +542,9 @@ Use optional `added` metadata for an entry's first Agentic Catalog admission dat
 ## 68. Use harness-native evidence in Repo Retro (2026-11-20)
 
 Keep the repository retrospective independent of any required history tool. Use documented history access in Claude Code, Google Antigravity, and Codex, and accept equivalent read access on other harnesses. Verify repository scope before reading turns, including worktrees, and use existing notes or supplied excerpts when a harness exposes limited history. The browser prompt follows the same evidence rules. Documentation review supports the examples, and the catalog evidence level stays `reviewed`.
+
+## 69. Offer opt-in semantic search in the command palette (2026-11-20)
+
+Keep keyword search available immediately. On explicit opt-in, a tab worker fetches the pinned Mixedbread encoder from Hugging Face and the pinned Transformers.js runtime from jsDelivr. Run the first version on single-threaded WASM for static hosting. Build and cache the vector index in the browser from public catalog metadata, keyed by the corpus and model revision. GitHub Pages serves the worker and catalog data. Queries stay in the browser, exact IDs take priority, and selected hosts constrain semantic suggestions.
+
+Remember a successful opt-in in session storage. After reloading the same tab, opening the command palette restores semantic search from the browser caches. Turning it off clears the tab's opt-in. A fresh tab starts with keyword search and can reuse cached assets after consent.
