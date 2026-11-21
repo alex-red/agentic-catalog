@@ -1,0 +1,39 @@
+schemaVersion: 2
+id: novel-design
+type: skill
+title: Creating Novel Designs
+added: 2026-11-21
+summary: Turns project-specific material and principles borrowed from other fields into a visual concept. Compares directions on the same surface and checks whether the idea holds up with real content and constraints.
+useWhen: You want a distinctive new visual direction, meaningfully different design concepts, or a rework of a generic-looking design.
+tags: [design, visual-design]
+hosts: [any]
+experimental: true
+rating:
+  rubric: human-v1
+  dimensions:
+    value: 3
+    dependability: 2
+    cognitiveEase: 3
+    control: 4
+    adoption: 3
+    compatibility: 3
+    upkeep: 4
+  context: Designers and developers making a visual direction decision for an interface, page, deck, campaign, or identity.
+  baseline: Host frontend-design guidance or a direct request for a distinctive design using the same brief and assets.
+  review: docs/reviews/2026-11-21-novel-design.md
+  evidence: reviewed
+  reviewed: 2026-11-21
+  notes: Concrete material and comparable sketches make direction choices easier to inspect. Novelty and usability depend on the brief and the execution. Author review only.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written synthesis of the cited design methods. The sourcing and selection rationale is recorded in the author assessment.
+inspiredBy:
+  - title: Jakob Meyer’s unaverage design
+  - title: Zach Stevens’s Creative Direction
+  - title: SpellbourneDZ’s UI Art Direction
+  - title: LangChain’s Brand Design
+  - title: Paul Bakaus’s Impeccable bolder guide
+overlap: Host frontend-design and the catalog’s frontend-design entry cover distinctive aesthetics and visual execution. Design Taste Frontend also develops subject-specific concepts and Impeccable explores variants and adjusts emphasis. This skill focuses on deriving an organizing idea from project material, borrowing a principle from a reference, and testing whether the idea carries through to the applied design. Design DNA is suited to transferring a supplied reference’s visual language into new work.
+related: [frontend-design, design-taste-frontend, impeccable, design-dna]

@@ -56,7 +56,7 @@ interface CatalogEntry {
   rating: Rating;
   source: Source;
   install?: InstallGuide;
-  inspiredBy?: { title: string; url: string }[];
+  inspiredBy?: { title: string; url?: string }[];
   overlap?: string;
   related?: string[];
 }
@@ -1356,9 +1356,9 @@ async function renderViewer() {
     const inspRow = el("div", undefined, "meta-row");
     inspRow.append(el("span", "Inspired By", "meta-label"));
     const inspVal = el("span", undefined, "meta-val");
-    for (let i = 0; i < entry.inspiredBy.length; i++) {
+    for (const [i, { title, url }] of entry.inspiredBy.entries()) {
       if (i > 0) inspVal.append(", ");
-      inspVal.append(link(entry.inspiredBy[i].title, entry.inspiredBy[i].url));
+      inspVal.append(url ? link(title, url) : title);
     }
     inspRow.append(inspVal);
     provCard.append(inspRow);

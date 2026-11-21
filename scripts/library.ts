@@ -42,7 +42,7 @@ export interface EntryMetadata {
   featured?: true;
   rating: Rating;
   source: { kind: 'original' | 'adapted' | 'vendored' | 'linked'; url?: string; path?: string; revision?: string; retrieved?: string; license: string; author?: string; notes?: string };
-  inspiredBy?: { title: string; url: string }[];
+  inspiredBy?: { title: string; url?: string }[];
   install?: Partial<Record<'claude-code' | 'codex' | 'any' | 'notes', string>>;
   overlap?: string;
   related?: string[];
@@ -293,7 +293,7 @@ export function sourceUrl(entry: EntryMetadata): string | undefined {
     const view = path && /\.[A-Za-z0-9]+$/u.test(path) ? 'blob' : 'tree';
     return `${url.replace(/\/$/u, '')}/${view}/${revision ?? 'HEAD'}${path ? `/${path}` : ''}`;
   }
-  const cited = [...(url ? [url] : []), ...(entry.inspiredBy ?? []).map((link) => link.url)];
+  const cited = [url, ...(entry.inspiredBy ?? []).map((credit) => credit.url)].filter((url) => url !== undefined);
   return cited.find(github) ?? cited[0];
 }
 
@@ -440,8 +440,9 @@ export function renderLlmsText(catalog: Catalog): string {
   const line = (entry: Entry) => {
     const primary = primaryFiles[entry.type];
     const target = entry.source.kind === 'linked' || !primary ? entry.sourceUrl! : url(`${entry.path}/${primary}`);
+    const credit = entry.sourceUrl ?? entry.inspiredBy?.map(({ title }) => title).join(', ');
     const origin = entry.source.kind === 'original'
-      ? `original${entry.sourceUrl ? `, informed by ${entry.sourceUrl}` : ''}` : `${entry.source.kind} from ${entry.sourceUrl}`;
+      ? `original${credit ? `, informed by ${credit}` : ''}` : `${entry.source.kind} from ${credit}`;
     const kind = entry.experimental || entry.custom ? `type ${entry.type}, ` : '';
     return `- [${entry.title}](${target}): ${entry.summary} Use when: ${entry.useWhen} — id \`${entry.id}\`, ${kind}${scoreLabel(entry)} (${entry.rating.rubric})${entry.rating.rubric === 'human-v1' && entry.rating.blockers?.length ? `, blockers: ${entry.rating.blockers.map((blocker) => `${blocker.scope}: ${blocker.reason}`).join('; ')}` : ''}, evidence ${entry.rating.evidence}, hosts ${entry.hosts.join('/')}, tags ${entry.tags.join(', ')}, ${origin}, [metadata](${url(`${entry.path}/entry.yaml`)})`;
   };

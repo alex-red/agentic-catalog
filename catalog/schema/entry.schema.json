@@ -40,7 +40,7 @@
       },
       "uniqueItems": true
     },
-    "link": {
+    "inspiration": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -52,8 +52,7 @@
         }
       },
       "required": [
-        "title",
-        "url"
+        "title"
       ]
     },
     "legacyRating": {
@@ -341,7 +340,7 @@
       "additionalProperties": false,
       "properties": {
         "kind": {
-          "description": "original: written here; adapted: written here from cited inspiration; vendored: pinned upstream copy; linked: upstream only.",
+          "description": "original: written here; adapted: written here from credited inspiration; vendored: pinned upstream copy; linked: upstream only.",
           "enum": [
             "original",
             "adapted",
@@ -451,7 +450,7 @@
     "inspiredBy": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/link"
+        "$ref": "#/definitions/inspiration"
       },
       "minItems": 1
     },

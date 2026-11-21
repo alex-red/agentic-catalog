@@ -548,3 +548,11 @@ Keep the repository retrospective independent of any required history tool. Use 
 Keep keyword search available immediately. On explicit opt-in, a tab worker fetches the pinned Mixedbread encoder from Hugging Face and the pinned Transformers.js runtime from jsDelivr. Run the first version on single-threaded WASM for static hosting. Build and cache the vector index in the browser from public catalog metadata, keyed by the corpus and model revision. GitHub Pages serves the worker and catalog data. Queries stay in the browser, exact IDs take priority, and selected hosts constrain semantic suggestions.
 
 Remember a successful opt-in in session storage. After reloading the same tab, opening the command palette restores semantic search from the browser caches. Turning it off clears the tab's opt-in. A fresh tab starts with keyword search and can reuse cached assets after consent.
+
+## 70. Add a skill for creating novel designs (2026-11-21)
+
+Add [Creating Novel Designs](../entries/skills/novel-design/SKILL.md) as an adapted experimental skill. Derive a visual concept from something specific to the project, compare directions on equivalent sketches when the decision warrants it, and check the result in its target medium. The [author assessment](reviews/2026-11-21-novel-design.md) records source coverage and evidence at `reviewed`.
+
+Allow a named `inspiredBy` credit with an optional HTTPS URL so this adaptation can credit its upstream author in plain text. An adapted entry still requires at least one named inspiration. The catalog displays text credits directly and derives source links from available URLs.
+
+The [follow-up scout](research/2026-11-21-catalog-scout.md) adds borrowing a communication principle from another field, scaling expression to the task, and checking whether the concept survives a constrained application. Fold the methods into the existing skill and its browser prompt, with named credits and the existing `reviewed` evidence level.

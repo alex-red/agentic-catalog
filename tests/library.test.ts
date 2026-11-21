@@ -136,7 +136,7 @@ test('Claude Code invocation keys in skill frontmatter are typed', (context) => 
 test('every entry with a source or citation links to it, preferring pinned GitHub paths', (context) => {
   const root = sandbox(context);
   for (const entry of loadCatalog(root).entries) {
-    const cited = entry.source.url ?? entry.inspiredBy?.[0].url;
+    const cited = entry.source.url ?? entry.inspiredBy?.find((credit) => credit.url)?.url;
     assert.equal(Boolean(entry.sourceUrl), Boolean(cited), entry.id);
     if (entry.source.url?.startsWith('https://github.com/') && entry.source.revision) {
       assert.ok(entry.sourceUrl!.includes(`/${entry.source.revision}`), entry.id);
@@ -152,7 +152,7 @@ test('every entry with a source or citation links to it, preferring pinned GitHu
   const root2 = sandbox(context);
   updateYaml(root2, `${rulePath}/entry.yaml`, (entry) => {
     entry.source = { kind: 'adapted', license: 'MIT' };
-    entry.inspiredBy = [{ title: 'Docs', url: 'https://example.com/docs' }, { title: 'Repo', url: 'https://github.com/example/repo' }];
+    entry.inspiredBy = [{ title: 'Plain text credit' }, { title: 'Docs', url: 'https://example.com/docs' }, { title: 'Repo', url: 'https://github.com/example/repo' }];
   });
   assert.equal(loadCatalog(root2).entries.find((entry) => entry.id === 'focused-changes')!.sourceUrl, 'https://github.com/example/repo');
 });
@@ -278,6 +278,14 @@ test('adapted entries must cite their inspiration', (context) => {
   const root = sandbox(context);
   updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.source = { kind: 'adapted', license: 'MIT' }; });
   assert.throws(() => loadCatalog(root), /inspiredBy/u);
+  updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.inspiredBy = [{ title: 'Example method' }]; });
+  const catalog = loadCatalog(root);
+  const entry = catalog.entries.find((candidate) => candidate.id === 'focused-changes')!;
+  assert.deepEqual(entry.inspiredBy, [{ title: 'Example method' }]);
+  assert.equal(entry.sourceUrl, undefined);
+  assert.match(renderLlmsText(catalog), /adapted from Example method/u);
+  updateYaml(root, `${rulePath}/entry.yaml`, (entry) => { entry.inspiredBy = [{ title: 'Example method', url: 'http://example.com' }]; });
+  assert.throws(() => loadCatalog(root), /inspiredBy.*must match pattern/u);
 });
 
 test('related entries must exist', (context) => {

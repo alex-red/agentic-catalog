@@ -15,7 +15,7 @@ Each entry records:
 
 - **What it is and when to use it**: type, title, summary, `useWhen`, tags, hosts.
 - **A rating**: the [human-focused rubric](docs/ratings.md), seven 0–4 grades and a weighted score out of 10, with intended context, baseline, linked assessment, unknowns and recommendation blockers. Evidence (`reviewed`, `used`, `tested`, `evaluated`) stays separate. Legacy reviews remain labeled out of 5 pending reassessment.
-- **Where it came from**: `original`, `adapted` (with `inspiredBy` links), `vendored` (a pinned upstream copy with its license), or `linked` (upstream only, pinned where possible).
+- **Where it came from**: `original`, `adapted` (with `inspiredBy` credits and optional links), `vendored` (a pinned upstream copy with its license), or `linked` (upstream only, pinned where possible).
 - **Overlap and relations**: what hosts or other entries already cover, and related entries.
 
 ## How agents use it
