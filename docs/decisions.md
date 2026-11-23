@@ -556,3 +556,9 @@ Add [Creating Novel Designs](../entries/skills/novel-design/SKILL.md) as an adap
 Allow a named `inspiredBy` credit with an optional HTTPS URL so this adaptation can credit its upstream author in plain text. An adapted entry still requires at least one named inspiration. The catalog displays text credits directly and derives source links from available URLs.
 
 The [follow-up scout](research/2026-11-21-catalog-scout.md) adds borrowing a communication principle from another field, scaling expression to the task, and checking whether the concept survives a constrained application. Fold the methods into the existing skill and its browser prompt, with named credits and the existing `reviewed` evidence level.
+
+## 71. Add approval-gated learning from the current session (2026-11-23)
+
+Adapt Antigravity's `/learn` as [Learn from this session](../entries/skills/learn/SKILL.md), an experimental skill. It checks current guidance and host conventions, proposes exact changes at the narrowest applicable scope, and waits for approval. The host can present the proposal as a review artifact or as Markdown in chat. A changed diff goes back for review before it is applied.
+
+Antigravity's built-in command covers the same task. The portable entry and browser prompt fill that role elsewhere and focus on current-session guidance edits. Retrospective covers broader project improvements, and Repo Retro reviews evidence across sessions. The [curator assessment](reviews/2026-11-23-learn.md) records the overlap and evidence level `reviewed`.

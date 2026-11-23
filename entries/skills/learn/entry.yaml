@@ -1,0 +1,36 @@
+schemaVersion: 2
+id: learn
+type: skill
+title: Learn from this session
+added: 2026-11-23
+summary: Distills a current-session correction, constraint, or working fix into a proposed rule, skill, or workflow documentation update. Shows exact edits and waits for approval before applying them.
+useWhen: You invoke /learn or ask to preserve a specific lesson from the current session in durable agent guidance.
+tags: [self-improvement, project-instructions, skill-authoring]
+hosts: [any]
+experimental: true
+rating:
+  rubric: human-v1
+  dimensions:
+    value: 2
+    dependability: 3
+    cognitiveEase: 3
+    control: 4
+    adoption: 4
+    compatibility: 3
+    upkeep: 4
+  context: Developers who want to preserve a current-session lesson as reviewable guidance for future agent work.
+  baseline: Use Antigravity's native /learn where available, or ask for a small, reviewable edit to known project guidance.
+  review: docs/reviews/2026-11-23-learn.md
+  evidence: reviewed
+  reviewed: 2026-11-23
+  notes: Useful when the right destination or wording is unclear. The proposal adds a review step even for a small edit. Live activation and outcomes remain unmeasured.
+source:
+  kind: adapted
+  license: MIT
+  author: Agentic Catalog contributors
+  notes: Independently written adaptation of the supplied Antigravity workflow, with a Markdown chat fallback and a check for changes since approval.
+inspiredBy:
+  - title: Google Antigravity Learn command
+    url: https://antigravity.google/docs/commands/learn
+overlap: Antigravity's native /learn already covers the core workflow there. Claude Code auto memory and Codex memories can retain corrections. Revise CLAUDE.md provides an approval-gated edit to Claude Code project instructions. Retrospective covers broader project improvements after a task, and Repo Retro reviews evidence across sessions. Learn focuses on exact edits to current-session guidance across hosts.
+related: [retrospective, repo-retro, revise-claude-md, agents-md-authoring]
